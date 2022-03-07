@@ -1,6 +1,6 @@
 <template>
   <div class="logo" id="kuler-logo">
-        <img src="@/assets/kuler_logo_red.png" alt="Kuler">
+      <router-link to="/"><img src="@/assets/kuler_logo_red.png" alt="Kuler"></router-link>
     </div>
 </template>
 
@@ -14,7 +14,10 @@ export default {
     /*logo*/
 
     .logo {
-        padding: 2em  0em 0em 2em;
+        
+        position: relative;
+        display: inline;
+        padding: 2em  2em 0em 2em;
 
     }
     .logo img {

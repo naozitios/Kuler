@@ -1,6 +1,8 @@
 <template>
   <KulerLogo/>  
   <SearchBar/>
+  <SellButton/>
+  <SigninButton/>
   <div id="nav">
     <ul>
             <li><router-link to="/categoryIcons">Icons</router-link></li>
@@ -11,25 +13,22 @@
             <li><router-link to="/categoryVintage">Vintage</router-link></li>
         </ul>
   </div>
-  
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/profile">Profile</router-link> |
-    <router-link to="/cart">Cart</router-link>
-  </div> -->
-
   <router-view/>
 </template>
 
 <script>
 import SearchBar from '@/components/SearchBar.vue'
 import KulerLogo from '@/components/KulerLogo.vue'
+import SellButton from '@/components/SellButton.vue'
+import SigninButton from '@/components/SigninButton.vue'
 
 export default {
   name: 'App',
   components:{
     KulerLogo,
-    SearchBar
+    SearchBar,
+    SellButton,
+    SigninButton
   },
   data(){
     
@@ -125,17 +124,4 @@ a:hover {
                     background-color: rgba(222, 222, 222, 0.25);
                     box-shadow: none;
                 }
-/*Shashank's code*/
-/* #nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-} */
 </style>
