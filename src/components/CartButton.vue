@@ -1,4 +1,5 @@
 <template>
+    <h3>test</h3>
     <router-link to="/cart"><img src="@/assets/cart_icon.svg" alt="Cart"></router-link>
 </template>
 
