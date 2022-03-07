@@ -1,5 +1,6 @@
 <template>
-  <button class="button sell">Sell</button>
+    <router-link to="/sell"><button class="button sell">Sell</button></router-link>
+  
 </template>
 
 <script>

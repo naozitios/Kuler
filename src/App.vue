@@ -3,6 +3,8 @@
   <SearchBar/>
   <SellButton/>
   <SigninButton/>
+  <FavouriteButton/>
+  <CartButton/>
   <div id="nav">
     <ul>
             <li><router-link to="/categoryIcons">Icons</router-link></li>
@@ -21,6 +23,8 @@ import SearchBar from '@/components/SearchBar.vue'
 import KulerLogo from '@/components/KulerLogo.vue'
 import SellButton from '@/components/SellButton.vue'
 import SigninButton from '@/components/SigninButton.vue'
+import FavouriteButton from '@/components/FavouriteButton.vue'
+import CartButton from '@/components/CartButton.vue'
 
 export default {
   name: 'App',
@@ -28,7 +32,9 @@ export default {
     KulerLogo,
     SearchBar,
     SellButton,
-    SigninButton
+    SigninButton,
+    FavouriteButton,
+    CartButton
   },
   data(){
     
@@ -47,7 +53,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  margin-top: 0em;
 }
 
 /* Nav Links*/
