@@ -13,7 +13,7 @@ export default {
 <style scoped>
     /*banner*/
     .banner img {
-        width:200%;
+        width:100%;
         height: auto;
 
     }
