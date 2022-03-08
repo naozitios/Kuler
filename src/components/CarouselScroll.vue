@@ -1,5 +1,5 @@
 <template>
-  <n-carousel trigger="hover">
+  <n-carousel :slides-per-view="3" :space-between="20" :loop="false" draggable>
     <img
       class="carousel-img"
       src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
@@ -18,6 +18,17 @@
     >
   </n-carousel>
 </template>
+
+<script>
+  import { defineComponent } from 'vue'
+  import { NCarousel } from 'naive-ui'
+
+  export default defineComponent({
+    components: {
+      NCarousel
+    }
+  })
+</script>
 
 <style>
 .carousel-img {

@@ -1,15 +1,18 @@
 <template>
     <HomeBanner/>
+    <CarouselScroll/>
 </template>
 
 <script>
 import HomeBanner from '@/components/HomeBanner.vue'
+import CarouselScroll from '@/components/CarouselScroll.vue'
 
 
 export default {
   name: 'App',
   components:{
     HomeBanner,
+    CarouselScroll
   },
   data(){
     
@@ -30,11 +33,10 @@ export default {
         color: #2c3e50;
         margin-top: 60px;
     }
-
-    #bg{
+    /* #bg{
         display: block;
         margin-left: auto;
         margin-right: auto;
         width: 60%;
-    }
+    } */
 </style>
