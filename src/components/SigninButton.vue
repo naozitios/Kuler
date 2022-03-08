@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/"><button class="button signin">Sign-in/Sign-up</button></router-link>
+    <router-link to="/"><button class="button signin">Sign-ins/Sign-up</button></router-link>
   
 </template>
 
