@@ -44,7 +44,7 @@ a:hover {
     transition: background-color 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease, padding 0.2s ease;
     background-color: #ffffff;
     color: #636363;
-    position: absolute;
+    position: relative;
     width: 100%;
     max-width: 100%;
     padding: 1em 0em 1em 0em;
@@ -88,6 +88,7 @@ a:hover {
 
                 #nav ul li a:hover {
                     background-color: rgba(222, 222, 222, 0.2);
+                    color: #F37381;
                 }
 
                 #nav ul li a.router-link-exact-active {

@@ -12,10 +12,14 @@ export default {
 
 <style scoped>
     /*banner*/
+    .banner {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh
+    }
+
     .banner img {
         width: 100%;
-        height: auto;
-
     }
 
 </style>

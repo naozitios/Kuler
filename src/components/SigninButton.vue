@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/"><button class="button signin">Sign-in/Sign-up</button></router-link>
+    <router-link to="/"><button type="button" class="btn btn-primary">Sign-in/Sign-up</button></router-link>
   
 </template>
 
@@ -10,14 +10,17 @@ export default {
 </script>
 
 <style scoped>
-    button.signin {
-        padding:0.6em 2em;
-        border-radius: 40px;
-        color:#3A3D3B;
-        background-color:rgba(222, 222, 222, 0.2);
-        font-size:1.1em;
-        border:0;
-        cursor:pointer;
-        margin:1em;
-    }
+    .btn-primary {
+    background-color: #EFEFEF;
+    color: #636363;
+    border: None;
+    margin: 0.5em;
+    border-radius: 20px;
+    padding: 0.5em 2em 0.5em 2em;
+}
+
+.btn-primary:hover {
+    background-color: #DCDCDC;
+    color: #636363;
+}
 </style>
