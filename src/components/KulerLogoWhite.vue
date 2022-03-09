@@ -12,10 +12,10 @@ export default {
 
 <style scoped>
     /*logo*/
-
+    
     .logo {
         display: inline;
-        padding: 2em  2em 0em 2em;
+        padding: 2em  2em 0em 0em;
 
     }
     .logo img {
