@@ -1,11 +1,11 @@
 <template>
-  <KulerLogo/>  
-  <SearchBar/>
-  <SellButton/>
-  <SigninButton/>
-  <FavouriteButton/>
-  <CartButton/>
-  <NavBar/>
+    <KulerLogo/>  
+    <SearchBar/>
+    <SellButton/>
+    <SigninButton/>
+    <FavouriteButton/>
+    <CartButton/>
+    <NavBar/>
 
   <router-view/>
 </template>

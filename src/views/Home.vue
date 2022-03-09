@@ -1,5 +1,6 @@
 <template>
     <HomeBanner/>
+    <FooterMain/>
     <FeedbackFooter/>
     <!-- <StarRating/> -->
 </template>
@@ -7,15 +8,17 @@
 <script>
 import HomeBanner from '@/components/HomeBanner.vue'
 import FeedbackFooter from '@/components/FeedbackFooter.vue'
+import FooterMain from '@/components/FooterMain.vue'
 // // import CarouselScroll from '@/components/CarouselScroll.vue'
 // import StarRating from '@/components/StarRating.vue'
 
 
 export default {
-  name: 'App',
+  name: 'Home',
   components:{
     HomeBanner,
-    FeedbackFooter
+    FeedbackFooter,
+    FooterMain
     // // // CarouselScroll,
     // StarRating
   },
