@@ -19,6 +19,7 @@ export default {
     width: 50%;
     position: relative;
     display: inline-flex;
+    height: 40px;
     }
 
     .searchTerm {
@@ -28,7 +29,7 @@ export default {
     /* border: none; */
     border-right: none;
     padding: 5px;
-    height: 20px;
+    height: 100%;
     border-radius: 10px 0 0 10px;
     outline: none;
     color: #3A3D3B;
@@ -41,7 +42,7 @@ export default {
 
     .searchButton {
     width: 40px;
-    height: 36px;
+    height: 40px;
     border: 1px solid #EFEFEF;
     background: #EFEFEF;
     text-align: center;
