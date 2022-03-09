@@ -80,7 +80,7 @@ a:hover {
     transition: background-color 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease, padding 0.2s ease;
     background-color: #ffffff;
     color: #636363;
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     max-width: 100%;
     padding: 1em 0em 1em 0em;
