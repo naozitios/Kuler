@@ -3,11 +3,11 @@
     <form>
   <div class="form-row">
       <h5><b>Got a feedback for us? We're glad to hear it.</b></h5>
-    <div class="form-group col-md-6 ">
+    <div class="form-group">
       <label for="inputEmail1">Email Address*</label>
       <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group">
       <label for="inputName1">Name</label>
       <input type="password" class="form-control" id="inputName1" placeholder="Name">
     </div>
@@ -40,7 +40,6 @@ export default {
     color: #FFFFFF;
     background-color: #FA8F9A;
     text-align: left;
-    width: 50%;
     display: flow-root;
 }
 

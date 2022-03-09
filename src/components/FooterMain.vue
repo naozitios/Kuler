@@ -20,6 +20,17 @@
         </div>
         
         <div id = "faqLinks">
+            <a href="#"><h6 class="faqHeader">Frequently Asked Questions</h6></a>
+            <br><br>
+            <a href="#"><h6 class="faqHeader">General Information</h6></a>
+            <a href="#"><h6 class="faqNormal">Liscensing Information</h6></a>
+            <a href="#"><h6 class="faqNormal">Delivery Options</h6></a>
+             <br><br>
+            <a href="#"><h6 class="faqHeader">Information for Buyers</h6></a>
+            <a href="#"><h6 class="faqNormal">Profile Visibility</h6></a>
+             <br><br>
+            <a href="#"><h6 class="faqHeader">Information for Sellers</h6></a>
+            <a href="#"><h6 class="faqNormal">Delivery Options</h6></a>
         </div>
 
         <div id = "form1">
@@ -51,6 +62,16 @@ export default {
 </script>
 
 <style scoped>
+.faqHeader, .faqNormal {
+    color: #FFFFFF;
+    text-align: left;
+}
+.faqHeader {
+    font-weight: 900;
+}
+.faqNormal {
+    font-weight: normal;
+}
 .fa.fa-facebook, .fa.fa-twitter, .fa.fa-instagram {
     color: #FFFFFF;
     text-decoration: none;
@@ -59,18 +80,31 @@ export default {
 }
 #logo1 {
     padding: 1em;
-    float: left;
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
+#faqLinks {
+    flex-grow: 1;
+    padding: 2em;
+    flex-basis: 0;
+}
+#faqLinks a {
+    text-decoration: None;
+}
 #form1 {
-    margin-right: 30%;
+    margin-right: 2em;
+    flex-grow: 2;
+    flex-basis: 0;
 }
 #footerContainer {
+    display: flex;
+    flex-direction: row;
     background-color: #F37381;
 }
 
 #bio {
-    width: 30%;
+    width: 80%;
 }
 #copyright-line{
     color: #FFFFFF;
@@ -78,7 +112,8 @@ export default {
 
 }
 
-#bio-text {
+#bio-text, #socials {
+    padding: 1em;
     color: #FFFFFF;
     display: block;
     text-align: left;
