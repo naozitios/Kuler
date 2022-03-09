@@ -4,6 +4,7 @@ import Cart from '@/views/Cart.vue'
 import Profile from '@/views/Profile.vue'
 import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
+import ProductPage from '@/views/ProductPage.vue'
 
 /*List of Category pages in nav bar*/
 import CategoryAudio from '@/views/category/CategoryAudio.vue'
@@ -69,6 +70,11 @@ const routes = [
         path: '/categoryVintage',
         name: 'Category Vintage',
         component: CategoryVintage
+    },
+    {
+        path: '/productPage',
+        name: 'Product Page',
+        component: ProductPage
     }
 ]
 
