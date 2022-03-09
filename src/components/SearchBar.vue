@@ -1,9 +1,11 @@
 <template>
   <div class="search">
         <input type="text" class="searchTerm" placeholder="Search for art">
+        <router-link to="/searchResult">
         <button type="submit" class="searchButton">
             <img src="@/assets/search_icon.png" alt="Search" style="width:20px;height:20px;">
         </button>
+        </router-link>
     </div>
 </template>
 
