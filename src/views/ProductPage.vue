@@ -1,5 +1,12 @@
 <template>
+<div id = "ProductContainer"> 
+  <div id = "scroll">
   <ProductScroll/>
+  </div>
+  <div id = "description">
+    Hi!
+    </div>
+</div>
 </template>
 
 <script>
@@ -29,6 +36,20 @@ export default {
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
+    }
+    .productContainer {
+      width:80%;
+      height:500px;
+      margin:0 auto;
+      background-color: #ffe;
+    }
+    .scroll {
+      flex-grow: 2;
+      flex-basis: 2;
+    }
+    .description {
+      flex-grow: 0;
+      flex-basis: 0;
     }
     /* #bg{
         display: block;

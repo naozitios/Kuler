@@ -57,8 +57,8 @@ export default {
 
 
 .carousel {
-  height: 40%;
-  width: 40%;
+  height: 60%;
+  width: 60%;
   margin: 0 auto;
   position: absolute;
   top: 250px;
@@ -75,7 +75,7 @@ export default {
 .carousel-indicators li{display:none;}
 
 .carousel-indicators {
-  bottom: 230px;
+  bottom: 350px;
   left:250px; 
   width: 250px; 
   height:200px; 
@@ -84,8 +84,8 @@ export default {
 }
 
 .indicator1 {
-  width:50px;
-  height:50px;
+  width:75px;
+  height:75px;
   position:relative; 
   top:150px; 
   bottom:0; 
@@ -95,10 +95,10 @@ export default {
 }
 
 .indicator2 {
-  width:50px;
-  height:50px;
+  width:75px;
+  height:75px;
   position:relative; 
-  top:225px; 
+  top:250px; 
   bottom:0; 
   left:63px; 
   right:0; 
@@ -106,10 +106,10 @@ export default {
 }
 
 .indicator3 {
-  width:50px;
-  height:50px;
+  width:75px;
+  height:75px;
   position:relative; 
-  top:300px; 
+  top:350px; 
   bottom:0; 
   left:26px; 
   right:0; 
@@ -117,10 +117,10 @@ export default {
 }
 
 .indicator4 {
-  width:50px;
-  height:50px;
+  width:75px;
+  height:75px;
   position:relative; 
-  top:375px; 
+  top:450px; 
   bottom:0; 
   left:-11px; 
   right:0; 
