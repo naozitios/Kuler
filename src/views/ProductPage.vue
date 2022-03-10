@@ -1,12 +1,12 @@
 <template>
-<div id = "ProductContainer"> 
-  <div id = "scroll">
+  <div class="float-container">
+  <div class= "first-child">
   <ProductScroll/>
   </div>
-  <div id = "description">
+  <div class = "second-child">
     Hi!
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -37,20 +37,14 @@ export default {
         color: #2c3e50;
         margin-top: 60px;
     }
-    .productContainer {
-      width:80%;
-      height:500px;
-      margin:0 auto;
-      background-color: #ffe;
+
+    .float-container {
+      display: flex;
+      margin-left: 20px
     }
-    .scroll {
-      flex-grow: 2;
-      flex-basis: 2;
-    }
-    .description {
-      flex-grow: 0;
-      flex-basis: 0;
-    }
+
+
+    
     /* #bg{
         display: block;
         margin-left: auto;
