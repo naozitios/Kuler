@@ -50,5 +50,4 @@ export default {
   margin-top: 0em;
 }
 
-
 </style>

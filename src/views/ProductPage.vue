@@ -1,14 +1,23 @@
 <template>
+  <div class="float-container">
+  <div class= "first-child">
   <ProductScroll/>
+  </div>
+  <div class = "second-child">
+    <ProductInformation/>
+    </div>
+  </div>
 </template>
 
 <script>
-import ProductScroll from '@/components/ProductScroll.vue'
+import ProductScroll from '@/components/ProductScroll.vue';
+import ProductInformation from '@/components/ProductInformation.vue'
 
 export default {
   name: 'App',
   components:{
     ProductScroll,
+    ProductInformation
   },
   data(){
     
@@ -30,6 +39,13 @@ export default {
         color: #2c3e50;
         margin-top: 60px;
     }
+
+    .float-container {
+      display: flex;
+      margin-left: 20px
+    }
+
+    
     /* #bg{
         display: block;
         margin-left: auto;

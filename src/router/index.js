@@ -6,13 +6,14 @@ import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
 import ProductPage from '@/views/ProductPage.vue'
 
+
 /*List of Category pages in nav bar*/
 import CategoryAudio from '@/views/category/CategoryAudio.vue'
-import CategoryCollectibles from '@/views/category/CategoryAudio.vue'
-import CategoryIcons from '@/views/category/CategoryAudio.vue'
-import CategoryPhotography from '@/views/category/CategoryAudio.vue'
-import CategoryVideos from '@/views/category/CategoryAudio.vue'
-import CategoryVintage from '@/views/category/CategoryAudio.vue'
+import CategoryCollectibles from '@/views/category/CategoryCollectibles.vue'
+import CategoryIcons from '@/views/category/CategoryIcons.vue'
+import CategoryPhotography from '@/views/category/CategoryPhotography.vue'
+import CategoryVideos from '@/views/category/CategoryVideos.vue'
+import CategoryVintage from '@/views/category/CategoryVintage.vue'
 
 const routes = [
     {
@@ -75,7 +76,7 @@ const routes = [
         path: '/productPage',
         name: 'Product Page',
         component: ProductPage
-    }
+    },
 ]
 
 const router = createRouter({
