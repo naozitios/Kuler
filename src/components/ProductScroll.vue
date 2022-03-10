@@ -38,9 +38,7 @@
   
   
 </div>
-<div class = "pic1">
-    
-  </div>
+
 </template>
 
 <script>
@@ -54,8 +52,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-
 .carousel {
   height: 60%;
   width: 60%;
@@ -64,16 +60,13 @@ export default {
   top: 250px;
   left: 200px;
 }
-
 .carousel-item,
 .carousel-item .active,
 .carousel-inner
 {
   height: 100%;
 }
-
 .carousel-indicators li{display:none;}
-
 .carousel-indicators {
   bottom: 350px;
   left:250px; 
@@ -82,7 +75,6 @@ export default {
   margin: 20px;
   position:absolute;
 }
-
 .indicator1 {
   width:75px;
   height:75px;
@@ -93,7 +85,6 @@ export default {
   right:0; 
   margin:auto;
 }
-
 .indicator2 {
   width:75px;
   height:75px;
@@ -104,7 +95,6 @@ export default {
   right:0; 
   margin:auto;
 }
-
 .indicator3 {
   width:75px;
   height:75px;
@@ -115,7 +105,6 @@ export default {
   right:0; 
   margin:auto;
 }
-
 .indicator4 {
   width:75px;
   height:75px;
@@ -126,7 +115,6 @@ export default {
   right:0; 
   margin:auto;
 }
-
 h3 {
   margin: 40px 0 0;
 }
@@ -134,7 +122,6 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-
 a {
   color: #42b983;
 }
