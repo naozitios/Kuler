@@ -31,7 +31,7 @@ export default {
     /* border: none; */
     border-right: none;
     padding: 5px;
-    height: 36px;
+    height: 40px;
     border-radius: 20px 0 0 20px;
     outline: none;
     color: #3A3D3B;
