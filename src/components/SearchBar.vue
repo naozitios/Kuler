@@ -1,9 +1,11 @@
 <template>
   <div class="search">
         <input type="text" class="searchTerm" placeholder="Search for art">
+        <router-link to="/searchResult">
         <button type="submit" class="searchButton">
             <img src="@/assets/search_icon.png" alt="Search" style="width:20px;height:20px;">
         </button>
+        </router-link>
     </div>
 </template>
 
@@ -29,8 +31,8 @@ export default {
     /* border: none; */
     border-right: none;
     padding: 5px;
-    height: 100%;
-    border-radius: 10px 0 0 10px;
+    height: 36px;
+    border-radius: 20px 0 0 20px;
     outline: none;
     color: #3A3D3B;
     font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
@@ -47,7 +49,7 @@ export default {
     background: #EFEFEF;
     text-align: center;
     color: #fff;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 20px 20px 0;
     cursor: pointer;
     font-size: 20px;
     }
