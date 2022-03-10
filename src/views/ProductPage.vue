@@ -4,18 +4,20 @@
   <ProductScroll/>
   </div>
   <div class = "second-child">
-    Hi!
+    <ProductInformation/>
     </div>
   </div>
 </template>
 
 <script>
-import ProductScroll from '@/components/ProductScroll.vue'
+import ProductScroll from '@/components/ProductScroll.vue';
+import ProductInformation from '@/components/ProductInformation.vue'
 
 export default {
   name: 'App',
   components:{
     ProductScroll,
+    ProductInformation
   },
   data(){
     
@@ -42,7 +44,6 @@ export default {
       display: flex;
       margin-left: 20px
     }
-
 
     
     /* #bg{

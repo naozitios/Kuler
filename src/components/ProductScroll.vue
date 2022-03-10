@@ -44,8 +44,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .carousel-indicators li{ /*button[data-bs-target] for Bootstrap 5*/
-    width: 200px;
     height: 100%;
+    width: 300px;
 }
 
 .carousel-indicators {
