@@ -1,23 +1,24 @@
 <template>
     <HomeBanner/>
+    <TopPicksSection/>
+    <PopularSection/>
     <FooterMain/>
     <!-- <StarRating/> -->
 </template>
 
 <script>
 import HomeBanner from '@/components/HomeBanner.vue'
+import TopPicksSection from '@/components/TopPicksSection.vue'
+import PopularSection from '@/components/PopularSection.vue'
 import FooterMain from '@/components/FooterMain.vue'
-// // import CarouselScroll from '@/components/CarouselScroll.vue'
-// import StarRating from '@/components/StarRating.vue'
-
 
 export default {
   name: 'Home',
   components:{
     HomeBanner,
-    FooterMain
-    // // // CarouselScroll,
-    // StarRating
+    FooterMain,
+    TopPicksSection,
+    PopularSection
   },
   data(){
     
