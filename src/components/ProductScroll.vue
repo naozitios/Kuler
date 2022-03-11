@@ -1,7 +1,7 @@
 <template>
   
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg" class="d-block w-100" alt="...">
@@ -30,11 +30,13 @@
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2">
     <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg" class="d-block w-100" ></li>
   </ol>
+
 </div>
 </template>
 
 <script>
 export default {
+
   name: 'ProductScroll',
   props: {
     msg: String
@@ -44,6 +46,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#heartbutton {
+  margin-top: -70%;
+  margin-left: 70%;
+}
+
 .carousel-indicators li{ /*button[data-bs-target] for Bootstrap 5*/
     height: 100%;
     width: 300px;
@@ -64,5 +72,6 @@ export default {
 .carousel{
   width: 100%;
 }
+
 
 </style>

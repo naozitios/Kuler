@@ -33,6 +33,7 @@
           Aenean tortor odio, maximus at nisi in, 
           condimentum convallis ex. Nunc eu justo efficitur lectus iaculis maximus id sed lorem. 
       </div>
+
 </div>
 </template>
 
@@ -69,7 +70,7 @@ img {
     display: flex;
     flex-direction: column;
     margin-left: 10%;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-right: 5%;
 }
 
@@ -108,5 +109,7 @@ img {
 .product-text {
     margin-top: 5%;
 }
+
+ 
 
 </style>
