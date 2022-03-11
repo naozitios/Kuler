@@ -11,7 +11,7 @@
             <li><router-link to="/categoryPhotography">Photography</router-link> </li>
             <li><router-link to="/categoryCollectibles">Collectibles</router-link></li>
             <li><router-link to="/categoryAudio">Audio</router-link></li>
-            <li><router-link to="/cateogryVideos">Videos</router-link></li>
+            <li><router-link to="/categoryVideos">Videos</router-link></li>
             <li><router-link to="/categoryVintage">Vintage</router-link></li>
         </ul>
   </div>
