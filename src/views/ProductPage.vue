@@ -7,17 +7,20 @@
     <ProductInformation/>
     </div>
   </div>
+  <TopPicksSection/>
 </template>
 
 <script>
 import ProductScroll from '@/components/ProductScroll.vue';
 import ProductInformation from '@/components/ProductInformation.vue'
+import TopPicksSection from '@/components/ProductInformation.vue'
 
 export default {
   name: 'App',
   components:{
     ProductScroll,
-    ProductInformation
+    ProductInformation,
+    TopPicksSection
   },
   data(){
     
