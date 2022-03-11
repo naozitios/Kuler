@@ -7,20 +7,20 @@
     <ProductInformation/>
     </div>
   </div>
-  <TopPicksSection/>
+  <SimilarItems/>
 </template>
 
 <script>
 import ProductScroll from '@/components/ProductScroll.vue';
 import ProductInformation from '@/components/ProductInformation.vue'
-import TopPicksSection from '@/components/ProductInformation.vue'
+import SimilarItems from '@/components/SimilarItems.vue'
 
 export default {
   name: 'App',
   components:{
     ProductScroll,
     ProductInformation,
-    TopPicksSection
+    SimilarItems
   },
   data(){
     
