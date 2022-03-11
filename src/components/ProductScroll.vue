@@ -21,6 +21,7 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+
   <ol class="carousel-indicators">
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
     <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg" class="d-block w-100"></li>
@@ -50,6 +51,18 @@ export default {
 
 .carousel-indicators {
   position: static;
+}
+
+.buttons {
+  margin-bottom: 10%;
+}
+
+.carousel-control-next {
+  margin-bottom: 10%;
+}
+
+.carousel-control-prev {
+  margin-bottom: 10%;
 }
 
 .carousel{
