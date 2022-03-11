@@ -1,22 +1,16 @@
 <template>
-<br>
-<br>
-<br>
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
+  
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
       <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
       <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -27,6 +21,14 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+  <ol class="carousel-indicators">
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
+    <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg" class="d-block w-100"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1">
+    <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg" class="d-block w-100" ></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2">
+    <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg" class="d-block w-100" ></li>
+  </ol>
 </div>
 </template>
 
@@ -41,23 +43,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.carousell-inner {
-    height: 10px
+.carousel-indicators li{ /*button[data-bs-target] for Bootstrap 5*/
+    height: 100%;
+    width: 300px;
 }
 
+.carousel-indicators {
+  position: static;
+}
 
-h3 {
-  margin: 40px 0 0;
+.carousel{
+  width: 100%;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
