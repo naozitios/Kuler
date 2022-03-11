@@ -1,7 +1,8 @@
 <template>
   <div class="float-container">
-  <div class= "first-child">
+  <div class= "first-child">  
   <ProductScroll/>
+  
   </div>
   <div class = "second-child">
     <ProductInformation/>
@@ -11,13 +12,13 @@
 
 <script>
 import ProductScroll from '@/components/ProductScroll.vue';
-import ProductInformation from '@/components/ProductInformation.vue'
+import ProductInformation from '@/components/ProductInformation.vue';
 
 export default {
   name: 'App',
   components:{
     ProductScroll,
-    ProductInformation
+    ProductInformation,
   },
   data(){
     
