@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/sell"><button class="button sell">Sell</button></router-link>
+    <router-link to="/sell"><button type="button" class="btn btn-primary">Sell</button></router-link>
   
 </template>
 
@@ -10,14 +10,19 @@ export default {
 </script>
 
 <style scoped>
-    button.sell {
-        padding:0.6em 2em;
-        border-radius: 40px;
-        color:#FFFFFF;
-        background-color:#F37381;
-        font-size:1.1em;
-        border:0;
-        cursor:pointer;
-        margin:1em;
-    }
+    .btn-primary {
+    background-color: #F37381;
+    border: None;
+    margin: 1em;
+    border-radius: 20px;
+    padding: 0.5em 2em 0.5em 2em;
+}
+
+.btn-primary:hover {
+    background-color: #dd6b79;
+}
+
+.btn-primary:active, .btn-primary:focus, .btn-primary:visited {
+    background-color: #F37381;
+}
 </style>
