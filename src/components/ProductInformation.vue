@@ -34,6 +34,6 @@ img {
 
 .user-information {
     display: flex;
-    width: 50%;
+    width: 40px;
 }
 </style>

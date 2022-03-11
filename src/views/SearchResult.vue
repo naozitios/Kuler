@@ -9,7 +9,6 @@
       <FilterOptions/>
     </div>
     <div class="col-lg-10">
-      <CarouselScroll/>
     </div>
   </div>
 </div>
@@ -29,13 +28,11 @@
 
 <script>
 import FilterOptions from '@/components/FilterOptions.vue'
-import CarouselScroll from '@/components/CarouselScroll.vue'
 
 export default {
   name: 'App',
   components:{
     FilterOptions,
-    CarouselScroll
   },
   data(){
     
