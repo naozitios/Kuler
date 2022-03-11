@@ -3,23 +3,12 @@
         <img src="@/assets/banner-Results.jpg" 
         alt="Banner" class="img-fluid">
     </div>
-  <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-2">
-      1 of 3
-    </div>
-    <div class="col-md-auto">
-      Variable width content
-    </div>
-    <div class="col col-lg-2">
-      3 of 3
-    </div>
-  </div>
+  <div class="container pt-5" div="details">
   <div class="row">
     <div class="col-lg-2">
       <FilterOptions/>
     </div>
-    <div class="col-md-auto">
+    <div class="col-lg-10">
       <CarouselScroll/>
     </div>
   </div>
@@ -32,11 +21,9 @@
   width: 80vmax;
   margin-left: auto;
 }
-#banner-searchResults {
+#banner-searchResults img{
   width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  height: 20vh;
 }
 </style>
 
