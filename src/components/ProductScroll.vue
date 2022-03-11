@@ -53,10 +53,6 @@ export default {
   position: static;
 }
 
-.buttons {
-  margin-bottom: 10%;
-}
-
 .carousel-control-next {
   margin-bottom: 10%;
 }
