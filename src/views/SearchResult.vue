@@ -29,13 +29,11 @@
 
 <script>
 import FilterOptions from '@/components/FilterOptions.vue'
-import CarouselScroll from '@/components/CarouselScroll.vue'
 
 export default {
   name: 'App',
   components:{
     FilterOptions,
-    CarouselScroll
   },
   data(){
     

@@ -36,7 +36,7 @@ export default {
         line-height: 3;
         background: #2C3E50;
         overflow: hidden;
-        border-radius: .25em;
+        border-radius: 40px;
     }
      
     select {
