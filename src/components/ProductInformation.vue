@@ -70,6 +70,7 @@ img {
     flex-direction: column;
     margin-left: 10%;
     margin-top: 5%;
+    margin-right: 5%;
 }
 
 #user-pic {
