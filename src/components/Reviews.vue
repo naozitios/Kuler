@@ -3,15 +3,18 @@
         <h5 id = "section-title">Reviews</h5>
         <StarRating/>
     </div>
+    <Pagination/>
 </template>
 
 <script>
 import StarRating from '@/components/StarRating.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
     name: 'Reviews',
     components:{
-    StarRating
+    StarRating,
+    Pagination
   },
   data(){
     
