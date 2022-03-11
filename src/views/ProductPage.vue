@@ -44,6 +44,9 @@ export default {
       display: flex;
       margin-left: 20px
     }
+    .first-child {
+      min-width: 60%
+    }
 
     
     /* #bg{
