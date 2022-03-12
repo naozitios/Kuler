@@ -1,4 +1,5 @@
 <template>
+
     <KulerLogo/>  
     <SearchBar/>
     <SellButton/>
@@ -6,7 +7,6 @@
     <FavouriteButton/>
     <CartButton/>
     <NavBar/>
-
   <router-view/>
 </template>
 

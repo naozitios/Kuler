@@ -1,7 +1,8 @@
 <template>
   <div class="float-container">
-  <div class= "first-child">
+  <div class= "first-child">  
   <ProductScroll/>
+  
   </div>
   <div class = "second-child">
     <ProductInformation/>
@@ -12,8 +13,8 @@
 
 <script>
 import ProductScroll from '@/components/ProductScroll.vue';
-import ProductInformation from '@/components/ProductInformation.vue'
 import SimilarItems from '@/components/SimilarItems.vue'
+import ProductInformation from '@/components/ProductInformation.vue';
 
 export default {
   name: 'App',
@@ -47,7 +48,10 @@ export default {
       display: flex;
       margin-left: 20px
     }
-
+    .first-child {
+      min-width: 60%
+    }
+    
     
     /* #bg{
         display: block;

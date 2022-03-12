@@ -21,6 +21,7 @@ export default {
 
     .banner img {
         width: 100%;
+
     }
 
 </style>

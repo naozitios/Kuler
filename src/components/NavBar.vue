@@ -47,7 +47,7 @@ a:hover {
     position: relative;
     width: 100%;
     max-width: 100%;
-    padding: 1em 0em 1em 0em;
+    padding: 0em 0em 1em 0em;
     /* background-color: #f7f7f7; */
     border-top-left-radius: 0;
     border-top-right-radius: 0;
