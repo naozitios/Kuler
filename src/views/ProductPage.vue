@@ -16,6 +16,7 @@
       <SimilarItems/>
     </div>
   </div>
+  <FooterMain/>
   
 </template>
 
@@ -24,6 +25,7 @@ import ProductScroll from '@/components/ProductScroll.vue';
 import SimilarItems from '@/components/SimilarItems.vue';
 import ProductInformation from '@/components/ProductInformation.vue';
 import Reviews from '@/components/Reviews.vue';
+import FooterMain from '@/components/FooterMain.vue'
 
 export default {
   name: 'App',
@@ -31,7 +33,8 @@ export default {
     ProductScroll,
     ProductInformation,
     SimilarItems,
-    Reviews
+    Reviews,
+    FooterMain
   },
   data(){
     
