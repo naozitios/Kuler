@@ -35,6 +35,9 @@
 <style scoped>
 #section-main {
     background-color: #F7F0DD;
+    margin:-50px;
+    margin-top: 5px;
+    
 }
     
 </style>
