@@ -4,6 +4,7 @@
       <h6>Small Pills</h6>
       <b-pagination v-model="currentPage" pills :total-rows="rows" size="sm"></b-pagination>
     </div>
+    </div>
 </template>
 
 <script>
