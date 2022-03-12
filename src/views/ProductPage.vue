@@ -8,7 +8,7 @@
     <ProductInformation/>
     </div>
   </div>
-  <div class="bottom">
+  <!-- <div class="bottom">
     <div class= "first">
       <Reviews/>
     </div>
@@ -16,8 +16,10 @@
       <SimilarItems/>
     </div>
   </div>
-  <FooterMain/>
-  
+  <FooterMain/> -->
+<Reviews/>
+<SimilarItems/>
+<FooterMain/>
 </template>
 
 <script>
