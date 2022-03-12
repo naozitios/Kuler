@@ -16,7 +16,7 @@
     </div>
     <div class = "4-child">
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3">
-    <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg" class="d-block w-100" ></li>
+    <img src="https://cdn.mos.cms.futurecdn.net/uWjEogFLUTBc8mSvagdiuP-970-80.jpg.webp" class="d-block w-100" ></li>
     </div>
     
   </div>
@@ -31,7 +31,7 @@
       <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg" class="d-block w-100" alt="...">
+      <img src="https://cdn.mos.cms.futurecdn.net/uWjEogFLUTBc8mSvagdiuP-970-80.jpg.webp" class="d-block w-100" alt="...">
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
