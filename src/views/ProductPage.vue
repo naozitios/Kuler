@@ -60,7 +60,9 @@ export default {
     .first-child {
       min-width: 60%
     }
-    
+    .first {
+      min-width: 60%
+    }
     
     /* #bg{
         display: block;
