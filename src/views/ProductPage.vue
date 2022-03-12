@@ -65,7 +65,7 @@ export default {
     }
     .first-child {
       margin-top: 2%;
-      min-width: 60%
+      min-width: 65%
     }
     .first {
       min-width: 60%
