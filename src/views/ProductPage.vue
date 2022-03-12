@@ -8,8 +8,14 @@
     <ProductInformation/>
     </div>
   </div>
-  <SimilarItems/>
-  <Reviews/>
+  <div class="bottom">
+    <div class= "first">
+      <Reviews/>
+    </div>
+    <div class= "second">
+      <SimilarItems/>
+    </div>
+  
 </template>
 
 <script>
