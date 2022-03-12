@@ -19,7 +19,9 @@
           Aenean tortor odio, maximus at nisi in, 
           condimentum convallis ex. Nunc eu justo efficitur lectus iaculis maximus id sed lorem. 
       </div>
+      <div class= "pagination">
         <Pagination/>    
+        </div>
     </div>
     
 </template>
