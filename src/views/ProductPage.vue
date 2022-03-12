@@ -15,6 +15,7 @@
     <div class= "second">
       <SimilarItems/>
     </div>
+  </div>
   
 </template>
 
