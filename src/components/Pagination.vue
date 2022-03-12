@@ -1,4 +1,5 @@
 <template>
+
 <div id="section-main">
 <nav aria-label="Page navigation example">
   <ul class="pagination">
@@ -18,7 +19,6 @@
   </ul>
 </nav>
 </div>
-
 </template>
 
 <script>
