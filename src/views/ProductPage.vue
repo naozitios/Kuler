@@ -8,17 +8,23 @@
     <ProductInformation/>
     </div>
   </div>
+  <SimilarItems/>
+  <Reviews/>
 </template>
 
 <script>
 import ProductScroll from '@/components/ProductScroll.vue';
+import SimilarItems from '@/components/SimilarItems.vue';
 import ProductInformation from '@/components/ProductInformation.vue';
+import Reviews from '@/components/Reviews.vue';
 
 export default {
   name: 'App',
   components:{
     ProductScroll,
     ProductInformation,
+    SimilarItems,
+    Reviews
   },
   data(){
     
