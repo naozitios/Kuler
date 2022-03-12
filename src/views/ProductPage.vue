@@ -64,6 +64,7 @@ export default {
       margin-left: 20px
     }
     .first-child {
+      margin-top: 2%;
       min-width: 60%
     }
     .first {
