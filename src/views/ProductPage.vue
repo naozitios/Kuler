@@ -71,6 +71,9 @@ export default {
       min-width: 60%
     }
     
+    .second-child {
+      margin-top: 2%;
+    }
     /* #bg{
         display: block;
         margin-left: auto;
