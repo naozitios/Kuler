@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/cart"><img src="@/assets/cart_icon.svg" alt="Cart"></router-link>
+    <router-link to="/CartInformation"><img src="@/assets/cart_icon.svg" alt="Cart"></router-link>
 </template>
 
 <script>

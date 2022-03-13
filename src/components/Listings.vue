@@ -15,5 +15,7 @@ export default {
 </script>
 
 <style scoped>
-
+.listings {
+    margin-top: 5%;
+}
 </style>
