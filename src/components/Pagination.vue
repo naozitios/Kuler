@@ -1,43 +1,32 @@
 <template>
-
-<div id="section-main">
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-</div>
+  <div id="app">
+    <div class="">
+      <VuePaginationTw
+        :total-items="20"
+        :current-page="1"
+        :per-page="6"
+        @page-changed="functionName"
+        :go-button="false"
+        styled="centered"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        rows: 100,
-        currentPage: 1
-      }
-    }
-  }
+import VuePaginationTw from 'vue-pagination-tw';
+
+// import 'vue-pagination-tw/styles'; // tailwind basic styles
+
+export default {
+  name: 'App',
+  components: {
+    VuePaginationTw,
+  },
+  methods: {
+    functionName() {},
+  },
+};
 </script>
 
-<style scoped>
-#section-main {
-    background-color: #F7F0DD;
-    margin:-50px;
-    margin-top: 5px;
-    
-}
-    
-</style>
+<style></style>
