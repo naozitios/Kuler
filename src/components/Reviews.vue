@@ -62,6 +62,9 @@ export default {
 #product-text{
     display:flex;
 }
+.pagination{
+    display:flex;
+}
 
 
 </style>
