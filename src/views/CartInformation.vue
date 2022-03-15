@@ -1,7 +1,7 @@
 <template>
   <div class="infoSection">
     <div class="userSection">
-      <OrderDetails />
+<OrderDetails />      
     </div>
     <div class="productsSection">
       Add adjustable Product lists here
@@ -27,11 +27,11 @@ export default {
 <style scoped>
 .userSection {
   float: left;
-  width: 80%;
+  width: 70%;
   margin-bottom: 10%;
 }
 .productsSection {
-  width: 20%;
+  width: 30%;
   display: flex;
   border: 1px solid red
 }
