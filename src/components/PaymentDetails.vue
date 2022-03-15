@@ -1,36 +1,30 @@
 <template>
     <div class='row'>
-        <h1> Order Details </h3>
-        <h3> Information > Shipping > Payment </h3>
+      <h1>Payment Details</h1>
+      <p>
+        <span id="information">Information</span> > 
+        <span id="shipping">Shipping</span> > 
+        <span id="payment">Payment</span>
+      </p>
     </div>
-        <div class='row'>
-            <h1> Card Details </h1>
-            <input type="text" class="CardNumber" placeholder="Card Number">
-        </div>
-            <div class='row'>
-            <h1> Name on card </h1>
-            <input type="text" class="CardName" placeholder="Name">
-          </div>
+    <form action="/CartPayment">
+      <label for="cardDetails">Card Details: </label><br>
+      <input type="text" id="address" name="address" placeholder="Card Number"><br>
 
-            <div class='row'>
-            <h1> CVV </h1>
-            <input type="text" class="CVV" placeholder="CVV">
-    </div>
-            <div class='row'>
-            <h1> Email Address </h1>
-            <input type="text" class="EmailAddress" placeholder="Enter Email">
-    </div>
-    <PayButton />
+      <label for="nameOnCard">Name on Card: </label><br>
+      <input id="nameOnCard" type="text" name="nameOnCard"><br>
+
+      <label for="cvv">CVV: </label><br>
+      <input id="cvv" type="text" name="cvv"><br>
+      <input type="submit" value="Make Payment">
+    </form>
+    <button onclick="history.back()">Back</button>
 </template>
 
 <script>
-import PayButton from '@/components/PayButton.vue'
 
 export default {
     name: 'OrderDetails',
-  components:{
-    PayButton,
-  },
   data(){
     
   },
@@ -43,5 +37,11 @@ export default {
 </script>
 
 <style scoped>
-
+p {
+  font-weight: bold;
+}
+#information, #shipping,#payment {
+  color: red;
+  font-weight: bold;
+}
 </style>
