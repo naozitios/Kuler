@@ -1,12 +1,14 @@
 <template>
-    <h1> Test> </h1>
+    <FAQNav/>
 </template>
 
 <script>
+import FAQNav from '@/components/FAQNav.vue'
 
 export default {
   name: 'FrequentlyAskedQuestions',
   components:{
+      FAQNav
 
   },
   data(){
