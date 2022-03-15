@@ -1,16 +1,41 @@
 <template>
-    <ShippingDetails />
+  <div class="infoSection">
+    <div class="userSection">
+      <OrderDetails />
+    </div>
+    <div class="productsSection">
+      Add adjustable Product lists here
+    </div>
+  </div>
+  <div class="footer">
+    <FooterMain/>
+  </div>
 </template>
 
 <script>
-import ShippingDetails from "@/components/ShippingDetails.vue"
+import OrderDetails from "@/components/OrderDetails.vue"
+import FooterMain from "@/components/FooterMain.vue"
 
 export default {
   name: "App",
   components: {
-      ShippingDetails
+      OrderDetails,
+      FooterMain
   }
 }
 </script>
 <style scoped>
+.userSection {
+  float: left;
+  width: 80%;
+  margin-bottom: 10%;
+}
+.productsSection {
+  width: 20%;
+  display: flex;
+  border: 1px solid red
+}
+.footer {
+  float:left;
+}
 </style>
