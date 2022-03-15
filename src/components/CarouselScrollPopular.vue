@@ -1,7 +1,7 @@
 <template>
     <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
   
-  <div class="carousel-inner">
+  <div class="carousel-inner pt-5">
     <div class="carousel-item active">
       <CarouselScrollContentFour/>
     </div>
@@ -62,7 +62,7 @@ export default {
       min-height: 500px;
   } */
 
-  #carouselExampleIndicators {
+  /* #carouselExampleIndicators {
     justify-content: center;
     display: flex;
     flex-direction: row;
@@ -85,6 +85,6 @@ export default {
     flex-grow: 1;
     flex-basis: 0;
 
-  }
+  } */
 
 </style>
