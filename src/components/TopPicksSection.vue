@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 #section-main {
-    padding: 10em 2em 2em 2em;
+    padding: 2em 2em 0em 2em;
     background-color: #F7F0DD;
 }
 #section-main #section-title{

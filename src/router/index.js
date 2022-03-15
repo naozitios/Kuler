@@ -7,6 +7,7 @@ import Profile from '@/views/Profile.vue'
 import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
 import ProductPage from '@/views/ProductPage.vue'
+import FrequentlyAskedQuestions from '@/views/FrequentlyAskedQuestions.vue'
 
 
 /*List of Category pages in nav bar*/
@@ -52,6 +53,11 @@ const routes = [
         path: '/sell',
         name: 'Sell',
         component: Sell
+    },
+    {
+        path: '/faq',
+        name: 'Frequently Asked Questions',
+        component: FrequentlyAskedQuestions
     },
     /* Category pages */
     {
