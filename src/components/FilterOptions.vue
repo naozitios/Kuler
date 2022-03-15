@@ -60,24 +60,25 @@ export default {
 
 <style scoped>
 .filterContainer {
-    width: 50%;
+    float:left;
+    width: 18%;
     text-align: left;
     padding: 1%
 }
 .filterTitle {
     font-weight: bold;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
     font-size: 150%;
 }
 .form {
-    padding: 10px
+    padding: 2%
 }
 /* The container */
 .container {
   display: block;
   position: relative;
   padding-left: 35px;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;

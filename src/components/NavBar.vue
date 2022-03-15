@@ -6,7 +6,7 @@
             <li><router-link to="/categoryPhotography">Photography</router-link> </li>
             <li><router-link to="/categoryCollectibles">Collectibles</router-link></li>
             <li><router-link to="/categoryAudio">Audio</router-link></li>
-            <li><router-link to="/cateogryVideos">Videos</router-link></li>
+            <li><router-link to="/categoryVideos">Videos</router-link></li>
             <li><router-link to="/categoryVintage">Vintage</router-link></li>
         </ul>
   </div>
@@ -47,7 +47,7 @@ a:hover {
     position: relative;
     width: 100%;
     max-width: 100%;
-    padding: 1em 0em 1em 0em;
+    padding: 0em 0em 1em 0em;
     /* background-color: #f7f7f7; */
     border-top-left-radius: 0;
     border-top-right-radius: 0;
