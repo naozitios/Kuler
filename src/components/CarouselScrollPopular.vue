@@ -1,7 +1,7 @@
 <template>
     <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
   
-  <div class="carousel-inner">
+  <div class="carousel-inner" >
     <div class="carousel-item active">
       <CarouselScrollContentFour/>
     </div>

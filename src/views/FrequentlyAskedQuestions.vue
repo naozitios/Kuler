@@ -8,7 +8,7 @@ import FAQNav from '@/components/FAQNav.vue'
 export default {
   name: 'FrequentlyAskedQuestions',
   components:{
-      FAQNav
+      FAQNav,
 
   },
   data(){
