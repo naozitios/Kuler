@@ -1,5 +1,5 @@
 <template>
-    <div id="section-main">
+    <div id="section-main" >
         <h5 id="section-title">Top Picks by National Arts Gallery</h5>
         <CarouselScrollTopPicks/>
     </div>
