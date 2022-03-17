@@ -10,7 +10,7 @@ export default {
 
 <style scoped>
 .btn.btn-primary {
-    width: 80%;
+    width: 100%;
   position: relative;
   display: inline-block;
   margin: 1em;
