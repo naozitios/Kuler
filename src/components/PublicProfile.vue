@@ -2,12 +2,24 @@
 <div id="public-profile">
     <form>
   <div class="form-row">
-      <h5><b>Public Profile</b></h5>
-      <img src = "@/assets/user_pic_sq.jpg"/>
-      <h6 id="usernameTitle"><b>Username</b></h6>
-      <h6 id="handle"><b>@jessieeggie</b></h6>
+      <h5 id="main" class="left-flush"><b>Public Profile</b></h5>
+
+      <div class="container">
+        <div class="col-sm">
+        <img src = "@/assets/user_pic_sq.jpg"/>
+        <button type="submit" class="btn btn-primary">Upload Photo</button>
+        
+        </div>
+      </div>
+
+      <h6 id="usernameTitle" class="left-flush"><b>Username</b></h6>
+      <h6 id="handle" class="left-flush"><b>@jessieeggie</b></h6>
+      <small id="learnMore1" class="form-text text-muted">Your username is unique and cannot be changed. <a href="/faq"> Learn more. </a></small>
+      <button type="submit" class="btn btn-primary">Get Authorized</button>
+      <small id="learnMore2" class="form-text text-muted"><a href="/faq"> Learn more.</a></small>
+
     <div class="form-group">
-      <label for="inputName">Profile Name</label>
+      <label for="inputName" >Profile Name</label>
       <input type="name" class="form-control" id="inputName" placeholder="Name">
     </div>
     <div class="form-group">
@@ -18,7 +30,7 @@
  
 
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  
 </form>
 </div>
 </template>
@@ -32,34 +44,45 @@ export default {
 <style scoped>
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+#main{
+    color: #F37381;
+}
 img {
     width:75px;
     height:75px;
     border-radius:50%;
+    padding-left:0%;
     /* border:4px solid #333 */
 }
+.left-flush{
+    text-align: left;
+}
 
-#feedback-col {
+/* #feedback-col {
     font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
     color: #FFFFFF;
     background-color: #FA8F9A;
     text-align: left;
     display: flow-root;
-}
+} */
 
 .form-row {
     padding: 2em;
+    text-align: left;
 }
 .form-group.col-md-6, .form-group {
     padding: 0.5em;
 
 }
 
-#compulsoryFields1 {
-    color: #FFFFFF !important; 
+#learnMore1, #learnMore2 {
+    color:  #3A3D3B; 
+}
+label{
+    text-align: left;
 }
 
-
+/*
 #inputEmail1, #inputName1, #inputFeedback1 {
     border-radius: 10px;
 
@@ -83,5 +106,6 @@ img {
 .btn-primary:active, .btn-primary:focus, .btn-primary:visited {
     background-color: #F37381;
 }
+*/
 </style>
 
