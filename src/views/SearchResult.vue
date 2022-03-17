@@ -3,10 +3,8 @@
     <img src="@/assets/banner-Results.jpg" alt="Banner" class="img-fluid" />
   </div>
   <div class="row">
-    <div class="col-9"></div>
-    <div class="col-3 mt-3">
+    <!--<div class="col-9"></div>-->
       <SortByButton />
-    </div>
   </div>
 
   <div class="container pt-3" div="details">
