@@ -8,6 +8,7 @@ import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import FrequentlyAskedQuestions from '@/views/FrequentlyAskedQuestions.vue'
+import SellerListPage from '@/views/SellerListPage.vue'
 
 
 /*List of Category pages in nav bar*/
@@ -93,9 +94,15 @@ const routes = [
     {
         path: '/productPage',
         name: 'Product Page',
-        component: ProductPage
+        component: ProductPage,
+    },
+    {
+        path: '/sellerListPage',
+        name: 'Seller List Page',
+        component: SellerListPage
     },
 ]
+
 
 const router = createRouter({
     history: createWebHistory(),

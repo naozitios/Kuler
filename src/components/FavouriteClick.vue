@@ -12,13 +12,13 @@ export default {
            image: null,
            images: [{
                id: 1,
-               src: 'https://cdn.icon-icons.com/icons2/2819/PNG/512/love_heart_favourite_icon_179532.png',
-               alt: "xd"
+               src: 'https://cdn1.iconfinder.com/data/icons/circle-outlines/512/Like_Favourite_Love_Health_Heart_Favourites_Favorite-1024.png',
+               alt: "White Heart"
            },
            { 
                id: 2,
-               src: "https://cdn.icon-icons.com/icons2/2640/PNG/512/heart_favourite_love_like_icon_159300.png",
-               alt: "xd"
+               src: "@/assets/red_heart.png",
+               alt: "Red heart"
            }
            ]
        } 

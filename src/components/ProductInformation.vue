@@ -118,7 +118,7 @@ img {
 }
 
 .cartbtn {
-    width: 100%;
+    width: 80%;
 }
 
 #price {

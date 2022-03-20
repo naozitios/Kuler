@@ -1,33 +1,20 @@
 <template>
   <div class="float-container">
   <div class= "first-child">  
-  <ProductScroll/>
+  <SellerListThumbnails/>
   </div>
-  <div class = "second-child">
-    <ProductInformation/>
-    </div>
   </div>
-<Reviews/>
-<SimilarItems/>
-<FooterMain/>
 </template>
 
 <script>
-import ProductScroll from '@/components/ProductScroll.vue';
-import SimilarItems from '@/components/SimilarItems.vue';
-import ProductInformation from '@/components/ProductInformation.vue';
-import Reviews from '@/components/Reviews.vue';
-import FooterMain from '@/components/FooterMain.vue'
+import SellerListThumbnails from '@/components/SellerListThumbnails.vue';
+
 
 
 export default {
-  name: 'App',
+  name: 'SellerListPage',
   components:{
-    ProductScroll,
-    ProductInformation,
-    SimilarItems,
-    Reviews,
-    FooterMain
+    SellerListThumbnails
   },
   data(){
     
@@ -54,17 +41,7 @@ export default {
       display: flex;
       margin-left: 20px
     }
-    .first-child {
-      margin-top: 2%;
-      min-width: 65%
-    }
-    .first {
-      min-width: 60%
-    }
-    
-    .second-child {
-      margin-top: 2%;
-    }
+
     /* #bg{
         display: block;
         margin-left: auto;
