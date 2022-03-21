@@ -101,13 +101,13 @@
   Format
   <br>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="digital" value="option1" checked>
+  <input class="form-check-input" type="radio" name="format" id="digital" value="option1" checked>
   <label class="form-check-label" for="digital">
     Digital
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="physical" value="option2">
+  <input class="form-check-input" type="radio" name="format" id="physical" value="option2">
   <label class="form-check-label" for="physical">
     Physical
   </label>
@@ -117,19 +117,19 @@
   Shipping Options
   <br>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="collectionPoint" value="option1" checked>
+  <input class="form-check-input" type="radio" name="delivery" id="collectionPoint" value="option1" checked>
   <label class="form-check-label" for="collectionPoint">
     Collection Point
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="standardEconomy" value="option2">
+  <input class="form-check-input" type="radio" name="delivery" id="standardEconomy" value="option2">
   <label class="form-check-label" for="standardEconomy">
     Standard Economy
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="exampleRadios" id="standardExpress" value="option2">
+  <input class="form-check-input" type="radio" name="delivery" id="standardExpress" value="option2">
   <label class="form-check-label" for="standardExpress">
     Standard Express
   </label>
