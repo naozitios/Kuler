@@ -1,68 +1,57 @@
 <template>
-<div class="card" style="width: 14rem;">
-  <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
-  <div class="card-body">
-    <a href="#" class="productLink"><h4 class="card-title">Product Title</h4></a>
-    <a href="#" class="sellerLink"><h5 class="seller-name">Seller Name</h5></a>
-    <div id="rating">
-    <StarRating/>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div style="width: 8rem;">
+                    <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
+                </div>
+            </div>
+            <div class="col">
+                <h4 class="card-title">Product Title</h4>
+                <h4 class="card-title">SGD 0.00</h4>
+            </div>
+        </div>
     </div>
-    <h4 class="card-title">SGD 0.00</h4>
-  </div>
-</div>
+    <br>
 </template>
 
 <script>
-import StarRating from '@/components/StarRating.vue'
-
 export default {
-    name: 'ProductCard2',
-  components:{
-    StarRating
-  },
-  data(){
-    
-  },
-  methods:{
-   
-  }
-
-
-}
+  name: "ProductCard2",
+  components: {},
+  data() {},
+  methods: {},
+};
 </script>
 
 <style scoped>
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
-.productImg:hover, .productLink:hover, .sellerLink:hover{
-    opacity: 0.8;
-    transition: 0.5s ease;
-
+.productImg:hover,
+.productLink:hover,
+.sellerLink:hover {
+  opacity: 0.8;
+  transition: 0.5s ease;
 }
-.productLink{
-    color:rgb(0, 0, 0)
+.productLink {
+  color: rgb(0, 0, 0);
 }
-.sellerLink{
-    color:#3A3D3B
+.sellerLink {
+  color: #3a3d3b;
 }
-#rating {
-    text-align: left;
-    margin-left: 0px;
-    margin-right: auto;
-    margin-bottom: 0.5em;
-
+.card-title {
+  text-align: left;
+  font-size: 90%;
+  font-weight: bold;
 }
-    .card-title{
-        text-align: left;
-        font-size: 90%;
-        font-weight: bold;
-    }
-    .seller-name{
-        color: #3A3D3B;
-        text-align: left;
-        font-size: 60%;
-        font-weight: bold;
-    }
-
+.seller-name {
+  color: #3a3d3b;
+  text-align: left;
+  font-size: 60%;
+  font-weight: bold;
+}
+.conatiner {
+  width: 15rem;
+}
 </style>
