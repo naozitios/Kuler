@@ -20,7 +20,7 @@
         </div>
         
         <div id = "faqLinks">
-            <a href="#"><h6 class="faqHeader">Frequently Asked Questions</h6></a>
+            <router-link to="/faq"><h6 class="faqHeader">Frequently Asked Questions</h6></router-link>
             <br><br>
             <a href="#"><h6 class="faqHeader">General Information</h6></a>
             <a href="#"><h6 class="faqNormal">Liscensing Information</h6></a>

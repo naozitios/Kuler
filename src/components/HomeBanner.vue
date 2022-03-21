@@ -1,6 +1,6 @@
 <template>
     <div class="banner" id="banner-home">
-        <img src="@/assets/banner-photo.svg" alt="Banner">
+        <img src="@/assets/banner-photo.png" alt="Banner">
     </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
         display: flex;
         flex-direction: column;
         width: 100%;
-        min-height: 75vh;
+        min-height: 50vh;
     }
 
     .banner img {
