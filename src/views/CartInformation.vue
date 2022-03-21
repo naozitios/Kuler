@@ -3,7 +3,12 @@
     <div class="userSection">
 <OrderDetails />      
     </div>
+    <v-row align="left">
+      <h4> Cart </h4>
+    </v-row>
+    
     <div class="productsSection">
+      
       <div id="contain">
         <div id="toCentre">
           <ViewPurchase/>
@@ -39,7 +44,6 @@ export default {
 .productsSection {
   width: 25%;
   display: flex;
-  border: 1px solid red
 }
 .footer {
   float:left;
