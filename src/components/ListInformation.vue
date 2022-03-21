@@ -23,7 +23,7 @@
               </div>
               <div class = "uploadbar">
               <label class="btn btn-default">
-    Upload Cover Photo <input type="file" hidden>
+    Upload Cover Photo <input type="file" @change = "changeCoverPicture" ref = "firstFile" hidden>
 </label>
               </div>
               <div class="uploadtext">
@@ -138,11 +138,36 @@
 
 <script>
 export default {
+      data() {
+            return {
+                  firstThumbnail: null,
+                  secondThumbnail: null,
+                  thirdThumbnail: null,
+                  fourthThumbnail: null,
+            }
+      },
+      mounted() {
+            this.firstThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
+            this.secondThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
+            this.thirdThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
+            this.fourthThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
+      },
       methods: {
-        uploadPhoto() {
-              console.log("I can see you!");
-        }
+        changeCoverPicture() {
+            let input = this.$refs.firstFile
+            let file = input.files
+            if (file && file[0]) {
+                  let reader = new FileReader
+                  reader.onload = e => {
+                        this.firstThumbnail = e.target.result
+                  }
+                  reader.readAsDataURL(file[0])
+                  this.$emit('input', file)
+            }
+        },
+        
     }
+    
 }
 </script>
 
@@ -164,6 +189,7 @@ export default {
 
 .thumbnails img {
       border-radius: 20px 20px 20px 20px;
+      
 }
 
 .second-container {
