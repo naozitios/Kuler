@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
           <div class="col-sm-4">
-              <div style="width: 8rem;">
+              <div style="width: 7rem;">
                   <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
               </div>
           </div>

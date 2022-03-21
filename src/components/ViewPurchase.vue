@@ -28,7 +28,7 @@ export default {
 <style scoped>
 .scroll {
     overflow-y: scroll;
-    width: 25rem;
+    width: 22rem;
 }
 </style>
 
