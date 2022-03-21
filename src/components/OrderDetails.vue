@@ -28,13 +28,18 @@
     </div>
     <br/>
     <br/>
-    <input type="submit" value="Continue to Shipping" />
+    <ContinueToShippingButton/>
   </form>
 </template>
 
 <script>
+import ContinueToShippingButton from "@/components/ContinueToShippingButton.vue"
+
 export default {
   name: "OrderDetails",
+  components: {
+    ContinueToShippingButton
+  },
   data() {},
   methods: {},
 };
@@ -61,7 +66,7 @@ p {
   border-right: none;
   padding: 5px;
   height: 40px;
-  border-radius: 20px 0 0 20px;
+  border-radius: 20px 20px 20px 20px;
   outline: none;
   color: #3a3d3b;
   font-family: "Open Sans", Verdana, Geneva, Tahoma, sans-serif;
