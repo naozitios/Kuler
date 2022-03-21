@@ -1,26 +1,29 @@
 <template>
-  <button class="btn btn-primary" type="button"><h3>Pay</h3></button>
+  <button type="submit" value="Continue to Shipping" class="btn btn-primary">
+    Make Payment
+  </button>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
-.btn.btn-primary {
-    width: 80%;
-  position: relative;
-  display: inline-block;
+.btn-primary {
+  background-color: #f37381;
+  border: None;
   margin: 1em;
-  padding: 1em 2em;
-  border: 0;
-  border-radius: 30px;
-  text-align: center;
-  white-space: nowrap;
-  cursor: pointer;
-  font-size: 14px;
-  background-color: #F37381;
+  border-radius: 20px;
+  padding: 0.5em 2em 0.5em 2em;
+}
+
+.btn-primary:hover {
+  background-color: #dd6b79;
+}
+
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:visited {
+  background-color: #f37381;
 }
 </style>
