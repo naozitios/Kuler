@@ -5,6 +5,7 @@
     </div>
     <div class="productsSection">
       Add adjustable Product lists here
+      <ViewPurchase/>
     </div>
   </div>
   <div class="footer">
@@ -15,12 +16,14 @@
 <script>
 import OrderDetails from "@/components/OrderDetails.vue"
 import FooterMain from "@/components/FooterMain.vue"
+import ViewPurchase from "@/components/ViewPurchase.vue"
 
 export default {
   name: "App",
   components: {
       OrderDetails,
-      FooterMain
+      FooterMain,
+      ViewPurchase
   }
 }
 </script>
