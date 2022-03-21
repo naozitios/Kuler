@@ -4,8 +4,11 @@
 <OrderDetails />      
     </div>
     <div class="productsSection">
-      Add adjustable Product lists here
-      <ViewPurchase/>
+      <div id="contain">
+        <div id="toCentre">
+          <ViewPurchase/>
+        </div>
+      </div>
     </div>
   </div>
   <div class="footer">
@@ -30,15 +33,19 @@ export default {
 <style scoped>
 .userSection {
   float: left;
-  width: 80%;
+  width: 75%;
   margin-bottom: 10%;
 }
 .productsSection {
-  width: 20%;
+  width: 25%;
   display: flex;
   border: 1px solid red
 }
 .footer {
   float:left;
+}
+#contain {
+  height: 25vmax;
+  overflow-y: scroll;
 }
 </style>
