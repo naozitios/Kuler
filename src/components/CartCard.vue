@@ -1,15 +1,21 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
-                <div style="width: 8rem;">
-                    <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
-                </div>
+          <div class="col-sm-4">
+              <div style="width: 8rem;">
+                  <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
+              </div>
+          </div>
+          <div class="col-sm-7">
+            <h4 class="card-title">Product Title</h4>
+            <h4 class="card-title">SGD 0.00</h4>  
+            <div class = "counter">
+              <span class="minus" @click="subtract">-</span>
+              <div class="num">{{num}}</div>
+              <span class="plus" @click="add">+</span>
             </div>
-            <div class="col-sm-7">
-                <h4 class="card-title">Product Title</h4>
-                <h4 class="card-title">SGD 0.00</h4>
-            </div>
+            
+          </div>
         </div>
     </div>
     <br>
@@ -19,8 +25,21 @@
 export default {
   name: "ProductCard2",
   components: {},
-  data() {},
-  methods: {},
+  data() {
+    return {
+      num: 1
+    }
+  },
+  methods: {
+    add() {
+      this.num += 1;
+    },
+    subtract() {
+      if (this.num > 0) {
+        this.num -= 1;
+      }
+    }
+  },
 };
 </script>
 
@@ -51,7 +70,46 @@ a {
   font-size: 60%;
   font-weight: bold;
 }
-.conatiner {
-  width: 15rem;
+.counter {
+  margin-top: 20%;
+}
+
+span {
+  cursor:pointer;
+}
+
+.minus, .plus {
+	width:30%;
+  height:30%;
+  background:#F37381;
+  padding:0px 2px 2px 2px;
+  vertical-align: middle;
+  text-align: center;
+  float: left;
+  color: white;
+}
+
+.minus:hover, .plus:hover {
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388;
+}
+
+.num {
+  border: 1px solid #F37381;
+  display: inline;
+  float:left;
+  width:30%;
+}
+
+.counter {
+  width: 50%;
+  float: left;
+}
+
+.col-sm-7 {
+  height: 30%;
+  margin-left: 5%;
 }
 </style>
