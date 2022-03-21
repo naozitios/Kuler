@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-sm-4">
                 <div style="width: 8rem;">
                     <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm-7">
                 <h4 class="card-title">Product Title</h4>
                 <h4 class="card-title">SGD 0.00</h4>
             </div>

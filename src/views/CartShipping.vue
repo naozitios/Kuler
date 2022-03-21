@@ -4,8 +4,30 @@
       <ShippingDetails/>
     </div>
     <div class="productsSection">
-      Add Product lists here
+      <div id="contain">
+        <div id="toCentre">
+          <ViewPurchase />
+        </div>
+      </div>
     </div>
+    <v-row align="left">
+      <hr />
+      <div class="row">
+        <div class="col-sm-8"><h5>Subtotal</h5></div>
+        <div class="col-sm-4"><h5>SGD XXX</h5></div>
+      </div>
+      <div class="row">
+      <div class="col-sm-8"><h5>Shipping</h5></div>
+      <div class="col-sm-4"><h6 id="nextStep">Next Step</h6></div>
+      </div>
+    </v-row>
+    <hr />
+    <v-row align="left">
+      <div class="row">
+      <div class="col-sm-8"><h4>Total</h4></div>
+      <div class="col-sm-4"><h5>SGD XXX</h5></div>
+      </div>
+    </v-row>
   </div>
   <div class="footer">
     <FooterMain/>
@@ -15,11 +37,13 @@
 <script>
 import ShippingDetails from "@/components/ShippingDetails"
 import FooterMain from "@/components/FooterMain.vue"
+import ViewPurchase from "@/components/ViewPurchase.vue"
 
 export default {
     components: {
         ShippingDetails,
-        FooterMain
+        FooterMain,
+        ViewPurchase
     }
 
 }
@@ -28,15 +52,23 @@ export default {
 <style scoped>
 .userSection {
   float: left;
-  width: 80%;
+  width: 75%;
   margin-bottom: 10%;
+  height: 35vmax;
 }
 .productsSection {
-  width: 20%;
+  width: 25%;
   display: flex;
-  border: 1px solid red
 }
 .footer {
-  float:left;
+  float: left;
+}
+#contain {
+  height: 30vmax;
+  overflow-y: scroll;
+}
+#nextStep {
+  color: rgb(206, 204, 204);
+  font-weight: normal;
 }
 </style>
