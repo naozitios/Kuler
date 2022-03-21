@@ -1,19 +1,20 @@
 <template>
     <div id="section-main">
         <h5 id="section-title">Similar Items</h5>
-        <!-- <CarouselScrollEight/> -->
+        <CarouselScrollTopPicks/>
+        <br>
     </div>
 </template>
 
 
 
 <script>
-// import CarouselScrollEight from '@/components/CarouselScrollEight.vue'
+import CarouselScrollTopPicks from '@/components/CarouselScrollTopPicks.vue'
 
 export default {
     name: 'SimilarItems',
     components:{
-    // CarouselScrollEight
+    CarouselScrollTopPicks
   },
   data(){
     
