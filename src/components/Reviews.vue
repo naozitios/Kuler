@@ -2,7 +2,7 @@
     <div id = "section-main">
         <h5 id = "section-title">Reviews&nbsp;<StarRating/></h5>
         <!--Page 1-->
-        <div class = "page" v-show="p1">
+        <div class = "page" v-if="p1">
         <!-- reviewers -->
         <div id= "reviewer">
             Andrew Wong &nbsp;&nbsp;13/2/22&nbsp;&nbsp;<StarRating/><!--change name to DB-->
@@ -96,7 +96,7 @@ export default {
   },
   data(){
     return {
-        p1:false,
+        p1:true,
         p2:false,
         p3:false,
         p4:false,
