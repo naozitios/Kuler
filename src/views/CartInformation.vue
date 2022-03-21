@@ -15,10 +15,21 @@
     </div>
     <v-row align="left">
       <hr />
-      <h5>Subtotal</h5>
-      <h5>Shipping</h5>
-      <hr />
-      <h4>Total</h4>
+      <div class="row">
+        <div class="col-sm-8"><h5>Subtotal</h5></div>
+        <div class="col-sm-4"><h5>SGD XXX</h5></div>
+      </div>
+      <div class="row">
+      <div class="col-sm-8"><h5>Shipping</h5></div>
+      <div class="col-sm-4"><h6 id="nextStep">Next Step</h6></div>
+      </div>
+    </v-row>
+    <hr />
+    <v-row align="left">
+      <div class="row">
+      <div class="col-sm-8"><h4>Total</h4></div>
+      <div class="col-sm-4"><h5>SGD XXX</h5></div>
+      </div>
     </v-row>
   </div>
   <div class="footer">
@@ -57,5 +68,9 @@ export default {
 #contain {
   height: 30vmax;
   overflow-y: scroll;
+}
+#nextStep {
+  color: rgb(206, 204, 204);
+  font-weight: normal;
 }
 </style>
