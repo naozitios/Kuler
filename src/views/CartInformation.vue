@@ -27,11 +27,11 @@ export default {
 <style scoped>
 .userSection {
   float: left;
-  width: 70%;
+  width: 80%;
   margin-bottom: 10%;
 }
 .productsSection {
-  width: 30%;
+  width: 20%;
   display: flex;
   border: 1px solid red
 }

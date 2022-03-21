@@ -28,13 +28,18 @@
     </div>
     <br/>
     <br/>
-    <input type="submit" value="Continue to Shipping" />
+    <ContinueToShippingButton/>
   </form>
 </template>
 
 <script>
+import ContinueToShippingButton from "@/components/ContinueToShippingButton.vue"
+
 export default {
   name: "OrderDetails",
+  components: {
+    ContinueToShippingButton
+  },
   data() {},
   methods: {},
 };
