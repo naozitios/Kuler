@@ -1,6 +1,6 @@
 <template>
     <FilterOptions/>
-        <SortByButton/>
+    <SortByButton/>
     <Listings/>
 </template>
 

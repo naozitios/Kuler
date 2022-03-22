@@ -22,30 +22,33 @@ export default {
         -ms-appearance: none;
         appearance: none;
         outline: 0;
-        background: green;
+        background: #EFEFEF;
         background-image: none;
-        border: 1px solid black;
     }
-     
+
     .select {
         position: relative;
         float: right;
         margin-right: 4%;
-        width: 20em;
+        text-align: center;
+        width: 14%;
         height: 3em;
         line-height: 3;
-        background: #2C3E50;
+        background: #EFEFEF;
         overflow: hidden;
-        border-radius: 40px;
+        border-radius: 40px;   
     }
      
     select {
         width: 100%;
         height: 100%;
         margin: 0;
-        padding: 0 0 0 .5em;
-        color: #fff;
+        padding: 0 0 0 10%;
+        color: black;
+        font-weight: bold;
         cursor: pointer;
+        outline: none;
+        border: none;
     }
      
     select::-ms-expand {
@@ -59,12 +62,12 @@ export default {
         right: 0;
         bottom: 0;
         padding: 0 1em;
-        background: #34495E;
+        background: #EFEFEF;
         pointer-events: none;
     }
      
     .select:hover::after {
-        color: #F39C12;
+        color: #F37381;
     }
      
     .select::after {

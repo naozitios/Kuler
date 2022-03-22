@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/cart"><img src="@/assets/cart_icon.svg" alt="Cart"></router-link>
+    <router-link to="/CartInformation"><img src="@/assets/cart_icon.png" alt="Cart"></router-link>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
 <style scoped>
     img{
         width:30px;
-        height:30px;
+        height:auto;
+        margin: 0.5em;
     }
 </style>

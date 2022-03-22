@@ -24,9 +24,16 @@
           </div>
       
       <!-- fourth section -->
-      <div class="d-grid gap-2">
+      <div class="btns">
+        <div class="cartbtn">
         <AddToCartButton/>
+        </div>
+        <div class="favourite-button"> 
+          <FavouriteClick/>
       </div>
+      </div>
+
+      
 
       <div class= "product-text"> 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis aliquam cursus.
@@ -40,12 +47,15 @@
 <script>
 import StarRating from '@/components/StarRating.vue'
 import AddToCartButton from '@/components/AddToCartButton.vue'
+import FavouriteClick from '@/components/FavouriteClick.vue'
+
 
 export default {
     name: 'ProductInformation',
   components:{
     StarRating,
-    AddToCartButton
+    AddToCartButton,
+    FavouriteClick
   },
   data(){
     
@@ -86,6 +96,7 @@ img {
     margin: 0 auto;
 }
 
+
 #user-info-text {
     display: flex;
     flex-direction: column;
@@ -97,8 +108,17 @@ img {
     text-align: left;
 }
 
-.d-grid.gap-2 {
+.btns {
+    display: flex;
     margin-top: 5%;
+}
+
+.favourite-button{
+    margin-top: 3%;
+}
+
+.cartbtn {
+    width: 80%;
 }
 
 #price {

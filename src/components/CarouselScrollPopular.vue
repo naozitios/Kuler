@@ -1,7 +1,7 @@
 <template>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
   
-  <div class="carousel-inner">
+  <div class="carousel-inner" >
     <div class="carousel-item active">
       <CarouselScrollContentFour/>
     </div>
@@ -14,14 +14,14 @@
   </div>
 
   <div id="control-left">
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   </div>
 
   <div id="control-right">
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -34,7 +34,7 @@ import CarouselScrollContentFour from '@/components/CarouselScrollContentFour.vu
 import CarouselScrollContentFour2 from '@/components/CarouselScrollContentFour2.vue'
 
 export default {
-  name: 'CarouselScrollEight',
+  name: 'CarouselScrollPopular',
   components:{
     CarouselScrollContentFour,
     CarouselScrollContentFour2
@@ -51,18 +51,19 @@ export default {
 
 <style scoped>
 .carousel .carousel-item {
-    height: 500px;
+    /* height: 500px; */
   }
 
-  .carousel-item img {
+  /* .carousel-item img {
       position: absolute;
       object-fit:auto;
       top: 0;
       left: 0;
       min-height: 500px;
-  }
+  } */
 
-  #carouselExampleIndicators {
+  /* #carouselExampleIndicators {
+    justify-content: center;
     display: flex;
     flex-direction: row;
 
@@ -84,6 +85,6 @@ export default {
     flex-grow: 1;
     flex-basis: 0;
 
-  }
+  } */
 
 </style>

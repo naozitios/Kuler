@@ -1,20 +1,15 @@
 <template>
-  <div class="float-container">
-  <div class= "first-child">  
-  <ListInformation/>
-  </div>
-  </div>
+    <FAQNav/>
 </template>
 
 <script>
-import ListInformation from '@/components/ListInformation.vue';
-
-
+import FAQNav from '@/components/FAQNav.vue'
 
 export default {
-  name: 'SellerListPage',
+  name: 'FrequentlyAskedQuestions',
   components:{
-    ListInformation
+      FAQNav,
+
   },
   data(){
     
@@ -25,23 +20,16 @@ export default {
 }
 </script>
 
-
-<style scoped>
+<style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-    #app {
+    /* #app {
         font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
-    }
-
-    .float-container {
-      display: flex;
-      margin-left: 20px
-    }
-
+    } */
     /* #bg{
         display: block;
         margin-left: auto;
