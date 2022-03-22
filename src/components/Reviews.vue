@@ -58,6 +58,7 @@
         <div class = "page" v-show="p4">4</div>
         <div class = "page" v-show="p5">5</div>
         <div class = "page" v-show="p6">6</div>
+        <br>
       <div class= "pagination">
         <nav aria-label="Page navigation example">
   <ul class="pagination">
@@ -101,8 +102,9 @@ export default {
         p3:false,
         p4:false,
         p5:false,
-        p6:false
-    }
+        p6:false,
+        message: ''
+    };
   },
   methods:{
       setP1True() {
