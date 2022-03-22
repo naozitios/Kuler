@@ -93,9 +93,10 @@ const routes = [
     {
         path: '/productPage',
         name: 'Product Page',
-        component: ProductPage
+        component: ProductPage,
     },
 ]
+
 
 const router = createRouter({
     history: createWebHistory(),

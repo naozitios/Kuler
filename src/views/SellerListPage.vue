@@ -1,20 +1,20 @@
 <template>
   <div class="float-container">
   <div class= "first-child">  
-  <ListInformation/>
+  <SellerListThumbnails/>
   </div>
   </div>
 </template>
 
 <script>
-import ListInformation from '@/components/ListInformation.vue';
+import SellerListThumbnails from '@/components/SellerListThumbnails.vue';
 
 
 
 export default {
   name: 'SellerListPage',
   components:{
-    ListInformation
+    SellerListThumbnails
   },
   data(){
     
