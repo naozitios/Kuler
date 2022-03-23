@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import ProductScroll from '@/components/ProductScroll.vue';
+import ProductScroll from '@/components/xh_components/ProductScroll.vue';
 import SimilarItems from '@/components/SimilarItems.vue';
-import ProductInformation from '@/components/ProductInformation.vue';
+import ProductInformation from '@/components/xh_components/ProductInformation.vue';
 import Reviews from '@/components/Reviews.vue';
 import FooterMain from '@/components/footer_components/FooterMain.vue'
 
