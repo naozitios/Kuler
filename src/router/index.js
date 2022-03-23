@@ -4,6 +4,7 @@ import CartInformation from '@/views/CartInformation.vue'
 import CartPayment from '@/views/CartPayment.vue'
 import CartShipping from '@/views/CartShipping.vue'
 import Profile from '@/views/Profile.vue'
+import ProfileEdit from '@/views/ProfileEdit.vue'
 import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
 import ProductPage from '@/views/ProductPage.vue'
@@ -43,6 +44,11 @@ const routes = [
         path: '/profile',
         name: 'Profile',
         component: Profile
+    },
+    {
+        path: '/profileEdit',
+        name: 'Edit Profile',
+        component: ProfileEdit
     },
     {
         path: '/searchResult',
