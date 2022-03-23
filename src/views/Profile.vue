@@ -32,6 +32,10 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+#banner{
+  height:50%;
+  overflow: hidden;
+}
     
 </style>
