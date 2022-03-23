@@ -36,7 +36,7 @@
 
 <script>
 import ShippingDetails from "@/components/ShippingDetails"
-import FooterMain from "@/components/FooterMain.vue"
+import FooterMain from "@/components/footer_components/FooterMain.vue"
 import ViewPurchase from "@/components/ViewPurchase.vue"
 
 export default {

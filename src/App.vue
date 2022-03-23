@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import SearchBar from '@/components/SearchBar.vue'
-import KulerLogo from '@/components/KulerLogo.vue'
-import SellButton from '@/components/SellButton.vue'
-import SigninButton from '@/components/SigninButton.vue'
-import FavouriteButton from '@/components/FavouriteButton.vue'
-import CartButton from '@/components/CartButton.vue'
-import NavBar from '@/components/NavBar.vue'
+import SearchBar from '@/components/header_components/SearchBar.vue'
+import KulerLogo from '@/components/header_components/KulerLogo.vue'
+import SellButton from '@/components/header_components/SellButton.vue'
+import SigninButton from '@/components/header_components/SigninButton.vue'
+import FavouriteButton from '@/components/header_components/FavouriteButton.vue'
+import CartButton from '@/components/header_components/CartButton.vue'
+import NavBar from '@/components/header_components/NavBar.vue'
 
 export default {
   name: 'App',

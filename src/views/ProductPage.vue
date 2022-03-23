@@ -17,7 +17,7 @@ import ProductScroll from '@/components/ProductScroll.vue';
 import SimilarItems from '@/components/SimilarItems.vue';
 import ProductInformation from '@/components/ProductInformation.vue';
 import Reviews from '@/components/Reviews.vue';
-import FooterMain from '@/components/FooterMain.vue'
+import FooterMain from '@/components/footer_components/FooterMain.vue'
 
 
 export default {

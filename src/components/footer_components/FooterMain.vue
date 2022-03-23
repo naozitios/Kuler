@@ -43,8 +43,8 @@
 
 
 <script>
-import KulerLogoWhite from '@/components/KulerLogoWhite.vue'
-import FeedbackFooter from '@/components/FeedbackFooter.vue'
+import KulerLogoWhite from '@/components/footer_components/KulerLogoWhite.vue'
+import FeedbackFooter from '@/components/footer_components/FeedbackFooter.vue'
 
 export default {
   name: 'FooterMain',

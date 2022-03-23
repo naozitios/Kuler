@@ -1,7 +1,7 @@
 <template>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
   
-  <div class="carousel-inner">
+  <div class="carousel-inner" >
     <div class="carousel-item active">
       <CarouselScrollContentFour/>
     </div>
@@ -14,14 +14,14 @@
   </div>
 
   <div id="control-left">
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
   </div>
 
   <div id="control-right">
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import CarouselScrollContentFour from '@/components/CarouselScrollContentFour.vue'
-import CarouselScrollContentFour2 from '@/components/CarouselScrollContentFour2.vue'
+import CarouselScrollContentFour from '@/components/carousel_components/CarouselScrollContentFour.vue'
+import CarouselScrollContentFour2 from '@/components/carousel_components/CarouselScrollContentFour2.vue'
 
 export default {
-  name: 'CarouselScrollTopPicks',
+  name: 'CarouselScrollPopular',
   components:{
     CarouselScrollContentFour,
     CarouselScrollContentFour2
@@ -62,7 +62,7 @@ export default {
       min-height: 500px;
   } */
 
-  #carouselExampleIndicators {
+  /* #carouselExampleIndicators {
     justify-content: center;
     display: flex;
     flex-direction: row;
@@ -85,6 +85,6 @@ export default {
     flex-grow: 1;
     flex-basis: 0;
 
-  }
+  } */
 
 </style>

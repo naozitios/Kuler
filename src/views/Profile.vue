@@ -7,9 +7,9 @@
 
 <script>
 
-import PublicProfile from '@/components/PublicProfile.vue';
-import PrivateInformation from '@/components/PrivateInformation.vue';
-import ChangePassword from '@/components/ChangePassword.vue';
+import PublicProfile from '@/components/profile_components/PublicProfile.vue';
+import PrivateInformation from '@/components/profile_components/PrivateInformation.vue';
+import ChangePassword from '@/components/profile_components/ChangePassword.vue';
 
 export default {
   name: 'App',
