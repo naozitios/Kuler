@@ -44,11 +44,11 @@ export default {
 
 <style scoped>
 /* setting height and width of thumbnails still causes images to resize. */
-.thumbnails {
-      width: 5%;
-}
 
 img {
-      height: 70px;
+      height: 90px;
+      width: 90px;
 }
+
+
 </style>
