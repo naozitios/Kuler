@@ -95,6 +95,7 @@ const routes = [
         name: 'Product Page',
         component: ProductPage,
     },
+
 ]
 
 
