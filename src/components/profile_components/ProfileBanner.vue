@@ -17,7 +17,7 @@ export default {
         flex-direction: column;
         /* width: 100%; */
         max-height:40vh;
-        object-fit: none; /* Do not scale the image */
+        object-fit: contain;
         object-position: center; /* Center the image within the element */
         /* min-height: 50vh; */
     }
