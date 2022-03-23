@@ -1,20 +1,26 @@
 <template>
-  <div class="float-container">
-  <div class= "first-child">  
-  <SellerListThumbnails/>
-  </div>
+  <div class="float-container">  
+    <ListThumbnails/>
+    <div class = "first-container">
+    <ListImages/>
+    <ListDescription/>
+    </div>
   </div>
 </template>
 
 <script>
-import SellerListThumbnails from '@/components/SellerListThumbnails.vue';
 
+import ListThumbnails from '@/components/xh_components/ListThumbnails.vue'
+import ListImages from '@/components/xh_components/ListImages.vue'
+import ListDescription from '@/components/xh_components/ListDescription.vue'
 
 
 export default {
   name: 'SellerListPage',
   components:{
-    SellerListThumbnails
+    ListThumbnails,
+    ListImages,
+    ListDescription,
   },
   data(){
     
@@ -41,6 +47,11 @@ export default {
       display: flex;
       margin-left: 20px
     }
+
+    .first-container {
+    width: 70%;
+    flex-direction: column;
+}
 
     /* #bg{
         display: block;

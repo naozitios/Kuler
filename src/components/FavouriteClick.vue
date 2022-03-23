@@ -17,7 +17,7 @@ export default {
            },
            { 
                id: 2,
-               src: "@/assets/red_heart.png",
+               src: "https://cdn1.iconfinder.com/data/icons/circle-outlines-colored/512/Like_Favourite_Love_Health_Heart_Favourites_Favorite-512.png",
                alt: "Red heart"
            }
            ]
