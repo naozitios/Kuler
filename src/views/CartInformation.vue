@@ -39,7 +39,7 @@
 
 <script>
 import OrderDetails from "@/components/OrderDetails.vue";
-import FooterMain from "@/components/FooterMain.vue";
+import FooterMain from "@/components/footer_components/FooterMain.vue";
 import ViewPurchase from "@/components/ViewPurchase.vue";
 
 export default {

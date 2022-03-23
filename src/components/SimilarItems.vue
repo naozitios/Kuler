@@ -9,7 +9,7 @@
 
 
 <script>
-import CarouselScrollTopPicks from '@/components/CarouselScrollTopPicks.vue'
+import CarouselScrollTopPicks from '@/components/carousel_components/CarouselScrollTopPicks.vue'
 
 export default {
     name: 'SimilarItems',

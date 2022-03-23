@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import FAQNav from '@/components/FAQNav.vue'
+import FAQNav from '@/components/footer_components/FAQNav.vue'
 
 export default {
   name: 'FrequentlyAskedQuestions',
