@@ -46,8 +46,8 @@
 
 <script>
 import StarRating from '@/components/StarRating.vue'
-import AddToCartButton from '@/components/AddToCartButton.vue'
-import FavouriteClick from '@/components/FavouriteClick.vue'
+import AddToCartButton from '@/components/xh_components/AddToCartButton.vue'
+import FavouriteClick from '@/components/xh_components/FavouriteClick.vue'
 
 
 export default {
@@ -92,15 +92,10 @@ img {
     display: flex;
 }
 
-#rating {
-    margin: 0 auto;
-}
-
 
 #user-info-text {
     display: flex;
     flex-direction: column;
-
 }
 
 #product-title {
@@ -111,14 +106,16 @@ img {
 .btns {
     display: flex;
     margin-top: 5%;
-}
-
-.favourite-button{
-    margin-top: 3%;
+    
 }
 
 .cartbtn {
     width: 80%;
+    margin-left: -2%;
+}
+
+.favourite-button {
+    margin-left: 4%;
 }
 
 #price {

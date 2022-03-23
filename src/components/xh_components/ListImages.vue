@@ -42,7 +42,60 @@
 
 <script>
 export default {
-
+      methods: {
+        changeCoverPicture() {
+            let input = this.$refs.firstFile
+            let file = input.files
+            if (file && file[0]) {
+                  let reader = new FileReader
+                  reader.onload = e => {
+                        this.firstThumbnail = e.target.result
+                  }
+                  reader.readAsDataURL(file[0])
+                  this.$emit('input', file)
+            }
+        },
+        changeSupportingPictures() {
+            let input = this.$refs.nextFiles
+            let file = input.files
+            if (file && file[0]) {
+                  let reader = new FileReader
+                  if (this.supportingImageCount == 0) {
+                        reader.onload = e => {
+                              this.secondThumbnail = e.target.result
+                        }
+                        reader.readAsDataURL(file[0])
+                        this.$emit('input', file)
+                  } else if (this.supportingImageCount == 1) {
+                        reader.onload = e => {
+                              this.thirdThumbnail = e.target.result
+                        }
+                        reader.readAsDataURL(file[0])
+                        this.$emit('input', file)
+                  } else if (this.supportingImageCount == 2) {
+                        reader.onload = e => {
+                              this.fourthThumbnail = e.target.result
+                        }
+                        reader.readAsDataURL(file[0])
+                        this.$emit('input', file)
+                  } else { // in this case, images are full. reset
+                        this.supportingImageCount = 0;
+                        this.resetSupportingPictures();
+                        reader.onload = e => {
+                              this.secondThumbnail = e.target.result
+                        }
+                        reader.readAsDataURL(file[0])
+                        this.$emit('input', file)
+                  }
+                  this.supportingImageCount++;
+            } 
+        },
+        resetSupportingPictures() {
+            this.secondThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
+            this.thirdThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
+            this.fourthThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
+        }
+    }
 }
 </script>
 
