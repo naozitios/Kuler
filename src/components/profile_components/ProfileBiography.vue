@@ -67,8 +67,8 @@ img {
     
     /* border:4px solid #333 */
 }
-.left-flush{
-    /* text-align: left; */
+#bioText{
+    text-align: left;
 }
 
 
