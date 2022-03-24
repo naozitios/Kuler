@@ -1,11 +1,11 @@
 <template>
   <div class="float-container">  
-    <ListThumbnails :firstpic = "coverPic" :supportingpic = "supportingPic"/>
+    <ListThumbnails :firstpic = "coverPic" :supportingpic = "supportingPic" :productNumber = "productNumber"/>
     <div class = "first-container">
     <ListImages @coverpicture = "changeCover($event)" @supportingpicture = "changeSupporting($event)"/>
     <ListDescription :productNumber = "productNumber"/>
     </div>
-    <ListInformation @addButton = "productID($event)"/>
+    <ListInformation @productNumber = "productID($event)"/>
   </div>
 </template>
 

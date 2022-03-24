@@ -97,7 +97,6 @@ export default {
     },
     methods: {
         async addProduct() {
-          this.findNumberOfProducts();
           var title = document.getElementById("titleOfProduct").value
           var price = (document.getElementById("productPrice").value).toString()
           var licenseDropdown = document.getElementById("custom-select")
@@ -109,12 +108,26 @@ export default {
           console.log(title)
           console.log(price)
           console.log(license)
-          console.log(category)
+          
           console.log(format)
           console.log(delivery)
+          if (category === "Icons") {
+            category = 1
+          } else if (category === "Photography") {
+            category = 2
+          } else if (category === "Collectibles") {
+            category = 3
+          } else if (category === "Audio") {
+            category = 4
+          } else if (category === "Videos") {
+            category = 5
+          } else {
+            category = 6
+          }
+          console.log(category)
             const docRef = await setDoc(doc(db, "products", (this.numberOfProducts + 1).toString()), {
               caption: title, 
-              category: category,
+              category_id: category,
               coverimage: "null",
               description: "null",
               product_type: format,
@@ -125,15 +138,14 @@ export default {
               price: price,
               delivery: delivery,
               user_id: "To be assigned"
-
             })
             console.log(docRef)
             
             document.getElementById('myform').reset();
-            this.$emit('addButton', this.numberOfProducts + 1) // new product number is total number of products + 1. pass this to parent
+            this.$emit('productNumber', this.numberOfProducts + 1) // new product number is total number of products + 1. pass this to parent
 
         },
-        debug() {
+        debug() { // debug
           var title = document.getElementById("titleOfProduct").value
           var price = (document.getElementById("productPrice").value).toString()
           var licenseDropdown = document.getElementById("custom-select")
@@ -148,6 +160,10 @@ export default {
           console.log(category)
           console.log(format)
           console.log(delivery)
+        },
+        printNumberOfProducts() { // debug
+          this.findNumberOfProducts();
+          console.log(this.numberOfProducts)
         },
         async findNumberOfProducts() { // find the next product ID to add in. stored in numberOfProducts
         let z = await getDocs(collection(db, "products")) 
@@ -160,9 +176,10 @@ export default {
       }
     },
 
-    emits: ["addButton"],
+    emits: ["productNumber"], // used to pass productnumber to parent.
 
     mounted() {
+      this.findNumberOfProducts();
     }
 
 }
