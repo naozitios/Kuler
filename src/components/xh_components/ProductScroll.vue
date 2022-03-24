@@ -4,34 +4,34 @@
     <div class="carousel-indicators">
     <div class ="1-child"> 
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
-    <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg" class="d-block w-100"></li>
+    <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2017%2F01%2Fwinnie-the-pooh-3.jpg" class="d-block w-100"></li>
     </div>
     <div class = "2-child">
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1">
-    <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg" class="d-block w-100" ></li>
+    <img src="https://www.denofgeek.com/wp-content/uploads/2018/10/tom-and-jerry-warner-bros.jpg" class="d-block w-100" ></li>
     </div>
     <div class = "3-child">
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2">
-    <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg" class="d-block w-100" ></li>
+    <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2021/12/Dora-The-Explorer.jpg" class="d-block w-100" ></li>
     </div>
     <div class = "4-child">
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3">
-    <img src="https://cdn.mos.cms.futurecdn.net/uWjEogFLUTBc8mSvagdiuP-970-80.jpg.webp" class="d-block w-100" ></li>
+    <img src="https://assets.change.org/photos/5/to/mc/QhtOMceKjIXxqye-800x450-noPad.jpg?1627493939" class="d-block w-100" ></li>
     </div>
     
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg" class="d-block w-100" alt="...">
+      <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2017%2F01%2Fwinnie-the-pooh-3.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg" class="d-block w-100" alt="...">
+      <img src="https://www.denofgeek.com/wp-content/uploads/2018/10/tom-and-jerry-warner-bros.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg" class="d-block w-100" alt="...">
+      <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2021/12/Dora-The-Explorer.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://cdn.mos.cms.futurecdn.net/uWjEogFLUTBc8mSvagdiuP-970-80.jpg.webp" class="d-block w-100" alt="...">
+      <img src="https://assets.change.org/photos/5/to/mc/QhtOMceKjIXxqye-800x450-noPad.jpg?1627493939" class="d-block w-100" alt="...">
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -82,9 +82,19 @@ export default {
   position: static;
 }
 
-.carousel{
-  width: 100%;
+
+.carousel-indicators img {
+  width: 75px;
+  height: 75px;
 }
 
+.carousel-inner img {
+  height: 500px;
+}
+
+.carousel-inner {
+  width: 100%;
+  
+}
 
 </style>

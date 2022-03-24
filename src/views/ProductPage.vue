@@ -56,14 +56,12 @@ export default {
     }
     .first-child {
       margin-top: 2%;
-      min-width: 65%
+      width: 65%
     }
-    .first {
-      min-width: 60%
-    }
-    
+
     .second-child {
       margin-top: 2%;
+      width: 35%;
     }
     /* #bg{
         display: block;
