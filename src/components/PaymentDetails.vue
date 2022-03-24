@@ -7,7 +7,7 @@
       <span id="payment">Payment</span>
     </p>
   </div>
-  <form action="/CartPayment">
+  <form action="/CartPaymentSuccess">
     <div class="col-3">
       <label for="cardDetails">Card Details: </label><br />
     </div>

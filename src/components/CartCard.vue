@@ -10,9 +10,11 @@
             <h4 class="card-title">Product Title</h4>
             <h4 class="card-title">SGD 0.00</h4>  
             <div class = "counter">
-              <span class="minus" @click="subtract">-</span>
+              <span class="minus" @click="subtract" v-if="editable">-</span>
+              <span class="viewOnly" v-else>-</span>
               <div class="num">{{num}}</div>
-              <span class="plus" @click="add">+</span>
+              <span class="plus" @click="add" v-if="editable">+</span>
+              <span class="viewOnly" v-else>+</span>
             </div>
             
           </div>
@@ -27,8 +29,11 @@ export default {
   components: {},
   data() {
     return {
-      num: 1
+      num: 1,
     }
+  },
+  props: {
+    editable: Boolean
   },
   methods: {
     add() {
@@ -78,7 +83,7 @@ span {
   cursor:pointer;
 }
 
-.minus, .plus {
+.minus, .plus, .viewOnly {
 	width:30%;
   height:30%;
   background:#F37381;
@@ -94,6 +99,11 @@ span {
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
   text-shadow: 1px 1px 2px #427388;
+}
+
+.viewOnly {
+  background: rgb(202, 202, 202);
+  cursor: default;
 }
 
 .num {
