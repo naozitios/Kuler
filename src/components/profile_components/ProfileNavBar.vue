@@ -81,7 +81,7 @@ a:hover {
                 display: inline-block;
                 height: 2.25em;
                 line-height: 2.25em;
-                padding: 0 0 0 1.25em;
+                padding: 0 1.25em 0 1.25em;
                 border: 0;
                 border-radius: 8px;
                 box-shadow: inset 0 0 0 1px transparent;

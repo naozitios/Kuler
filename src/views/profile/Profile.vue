@@ -5,6 +5,7 @@
 <div class="fullWidth" id="navBar">
 <h6> <ProfileNavBar/></h6>
 </div>
+<SortByButton/>
 <div class="parent" id="parentContainer">
   <div id="bio">
     <ProfileBiography/>
@@ -13,6 +14,9 @@
     <Listings/>
   </div>
 </div>
+<div class="parent" id="parentContainer2">
+  <FilterOptions/>
+</div>
 </template>
 
 <script>
@@ -20,6 +24,8 @@ import ProfileBanner from '@/components/profile_components/ProfileBanner.vue';
 import ProfileBiography from '@/components/profile_components/ProfileBiography.vue';
 import ProfileNavBar from '@/components/profile_components/ProfileNavBar.vue';
 import Listings from '@/components/Listings.vue'
+import FilterOptions from '@/components/FilterOptions.vue'
+import SortByButton from '@/components/SortByButton.vue'
 
 export default {
   name: 'App',
@@ -27,7 +33,9 @@ export default {
     ProfileBanner,
     ProfileBiography,
     ProfileNavBar,
-    Listings
+    Listings,
+    FilterOptions,
+    SortByButton
 
   },
   data(){
@@ -48,6 +56,9 @@ export default {
 #parentContainer{
   display: flex;
     flex-direction: row;
+}
+#parentContainer2{
+  padding-left: 2em;
 }
 #bio{
   flex-grow: 1;
