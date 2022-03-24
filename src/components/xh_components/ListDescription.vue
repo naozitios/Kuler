@@ -6,7 +6,32 @@
 </template>
 
 <script>
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import {doc, updateDoc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+
+
 export default {
+  
+  props: {
+    productNumber: Number
+  },
+
+  emits: ["productDescription"],
+
+  watch: {
+    productNumber: async function() {
+      let z = document.getElementById('productDescription').value
+      console.log(document.getElementById('productDescription').value) // debugging
+      const docRef = doc(db, "products", this.productNumber)
+      await updateDoc(docRef, {
+        description: z
+      });
+    }
+  },
+
+
 
 }
 </script>
