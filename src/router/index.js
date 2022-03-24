@@ -3,8 +3,11 @@ import Home from '@/views/Home.vue'
 import CartInformation from '@/views/CartInformation.vue'
 import CartPayment from '@/views/CartPayment.vue'
 import CartShipping from '@/views/CartShipping.vue'
-import Profile from '@/views/Profile.vue'
-import ProfileEdit from '@/views/ProfileEdit.vue'
+import Profile from '@/views/profile/Profile.vue'
+import ProfileFavourites from '@/views/profile/ProfileFavourites.vue'
+import ProfileHistory from '@/views/profile/ProfileHistory.vue'
+import ProfileReviews from '@/views/profile/ProfileReviews.vue'
+import ProfileEdit from '@/views/profile/ProfileEdit.vue'
 import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
 import ProductPage from '@/views/ProductPage.vue'
@@ -49,6 +52,21 @@ const routes = [
         path: '/profileEdit',
         name: 'Edit Profile',
         component: ProfileEdit
+    },
+    {
+        path: '/profileFavourites',
+        name: 'Your Favourites',
+        component: ProfileFavourites
+    },
+    {
+        path: '/profileHistory',
+        name: 'Purchase History',
+        component: ProfileHistory
+    },
+    {
+        path: '/profileReviews',
+        name: 'Profile Reviews',
+        component: ProfileReviews
     },
     {
         path: '/searchResult',

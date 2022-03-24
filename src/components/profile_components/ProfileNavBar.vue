@@ -2,10 +2,10 @@
 <template>
     <div id="nav">
     <ul>
-            <li><router-link to="#">Listings</router-link></li>
-            <li><router-link to="#">Reviews</router-link> </li>
-            <li><router-link to="#">Favourites</router-link></li> <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
-            <li><router-link to="#">Purchase History</router-link></li> <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
+            <li><router-link to="profile">Listings</router-link></li>
+            <li><router-link to="profileReviews">Reviews</router-link> </li>
+            <li><router-link to="profileFavourites">Favourites</router-link></li> <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
+            <li><router-link to="profileHistory">Purchase History</router-link></li> <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
         </ul>
   </div>
 
