@@ -9,11 +9,23 @@
     <h6 id="handle" class="left-flush">@jessieeggie</h6>
 </div>
 <div id="rating">
-    <h6 id="ratingText">4.1</h6> <StarRating/>
+    <div id="ratingTextNumber">
+    <h6 id="ratingText">4.1</h6>
+    </div>
+    <div id="ratingStars">
+    <StarRating/>
+    </div>
+     
 </div>
 <div id="authorizedStatus">
+    <div id="authorizedIcon">
     <img class="smallIcon" src="@/assets/authorized_icon.png" alt="Authorized Seller">
+    </div>
+    <div id="authorizedText">
     <h6 id="authorized" class="left-flush"><b>Authorized Seller</b></h6>
+    </div>
+    
+    
     
 </div>
 <div id="button">
@@ -42,13 +54,51 @@ export default {
 #authorized{
     color: #F37381;
 }
-#ratingText, .smallIcon{
+.smallIcon{
     float:left;
     height: 20px;
     width: auto;
     margin-right: 0%;
     padding-right: 0%;
 
+}
+#ratingText{
+    text-align: right;
+}
+#rating{
+    display: flex;
+    flex-direction: row;
+}
+#ratingTextNumber{
+    flex-grow: 0;
+    /* padding: 2em; */
+    flex-basis: 1;
+    padding-left:25%;
+    justify-content: center;
+  align-content: center;
+}
+#ratingStars{
+    flex-grow: 0;
+    /* align-content: flex-start; */
+    padding: 0em 0em 0em 0.5em;
+    flex-basis: 3;
+}
+#authorizedIcon{
+    flex-grow: 0;
+    /* padding: 2em; */
+    flex-basis: 2;
+    padding-left:20%;
+    /* justify-content: center;
+  align-content: center; */
+}
+#authorizedText{
+    flex-grow: 0;
+    /* align-content: flex-start; */
+    padding: 0em 0em 0em 0.5em;
+    flex-basis: 4;
+}
+#authorized{
+    text-align: left;
 }
 #main{
     color: #F37381;
@@ -69,6 +119,7 @@ img {
 }
 #bioText{
     text-align: left;
+    padding-left:0.5em;
 }
 
 
