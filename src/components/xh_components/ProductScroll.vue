@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     async updatePictures() { // i assume that productID is given, i put a hypothethical value of 3
-      const docRef = doc(db, "products", this.productID) // change ID
+      const docRef = doc(db, "products", (this.productID).toString()) // change ID
       const docData = await getDoc(docRef)
       const actualData = docData.data()
       console.log(actualData)

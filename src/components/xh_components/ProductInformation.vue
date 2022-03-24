@@ -16,11 +16,11 @@
       </div>
       <!-- second section -->
       <div id= "product-title">
-          <h2> Merlion Watercolor Frame- Singapore local design! </h2> <!-- change, link description to DB -->
+          <h2> {{title}} </h2> <!-- change, link description to DB -->
       </div>
       <!-- third section -->
       <div id = "price"> 
-          <h2> SGD 10.80 </h2> <!-- change, link price to DB -->
+          <h2> SGD {{price}} </h2> <!-- change, link price to DB -->
           </div>
       
       <!-- fourth section -->
@@ -36,15 +36,17 @@
       
 
       <div class= "product-text"> 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis aliquam cursus.
-          Aenean tortor odio, maximus at nisi in, 
-          condimentum convallis ex. Nunc eu justo efficitur lectus iaculis maximus id sed lorem. 
+          {{description}}
       </div>
 
 </div>
 </template>
 
 <script>
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
 import StarRating from '@/components/StarRating.vue'
 import AddToCartButton from '@/components/xh_components/AddToCartButton.vue'
 import FavouriteClick from '@/components/xh_components/FavouriteClick.vue'
@@ -58,10 +60,26 @@ export default {
     FavouriteClick
   },
   data(){
-    
+    return {
+        description: null,
+        price: null,
+        title: null,
+        productID: 2 // change!!
+    }
   },
   methods:{
-   
+        async updateData() {
+          const docRef = doc(db, "products", (this.productID).toString()) // change ID
+          const docData = await getDoc(docRef)
+          const actualData = docData.data()
+          this.description = actualData.description
+          this.price = actualData.price
+          this.title = actualData.caption
+      }
+  },
+
+  mounted() {
+      this.updateData()
   }
 
 
