@@ -8,22 +8,14 @@
           <StarRating/>
           </div>
       </div>
-      <div class = "overflow-auto" id = "review-container2">
           <!--  hide with display: none. this is meant for the next elements to copy its innerHTML in JS-->
-          <div class = "reviewInfo"> 
-              <div class = "name">
-              Sharon Goh
-              </div>
-              <div class = "date">
-                  13/2/22
-              </div>
+            <div class = "reviewInfo">
               <div id = "star-rating">
                   <StarRating/>
               </div>
-          </div>
-      </div>
+            </div>
       <div class = "overflow-auto" id = "review-container">
-          </div>
+      </div>
   </div>
 </template>
 
@@ -112,7 +104,7 @@ export default {
 }
 
 .overflow-auto {
-    height: 400px; /* can't find a way to use % */
+    height: 400px;
 }
 
 </style>
