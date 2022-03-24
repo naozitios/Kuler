@@ -24,7 +24,7 @@ export default {
     productNumber: async function() {
       let z = document.getElementById('productDescription').value
       console.log(document.getElementById('productDescription').value) // debugging
-      const docRef = doc(db, "products", this.productNumber)
+      const docRef = doc(db, "products", this.productNumber.toString())
       await updateDoc(docRef, {
         description: z
       });

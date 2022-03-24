@@ -16,10 +16,16 @@
 </template>
 
 <script>
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import {doc, updateDoc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+
 export default {
       props: {
             firstpic: String,
-            supportingpic : String
+            supportingpic : String,
+            productNumber: Number
       },
     data() {
             return {
@@ -38,6 +44,16 @@ export default {
             },
             supportingpic: function() {
                   this.changeSupportingPictures(this.supportingpic);
+            },
+
+            productNumber: async function() {
+                  const docRef = doc(db, "products", this.productNumber.toString())
+                  await updateDoc(docRef, {
+                        coverimage: this.firstThumbnail,
+                        image1: this.secondThumbnail,
+                        image2: this.thirdThumbnail,
+                        image3: this.fourthThumbnail
+                  })
             }
       },
       mounted() {

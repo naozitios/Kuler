@@ -4,34 +4,34 @@
     <div class="carousel-indicators">
     <div class ="1-child"> 
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
-    <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2017%2F01%2Fwinnie-the-pooh-3.jpg" class="d-block w-100"></li>
+    <img :src= "coverPicture" class="d-block w-100"></li>
     </div>
     <div class = "2-child">
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1">
-    <img src="https://www.denofgeek.com/wp-content/uploads/2018/10/tom-and-jerry-warner-bros.jpg" class="d-block w-100" ></li>
+    <img :src= "firstSupportingPicture" class="d-block w-100" ></li>
     </div>
     <div class = "3-child">
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2">
-    <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2021/12/Dora-The-Explorer.jpg" class="d-block w-100" ></li>
+    <img :src="secondSupportingPicture" class="d-block w-100" ></li>
     </div>
     <div class = "4-child">
     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3">
-    <img src="https://assets.change.org/photos/5/to/mc/QhtOMceKjIXxqye-800x450-noPad.jpg?1627493939" class="d-block w-100" ></li>
+    <img :src="thirdSupportingPicture" class="d-block w-100" ></li>
     </div>
     
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2017%2F01%2Fwinnie-the-pooh-3.jpg" class="d-block w-100" alt="...">
+      <img :src="coverPicture" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://www.denofgeek.com/wp-content/uploads/2018/10/tom-and-jerry-warner-bros.jpg" class="d-block w-100" alt="...">
+      <img :src="firstSupportingPicture" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2021/12/Dora-The-Explorer.jpg" class="d-block w-100" alt="...">
+      <img :src="secondSupportingPicture" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://assets.change.org/photos/5/to/mc/QhtOMceKjIXxqye-800x450-noPad.jpg?1627493939" class="d-block w-100" alt="...">
+      <img :src="thirdSupportingPicture" class="d-block w-100" alt="...">
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -51,12 +51,45 @@
 </template>
 
 <script>
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+
 export default {
 
   name: 'ProductScroll',
   props: {
     msg: String
+  },
+
+  mounted() {
+    this.updatePictures();
+  },
+
+  data() {
+            return {
+                  coverPicture: null,
+                  firstSupportingPicture: null,
+                  secondSupportingPicture: null,
+                  thirdSupportingPicture: null,
+                  productID: "2" // change!!
+            }
+  },
+  methods: {
+    async updatePictures() { // i assume that productID is given, i put a hypothethical value of 3
+      const docRef = doc(db, "products", (this.productID).toString()) // change ID
+      const docData = await getDoc(docRef)
+      const actualData = docData.data()
+      console.log(actualData)
+      this.coverPicture = actualData.coverimage
+      this.firstSupportingPicture = actualData.image1
+      this.secondSupportingPicture = actualData.image2
+      this.thirdSupportingPicture = actualData.image3
+    }
   }
+  
+
 }
 </script>
 
