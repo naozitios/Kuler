@@ -1,8 +1,8 @@
 <template>
   <div class="float-container">  
-    <ListThumbnails/>
+    <ListThumbnails :firstpic = "coverPic" :supportingpic = "supportingPic"/>
     <div class = "first-container">
-    <ListImages/>
+    <ListImages @coverpicture = "changeCover($event)" @supportingpicture = "changeSupporting($event)"/>
     <ListDescription/>
     </div>
     <ListInformation/>
@@ -26,10 +26,18 @@ export default {
     ListInformation,
   },
   data(){
-    
+    return {
+      coverPic : null,
+      supportingPic : null
+    }
   },
   methods:{
-   
+    changeCover(x) {
+       this.coverPic = x;
+    },
+    changeSupporting(x) {
+      this.supportingPic = x;
+    }
   }
 }
 </script>

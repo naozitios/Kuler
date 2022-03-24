@@ -17,6 +17,10 @@
 
 <script>
 export default {
+      props: {
+            firstpic: String,
+            supportingpic : String
+      },
     data() {
             return {
                   firstThumbnail: null,
@@ -25,6 +29,15 @@ export default {
                   fourthThumbnail: null,
                   supportingImageCount: 0
 
+            }
+      },
+
+      watch: {
+            firstpic: function () {
+                  this.firstThumbnail = this.firstpic
+            },
+            supportingpic: function() {
+                  this.changeSupportingPictures(this.supportingpic);
             }
       },
       mounted() {
@@ -37,7 +50,21 @@ export default {
             this.secondThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
             this.thirdThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
             this.fourthThumbnail = "https://imageio.forbes.com/specials-images/imageserve/5ed6636cdd5d320006caf841/The-Blackout-Tuesday-movement-is-causing-Instagram-feeds-to-turn-black-/960x0.jpg"
-        }
+        },
+        changeSupportingPictures(x) {
+            if (this.supportingImageCount == 0) {
+                  this.secondThumbnail = x;
+            } else if (this.supportingImageCount == 1) {
+                  this.thirdThumbnail = x;
+            } else if (this.supportingImageCount == 2) {
+                  this.fourthThumbnail = x;
+            } else {
+                  this.supportingImageCount = 0;
+                  this.resetSupportingPictures();
+                  this.secondThumbnail = x;
+            }
+            this.supportingImageCount++;
+        },
       }
 }
 </script>
