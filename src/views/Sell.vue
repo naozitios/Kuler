@@ -3,9 +3,9 @@
     <ListThumbnails :firstpic = "coverPic" :supportingpic = "supportingPic"/>
     <div class = "first-container">
     <ListImages @coverpicture = "changeCover($event)" @supportingpicture = "changeSupporting($event)"/>
-    <ListDescription/>
+    <ListDescription :productNumber = "productNumber"/>
     </div>
-    <ListInformation/>
+    <ListInformation @addButton = "productID($event)"/>
   </div>
 </template>
 
@@ -28,7 +28,8 @@ export default {
   data(){
     return {
       coverPic : null,
-      supportingPic : null
+      supportingPic : null, 
+      productNumber: null // current product ID we are adding
     }
   },
   methods:{
@@ -37,6 +38,9 @@ export default {
     },
     changeSupporting(x) {
       this.supportingPic = x;
+    },
+    productID(x) {
+      this.productNumber = x;
     }
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div class ="productInfo">
+    <form id = "myform">
     <div class="title">
     <label for="titleOfProduct">Title </label>
     <input type="email" class="form-control" id="titleOfProduct" aria-describedby="emailHelp" placeholder="">
@@ -12,7 +13,7 @@
         License   
         <a href = "https://www.artismycareer.com/management/how-to-license-your-art-a-beginners-guide-to-artwork-licensing/"> Learn More </a>
         <br>
-        <select class="custom-select">
+        <select id="custom-select">
         <option selected>Attribution CC BY</option>
         <option value="1">Attribution ShareALike CC BY-SA</option>
         <option value="2">Attribution-NoDerivs CC BY-ND</option>
@@ -26,7 +27,7 @@
   <div class = "categoryOptions">
         Category   
         <br>
-        <select class="custom-select2">
+        <select id="custom-select2">
         <option selected>Choose Category</option>
         <option value="1">Icons</option>
         <option value="2">Photography</option>
@@ -41,13 +42,13 @@
   Format
   <br>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="format" id="digital" value="option1" checked>
+  <input class="form-check-input" type="radio" name="format" id="digital" value="Digital" checked>
   <label class="form-check-label" for="digital">
     Digital
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="format" id="physical" value="option2">
+  <input class="form-check-input" type="radio" name="format" id="physical" value="Physical">
   <label class="form-check-label" for="physical">
     Physical
   </label>
@@ -57,32 +58,112 @@
   Shipping Options
   <br>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="delivery" id="collectionPoint" value="option1" checked>
+  <input class="form-check-input" type="radio" name="delivery" id="collectionPoint" value="Collection Point" checked>
   <label class="form-check-label" for="collectionPoint">
     Collection Point
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="delivery" id="standardEconomy" value="option2">
+  <input class="form-check-input" type="radio" name="delivery" id="standardEconomy" value="Standard Economy">
   <label class="form-check-label" for="standardEconomy">
     Standard Economy
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="delivery" id="standardExpress" value="option2">
+  <input class="form-check-input" type="radio" name="delivery" id="standardExpress" value="Standard Express">
   <label class="form-check-label" for="standardExpress">
     Standard Express
   </label>
 </div>
   </div>
   <div class = "listButton">
-        <button class="btn btn-primary" id = "listButton" type="button"><h3>List Item</h3></button>
+        <button class="btn btn-primary" id = "listButton" type="button" @click="addProduct"><h3>List Item</h3></button>
   </div>
+    </form>
   </div>
 </template>
 
 <script>
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import {collection, setDoc, getDocs, doc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+
 export default {
+    data() {
+      return {
+        numberOfProducts: null
+      }
+    },
+    methods: {
+        async addProduct() {
+          this.findNumberOfProducts();
+          var title = document.getElementById("titleOfProduct").value
+          var price = (document.getElementById("productPrice").value).toString()
+          var licenseDropdown = document.getElementById("custom-select")
+          var license = licenseDropdown.options[licenseDropdown.selectedIndex].text
+          var categoryDropdown = document.getElementById("custom-select2")
+          var category = categoryDropdown.options[categoryDropdown.selectedIndex].text
+          var format = document.querySelector('input[name="format"]:checked').value
+          var delivery = document.querySelector('input[name="delivery"]:checked').value
+          console.log(title)
+          console.log(price)
+          console.log(license)
+          console.log(category)
+          console.log(format)
+          console.log(delivery)
+            const docRef = await setDoc(doc(db, "products", (this.numberOfProducts + 1).toString()), {
+              caption: title, 
+              category: category,
+              coverimage: "null",
+              description: "null",
+              product_type: format,
+              image1: "null",
+              image2: "null",
+              image3: "null",
+              license: license,
+              price: price,
+              delivery: delivery,
+              user_id: "To be assigned"
+
+            })
+            console.log(docRef)
+            
+            document.getElementById('myform').reset();
+            this.$emit('addButton', this.numberOfProducts + 1) // new product number is total number of products + 1. pass this to parent
+
+        },
+        debug() {
+          var title = document.getElementById("titleOfProduct").value
+          var price = (document.getElementById("productPrice").value).toString()
+          var licenseDropdown = document.getElementById("custom-select")
+          var license = licenseDropdown.options[licenseDropdown.selectedIndex].text
+          var categoryDropdown = document.getElementById("custom-select2")
+          var category = categoryDropdown.options[categoryDropdown.selectedIndex].text
+          var format = document.querySelector('input[name="format"]:checked').value
+          var delivery = document.querySelector('input[name="delivery"]:checked').value
+          console.log(title)
+          console.log(price)
+          console.log(license)
+          console.log(category)
+          console.log(format)
+          console.log(delivery)
+        },
+        async findNumberOfProducts() { // find the next product ID to add in. stored in numberOfProducts
+        let z = await getDocs(collection(db, "products")) 
+        let count = 0
+         z.forEach(() => {
+           count+= 1;
+         })
+         this.numberOfProducts = count;
+         console.log(this.numberOfProducts) // debug
+      }
+    },
+
+    emits: ["addButton"],
+
+    mounted() {
+    }
 
 }
 </script>
@@ -103,7 +184,7 @@ export default {
     background-color: lightgrey
 }
 
-.custom-select, .custom-select2 {
+#custom-select, #custom-select2 {
     width: 100%;
     border-radius: 20px;
     background-color: lightgrey;
