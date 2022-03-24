@@ -5,6 +5,7 @@
 <div class="fullWidth" id="navBar">
 <h6> <ProfileNavBar/></h6>
 </div>
+<SortByButton/>
 <div class="parent" id="parentContainer">
   <div id="bio">
     <ProfileBiography/>
@@ -24,6 +25,7 @@ import ProfileBiography from '@/components/profile_components/ProfileBiography.v
 import ProfileNavBar from '@/components/profile_components/ProfileNavBar.vue';
 import Listings from '@/components/Listings.vue'
 import FilterOptions from '@/components/FilterOptions.vue'
+import SortByButton from '@/components/SortByButton.vue'
 
 export default {
   name: 'App',
@@ -32,7 +34,8 @@ export default {
     ProfileBiography,
     ProfileNavBar,
     Listings,
-    FilterOptions
+    FilterOptions,
+    SortByButton
 
   },
   data(){

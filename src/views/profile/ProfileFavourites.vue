@@ -6,14 +6,15 @@
 <h6> <ProfileNavBar/></h6>
 </div>
 <div id="contentTitle">
-    <div id="warningIcon">
-        <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
-    </div>
-
-    <div id="warningTitle">
-        <h6><b>Your favourited items are hidden from public view</b></h6>
-    </div>
+        <div id="warningIcon">
+            <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
+        </div>
+    
+        <div id="warningTitle">
+            <h6><b>Your favourited items are hidden from public view</b></h6>
+        </div>
 </div>
+<SortByButton/>
 <div class="parent" id="parentContainer">
   <div id="bio">
     <ProfileBiography/>
@@ -31,6 +32,7 @@ import ProfileBanner from '@/components/profile_components/ProfileBanner.vue';
 import ProfileBiography from '@/components/profile_components/ProfileBiography.vue';
 import ProfileNavBar from '@/components/profile_components/ProfileNavBar.vue';
 import Listings from '@/components/Listings.vue'
+import SortByButton from '@/components/SortByButton.vue'
 
 export default {
   name: 'App',
@@ -38,7 +40,8 @@ export default {
     ProfileBanner,
     ProfileBiography,
     ProfileNavBar,
-    Listings
+    Listings,
+    SortByButton
 
   },
   data(){

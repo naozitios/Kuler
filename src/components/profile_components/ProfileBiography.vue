@@ -73,7 +73,7 @@ export default {
     flex-grow: 0;
     /* padding: 2em; */
     flex-basis: 1;
-    padding-left:25%;
+    padding-left:20%;
     justify-content: center;
   align-content: center;
 }
@@ -87,7 +87,7 @@ export default {
     flex-grow: 0;
     /* padding: 2em; */
     flex-basis: 2;
-    padding-left:20%;
+    padding-left:10%;
     /* justify-content: center;
   align-content: center; */
 }
