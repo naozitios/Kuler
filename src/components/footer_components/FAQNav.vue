@@ -26,32 +26,153 @@
         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab" v-show="authorized">This is Settings</div> -->
         <div class="questionBox" v-show="license">
             <h4 class = "title">Frequently Asked Questions</h4>
-            <h5 class = "qns">1. Lorem ipsum dolor sit amet?</h5>
-            <h5 class = "ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis aliquam cursus. Aenean tortor odio, maximus at nisi in, condimentum convallis ex. Nunc eu justo efficitur lectus iaculis maximus id sed lorem. </h5>
-            <h5 class = "qns">2. Lorem ipsum dolor sit amet?</h5>
-            <h5 class = "ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis aliquam cursus. Aenean tortor odio, maximus at nisi in, condimentum convallis ex. Nunc eu justo efficitur lectus iaculis maximus id sed lorem. </h5>
-            <h5 class = "qns">3. Lorem ipsum dolor sit amet?</h5>
-            <h5 class = "ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis aliquam cursus. Aenean tortor odio, maximus at nisi in, condimentum convallis ex. Nunc eu justo efficitur lectus iaculis maximus id sed lorem. </h5>
+            <h5 class = "qns">{{ lQn1 }}</h5>
+            <h5 class = "ans">{{lAns1}} </h5>
+            <h5 class = "qns">{{lQn2}}</h5>
+            <h5 class = "ans">{{lAns2}} </h5>
+            <h5 class = "qns">{{lQn3}}</h5>
+            <h5 class = "ans">{{lAns3}}</h5>
         </div>
-        <div class="questionBox" v-show="delivery">2</div>
-        <div class="questionBox" v-show="profile">3</div>
-        <div class="questionBox" v-show="authorized">4</div>
+        <div class="questionBox" v-show="delivery">
+            <h4 class = "title">Frequently Asked Questions</h4>
+            <h5 class = "qns">{{dQn1}}</h5>
+            <h5 class = "ans">{{dAns1}} </h5>
+            <h5 class = "qns">{{dQn2}}</h5>
+            <h5 class = "ans">{{dAns2}} </h5>
+            <h5 class = "qns">{{dQn3}}</h5>
+            <h5 class = "ans">{{dAns3}}</h5>
+        </div>
+        <div class="questionBox" v-show="profile">
+            <h4 class = "title">Frequently Asked Questions</h4>
+            <h5 class = "qns">{{pQn1}}</h5>
+            <h5 class = "ans">{{pAns1}} </h5>
+            <h5 class = "qns">{{pQn2}}</h5>
+            <h5 class = "ans">{{pAns2}} </h5>
+            <h5 class = "qns">{{pQn3}}</h5>
+            <h5 class = "ans">{{pAns3}}</h5>
+        </div>
+        <div class="questionBox" v-show="authorized">
+            <h4 class = "title">Frequently Asked Questions</h4>
+            <h5 class = "qns">{{aQn1}}</h5>
+            <h5 class = "ans">{{aAns1}} </h5>
+            <h5 class = "qns">{{aQn2}}</h5>
+            <h5 class = "ans">{{aAns}} </h5>
+            <h5 class = "qns">{{aQn3}}</h5>
+            <h5 class = "ans">{{aAns3}}</h5>
+        </div>
         <!-- </div> -->
     </div>
 </div>
 </template>
 
 <script>
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import { doc, getDoc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+
 export default {
+    name:'FAQNav',
+    // props:{
+    //     lQn1: "",
+    //     lAns1: "",
+    //     lQn2:"",
+    //     lAns2:"",
+    //     lQn3:"",
+    //     lAns3:"",
+    //     dQn1:"",
+    //     dAns1:"",
+    //     dQn2:"",
+    //     dAns2:"",
+    //     dQn3:"",
+    //     dAns3:"",
+    //     pQn1:"",
+    //     pAns1:"",
+    //     pQn2:"",
+    //     pAns2:"",
+    //     pQn3:"",
+    //     pAns3:"",
+    //     aQn1:"",
+    //     aAns1:"",
+    //     aQn2:"",
+    //     aAns2:"",
+    //     aQn3:"",
+    //     aAns3:""
+
+    // },
+    mounted(){
+        this.fetchQnsAndAns();
+    },
     data(){
         return {
         license:false,
         delivery:false,
         profile: false,
-        authorized: false
+        authorized: false,
+        lQn1: "",
+        lAns1: "",
+        lQn2:"",
+        lAns2:"",
+        lQn3:"",
+        lAns3:"",
+        dQn1:"",
+        dAns1:"",
+        dQn2:"",
+        dAns2:"",
+        dQn3:"",
+        dAns3:"",
+        pQn1:"",
+        pAns1:"",
+        pQn2:"",
+        pAns2:"",
+        pQn3:"",
+        pAns3:"",
+        aQn1:"",
+        aAns1:"",
+        aQn2:"",
+        aAns2:"",
+        aQn3:"",
+        aAns3:""
         }
     },
     methods:{
+        async fetchQnsAndAns(){
+            let faqPool = await getDoc(doc(db, "faq", "faq"));
+            let faqPoolData = faqPool.data()
+
+            //license
+            this.lQn1 = (faqPoolData.licenseQn)[0];
+            this.lAns1 = (faqPoolData.licenseAns)[0];
+            this.lQn2 = (faqPoolData.licenseQn)[1];
+            this.lAns2 = (faqPoolData.licenseAns)[1];
+            this.lQn3 = (faqPoolData.licenseQn)[2];
+            this.lAns3 = (faqPoolData.licenseAns)[2];
+
+            //delivery
+            this.dQn1 = (faqPoolData.deliveryQn)[0];
+            this.dAns1 = (faqPoolData.deliveryAns)[0];
+            this.dQn2 = (faqPoolData.deliveryQn)[1];
+            this.dAns2 = (faqPoolData.deliveryAns)[1];
+            this.dQn3 = (faqPoolData.deliveryQn)[2];
+            this.dAns3 = (faqPoolData.deliveryAns)[2];
+
+            //profile
+            this.pQn1 = (faqPoolData.profileQn)[0];
+            this.pAns1 = (faqPoolData.profileAns)[0];
+            this.pQn2 = (faqPoolData.profileQn)[1];
+            this.pAns2 = (faqPoolData.profileAns)[1];
+            this.pQn3 = (faqPoolData.profileQn)[2];
+            this.pAns3 = (faqPoolData.profileAns)[2];
+
+            //authorized
+            this.aQn1 = (faqPoolData.authorizedQn)[0];
+            this.aAns1 = (faqPoolData.authorizedAns)[0];
+            this.aQn2 = (faqPoolData.authorizedQn)[1];
+            this.aAns2 = (faqPoolData.authorizedAns)[1];
+            this.aQn3 = (faqPoolData.authorizedQn)[2];
+            this.aAns3 = (faqPoolData.authorizedAns)[2];
+
+        },
         setLicenseTrue(){
             this.license = true
             this.delivery = false

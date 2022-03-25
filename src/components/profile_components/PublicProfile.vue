@@ -52,7 +52,7 @@ img {
     height:75px;
     border-radius:50%;
     padding-left:0%;
-    object-fit: contain; /* Do not scale the image */
+    object-fit: contain;
     /* border:4px solid #333 */
 }
 .left-flush{
