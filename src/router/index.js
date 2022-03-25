@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
 import CartInformation from '@/views/CartInformation.vue'
-import CartPayment from '@/views/CartPayment.vue'
 import CartShipping from '@/views/CartShipping.vue'
+import CartPayment from '@/views/CartPayment.vue'
+import CartPaymentSuccess from '@/views/CartPaymentSuccess'
 import Profile from '@/views/profile/Profile.vue'
 import ProfileFavourites from '@/views/profile/ProfileFavourites.vue'
 import ProfileHistory from '@/views/profile/ProfileHistory.vue'
@@ -42,6 +43,11 @@ const routes = [
         path: '/CartPayment',
         name: 'CartPayment',
         component: CartPayment
+    },
+    {
+        path: '/CartPaymentSuccess',
+        name: CartPaymentSuccess,
+        component: CartPaymentSuccess
     },
     {
         path: '/profile',
