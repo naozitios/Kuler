@@ -15,6 +15,7 @@
       </div>  
       </div>
       <!-- second section -->
+      <div id = "second-container">
       <div id= "product-title">
           <h2> {{title}} </h2> <!-- change, link description to DB -->
       </div>
@@ -22,8 +23,13 @@
       <div id = "price"> 
           <h2> SGD {{price}} </h2> <!-- change, link price to DB -->
           </div>
-      
+      </div>
       <!-- fourth section -->
+
+      <div class= "product-text"> 
+          {{description}}
+      </div>
+
       <div class="btns">
         <div class="cartbtn">
         <AddToCartButton/>
@@ -34,10 +40,6 @@
       </div>
 
       
-
-      <div class= "product-text"> 
-          {{description}}
-      </div>
 
 </div>
 </template>
@@ -143,8 +145,14 @@ img {
 
 .product-text {
     margin-top: 5%;
+    text-align: left;
+    margin-left: 1%;
 }
 
- 
+#second-container {
+    margin-top: 2%;
+    background-color: beige;
+    border-radius: 10px;
+}
 
 </style>
