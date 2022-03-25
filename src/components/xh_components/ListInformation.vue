@@ -42,19 +42,19 @@
   Format
   <br>
   <div class="form-check">
-  <input class="form-check-input" type="radio" name="format" id="digital" value="Digital" checked>
+  <input class="form-check-input" type="radio" name="format" id="digital"  @click= "isDigital" value="Digital" checked>
   <label class="form-check-label" for="digital">
     Digital
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="format" id="physical" value="Physical">
+  <input class="form-check-input" type="radio" name="format" id="physical" @click= "isPhysical" value="Physical">
   <label class="form-check-label" for="physical">
     Physical
   </label>
 </div>
   </div>
-  <div class = "shippingOptions"> 
+  <div class = "shippingOptions" v-if="isPhysicalChecked"> 
   Shipping Options
   <br>
   <div class="form-check">
@@ -92,7 +92,8 @@ const db = getFirestore(firebaseApp);
 export default {
     data() {
       return {
-        numberOfProducts: null
+        numberOfProducts: null,
+        isPhysicalChecked: false
       }
     },
     methods: {
@@ -104,7 +105,12 @@ export default {
           var categoryDropdown = document.getElementById("custom-select2")
           var category = categoryDropdown.options[categoryDropdown.selectedIndex].text
           var format = document.querySelector('input[name="format"]:checked').value
-          var delivery = document.querySelector('input[name="delivery"]:checked').value
+          var delivery = null
+          if (format === "Digital") {
+              delivery = "null"
+          } else {
+            delivery = document.querySelector('input[name="delivery"]:checked').value
+          }
           console.log(title)
           console.log(price)
           console.log(license)
@@ -143,6 +149,8 @@ export default {
             
             document.getElementById('myform').reset();
             this.$emit('productNumber', this.numberOfProducts + 1) // new product number is total number of products + 1. pass this to parent
+            alert("Your product has been successfully listed.")
+            document.location.reload(true)
 
         },
         debug() { // debug
@@ -173,6 +181,12 @@ export default {
          })
          this.numberOfProducts = count;
          console.log(this.numberOfProducts) // debug
+      }, 
+      isPhysical() {
+        this.isPhysicalChecked = true
+      },
+      isDigital() {
+        this.isPhysicalChecked = false
       }
     },
 
@@ -180,7 +194,8 @@ export default {
 
     mounted() {
       this.findNumberOfProducts();
-    }
+    },
+
 
 }
 </script>
