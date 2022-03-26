@@ -24,8 +24,10 @@ export default {
         checkEntry() {
             if (this.user) {
                 // add to cart
-                alert("Added item to cart.")
+                alert("Added item to cart.") // after that, force a refresh as well
+
             } else {
+                alert("Please log in. You can only add products to your cart after you have logged in.")
                 this.$router.push({name: "#"}) // edit!!
             }
         } 

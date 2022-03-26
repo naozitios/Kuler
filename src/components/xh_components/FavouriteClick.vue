@@ -40,6 +40,7 @@ export default {
                 this.image = this.images[this.index];
                 this.index = (this.index + 1) % this.images.length; // change in DB as well.
             } else {
+                alert("Please log in. You can only add products to favourites after you have logged in.")
                 this.$router.push({name: "Frequently Asked Questions"})
                 // throw to log in page
                 // change

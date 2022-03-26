@@ -18,7 +18,8 @@ export default {
         const auth = getAuth()
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                this.user = user
+                this.user = user;
+                this.username = user.displayName
             }
         })
     }
