@@ -5,11 +5,13 @@
 </template>
 
 <script>
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
     data() { 
        return {
-           index: 0, // pass information from parent in order to fix the index. 1 for heart, 0 for normal
+           index: 0, // pass information from DB in order to fix the index. 1 for heart, 0 for normal
            image: null,
+           user: false,
            images: [{
                id: 1,
                src: 'https://cdn1.iconfinder.com/data/icons/circle-outlines/512/Like_Favourite_Love_Health_Heart_Favourites_Favorite-1024.png',
@@ -24,12 +26,27 @@ export default {
        } 
     },
     mounted() {
-        this.switchImage();
+        this.instantiateImage();
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) =>  {
+            if (user) {
+                this.user = user;
+            }
+        })
     },
     methods: {
         switchImage() {
-            this.image = this.images[this.index];
-            this.index = (this.index + 1) % this.images.length;
+            if (this.user) {
+                this.image = this.images[this.index];
+                this.index = (this.index + 1) % this.images.length; // change in DB as well.
+            } else {
+                this.$router.push({name: "Frequently Asked Questions"})
+                // throw to log in page
+                // change
+            }
+        },
+        instantiateImage() {
+            this.image = this.images[this.index]
         }
     }
 }
@@ -37,7 +54,8 @@ export default {
 
 <style scoped>
 img {
-    width: 85px;
-    height: auto
+    width: 75px;
+    height: auto;
+    cursor: pointer
 }
 </style>

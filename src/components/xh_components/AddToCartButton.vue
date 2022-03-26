@@ -1,10 +1,35 @@
 <template>
-  <button class="btn btn-primary" type="button"><h3>Add to Cart</h3></button>
+  <button class="btn btn-primary" type="button" @click="checkEntry"><h3>Add to Cart</h3></button>
 </template>
 
 <script>
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
+  data() {
+        return {
+            user: false
+        }
+    },
 
+    mounted() {
+        const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user
+            }
+        })
+    },
+
+    methods: {
+        checkEntry() {
+            if (this.user) {
+                // add to cart
+                alert("Added item to cart.")
+            } else {
+                this.$router.push({name: "#"}) // edit!!
+            }
+        } 
+    }
 }
 </script>
 
