@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
+import LoginPage from '@/views/LoginPage.vue'
 import CartInformation from '@/views/CartInformation.vue'
 import CartShipping from '@/views/CartShipping.vue'
 import CartPayment from '@/views/CartPayment.vue'
@@ -24,6 +25,11 @@ import CategoryVideos from '@/views/category/CategoryVideos.vue'
 import CategoryVintage from '@/views/category/CategoryVintage.vue'
 
 const routes = [
+    {
+        path: '/login',
+        name: 'Login',
+        component: LoginPage
+    },
     {
         path: '/',
         name: 'Home',

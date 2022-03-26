@@ -56,7 +56,7 @@
             <h5 class = "qns">{{aQn1}}</h5>
             <h5 class = "ans">{{aAns1}} </h5>
             <h5 class = "qns">{{aQn2}}</h5>
-            <h5 class = "ans">{{aAns}} </h5>
+            <h5 class = "ans">{{aAns2}} </h5>
             <h5 class = "qns">{{aQn3}}</h5>
             <h5 class = "ans">{{aAns3}}</h5>
         </div>
