@@ -32,8 +32,21 @@ export default {
     color: #636363;
     border: None;
     margin: 0.5em;
-    border-radius: 20px;
+    border-radius: 3vh;
     padding: 0.5em 2em 0.5em 2em;
+    width: 14vw;
+    height: 6vh;
+    /* white-space:normal !important;
+    word-wrap:break-word; */
+      overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+button.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .btn-primary:hover {
