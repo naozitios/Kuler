@@ -39,4 +39,8 @@ export default {
     background-color: #DCDCDC;
     color: #636363;
 }
+.btn-primary::not(:hover){
+    background-color: #EFEFEF;
+    color: #636363;
+}
 </style>

@@ -12,6 +12,10 @@
       <label for="inputPhone" >Phone Number</label>
       <input type="phone" class="form-control" id="inputPhone" placeholder="Phone">
     </div>
+    <div class="form-group">
+      <label for="country" >Country of Residence</label>
+      <input type="country" class="form-control" id="country" placeholder="Country">
+    </div>
   </div>
  
 
