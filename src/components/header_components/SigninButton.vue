@@ -1,11 +1,27 @@
 <template>
-    <router-link to="/"><button type="button" class="btn btn-primary">Sign-in/Sign-up</button></router-link>
-  
+    <router-link to="/profile"><button type="button" class="btn btn-primary" v-if="user">Welcome, {{username}}</button></router-link>
+    <router-link to="/"><button type="button" class="btn btn-primary" v-if="!user">Sign-in/Sign-up</button></router-link>
+
 </template>
 
 <script>
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
+    data() {
+        return {
+            user: false,
+            username: "testuser" // get the user from the DB
+        } 
+    },
 
+    mounted() {
+        const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user
+            }
+        })
+    }
 }
 </script>
 

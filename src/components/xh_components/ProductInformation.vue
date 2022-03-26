@@ -26,9 +26,15 @@
       </div>
       <!-- fourth section -->
 
-      
-
+      <div class = "counter">
+              <div class = "quantityText"> Quantity: </div>
+              <span class="minus" @click="subtract">-</span>
+              <div class = "quantity">{{quantity}}</div>
+              <span class="plus" @click="add">+</span>
+      </div>
       <div class="btns">
+              
+            
         <div class="cartbtn">
         <AddToCartButton/>
         </div>
@@ -68,7 +74,8 @@ export default {
         description: null,
         price: null,
         title: null,
-        productID: 2 // change!!
+        productID: 2, // change!!
+        quantity: 1 
     }
   },
   methods:{
@@ -79,6 +86,15 @@ export default {
           this.description = actualData.description
           this.price = actualData.price
           this.title = actualData.caption
+      },
+      add() {
+          this.quantity +=1
+      },
+      subtract() {
+          this.quantity -= 1
+          if (this.quantity == 0) {
+              this.quantity = 1
+          }
       }
   },
 
@@ -138,6 +154,7 @@ img {
 
 .favourite-button {
     margin-left: 4%;
+    margin-top: 2%;
 }
 
 #price {
@@ -154,6 +171,32 @@ img {
 #second-container {
     margin-top: 2%;
     border-radius: 10px;
+}
+
+.minus, .plus {
+  width: 8%;
+  background:#F37381;
+  padding:0px 2px 2px 2px;
+  vertical-align: middle;
+  text-align: center;
+  float: left;
+  color: white;
+  cursor: pointer
+}
+
+.quantity {
+    width: 10%;
+    border: 1px solid #F37381;
+    display: inline
+}
+
+.quantityText {
+    padding-right: 5%;
+}
+
+.counter {
+    display: flex;
+    margin-top: 5%;
 }
 
 </style>

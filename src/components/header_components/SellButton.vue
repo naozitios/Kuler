@@ -1,11 +1,35 @@
 <template>
-    <router-link to="/sell"><button type="button" class="btn btn-primary">Sell</button></router-link>
-  
+    <button type="button" class="btn btn-primary" @click= "checkEntry">Sell</button>
+
 </template>
 
 <script>
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
+    data() {
+        return {
+            user: false
+        }
+    },
 
+    mounted() {
+        const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user
+            }
+        })
+    },
+
+    methods: {
+        checkEntry() {
+            if (this.user) {
+                this.$router.push({name: "Sell"})
+            } else {
+                this.$router.push({name: "Frequently Asked Questions"}) // edit!!
+            }
+        } 
+    }
 }
 </script>
 

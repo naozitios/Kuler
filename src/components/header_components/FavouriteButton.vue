@@ -1,10 +1,34 @@
 <template>
-    <router-link to="/profile"><img src="@/assets/heart_icon.png" alt="Favourites"></router-link>
+    <img src="@/assets/heart_icon.png" alt="Favourites" @click= "checkEntry">
 </template>
 
 <script>
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
+    data() {
+        return {
+            user: false
+        }
+    },
 
+    mounted() {
+        const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user
+            }
+        })
+    },
+
+    methods: {
+        checkEntry() {
+            if (this.user) {
+                this.$router.push({name: "Profile"})
+            } else {
+                this.$router.push({name: "Frequently Asked Questions"}) // edit!!
+            }
+        } 
+    }
 }
 </script>
 
@@ -13,5 +37,6 @@ export default {
         width:30px;
         height:auto;
         margin: 0.5em;
+        cursor: pointer
     }
 </style>
