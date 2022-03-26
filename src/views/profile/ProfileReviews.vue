@@ -33,12 +33,15 @@ components:{
 
 <style scoped>
 #banner{
-  height:30%;
+  height:50%;
   overflow: hidden;
 }
 #parentContainer{
   display: flex;
     flex-direction: row;
+}
+#parentContainer2{
+  padding-left: 2em;
 }
 #bio{
   flex-grow: 1;

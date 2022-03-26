@@ -26,9 +26,7 @@
       </div>
       <!-- fourth section -->
 
-      <div class= "product-text"> 
-          {{description}}
-      </div>
+      
 
       <div class="btns">
         <div class="cartbtn">
@@ -37,6 +35,10 @@
         <div class="favourite-button"> 
           <FavouriteClick/>
       </div>
+      </div>
+
+      <div class= "product-text"> 
+          {{description}}
       </div>
 
       
@@ -151,7 +153,6 @@ img {
 
 #second-container {
     margin-top: 2%;
-    background-color: beige;
     border-radius: 10px;
 }
 
