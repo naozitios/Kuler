@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/profile"><button type="button" class="btn btn-primary" v-if="user">Welcome, {{username}}</button></router-link>
+    <router-link to="/profile"><button type="button" id = "loggedIn" class="btn btn-primary" v-if="user">Welcome, {{username}}</button></router-link>
     <router-link to="/"><button type="button" class="btn btn-primary" v-if="!user">Sign-in/Sign-up</button></router-link>
 
 </template>
@@ -27,21 +27,38 @@ export default {
 </script>
 
 <style scoped>
+#loggedIn{
+    font-size: 80%;
+}
     .btn-primary {
     background-color: #EFEFEF;
     color: #636363;
     border: None;
     margin: 0.5em;
-    border-radius: 20px;
+    border-radius: 3vh;
     padding: 0.5em 2em 0.5em 2em;
+    width: 14vw;
+    height: 6vh;
+    /* white-space:normal !important;
+    word-wrap:break-word; */
+      overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
+/* button.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+} */
 
 .btn-primary:hover {
     background-color: #DCDCDC;
     color: #636363;
 }
-.btn-primary::not(:hover){
+.btn-primary:not(:hover){
     background-color: #EFEFEF;
     color: #636363;
 }
+
 </style>

@@ -24,6 +24,9 @@ import CategoryPhotography from '@/views/category/CategoryPhotography.vue'
 import CategoryVideos from '@/views/category/CategoryVideos.vue'
 import CategoryVintage from '@/views/category/CategoryVintage.vue'
 
+//not found
+import NotFound from '@/views/NotFound.vue'
+
 const routes = [
     {
         path: '/login',
@@ -131,6 +134,11 @@ const routes = [
         name: 'Product Page',
         component: ProductPage,
     },
+    {
+        path: '/:catchAll(.*)',
+        name: 'NotFound',
+        component: NotFound
+    }
 
 ]
 
