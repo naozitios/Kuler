@@ -4,10 +4,17 @@
 
 <script>
 import {getAuth, onAuthStateChanged} from "firebase/auth";
+/*
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import { getDoc, doc, updateDoc, arrayUnion, arrayRemove} from "firebase/firestore";
+const db = getFirestore(firebaseApp);*/
+
 export default {
   data() {
         return {
-            user: false
+            user: false,
+            productNumber: "2" // update based on which product number
         }
     },
 

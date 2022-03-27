@@ -14,6 +14,7 @@ import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import FrequentlyAskedQuestions from '@/views/FrequentlyAskedQuestions.vue'
+import SignOut from '@/views/SignOut.vue'
 
 
 /*List of Category pages in nav bar*/
@@ -23,6 +24,7 @@ import CategoryIcons from '@/views/category/CategoryIcons.vue'
 import CategoryPhotography from '@/views/category/CategoryPhotography.vue'
 import CategoryVideos from '@/views/category/CategoryVideos.vue'
 import CategoryVintage from '@/views/category/CategoryVintage.vue'
+
 
 const routes = [
     {
@@ -131,7 +133,11 @@ const routes = [
         name: 'Product Page',
         component: ProductPage,
     },
-
+    {
+        path: '/signOut',
+        name: 'Sign Out',
+        component: SignOut
+    }
 ]
 
 
