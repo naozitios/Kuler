@@ -49,7 +49,6 @@ export default {
       const favouriteDocSnap = await getDoc(favouritesRef)
       if (!favouriteDocSnap.exists()) {
         const newRef = await setDoc((favouritesRef), {
-          date: [],
           products: []
         })
         console.log(newRef)

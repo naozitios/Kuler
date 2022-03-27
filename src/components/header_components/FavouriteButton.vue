@@ -25,7 +25,7 @@ export default {
             if (this.user) {
                 this.$router.push({name: "Profile"})
             } else {
-                this.$router.push({name: "Frequently Asked Questions"}) // edit!!
+                this.$router.push({name: "Login"}) // edit!!
             }
         } 
     }
