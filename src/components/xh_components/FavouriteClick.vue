@@ -58,9 +58,11 @@ export default {
                     // remove productID from user's userfavourites
                     var index = documentData.products.indexOf(this.productNumber)
                     var newArrayOfDates = documentData.date
-                    var removed = newArrayOfDates.splice(index, 1)
+                    newArrayOfDates.splice(index, 1)
+                    console.log(newArrayOfDates)
+                    console.log(index)
                     await updateDoc((ref), {
-                        date: removed,
+                        date: newArrayOfDates,
                         products: arrayRemove(this.productNumber)
                     })
                     .then(console.log("PRODUCT REMOVED FROM FAVS"))
