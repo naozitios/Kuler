@@ -29,16 +29,61 @@ export default {
   data(){
     return {
       user: false,
-      userEmail: null
     }
   },
   methods:{
-    async checkIfUserInDatabase() {
-      const ref = await doc(db, "users", this.userEmail)
+    async checkIfUserInDatabase() { // issue is, only will be instantiated if user is accessed.
+    // instantiate user
+      const ref = await doc(db, "users", this.user.uid)
       const docSnap = await getDoc(ref)
       if (!docSnap.exists()) {
         const newRef = await setDoc((ref), {
-          email: this.userEmail
+          email: this.user.email,
+          display_name: this.user.displayName,
+          photo: this.user.photoURL
+        })
+        console.log(newRef)
+      }
+      // instantiate user favourites
+      const favouritesRef = await doc(db, "userfavourites", this.user.uid)
+      const favouriteDocSnap = await getDoc(favouritesRef)
+      if (!favouriteDocSnap.exists()) {
+        const newRef = await setDoc((favouritesRef), {
+          date: [],
+          products: []
+        })
+        console.log(newRef)
+      }
+
+      // instantiating user listings
+      const listingsRef = await doc(db, "userlistings", this.user.uid)
+      const listingsDocSnap = await getDoc(listingsRef)
+      if (!listingsDocSnap.exists()) {
+        const newRef = await setDoc((listingsRef), {
+          date: [],
+          products: []
+        })
+        console.log(newRef)
+      }
+
+      // instantiating user listings
+
+      const purchasesRef = await doc(db, "userpurchases", this.user.uid)
+      const purchasesDocSnap = await getDoc(purchasesRef)
+      if (!purchasesDocSnap.exists()) {
+        const newRef = await setDoc((purchasesRef), {
+          date: [],
+          products: []
+        })
+        console.log(newRef)
+      }
+
+      const cartsRef = await doc(db, "usershoppingcarts", this.user.uid)
+      const cartsDocSnap = await getDoc(cartsRef)
+      if (!cartsDocSnap.exists()) {
+        const newRef = await setDoc((cartsRef), {
+          date: [],
+          products: []
         })
         console.log(newRef)
       }
@@ -50,10 +95,9 @@ export default {
     onAuthStateChanged(auth, (user) => {
        if (user) {
           this.user = user
-          this.userEmail = user.email
-          this.checkIfUserInDatabase(this.user)
+          this.checkIfUserInDatabase()
        }
-    })         
+    })     
   }
 }
 </script>
