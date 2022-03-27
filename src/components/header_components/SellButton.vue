@@ -39,8 +39,10 @@ export default {
     background-color: #F37381;
     border: None;
     margin: 1em;
-    border-radius: 20px;
-    padding: 0.5em 2em 0.5em 2em;
+    border-radius: 3vh;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    width: 6vw;
+    height: 6vh;
 }
 
 .btn-primary:hover {

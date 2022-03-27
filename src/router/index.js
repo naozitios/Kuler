@@ -26,6 +26,10 @@ import CategoryVideos from '@/views/category/CategoryVideos.vue'
 import CategoryVintage from '@/views/category/CategoryVintage.vue'
 
 
+//not found
+import NotFound from '@/views/NotFound.vue'
+
+
 const routes = [
     {
         path: '/login',
@@ -134,10 +138,17 @@ const routes = [
         component: ProductPage,
     },
     {
+
         path: '/signOut',
         name: 'Sign Out',
         component: SignOut
+    },
+    {
+        path: '/:catchAll(.*)',
+        name: 'NotFound',
+        component: NotFound
     }
+
 ]
 
 
