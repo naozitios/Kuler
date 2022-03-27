@@ -35,7 +35,7 @@ export default {
 
             } else {
                 alert("Please log in. You can only add products to your cart after you have logged in.")
-                this.$router.push({name: "#"}) // edit!!
+                this.$router.push({name: "Login"}) 
             }
         } 
     }

@@ -26,7 +26,7 @@ export default {
             if (this.user) {
                 this.$router.push({name: "Sell"})
             } else {
-                this.$router.push({name: "Frequently Asked Questions"})
+                this.$router.push({name: "Login"})
                 //this.$router.push({name: "Frequently Asked Questions"}) // edit!!
             }
         } 

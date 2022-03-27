@@ -1,6 +1,6 @@
 <template>
     <router-link to="/profile"><button type="button" id = "loggedIn" class="btn btn-primary" v-if="user">Welcome, {{username}}</button></router-link>
-    <router-link to="/"><button type="button" class="btn btn-primary" v-if="!user">Sign-in/Sign-up</button></router-link>
+    <router-link to="/login"><button type="button" class="btn btn-primary" v-if="!user">Sign-in/Sign-up</button></router-link>
 
 </template>
 

@@ -107,6 +107,9 @@ export default {
 </script>
 
 <style scoped>
+h5{
+    /* margin-left: 5%; */
+}
 img {
   border-radius: 50%;
   max-width: 100%;
@@ -122,8 +125,13 @@ img {
     margin-right: 5%;
 }
 
-#user-pic {
-   width: 8%;
+img {
+   width:75px;
+    height:75px;
+    border-radius:50%;
+    padding-left:0%;
+    /* object-fit: contain; */
+    /* border:4px solid #333 */
 }
 
 #user-information {
@@ -134,6 +142,10 @@ img {
 #user-info-text {
     display: flex;
     flex-direction: column;
+    flex-basis: 1;
+    flex-grow: 1;
+    margin-left: 5%;
+    text-align: left;
 }
 
 #product-title {
