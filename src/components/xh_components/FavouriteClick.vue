@@ -46,15 +46,28 @@ export default {
                 this.index = (this.index + 1) % this.images.length; // change in DB as well.
                 this.image = this.images[this.index];
                 const ref = doc(db, "userfavourites", this.user.uid)
+                const document = await getDoc(ref)
+                const documentData = document.data()
+
+                // date
+                var today = new Date();
+                var todaysDate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+
                 if (this.index == 0) { // index is 0, means we need to remove from favourites
                     // remove productID from user's userfavourites
+                    var index = documentData.products.indexOf(this.productNumber)
+                    var newArrayOfDates = documentData.date
+                    var removed = newArrayOfDates.splice(index, 1)
                     await updateDoc((ref), {
+                        date: removed,
                         products: arrayRemove(this.productNumber)
                     })
                     .then(console.log("PRODUCT REMOVED FROM FAVS"))
                 } else { // index = 1, means we add 
                     await updateDoc((ref),  {
-                        products: arrayUnion(this.productNumber)
+                        products: arrayUnion(this.productNumber),
+                        date: arrayUnion(todaysDate)
                     })
                     .then(console.log("PRODUCT ADDED INTO FAVS"))
                 }
@@ -66,6 +79,7 @@ export default {
         async instantiateImage() {
             if (!this.user) {
                 this.index = 0; // show guest users the white heart
+                this.image = this.images[this.index]
             } else {
                 // check if it has been favourited, if it is then change index to 1.
                 const favouritesRef = await doc(db, "userfavourites", this.user.uid)
