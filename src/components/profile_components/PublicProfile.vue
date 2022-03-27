@@ -97,7 +97,7 @@ margin: 1em;
 border-radius: 20px;
 padding: 0.5em 2em 0.5em 2em;
 /* float: right; */
-margin-right: 10%
+/* margin-right: 10% */
 }
 
 .btn.btn-primary:hover {
@@ -106,6 +106,13 @@ margin-right: 10%
 
 .btn.btn-primary:active, .btn-primary:focus, .btn-primary:visited {
     background-color: #F37381;
+}
+.container{
+    padding-left: 0%;
+    margin-left:0%;
+}
+.col-sm{
+    margin-left:0%;
 }
 
 </style>
