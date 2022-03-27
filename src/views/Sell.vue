@@ -10,13 +10,10 @@
 </template>
 
 <script>
-
 import ListThumbnails from '@/components/xh_components/ListThumbnails.vue'
 import ListImages from '@/components/xh_components/ListImages.vue'
 import ListDescription from '@/components/xh_components/ListDescription.vue'
 import ListInformation from '@/components/xh_components/ListInformation.vue'
-
-
 export default {
   name: 'Sell',
   components:{
@@ -57,17 +54,14 @@ export default {
         color: #2c3e50;
         margin-top: 60px;
     }
-
     .float-container {
       display: flex;
       margin-left: 30px
     }
-
     .first-container {
     width: 70%;
     flex-direction: column;
 }
-
     /* #bg{
         display: block;
         margin-left: auto;

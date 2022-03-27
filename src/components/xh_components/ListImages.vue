@@ -42,7 +42,6 @@
 
 <script>
 export default {
-
     data() {
             return {
                   firstThumbnail: null,
@@ -50,12 +49,9 @@ export default {
                   thirdThumbnail: null,
                   fourthThumbnail: null,
                   supportingImageCount: 0
-
             }
       },
         emits: ["coverpicture", "supportingpicture"],
-
-
       methods: {
         changeCoverPicture() {
             let input = this.$refs.firstFile
@@ -70,7 +66,6 @@ export default {
                   
             }
         },
-
         changeSupportingPictures() {
             let input = this.$refs.nextFiles
             let file = input.files
@@ -95,8 +90,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .upload {
     display: flex;
     background-color: beige;
@@ -108,18 +101,15 @@ export default {
     padding-top: 10%;
     padding-bottom: 10%;
 }
-
 img {
     height: 125px;
     width: auto;
 }
-
 .cover {
     border-right: 2px solid #F37381;
     padding-right: 5%;
     width: 45%;
 }
-
 .cover-button {
     width: 80%;
   position: relative;
@@ -136,17 +126,14 @@ img {
   font-weight: bold;
   background-color: #F37381;
 }
-
 .uploadtext {
     text-align: left;
     padding-left: 10%;
 }
-
 .cover2 {
     padding-left: 5%;
     width: 50%;
 }
-
 .images-button {
     width: 80%;
   position: relative;
@@ -163,7 +150,6 @@ img {
   font-weight: bold;
   background-color: #F37381;
 }
-
 .uploadtext2 {
     padding-left: 10%;
     text-align: left;

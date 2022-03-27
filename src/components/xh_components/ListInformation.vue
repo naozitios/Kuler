@@ -88,7 +88,6 @@ import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
 import {collection, setDoc, getDocs, doc} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
-
 export default {
     data() {
       return {
@@ -145,13 +144,13 @@ export default {
               delivery: delivery,
               user_id: "To be assigned"
             })
+            .then(() => this.afterFunction())
             console.log(docRef)
             
-            document.getElementById('myform').reset();
+           
+        },
+        afterFunction() {
             this.$emit('productNumber', this.numberOfProducts + 1) // new product number is total number of products + 1. pass this to parent
-            alert("Your product has been successfully listed.")
-            document.location.reload(true)
-
         },
         debug() { // debug
           var title = document.getElementById("titleOfProduct").value
@@ -189,14 +188,10 @@ export default {
         this.isPhysicalChecked = false
       }
     },
-
     emits: ["productNumber"], // used to pass productnumber to parent.
-
     mounted() {
       this.findNumberOfProducts();
     },
-
-
 }
 </script>
 
@@ -206,23 +201,19 @@ export default {
     margin-left: 2%;
     text-align: left;
 }
-
 .price,.licenseOptions, .categoryOptions, .formatOptions, .shippingOptions {
     margin-top: 5%;
 }
-
 #titleOfProduct, #productPrice {
     border-radius: 20px;
     background-color: lightgrey
 }
-
 #custom-select, #custom-select2 {
     width: 100%;
     border-radius: 20px;
     background-color: lightgrey;
     height: 40px;
 }
-
 .btn.btn-primary {
       width: 95%;
   position: relative;
@@ -239,9 +230,7 @@ export default {
   font-weight: bold;
   background-color: #F37381;
 }
-
 .listButton {
     margin-top: 20%;
 }
-
 </style>
