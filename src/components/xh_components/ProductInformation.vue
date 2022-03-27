@@ -36,7 +36,7 @@
               
             
         <div class="cartbtn">
-        <AddToCartButton/>
+        <AddToCartButton :quantity = "quantity"/>
         </div>
         <div class="favourite-button"> 
           <FavouriteClick/>
@@ -75,7 +75,7 @@ export default {
         price: null,
         title: null,
         productID: 2, // change!!
-        quantity: 1 
+        quantity: 1
     }
   },
   methods:{
