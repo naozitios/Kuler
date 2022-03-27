@@ -1,7 +1,11 @@
 <template>
-<h2> Edit Profile </h2>
-<div id="button">
-    <router-link to="/profile"><button type="submit" class="btn btn-primary">Back</button></router-link>
+<div id="topContainer">
+  <div id="button">
+      <router-link to="/profile"><button type="submit" class="btn btn-primary"> &larr; Back</button></router-link>
+  </div>
+  <div id="title"><h2> Edit Profile </h2></div>
+
+  
 </div>
 <PublicProfile/>
 <PrivateInformation/>
@@ -31,6 +35,25 @@ export default {
 
 
 <style scoped>
+#topContainer{
+      display: flex;
+    flex-direction: row;
+}
+#title{
+   margin-top:2%;
+    margin-left: 5%;
+    flex-grow: 0;
+    flex-basis: 4;
+
+/* display: inline; */
+
+}
+#button{
+   margin-top:2%;
+    margin-left: 5%;
+    flex-grow: 0;
+    flex-basis: 1;
+}
 .btn-primary {
 text-align: right;
 background-color: #F37381;
@@ -38,7 +61,8 @@ border: None;
 /* margin: 1em; */
 border-radius: 20px;
 padding: 0.5em 2em 0.5em 2em;
-/* float: right; */
+/* float: left;
+display: inline-block; */
 /* margin-right: 10% */
 }
 
