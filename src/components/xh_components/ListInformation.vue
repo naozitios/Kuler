@@ -86,13 +86,15 @@
 <script>
 import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
-import {collection, setDoc, getDocs, doc} from "firebase/firestore";
+import {collection, setDoc, getDocs, doc, updateDoc, arrayUnion} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
     data() {
       return {
         numberOfProducts: null,
-        isPhysicalChecked: false
+        isPhysicalChecked: false,
+        user: false
       }
     },
     methods: {
@@ -142,15 +144,24 @@ export default {
               license: license,
               price: price,
               delivery: delivery,
-              user_id: "To be assigned"
+              user_id: this.user.uid
             })
             .then(() => this.afterFunction())
             console.log(docRef)
-            
-           
         },
-        afterFunction() {
+        async afterFunction() {
+          // add entry under the user's listngs
+          var today = new Date();
+          var dateToday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
+            const ref = await updateDoc(doc(db, "userlistings", this.user.uid), {
+              date: arrayUnion(dateToday),
+              products: arrayUnion((this.numberOfProducts + 1).toString())
+            })
+            .then(() => function () {
+              console.log(ref)
+              })
             this.$emit('productNumber', this.numberOfProducts + 1) // new product number is total number of products + 1. pass this to parent
+
         },
         debug() { // debug
           var title = document.getElementById("titleOfProduct").value
@@ -191,6 +202,12 @@ export default {
     emits: ["productNumber"], // used to pass productnumber to parent.
     mounted() {
       this.findNumberOfProducts();
+      const auth = getAuth()
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.user = user
+        }
+      })
     },
 }
 </script>

@@ -6,11 +6,17 @@
 
 <script>
 import {getAuth, onAuthStateChanged} from "firebase/auth";
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import { getDoc, doc, updateDoc, arrayUnion, arrayRemove} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+
 export default {
     data() { 
        return {
-           index: 0, // pass information from DB in order to fix the index. 1 for heart, 0 for normal
+           index: null, // pass information from DB in order to fix the index. 1 for heart, 0 for normal
            image: null,
+           productNumber: "2", // update based on which product number is being processed.
            user: false,
            images: [{
                id: 1,
@@ -25,29 +31,54 @@ export default {
            ]
        } 
     },
-    mounted() {
-        this.instantiateImage();
+    mounted() {    
         const auth = getAuth();
         onAuthStateChanged(auth, (user) =>  {
             if (user) {
                 this.user = user;
+                this.instantiateImage();
             }
         })
     },
     methods: {
-        switchImage() {
+        async switchImage() {
             if (this.user) {
-                this.image = this.images[this.index];
                 this.index = (this.index + 1) % this.images.length; // change in DB as well.
+                this.image = this.images[this.index];
+                const ref = doc(db, "userfavourites", this.user.uid)
+                if (this.index == 0) { // index is 0, means we need to remove from favourites
+                    // remove productID from user's userfavourites
+                    await updateDoc((ref), {
+                        products: arrayRemove(this.productNumber)
+                    })
+                    .then(console.log("PRODUCT REMOVED FROM FAVS"))
+                } else { // index = 1, means we add 
+                    await updateDoc((ref),  {
+                        products: arrayUnion(this.productNumber)
+                    })
+                    .then(console.log("PRODUCT ADDED INTO FAVS"))
+                }
             } else {
                 alert("Please log in. You can only add products to favourites after you have logged in.")
-                this.$router.push({name: "Frequently Asked Questions"})
-                // throw to log in page
-                // change
+                this.$router.push({name: "Login"})
             }
         },
-        instantiateImage() {
-            this.image = this.images[this.index]
+        async instantiateImage() {
+            if (!this.user) {
+                this.index = 0; // show guest users the white heart
+            } else {
+                // check if it has been favourited, if it is then change index to 1.
+                const favouritesRef = await doc(db, "userfavourites", this.user.uid)
+                const favouriteDocSnap = await getDoc(favouritesRef)
+                const favData = favouriteDocSnap.data()
+                if (favData.products.includes(this.productNumber)) {
+                    this.index = 1;
+                } else {
+                    this.index = 0;
+                }
+                this.image = this.images[this.index]
+            }
+
         }
     }
 }

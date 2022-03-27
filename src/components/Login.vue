@@ -29,6 +29,7 @@ import firebase from '@/uifire.js'
 import 'firebase/compat/auth';
 import * as firebaseui from 'firebaseui'
 import 'firebaseui/dist/firebaseui.css'
+
 // import KulerLogo from '@/components/header_components/KulerLogo.vue'
 
 export default {
@@ -51,7 +52,10 @@ export default {
             ]
         };
         ui.start('#firebaseui-auth-container', uiConfig)
-    }
+        
+    },
+
+    
 }
 </script>
 

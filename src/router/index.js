@@ -14,6 +14,7 @@ import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import FrequentlyAskedQuestions from '@/views/FrequentlyAskedQuestions.vue'
+import SignOut from '@/views/SignOut.vue'
 
 
 /*List of Category pages in nav bar*/
@@ -24,8 +25,10 @@ import CategoryPhotography from '@/views/category/CategoryPhotography.vue'
 import CategoryVideos from '@/views/category/CategoryVideos.vue'
 import CategoryVintage from '@/views/category/CategoryVintage.vue'
 
+
 //not found
 import NotFound from '@/views/NotFound.vue'
+
 
 const routes = [
     {
@@ -133,6 +136,12 @@ const routes = [
         path: '/productPage',
         name: 'Product Page',
         component: ProductPage,
+    },
+    {
+
+        path: '/signOut',
+        name: 'Sign Out',
+        component: SignOut
     },
     {
         path: '/:catchAll(.*)',
