@@ -1,5 +1,5 @@
 <template>
-<div class="card" style="width: 14rem;">
+<div class="card" style="">
   <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
   <div class="card-body">
     <a href="#" class="productLink"><h4 class="card-title">Product Title</h4></a>
