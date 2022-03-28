@@ -25,7 +25,8 @@ export default {
             if (this.user) {
                 this.$router.push({name: "CartInformation"})
             } else {
-                this.$router.push({name: "Frequently Asked Questions"}) // edit!!
+                alert("You need to sign in to view your cart.")
+                this.$router.push({name: "Login"}) // edit!!
             }
         } 
     }
