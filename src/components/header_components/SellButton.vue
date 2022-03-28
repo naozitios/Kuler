@@ -26,6 +26,7 @@ export default {
             if (this.user) {
                 this.$router.push({name: "Sell"})
             } else {
+                alert("You need to be signed in to list items.")
                 this.$router.push({name: "Login"})
                 //this.$router.push({name: "Frequently Asked Questions"}) // edit!!
             }

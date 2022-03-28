@@ -25,6 +25,7 @@ export default {
             if (this.user) {
                 this.$router.push({name: "Profile"})
             } else {
+                alert("You need to log in to see your favourites.")
                 this.$router.push({name: "Login"}) // edit!!
             }
         } 
