@@ -13,6 +13,18 @@
       </div>
       <div class="col-lg-10">
         <div class="row">
+          <div
+            class="col mb-3"
+            v-for="(item, index) in products"
+            :key="item.id"
+          >
+            <ProductCard3
+              :sellerName="index.caption"
+              :productTitle="index.caption"
+              :price="price"
+              :coverImage="coverImage"
+            />
+          </div>
           <div class="col mb-3">
             <ProductCard3
               :sellerName="sellerName"
@@ -98,8 +110,6 @@ import {
   getFirestore,
   getDocs,
   collection,
-  //   doc,
-  //   deleteDoc,
 } from "firebase/firestore";
 
 const db = getFirestore(firebaseApp);
@@ -112,67 +122,28 @@ export default {
     SortByButton,
   },
   mounted() {
-    async function display() {
+    async function storeInfo() {
       let z = await getDocs(collection(db, "products"));
-
-      //iterate across the docs
+      let x = await getDocs(collection(db, "users"));
       z.forEach((docs) => {
-        console.log(docs.data())
-        //access the data in the docs
         let yy = docs.data();
-
-        // //get the table reference
-        // var table = document.getElementById("table");
-
-        // //add a row and get the reference
-        // var row = table.insertRow(ind);
-
-        //get the details in the data base
-        var ptitle = yy.caption;
-        var price = yy.price;
-        var sellerName = getUserId(yy.user_id);
-        var image = yy.image1;
-
-        // //create cells in the row and get the reference
-        // var cell1 = row.insertCell(0);
-        // var cell2 = row.insertCell(1);
-        // var cell3 = row.insertCell(2);
-        // var cell4 = row.insertCell(3);
-        // var cell5 = row.insertCell(4);
-        // var cell6 = row.insertCell(5);
-        // var cell7 = row.insertCell(6);
-        // var cell8 = row.insertCell(7);
-
-        // //assign the reference
-        // cell1.innerHTML = ind;
-        // cell2.innerHTML = coin;
-        // cell3.innerHTML = ticker;
-        // cell4.innerHTML = price;
-        // cell5.innerHTML = quantity;
-        // cell6.innerHTML = 0;
-        // cell7.innerHTML = 0;
-
-        // cell7.className = "profits";
-
-        // var bu = document.createElement("button");
-        // bu.className = "bwt";
-        // bu.id = String(coin);
-        // bu.innerHTML = "Delete";
-        // cell8.appendChild(bu);
-      });
+        this.product.push(yy)
+        console.log(yy)
+        this.userids.push(x.data().user_id.display_name)
+        console.log(this.product)
+        console.log(this.userids)
+      })
     }
-    display();
-    async function getUserId(user) {
-        let x = await getDocs(collection(db, user));
-        return x.data().display_name
-      }
+    storeInfo()
   },
   data() {
     return {
-      productTitle: "Product Title",
-      sellerName: "Seller Name",
-      price: 0.0,
-      coverImage: "@/assets/sample7.jpg", //doesnt work
+      products: [
+
+      ],
+      userids: [
+
+      ]
     };
   },
   methods: {},
