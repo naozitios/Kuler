@@ -9,7 +9,7 @@
     </div>
     <div class="form-group">
       <label for="inputName1">Name</label>
-      <input type="password" class="form-control" id="inputName1" placeholder="Name">
+      <input type="text" class="form-control" id="inputName1" placeholder="Name">
     </div>
     <div class="form-group">
     <label for="inputFeedback1">Feedback*</label>
