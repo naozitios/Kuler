@@ -20,6 +20,13 @@ export default {
   components:{
     StarRating
   },
+  props: {
+      productTitle: String,
+      sellerName: String,
+      rating: null,
+      price: String,
+      coverImage: null
+  },
   data(){
     
   },
