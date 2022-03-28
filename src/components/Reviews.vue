@@ -3,8 +3,8 @@
         <h5 id = "section-title">{{reviewCount}} Reviews&nbsp;<StarRating/></h5>
         <!--Page 1-->
         <div class = "reviewInfo">
-              <div id = "star-rating">
-                  <StarRating/>
+              <div id = "rating">
+                  <StarRatingNew/>
               </div>
             </div>
         <div class = "page" id = "p1" ></div>
@@ -38,13 +38,16 @@
 </template>
 
 <script>
-import StarRating from '@/components/StarRating.vue'
-
+import StarRatingNew from '@components/StarRatingNew.vue'
+import firebaseApp from '../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+const db = getFirestore(firebaseApp);
 
 export default {
     name: 'Reviews',
     components:{
-    StarRating
+    StarRatingNew
   },
   data(){
     return {
@@ -98,16 +101,27 @@ export default {
               return;
             }
       },
-      createReviews() {
+      async createReviews() {
+            let reviewPool = await getDoc(doc(db, "productratings", (this.product_id).toString()));
+            let reviewPoolData = reviewPool.data();
+            this.date = reviewPoolData.date;
+            this.stars = reviewPoolData.num_stars;
+            this.reviews = reviewPoolData.reviews;
+            this.buyerID = reviewPoolData.user_id;
+            const userRef = doc(db, "users", this.buyerID);
+            const userDataRef = await getDoc(userRef);
+            const userData = userDataRef.data();
+            this.buyerName = userData.display_name;
             var toAdd = document.createDocumentFragment();
-            for (var i = 0; i < this.reviewCount/3; i++) {
+            for (var i = 0; i < this.reviewCount/6; i++) { //no. of pages
+                
                 var newDiv = document.createElement('div');
                 newDiv.style.display = "flex";
                 newDiv.id = 'review'; // i.e. review-1
                 // next i will wrap everyth around in divs because u cant set margin in text....
                 var div1 = document.createElement('div');
                 var paragraph1 = document.createElement("P");
-                var text1 = document.createTextNode("Name of Reviewer");
+                var text1 = document.createTextNode(this.buyerName);
                 paragraph1.appendChild(text1)
                 div1.appendChild(paragraph1);
 
@@ -115,18 +129,18 @@ export default {
                 var div2 = document.createElement('div');
                 div2.style.marginLeft = "2%";
                 var paragraph2 = document.createElement("P");
-                var text2 = document.createTextNode("Date")
+                var text2 = document.createTextNode(this.date);
                 paragraph2.appendChild(text2);
                 div2.appendChild(paragraph2);
 
                 var div3 = document.createElement('div');
                 div3.style.marginLeft = "2%";
-                var stars = document.getElementById("star-rating");
+                var stars = document.getElementById(this.stars);
                 div3.innerHTML = stars.innerHTML
 
                 var div4 = document.createElement('div');
                 var paragraph4 = document.createElement("P");
-                var text4 = document.createTextNode("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis aliquam cursus. Aenean tortor odio,  maximus at nisi in, condimentum convallis ex. Nunc eu justo efficitur lectus iaculis maximus id sed lorem. ")
+                var text4 = document.createTextNode(this.reviews);
                 paragraph4.appendChild(text4);
                 div4.appendChild(paragraph4);
 
@@ -140,7 +154,9 @@ export default {
             
             
             document.getElementById("p1").appendChild(toAdd)
-        }
+
+        },
+        
 
   }
 }
@@ -168,13 +184,11 @@ export default {
     display: none;
 }
 
-.date, #star-rating {
+.date, #rating {
     margin-left: 2%;
 }
 
-.overflow-auto {
-    height: 400px;
-}
+
 
 
 </style>
