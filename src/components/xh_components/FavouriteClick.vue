@@ -37,8 +37,11 @@ export default {
             if (user) {
                 this.user = user;
                 this.instantiateImage();
+            } else {
+                this.instantiateImage();
             }
         })
+        
     },
     methods: {
         async switchImage() {
