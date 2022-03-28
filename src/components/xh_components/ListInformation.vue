@@ -132,6 +132,15 @@ export default {
             category = 6
           }
           console.log(category)
+          // add to product rating
+          const reviewsRef = await setDoc(doc(db, "productratings", (this.numberOfProducts + 1).toString()), {
+            date: [],
+            description: [],
+            num_stars: [],
+            reviews: [],
+            user_id_buyer: []
+          }) .then(() => console.log((reviewsRef)))
+          // add to products
             const docRef = await setDoc(doc(db, "products", (this.numberOfProducts + 1).toString()), {
               caption: title, 
               category_id: category,

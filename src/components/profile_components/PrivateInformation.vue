@@ -7,7 +7,7 @@
             <h5 id="main" class="left-flush"><b>Private Information</b></h5>
           </div>
           <div id = "topButton">
-              <button type="submit" class="btn btn-primary" @click="saveDetails"> Save</button>
+              <button type="button" class="btn btn-primary" @click="saveDetails"> Save</button>
 
           </div>
       </div>
@@ -73,10 +73,9 @@ export default {
             let e = document.getElementById("inputEmail").value
             let p = document.getElementById("inputPhone").value
             let c = document.getElementById("inputCountry").value
-            console.log(this.user.uid)
             // alert(" Saving Details: " + e)
-            try{
-                const ref = await doc(db, "users", this.user.uid)
+            
+                const ref = doc(db, "users", this.user.uid)
                 // const docSnap = await getDoc(ref)
                 const newRef = await updateDoc((ref), {
                 email: e,
@@ -88,10 +87,6 @@ export default {
 
                 // document.getElementById('myform').reset();
                 // this.$emit("added")
-            }
-            catch(error) {
-                console.error("Error saving details, try again later ", error);
-            }
         },
     },
     mounted(){
