@@ -10,7 +10,7 @@
           <h5> {{sellerName}} </h5> <!-- change, link name to DB -->
           </div>
           <div id= "rating">
-          <StarRating/>
+          <StarRatingContinuous/>
           </div>
       </div>  
       </div>
@@ -57,7 +57,7 @@ import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
 import {doc, getDoc} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
-import StarRating from '@/components/StarRating.vue'
+import StarRatingContinuous from '@/components/xh_components/StarRatingContinuous.vue'
 import AddToCartButton from '@/components/xh_components/AddToCartButton.vue'
 import FavouriteClick from '@/components/xh_components/FavouriteClick.vue'
 
@@ -65,7 +65,7 @@ import FavouriteClick from '@/components/xh_components/FavouriteClick.vue'
 export default {
     name: 'ProductInformation',
   components:{
-    StarRating,
+    StarRatingContinuous,
     AddToCartButton,
     FavouriteClick
   },
