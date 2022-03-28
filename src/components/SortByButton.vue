@@ -30,9 +30,11 @@ export default {
         position: relative;
         float: right;
         margin-right: 4%;
+        margin-top: 3%;
         text-align: center;
         width: 14%;
         height: 3em;
+        width: 50%;
         line-height: 3;
         background: #EFEFEF;
         overflow: hidden;
