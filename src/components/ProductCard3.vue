@@ -2,12 +2,12 @@
 <div class="card" style="">
   <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
   <div class="card-body">
-    <a href="#" class="productLink"><h4 class="card-title">Product Title</h4></a>
-    <a href="#" class="sellerLink"><h5 class="seller-name">Seller Name</h5></a>
+    <a href="#" class="productLink"><h4 class="card-title">{{productTitle}}</h4></a>
+    <a href="#" class="sellerLink"><h5 class="seller-name">{{sellerName}}</h5></a>
     <div id="rating">
     <StarRating/>
     </div>
-    <h4 class="card-title">SGD 0.00</h4>
+    <h4 class="card-title">SGD {{price}}</h4>
   </div>
 </div>
 </template>
@@ -23,9 +23,8 @@ export default {
   props: {
       productTitle: String,
       sellerName: String,
-      rating: null,
-      price: String,
-      coverImage: null
+      price: Float32Array,
+      coverImage: String
   },
   data(){
     
