@@ -1,19 +1,17 @@
 <template>
-      <div class="col-lg-10">
         <div class="row">
           <div
-            class="col mb-3"
+            class="col"
             v-for="product in products"
             :key="product.id"
-          >
+            >
             <ProductCard3
               :sellerName="product.display_name"
               :productTitle="product.caption"
               :price="product.price"
               :coverImage="product.image3"
             />
-          </div>   
-      </div>
+            </div>
     </div>
 </template>
 

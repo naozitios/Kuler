@@ -1,5 +1,5 @@
 <template>
-<div class="card" style="">
+<div class="card" style="width: 16vw">
   <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
   <div class="card-body">
     <a href="#" class="productLink"><h4 class="card-title">{{this.productTitle}}</h4></a>
@@ -47,12 +47,14 @@ a {
 .sellerLink{
     color:#3A3D3B
 }
+.card {
+margin-top: 0.5em;
+}
 #rating {
     text-align: left;
     margin-left: 0px;
     margin-right: auto;
     margin-bottom: 0.5em;
-
 }
     .card-title{
         text-align: left;
