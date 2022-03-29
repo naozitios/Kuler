@@ -14,6 +14,7 @@ import SearchResult from '@/views/SearchResult.vue'
 import Sell from '@/views/Sell.vue'
 import ProductPage from '@/views/ProductPage.vue'
 import FrequentlyAskedQuestions from '@/views/FrequentlyAskedQuestions.vue'
+import ReLogin from '@/views/ReLoginPage.vue'
 import SignOut from '@/views/SignOut.vue'
 
 
@@ -36,6 +37,11 @@ const routes = [
         path: '/login',
         name: 'Login',
         component: LoginPage
+    },
+    {
+        path: '/Relogin',
+        name: 'ReLogin',
+        component: ReLogin
     },
     {
         path: '/',
