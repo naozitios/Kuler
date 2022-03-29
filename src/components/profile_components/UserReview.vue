@@ -4,17 +4,37 @@
           <div class = "star">
           <h2> {{reviewCount}} Reviews </h2>
           </div>
+          <div class = "averagerat">
+              <b><u>{{averageRating}}</u></b>
+          </div>
           <div class = "rating">
+              
+              <StarRatingContinuous :rating ="averageRating"/>
           </div>
       </div>
           <!--  hide with display: none. this is meant for the next elements to copy its innerHTML in JS-->
-            <div class = "reviewInfo">
-              <div id = "star-rating">
-                  <StarRatingContinuous :rating = "ratings" :index = "currentIndex"/>
+          <div class = "overflow-auto">
+            <div class = "big-container" v-for="i in reviewCount" :key= "ratings[i]">
+              <div id = "everything">
+                  <div id = "names">
+                  {{reviewNames[i-1]}}  
+                  </div> 
+                  <div id = "dates">
+                  {{dates[i-1]}}
+                  </div>
+                  <div id = "valueRating">
+                      <b>{{this.ratings[i-1]}}</b>
+                  </div>
+                  <div id = "starRating">  
+                 <StarRatingContinuous :rating = "ratings[i-1]"/>
+                  </div>
+              </div>
+              <div id = "description">
+                  {{reviews[i-1]}}
               </div>
             </div>
-      <div class = "overflow-auto" id = "review-container">
-      </div>
+          </div>
+          
   </div>
 </template>
 
@@ -26,6 +46,7 @@ const db = getFirestore(firebaseApp);
 import {getDoc, doc, getDocs, collection} from "firebase/firestore";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import { createApp } from 'vue'
+                       
 
 export default {
 
@@ -37,6 +58,9 @@ export default {
             ratings: [],
             reviewers: [],
             dates: [],
+            averageRating: 0,
+            totalRating: 0,
+            reviewNames: []
         }
     },
 
@@ -47,7 +71,7 @@ export default {
           this.user = user
           
         this.mountReviews()
-        .then(() =>this.createReviews());
+        .then(() => console.log(this.reviewers));
        
        }
     }) 
@@ -71,7 +95,21 @@ export default {
                 this.reviewCount += dataRef.reviews
                 }
               }
-          )},
+          )
+              for (var i = 0; i < this.ratings.length; i++) {
+                  this.totalRating += this.ratings[i]
+              }
+              this.averageRating = this.totalRating / this.reviewCount
+          
+          for (var j = 0; j < this.reviewers.length; j++) {
+              const currentReviewer = this.reviewers[j]
+              const nameRef = doc(db, "users", currentReviewer)
+              const nameRefDoc = await getDoc(nameRef)
+              const nameData = nameRefDoc.data()
+              this.reviewNames[j] = nameData.display_name
+          }
+
+          },
         async createReviews() {
             var toAdd = document.createDocumentFragment();
             for (var i = 0; i < this.reviewCount; i++) {
@@ -140,19 +178,35 @@ export default {
 }
 .rating {
     margin-left: 15px;
-    padding-top: 5px;
+    padding-top: 2px;
 }
 
-.reviewInfo {
-   display: none
+.averagerat {
+    margin-left: 5%;
+    padding-top: 0.5%
 }
 
-.date, #star-rating {
+.big-container {
+    display: column;
+    margin-bottom: 5%;
+}
+
+#everything, .starRating {
+    display: flex
+}
+
+#dates {
+    margin-left: 5%
+}
+
+#valueRating {
+    margin-left: 5%;
+}
+
+#starRating {
     margin-left: 2%;
 }
-
 .overflow-auto {
-    height: 400px;
+    height: 400px
 }
-
 </style>
