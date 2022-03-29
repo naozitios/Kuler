@@ -7,7 +7,7 @@
             <h5 id="main" class="left-flush"><b>Private Information</b></h5>
           </div>
           <div id = "topButton">
-              <button type="button" class="btn btn-primary" @click="saveDetails"> Save</button>
+              <button type="button" class="btn btn-primary" @click="saveDetails"> Save Private Information</button>
 
           </div>
       </div>

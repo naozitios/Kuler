@@ -7,15 +7,16 @@
             <h5 id="main" class="left-flush"><b>Public Profile</b></h5>
           </div>
           <div id = "topButton">
-              <button type="button" class="btn btn-primary" @click="saveDetails"> Save</button>
+              <button type="button" class="btn btn-primary" @click="saveDetails"> Save Public Profile</button>
 
           </div>
       </div>
 
       <div class="container">
         <div class="col-sm">
-        <img src = "@/assets/user_pic_sq.jpg"/>
-        <button type="submit" class="btn btn-primary">Upload Photo</button>
+        <img v-bind:src="this.photo"/>
+        <input type="file" id="uploadPhoto" class="btn btn-primary" @change = "changeCoverPicture" ref = "firstFile">
+        <!-- <button type="submit" class="btn btn-primary">Upload Photo</button> -->
         
         </div>
       </div>
@@ -46,7 +47,7 @@
 <script>
 import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
-import {doc, getDoc, updateDoc} from "firebase/firestore";
+import {doc, getDoc, updateDoc, getDocs, collection} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
@@ -68,19 +69,52 @@ export default {
             // country:"",
             bio:"",
             displayName:"",
+            photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg",
+            rating: 0,
         }
     },
+     emits: ["photo"],
     methods:{
+        changeCoverPicture() {
+            let input = this.$refs.firstFile
+            let file = input.files
+            if (file && file[0]) {
+                  let reader = new FileReader
+                  reader.onload = e => {
+                        this.photo = e.target.result
+                        this.$emit('photo', e.target.result)
+                  }
+                  reader.readAsDataURL(file[0])
+                  
+            }
+        },
+
         async prefill(){
             const docRef = await getDoc(doc(db, "users", this.user.uid));
             const docData = docRef.data()
             this.bio = docData.bio
             this.displayName = docData.display_name
+            this.photo = docData.photo
             // this.phone = docData.phone
             // this.country = docData.country
             // this.props.email = docData.email
             // this.props.phone = docData.phone
             // this.props.country = docData.country
+
+            //rating details
+          // need to pull out from product ratings for all of SELLER's products, then aggregate it
+          const sellerRatings = await getDocs(collection(db, "productratings"))
+          sellerRatings.forEach((doc) => {
+              const dataRef = doc.data()
+              if (dataRef.user_id_seller === this.sellerID) { // only pull out product ratings belonging to
+                const starArray = dataRef.num_stars
+                this.numberOfReviews += dataRef.reviews
+                for (var i = 0; i < starArray.length; i++) {
+                    this.totalRating += starArray[i]
+                }
+              }
+          })
+          this.rating = (this.totalRating / this.numberOfReviews)
         },
         async saveDetails() {
             // const auth = getAuth();
@@ -88,7 +122,7 @@ export default {
             
             let b = document.getElementById("inputBio").value
             let d = document.getElementById("inputName").value
-            // let c = document.getElementById("inputCountry").value
+            let p = this.photo
             console.log(this.user.uid)
             // alert(" Saving Details: " + e)
             try{
@@ -96,7 +130,8 @@ export default {
                 // const docSnap = await getDoc(ref)
                 const newRef = await updateDoc((ref), {
                 bio:b,
-                display_name:d
+                display_name:d,
+                photo:p
                 })
                 console.log(newRef)
                 alert("Done")
@@ -127,6 +162,9 @@ export default {
 <style scoped>
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+#uploadPhoto{
+    text-decoration: none;
+}
 #top{
     display: flex;
     flex-direction: row;
