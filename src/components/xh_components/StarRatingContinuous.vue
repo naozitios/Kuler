@@ -32,7 +32,6 @@ export default {
 #stars {
    margin-left: 4%; 
    padding-right: 5%;
-
    /* border-right: 2px solid grey; */
 }
 
