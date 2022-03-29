@@ -30,7 +30,7 @@
     
 </div>
 <div id="button">
-    <router-link to="/profileEdit"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
+    <router-link to="/reLogin"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
 </div>
 <div id="bioText" class="left-flush">
     <h6>{{this.bio}} </h6>
@@ -69,7 +69,10 @@ export default {
             const docData = docRef.data()
             this.bio = docData.bio
             this.displayName = docData.display_name
-            this.photo = docData.photo
+            if (docData.photo!=null) {
+                this.photo = docData.photo
+            }
+            
             // this.phone = docData.phone
             // this.country = docData.country
             // this.props.email = docData.email

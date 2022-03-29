@@ -47,7 +47,7 @@
 <script>
 import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
-import {doc, getDoc, updateDoc, getDocs, collection} from "firebase/firestore";
+import {doc, getDoc, updateDoc} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
@@ -70,7 +70,7 @@ export default {
             bio:"",
             displayName:"",
             photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg",
-            rating: 0,
+            
         }
     },
      emits: ["photo"],
@@ -94,27 +94,16 @@ export default {
             const docData = docRef.data()
             this.bio = docData.bio
             this.displayName = docData.display_name
-            this.photo = docData.photo
+            if (docData.photo!=null) {
+                this.photo = docData.photo
+            }
             // this.phone = docData.phone
             // this.country = docData.country
             // this.props.email = docData.email
             // this.props.phone = docData.phone
             // this.props.country = docData.country
 
-            //rating details
-          // need to pull out from product ratings for all of SELLER's products, then aggregate it
-          const sellerRatings = await getDocs(collection(db, "productratings"))
-          sellerRatings.forEach((doc) => {
-              const dataRef = doc.data()
-              if (dataRef.user_id_seller === this.sellerID) { // only pull out product ratings belonging to
-                const starArray = dataRef.num_stars
-                this.numberOfReviews += dataRef.reviews
-                for (var i = 0; i < starArray.length; i++) {
-                    this.totalRating += starArray[i]
-                }
-              }
-          })
-          this.rating = (this.totalRating / this.numberOfReviews)
+            
         },
         async saveDetails() {
             // const auth = getAuth();
