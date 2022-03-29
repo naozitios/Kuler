@@ -18,6 +18,7 @@ import SignOut from '@/views/SignOut.vue'
 
 
 /*List of Category pages in nav bar*/
+import CategoryAll from '@/views/category/CategoryAll.vue'
 import CategoryAudio from '@/views/category/CategoryAudio.vue'
 import CategoryCollectibles from '@/views/category/CategoryCollectibles.vue'
 import CategoryIcons from '@/views/category/CategoryIcons.vue'
@@ -102,6 +103,11 @@ const routes = [
         component: FrequentlyAskedQuestions
     },
     /* Category pages */
+    {
+        path: '/categoryAll',
+        name: 'Category All',
+        component: CategoryAll
+    },
     {
         path: '/categoryAudio',
         name: 'Category Audio',
