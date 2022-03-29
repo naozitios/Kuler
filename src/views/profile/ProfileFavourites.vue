@@ -1,4 +1,5 @@
 <template>
+
 <div class="fullWidth" id="banner">
 <ProfileBanner/>
 </div>
@@ -6,25 +7,26 @@
 <h6> <ProfileNavBar/></h6>
 </div>
 <div id="contentTitle">
-        <div id="warningIcon">
-            <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
-        </div>
-    
-        <div id="warningTitle">
-            <h6><b>Your favourited items are hidden from public view</b></h6>
-        </div>
-</div>
-<SortByButton/>
-<div class="parent" id="parentContainer">
-  <div id="bio">
-    <ProfileBiography/>
+    <div id="warningIcon">
+        <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
     </div>
-    
-  <div id="content">
-      
-    <Listings/>
-  </div>
+
+    <div id="warningTitle">
+        <h6><b>Your favourited items are hidden from public view</b></h6>
+    </div>
 </div>
+<div>
+  <!-- <SortByButton /> -->
+  <ProfileBiography/>
+</div>
+  <div class="col-md-4 offset-md-8">
+  <SortByButton />
+  <!-- <ProfileBiography/> -->
+  </div>
+  <div class = "listings">
+      <!-- <FilterOptions/> -->
+      <Listings :category="category"/>
+  </div>
 </template>
 
 <script>
@@ -45,6 +47,9 @@ export default {
 
   },
   data(){
+    return {
+      category: 0
+     }
     
   },
   methods:{
@@ -83,7 +88,7 @@ export default {
 }
 #warningIcon{
     flex-grow: 0;
-    padding: 0 1% 0 25%;
+    padding: 0 1% 0 35%;
     flex-basis: 1;
 }
     
