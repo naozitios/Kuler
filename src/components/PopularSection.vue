@@ -15,9 +15,6 @@ export default {
     components:{
     CarouselScrollPopular
   },
-  data(){
-    
-  },
   methods:{
    
   }

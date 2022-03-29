@@ -121,31 +121,39 @@ export default {
     ProductCard3,
     SortByButton,
   },
+   data() {
+    return {
+      products: [],
+      userids: [],
+     }
+  },
   mounted() {
     async function storeInfo() {
+      const products = [];
+      const users = [];
       let z = await getDocs(collection(db, "products"));
+      //console.log(z)
       let x = await getDocs(collection(db, "users"));
+      console.log('Pringint userse')
+      console.log(x)
       z.forEach((docs) => {
+        console.log('inside for loop')
+        console.log(docs.data())
         let yy = docs.data();
-        this.product.push(yy)
+        products.push(yy)
         console.log(yy)
-        this.userids.push(x.data().user_id.display_name)
-        console.log(this.product)
-        console.log(this.userids)
       })
+      x.forEach((docs) => {
+        console.log('inside other for loop')
+        console.log(docs.data())
+        users.push(docs.data().display_name)
+      })
+    return products, users;
     }
-    storeInfo()
+    this.products, this.users = storeInfo()
+    console.log(this.products)
   },
-  data() {
-    return {
-      products: [
-
-      ],
-      userids: [
-
-      ]
-    };
+  methods: {
   },
-  methods: {},
 };
 </script>
