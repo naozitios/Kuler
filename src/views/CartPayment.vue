@@ -4,7 +4,9 @@
       <PaymentDetails/>
     </div>
     <div class="productsSection">
-      Add Product lists here
+      <div id="toCentre">
+        <ViewPurchase :editable='editable'/>
+      </div>
     </div>
   </div>
   <div class="footer">
@@ -13,28 +15,39 @@
 </template>
 <script>
 import PaymentDetails from "@/components/PaymentDetails"
-import FooterMain from "@/components/FooterMain.vue"
+import FooterMain from "@/components/footer_components/FooterMain.vue"
+import ViewPurchase from "@/components/ViewPurchase.vue"
 
 export default {
     components: {
         PaymentDetails,
-        FooterMain
+        FooterMain,
+        ViewPurchase
+    },
+  data()  {
+    return {
+      editable: false
     }
+  }
 }
 </script>
 
 <style scoped>
 .userSection {
   float: left;
-  width: 80%;
+  width: 75%;
   margin-bottom: 10%;
+  height: 35vmax;
 }
 .productsSection {
-  width: 20%;
+  width: 25%;
   display: flex;
-  border: 1px solid red
 }
 .footer {
-  float:left;
+  float: left;
+}
+#nextStep {
+  color: rgb(206, 204, 204);
+  font-weight: normal;
 }
 </style>

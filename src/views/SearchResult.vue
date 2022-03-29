@@ -1,89 +1,67 @@
 <template>
-  <div id="banner-searchResults">
-    <img src="@/assets/banner-Results.jpg" alt="Banner" class="img-fluid" />
-  </div>
-  <div class="row">
-    <!--<div class="col-9"></div>-->
-      <SortByButton />
-  </div>
-
-  <div class="container pt-3" div="details">
-    <div class="row">
-      <div class="col-lg-2">
-        <FilterOptions />
-      </div>
-      <div class="col-lg-10">
         <div class="row">
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3 />
-          </div>
-        </div>
-      </div>
+          <div
+            class="col"
+            v-for="product in products"
+            :key="product.id"
+            >
+            <ProductCard3
+              :sellerName="product.display_name"
+              :productTitle="product.caption"
+              :price="product.price"
+              :coverImage="product.image3"
+            />
+            </div>
     </div>
-  </div>
-  <div></div>
 </template>
-<style>
-.work-page {
-  width: 80vmax;
-  margin-left: auto;
-}
-#banner-searchResults img {
-  width: 100%;
-  height: 20vh;
-}
-</style>
 
 <script>
-import FilterOptions from "@/components/FilterOptions.vue";
 import ProductCard3 from "@/components/ProductCard3.vue";
-import SortByButton from "@/components/SortByButton.vue";
+import firebaseApp from "@/firebase.js";
+import {
+  getFirestore,
+  getDocs,
+  collection, getDoc, doc, query, where
+} from "firebase/firestore";
 
+const db = getFirestore(firebaseApp);
 export default {
   name: "App",
   components: {
-    FilterOptions,
     ProductCard3,
-    SortByButton,
   },
-  data() {},
-  methods: {},
+  props: {
+    category: Number
+  },
+  data() {
+    return {
+      products: [],
+     }
+     
+  },
+  mounted() {
+    this.getProducts()
+  },
+  methods: {
+    async getProducts() {
+      let productsCollection
+      if (this.category == 0) {
+        productsCollection = collection(db, "products");
+      } else {
+        productsCollection = query(collection(db, "products"), where('category_id', '==', this.category))
+      }
+      let selectedProducts = await getDocs(productsCollection);
+      selectedProducts.forEach(product => {
+        let user_id = product.data().user_id
+        this.getUser(user_id).then(user => {
+          this.products.push({...product.data(), ...user.data()})
+          }
+        )
+      })
+    },
+    async getUser(user_id) {
+      return await getDoc(doc(db, "users", user_id));
+    }
+  },
 };
 </script>

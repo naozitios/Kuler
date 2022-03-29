@@ -8,15 +8,12 @@
 
 
 <script>
-import CarouselScrollPopular from '@/components/CarouselScrollPopular.vue'
+import CarouselScrollPopular from '@/components/carousel_components/CarouselScrollPopular.vue'
 
 export default {
     name: 'PopularSection',
     components:{
     CarouselScrollPopular
-  },
-  data(){
-    
   },
   methods:{
    

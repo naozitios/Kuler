@@ -1,0 +1,201 @@
+<template>
+<div class="profilePhoto">
+        <!-- <div class="col-sm"> -->
+        <img src = "@/assets/user_pic_sq.jpg"/>
+        <!-- </div> -->
+</div>
+<div id="nameAndUsername">
+    <h4 id="usernameTitle" class="left-flush"><b>{{this.displayName}}</b></h4>
+    <!-- <h6 id="handle" class="left-flush">@jessieeggie</h6> -->
+</div>
+<div id="rating">
+    <div id="ratingTextNumber">
+    <h6 id="ratingText">4.1</h6>
+    </div>
+    <div id="ratingStars">
+    <StarRating/>
+    </div>
+     
+</div>
+<div id="authorizedStatus">
+    <div id="authorizedIcon">
+    <img class="smallIcon" src="@/assets/authorized_icon.png" alt="Authorized Seller">
+    </div>
+    <div id="authorizedText">
+    <h6 id="authorized" class="left-flush"><b>Authorized Seller</b></h6>
+    </div>
+    
+    
+    
+</div>
+<div id="button">
+    <router-link to="/profileEdit"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
+</div>
+<div id="bioText" class="left-flush">
+    <h6>{{this.bio}} </h6>
+</div>
+</template>
+
+<script>
+import StarRating from '@/components/StarRating.vue'
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+import {getAuth, onAuthStateChanged} from "firebase/auth";
+export default {
+    name: 'ProfileBiography',
+  components:{
+    StarRating
+  },
+  data(){
+        return {
+            user: false,
+            // email:"",
+            // phone:"",
+            // country:"",
+            bio:"",
+            displayName:"",
+        }
+    },
+    methods:{
+        async prefill(){
+            const docRef = await getDoc(doc(db, "users", this.user.uid));
+            const docData = docRef.data()
+            this.bio = docData.bio
+            this.displayName = docData.display_name
+            // this.phone = docData.phone
+            // this.country = docData.country
+            // this.props.email = docData.email
+            // this.props.phone = docData.phone
+            // this.props.country = docData.country
+        }
+    },
+    mounted(){
+        const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user
+                this.prefill();
+            }
+         })   
+      
+    
+    }
+
+}
+</script>
+
+
+<style scoped>
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+#authorized{
+    color: #F37381;
+}
+.smallIcon{
+    float:left;
+    height: 20px;
+    width: auto;
+    margin-right: 0%;
+    padding-right: 0%;
+
+}
+#ratingText{
+    text-align: right;
+}
+#rating{
+    display: flex;
+    flex-direction: row;
+}
+#ratingTextNumber{
+    flex-grow: 0;
+    /* padding: 2em; */
+    flex-basis: 1;
+    padding-left:20%;
+    justify-content: center;
+  align-content: center;
+}
+#ratingStars{
+    flex-grow: 0;
+    /* align-content: flex-start; */
+    padding: 0em 0em 0em 0.5em;
+    flex-basis: 3;
+}
+#authorizedIcon{
+    flex-grow: 0;
+    /* padding: 2em; */
+    flex-basis: 2;
+    padding-left:10%;
+    /* justify-content: center;
+  align-content: center; */
+}
+#authorizedText{
+    flex-grow: 0;
+    /* align-content: flex-start; */
+    padding: 0em 0em 0em 0.5em;
+    flex-basis: 4;
+}
+#authorized{
+    text-align: left;
+}
+#main{
+    color: #F37381;
+}
+/* #handle{
+    color:#3A3D3B; 
+
+} */
+img {
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    padding-left:0%;
+    
+    object-fit: contain;
+    
+    /* border:4px solid #333 */
+}
+#bioText{
+    text-align: left;
+    padding-left:0.5em;
+}
+
+
+.form-row {
+    padding: 2em;
+    text-align: left;
+}
+.form-group.col-md-6, .form-group {
+    padding: 0.5em;
+
+}
+
+#learnMore1, #learnMore2 {
+    color:  #3A3D3B; 
+}
+label{
+    text-align: left;
+}
+
+.btn-primary {
+text-align: right;
+background-color: #F37381;
+border: None;
+margin: 1em;
+border-radius: 20px;
+padding: 0.5em 2em 0.5em 2em;
+/* float: right; */
+margin-right: 10%
+}
+
+.btn.btn-primary:hover {
+    background-color: #dd6b79;
+}
+
+.btn.btn-primary:active, .btn-primary:focus, .btn-primary:visited {
+    background-color: #F37381;
+}
+
+</style>
+

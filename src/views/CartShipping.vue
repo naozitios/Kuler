@@ -4,7 +4,11 @@
       <ShippingDetails/>
     </div>
     <div class="productsSection">
-      Add Product lists here
+      <div id="contain">
+        <div id="toCentre">
+          <ViewPurchase />
+        </div>
+      </div>
     </div>
   </div>
   <div class="footer">
@@ -14,29 +18,39 @@
 
 <script>
 import ShippingDetails from "@/components/ShippingDetails"
-import FooterMain from "@/components/FooterMain.vue"
+import FooterMain from "@/components/footer_components/FooterMain.vue"
+import ViewPurchase from "@/components/ViewPurchase.vue"
 
 export default {
-    components: {
-        ShippingDetails,
-        FooterMain
+  components: {
+      ShippingDetails,
+      FooterMain,
+      ViewPurchase
+  },
+  data()  {
+    return {
+      editable: false
     }
-
+  }
 }
 </script>
 
 <style scoped>
 .userSection {
   float: left;
-  width: 80%;
+  width: 75%;
   margin-bottom: 10%;
+  height: 35vmax;
 }
 .productsSection {
-  width: 20%;
+  width: 25%;
   display: flex;
-  border: 1px solid red
 }
 .footer {
-  float:left;
+  float: left;
+}
+#nextStep {
+  color: rgb(206, 204, 204);
+  font-weight: normal;
 }
 </style>

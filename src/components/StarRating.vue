@@ -20,4 +20,8 @@ export default {
 .checked {
     color: #F37381;
 }
+#ratingRow{
+    /* margin-left:0%;*/
+    padding-left:0%;
+}
 </style>

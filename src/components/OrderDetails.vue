@@ -23,18 +23,23 @@
     <div class="d-flex justify-content-center">
       
       <div class="form-group col-md-9">
-        <input type="text" id="name" name="email" /><br />
+        <input type="text" id="email" name="email" /><br />
       </div>
     </div>
     <br/>
     <br/>
-    <input type="submit" value="Continue to Shipping" />
+    <ContinueToShippingButton/>
   </form>
 </template>
 
 <script>
+import ContinueToShippingButton from "@/components/ContinueToShippingButton.vue"
+
 export default {
   name: "OrderDetails",
+  components: {
+    ContinueToShippingButton
+  },
   data() {},
   methods: {},
 };
@@ -53,7 +58,7 @@ p {
   color: red;
   font-weight: bold;
 }
-#name {
+#name, #email {
   width: 100%;
   background-color: #efefef;
   border: 3px solid #efefef;
@@ -61,9 +66,12 @@ p {
   border-right: none;
   padding: 5px;
   height: 40px;
-  border-radius: 20px 0 0 20px;
+  border-radius: 20px 20px 20px 20px;
   outline: none;
   color: #3a3d3b;
   font-family: "Open Sans", Verdana, Geneva, Tahoma, sans-serif;
+}
+.input {
+    border-radius: 20px 20px 20px 20px;
 }
 </style>
