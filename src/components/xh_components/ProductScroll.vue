@@ -73,7 +73,7 @@ export default {
                   firstSupportingPicture: null,
                   secondSupportingPicture: null,
                   thirdSupportingPicture: null,
-                  productID: "2" // change!!
+                  productID: "1" // change!!
             }
   },
   methods: {

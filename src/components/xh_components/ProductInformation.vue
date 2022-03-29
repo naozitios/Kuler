@@ -7,12 +7,16 @@
       </div>
       <div id="user-info-text"> 
           <div id= "user-name">
-          <h5> {{sellerName}} </h5> <!-- change, link name to DB -->
+          <h5> {{this.sellerName}} </h5> <!-- change, link name to DB -->
           </div>
           <div id= "rating">
           <b><u>{{this.rating.toFixed(1)}}</u></b>
+          <div id = "actualRating">
           <StarRatingContinuous :rating = "rating"/>
+          </div>
+          <div id = "numberOfReviews">
            {{this.numberOfReviews}} Reviews
+          </div>
           </div>
       </div>  
       </div>
@@ -57,7 +61,7 @@
 <script>
 import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
-import {doc, getDoc} from "firebase/firestore";
+import {doc, getDoc, getDocs, collection} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 import StarRatingContinuous from '@/components/xh_components/StarRatingContinuous.vue'
 import AddToCartButton from '@/components/xh_components/AddToCartButton.vue'
@@ -79,10 +83,11 @@ export default {
         sellerID : null,
         sellerName: null,
         sellerPicture: null,
-        productID: 2, // change!!
+        productID: 1, // change!!
         quantity: 1,
-        rating: 2.5, // pull from DB
-        numberOfReviews: 5 // pull from DB
+        rating: 0,
+        totalRating: 0,
+        numberOfReviews: 0
     }
   },
   methods:{
@@ -93,7 +98,7 @@ export default {
           this.description = actualData.description
           this.price = actualData.price
           this.title = actualData.caption
-
+          
           // seller details
           this.sellerID = actualData.user_id
           const userRef = doc(db, "users", this.sellerID)
@@ -101,6 +106,23 @@ export default {
           const userData = userDataRef.data()
           this.sellerName = userData.display_name
           this.sellerPicture = userData.photo
+
+          //rating details
+          // need to pull out from product ratings for all of SELLER's products, then aggregate it
+          const sellerRatings = await getDocs(collection(db, "productratings"))
+          sellerRatings.forEach((doc) => {
+              const dataRef = doc.data()
+              if (dataRef.user_id_seller === this.sellerID) { // only pull out product ratings belonging to
+                const starArray = dataRef.num_stars
+                this.numberOfReviews += dataRef.reviews
+                for (var i = 0; i < starArray.length; i++) {
+                    this.totalRating += starArray[i]
+                }
+              }
+          })
+          this.rating = (this.totalRating / this.numberOfReviews)
+          
+
       },
       add() {
           this.quantity +=1
@@ -110,12 +132,29 @@ export default {
           if (this.quantity == 0) {
               this.quantity = 1
           }
-      }
+      },
+       
+      /*async feedReviews() {
+          const ref = doc(db, "productratings", "2")
+          const refData = await getDoc(ref)
+          const properData = refData.data()
+          var dates = properData.date
+          dates.push("2022-3-28") // change date
+          // i assume description will be the same
+          var stars = properData.num_stars
+          stars.push(5)
+          const refFeed = await updateDoc(ref, {
+              date: dates,
+              description: arrayUnion("test5"),
+              num_stars: stars,
+              reviews: properData.reviews + 1,
+              user_id_buyer: arrayUnion("test5")
+          }) .then(() => console.log(refFeed))
+      }*/
   },
 
   mounted() {
       this.updateData()
-      .then(() => console.log(this.sellerPicture))
   }
 
 
@@ -227,4 +266,16 @@ img {
     margin-top: 5%;
 }
 
+#rating {
+    display: flex;
+}
+
+#numberOfReviews {
+    margin-left: 5%;
+}
+
+#actualRating {
+    padding-right: 4%;
+    border-right: 2px solid grey
+}
 </style>
