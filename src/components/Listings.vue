@@ -4,14 +4,14 @@
             class="col"
             v-for="product in products"
             :key="product.id"
-          >
+            >
             <ProductCard3
               :sellerName="product.display_name"
               :productTitle="product.caption"
               :price="product.price"
               :coverImage="product.image3"
             />
-          </div>   
+            </div>
     </div>
 </template>
 
