@@ -30,9 +30,6 @@ export default {
   components:{
     ProductCard
   },
-  data(){
-    
-  },
   methods:{
    
   }

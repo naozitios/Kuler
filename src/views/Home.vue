@@ -40,7 +40,10 @@ export default {
         const newRef = await setDoc((ref), {
           email: this.user.email,
           display_name: this.user.displayName,
-          photo: this.user.photoURL
+          photo: this.user.photoURL,
+          phone: "",
+          country: "",
+          bio: ""
         })
         console.log(newRef)
       }
@@ -84,7 +87,7 @@ export default {
         const newRef = await setDoc((cartsRef), {
           date: [],
           products: [],
-          quantity: []
+          quantity: [],
         })
         console.log(newRef)
       }

@@ -63,7 +63,7 @@ export default {
     float:left;
     width: 18%;
     text-align: left;
-    padding: 1%
+    padding-left: 5%;
 }
 .filterTitle {
     font-weight: bold;

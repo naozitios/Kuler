@@ -10,7 +10,9 @@
           <h5> {{sellerName}} </h5> <!-- change, link name to DB -->
           </div>
           <div id= "rating">
-          <StarRatingContinuous/>
+          <b><u>{{this.rating.toFixed(1)}}</u></b>
+          <StarRatingContinuous :rating = "rating"/>
+           {{this.numberOfReviews}} Reviews
           </div>
       </div>  
       </div>
@@ -78,7 +80,9 @@ export default {
         sellerName: null,
         sellerPicture: null,
         productID: 2, // change!!
-        quantity: 1
+        quantity: 1,
+        rating: 2.5, // pull from DB
+        numberOfReviews: 5 // pull from DB
     }
   },
   methods:{
@@ -111,6 +115,7 @@ export default {
 
   mounted() {
       this.updateData()
+      .then(() => console.log(this.sellerPicture))
   }
 
 

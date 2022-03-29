@@ -28,10 +28,7 @@ export default {
     SigninButton,
     FavouriteButton,
     CartButton,
-    NavBar
-  },
-  data(){
-    
+    NavBar,
   },
   methods:{
    

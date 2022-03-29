@@ -52,9 +52,6 @@ export default {
     KulerLogoWhite,
     FeedbackFooter
   },
-  data(){
-    
-  },
   methods:{
    
   }
