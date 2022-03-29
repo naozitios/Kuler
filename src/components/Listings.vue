@@ -1,8 +1,7 @@
 <template>
-      <div class="col-lg-10">
         <div class="row">
           <div
-            class="col mb-3"
+            class="col"
             v-for="product in products"
             :key="product.id"
           >
@@ -13,7 +12,6 @@
               :coverImage="product.image3"
             />
           </div>   
-      </div>
     </div>
 </template>
 

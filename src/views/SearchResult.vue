@@ -13,18 +13,6 @@
       </div>
       <div class="col-lg-10">
         <div class="row">
-          <div
-            class="col mb-3"
-            v-for="(item, index) in products"
-            :key="item.id"
-          >
-            <ProductCard3
-              :sellerName="index.caption"
-              :productTitle="index.caption"
-              :price="price"
-              :coverImage="coverImage"
-            />
-          </div>
           <div class="col mb-3">
             <ProductCard3
               :sellerName="sellerName"
@@ -49,41 +37,6 @@
               :coverImage="coverImage"
             />
           </div>
-          <div class="col mb-3">
-            <ProductCard3
-              :sellerName="sellerName"
-              :productTitle="productTitle"
-              :price="price"
-              :coverImage="coverImage"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col mb-3">
-            <ProductCard3
-              :sellerName="sellerName"
-              :productTitle="productTitle"
-              :price="price"
-              :coverImage="coverImage"
-            />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3
-              :sellerName="sellerName"
-              :productTitle="productTitle"
-              :price="price"
-              :coverImage="coverImage"
-            />
-          </div>
-          <div class="col mb-3">
-            <ProductCard3
-              :sellerName="sellerName"
-              :productTitle="productTitle"
-              :price="price"
-              :coverImage="coverImage"
-            />
-          </div>
-          <div class="col mb-3"></div>
         </div>
       </div>
     </div>
