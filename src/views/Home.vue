@@ -17,7 +17,6 @@ const db = getFirestore(firebaseApp);
 import {getDoc, doc, setDoc} from "firebase/firestore";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 
-
 export default {
   name: 'Home',
   components:{

@@ -2,6 +2,7 @@
 <template>
     <div id="nav">
     <ul>
+            <li><router-link to="/categoryAll">All</router-link></li>
             <li><router-link to="/categoryIcons">Icons</router-link></li>
             <li><router-link to="/categoryPhotography">Photography</router-link> </li>
             <li><router-link to="/categoryCollectibles">Collectibles</router-link></li>

@@ -1,13 +1,13 @@
 <template>
-<div class="card" style="">
+<div class="card" style="width: 16vw">
   <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
   <div class="card-body">
-    <a href="#" class="productLink"><h4 class="card-title">{{productTitle}}</h4></a>
-    <a href="#" class="sellerLink"><h5 class="seller-name">{{sellerName}}</h5></a>
+    <a href="#" class="productLink"><h4 class="card-title">{{this.productTitle}}</h4></a>
+    <a href="#" class="sellerLink"><h5 class="seller-name">{{this.sellerName}}</h5></a>
     <div id="rating">
     <StarRating/>
     </div>
-    <h4 class="card-title">SGD {{price}}</h4>
+    <h4 class="card-title">SGD {{this.price}}</h4>
   </div>
 </div>
 </template>
@@ -16,24 +16,19 @@
 import StarRating from '@/components/StarRating.vue'
 
 export default {
-    name: 'ProductCard2',
+    name: 'ProductCard3',
   components:{
     StarRating
   },
   props: {
       productTitle: String,
       sellerName: String,
-      price: Float32Array,
+      price: Number,
       coverImage: String
-  },
-  data(){
-    
   },
   methods:{
    
-  }
-
-
+  },
 }
 </script>
 
@@ -52,12 +47,14 @@ a {
 .sellerLink{
     color:#3A3D3B
 }
+.card {
+margin-top: 0.5em;
+}
 #rating {
     text-align: left;
     margin-left: 0px;
     margin-right: auto;
     margin-bottom: 0.5em;
-
 }
     .card-title{
         text-align: left;

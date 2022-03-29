@@ -18,11 +18,11 @@
     </div>
     <div class="form-group">
       <label for="inputPhone" >Phone Number</label>
-      <input type="phone" class="form-control" id="inputPhone" placeholder="Phone">
+      <input type="phone" class="form-control" id="inputPhone" placeholder="Phone" v-bind:value="this.phone">
     </div>
     <div class="form-group">
       <label for="inputCountry" >Country of Residence</label>
-      <input type="country" class="form-control" id="inputCountry" placeholder="Country">
+      <input type="country" class="form-control" id="inputCountry" placeholder="Country" v-bind:value="this.country">
     </div>
   </div>
 </form>

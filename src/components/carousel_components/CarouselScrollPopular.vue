@@ -39,9 +39,6 @@ export default {
     CarouselScrollContentFour,
     CarouselScrollContentFour2
   },
-  data(){
-    
-  },
   methods:{
    
   }
