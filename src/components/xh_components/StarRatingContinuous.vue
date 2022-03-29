@@ -32,5 +32,6 @@ export default {
 #stars {
    margin-left: 4%; 
    padding-right: 5%;
+   /* color: blue; */
 }
 </style>

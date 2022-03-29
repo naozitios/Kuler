@@ -57,7 +57,8 @@ export default {
   },
   data(){
     return {
-      category: 0
+      category: 0,
+      rating: 0
      }
   },
   methods:{

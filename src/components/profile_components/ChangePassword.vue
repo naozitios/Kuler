@@ -2,12 +2,20 @@
 <div id="changePassword">
     <form>
   <div class="form-row">
-      <h5 id="main" class="left-flush"><b>Change Password</b></h5>
+      <div id="top">
+          <div id="topText">
+            <h5 id="main" class="left-flush"><b>Change Password</b></h5>
+          </div>
+          <div id = "topButton">
+              <button type="button" class="btn btn-primary" @click="saveDetails"> Save password</button>
 
-    <div class="form-group">
+          </div>
+      </div>
+
+    <!-- <div class="form-group"> -->
       <!-- <label for="inputEmail" >Email Address</label> -->
-      <input type="password" class="form-control" id="inputCurrentPassword" placeholder="Current Password">
-    </div>
+      <!-- <input type="password" class="form-control" id="inputCurrentPassword" placeholder="Current Password">
+    </div> -->
     <div class="form-group">
       <!-- <label for="inputEmail" >Email Address</label> -->
       <input type="password" class="form-control" id="inputNewPassword" placeholder="New Password">
@@ -28,7 +36,20 @@ export default {
 </script>
 
 <style scoped>
-
+#top{
+    display: flex;
+    flex-direction: row;
+}
+#topText{
+    /* margin-right: 2em; */
+    flex-grow: 0;
+    flex-basis: 1;
+}
+#topButton{
+    /* margin-right: 2em; */
+    flex-grow: 1;
+    flex-basis: 0;
+}
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 #main{
     color: #F37381;
@@ -72,17 +93,18 @@ label{
 #inputEmail1, #inputName1, #inputFeedback1 {
     border-radius: 10px;
 
-}
+}*/
 
     .btn-primary {
     text-align: right;
     background-color: #F37381;
     border: None;
-    margin: 1em;
+    margin-left: 5%;
+    /* margin: 1em; */
     border-radius: 20px;
     padding: 0.5em 2em 0.5em 2em;
-    float: right;
-    margin-right: 10%
+    /* float: right; */
+    /* margin-right: 10% */
 }
 
 .btn-primary:hover {
@@ -92,6 +114,6 @@ label{
 .btn-primary:active, .btn-primary:focus, .btn-primary:visited {
     background-color: #F37381;
 }
-*/
+
 </style>
 
