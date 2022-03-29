@@ -1,4 +1,5 @@
 <template>
+
 <div class="fullWidth" id="banner">
 <ProfileBanner/>
 </div>
@@ -14,15 +15,18 @@
         <h6><b>Your purchase history is hidden from public view</b></h6>
     </div>
 </div>
-<SortByButton/>
-<div class="parent" id="parentContainer">
-  <div id="bio">
-    <ProfileBiography/>
-    </div>
-  <div id="content">
-    <Listings/>
-  </div>
+<div>
+  <!-- <SortByButton /> -->
+  <ProfileBiography/>
 </div>
+  <div class="col-md-4 offset-md-8">
+  <SortByButton />
+  <!-- <ProfileBiography/> -->
+  </div>
+  <div class = "listings">
+      <!-- <FilterOptions/> -->
+      <Listings :category="category"/>
+  </div>
 </template>
 
 <script>
@@ -43,6 +47,9 @@ export default {
 
   },
   data(){
+    return {
+      category: 0
+     }
     
   },
   methods:{
@@ -81,7 +88,7 @@ export default {
 }
 #warningIcon{
     flex-grow: 0;
-    padding: 0 1% 0 25%;
+    padding: 0 1% 0 35%;
     flex-basis: 1;
 }
     

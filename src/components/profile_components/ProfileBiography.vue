@@ -1,4 +1,5 @@
 <template>
+<div id ="bigContainer">
 <div class="profilePhoto">
         <!-- <div class="col-sm"> -->
         <img src = "@/assets/user_pic_sq.jpg"/>
@@ -33,6 +34,9 @@
 </div>
 <div id="bioText" class="left-flush">
     <h6>{{this.bio}} </h6>
+</div>
+<br/>
+
 </div>
 </template>
 
@@ -90,6 +94,10 @@ export default {
 <style scoped>
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+#bigContainer{
+    display: flex;
+    flex-direction: column;
+}
 #authorized{
     color: #F37381;
 }
@@ -107,18 +115,20 @@ export default {
 #rating{
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 #ratingTextNumber{
     flex-grow: 0;
     /* padding: 2em; */
     flex-basis: 1;
-    padding-left:20%;
+    /* padding-left:45%; */
     justify-content: center;
   align-content: center;
 }
 #ratingStars{
     flex-grow: 0;
     /* align-content: flex-start; */
+    justify-content: center;
     padding: 0em 0em 0em 0.5em;
     flex-basis: 3;
 }
@@ -126,13 +136,15 @@ export default {
     flex-grow: 0;
     /* padding: 2em; */
     flex-basis: 2;
-    padding-left:10%;
+    padding-left:45%;
+    justify-content: center;
     /* justify-content: center;
   align-content: center; */
 }
 #authorizedText{
     flex-grow: 0;
     /* align-content: flex-start; */
+    justify-content: center;
     padding: 0em 0em 0em 0.5em;
     flex-basis: 4;
 }
@@ -157,8 +169,9 @@ img {
     /* border:4px solid #333 */
 }
 #bioText{
-    text-align: left;
+    text-align: center;
     padding-left:0.5em;
+    justify-content: center;
 }
 
 
@@ -186,7 +199,7 @@ margin: 1em;
 border-radius: 20px;
 padding: 0.5em 2em 0.5em 2em;
 /* float: right; */
-margin-right: 10%
+/* margin-right: 10% */
 }
 
 .btn.btn-primary:hover {
@@ -195,6 +208,9 @@ margin-right: 10%
 
 .btn.btn-primary:active, .btn-primary:focus, .btn-primary:visited {
     background-color: #F37381;
+}
+#button{
+    justify-content: center;
 }
 
 </style>
