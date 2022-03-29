@@ -5,8 +5,8 @@
         <!-- </div> -->
 </div>
 <div id="nameAndUsername">
-    <h4 id="usernameTitle" class="left-flush"><b>Jessie Toh</b></h4>
-    <h6 id="handle" class="left-flush">@jessieeggie</h6>
+    <h4 id="usernameTitle" class="left-flush"><b>{{this.displayName}}</b></h4>
+    <!-- <h6 id="handle" class="left-flush">@jessieeggie</h6> -->
 </div>
 <div id="rating">
     <div id="ratingTextNumber">
@@ -32,17 +32,56 @@
     <router-link to="/profileEdit"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
 </div>
 <div id="bioText" class="left-flush">
-    <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lobortis aliquam cursus. Aenean tortor odio, maximus at nisi in, condimentum convallis ex. Nunc eu justo efficitur lectus iaculis maximus id sed lorem. </h6>
+    <h6>{{this.bio}} </h6>
 </div>
 </template>
 
 <script>
 import StarRating from '@/components/StarRating.vue'
+import firebaseApp from '../../firebase.js';
+import {getFirestore} from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
     name: 'ProfileBiography',
   components:{
     StarRating
   },
+  data(){
+        return {
+            user: false,
+            // email:"",
+            // phone:"",
+            // country:"",
+            bio:"",
+            displayName:"",
+        }
+    },
+    methods:{
+        async prefill(){
+            const docRef = await getDoc(doc(db, "users", this.user.uid));
+            const docData = docRef.data()
+            this.bio = docData.bio
+            this.displayName = docData.display_name
+            // this.phone = docData.phone
+            // this.country = docData.country
+            // this.props.email = docData.email
+            // this.props.phone = docData.phone
+            // this.props.country = docData.country
+        }
+    },
+    mounted(){
+        const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user
+                this.prefill();
+            }
+         })   
+      
+    
+    }
 
 }
 </script>
@@ -103,10 +142,10 @@ export default {
 #main{
     color: #F37381;
 }
-#handle{
+/* #handle{
     color:#3A3D3B; 
 
-}
+} */
 img {
     width:75px;
     height:75px;

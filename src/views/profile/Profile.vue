@@ -5,18 +5,35 @@
 <div class="fullWidth" id="navBar">
 <h6> <ProfileNavBar/></h6>
 </div>
-<SortByButton/>
-<div class="parent" id="parentContainer">
+<div class="col-md-4 offset-md-8">
+  <!-- <SortByButton /> -->
+  <ProfileBiography/>
+</div>
+  <div class="col-md-4 offset-md-8">
+  <SortByButton />
+  <!-- <ProfileBiography/> -->
+  </div>
+  <div class = "listings">
+      <FilterOptions/>
+      <Listings :category="category"/>
+  </div>
+
+<!-- <SortByButton/> -->
+<!-- <div class="parent" id="parentContainer">
   <div id="bio">
     <ProfileBiography/>
     </div>
+    <div class="col-md-4 offset-md-8"><SortByButton /></div>
   <div id="content">
-    <Listings/>
+    <div class = "listings">
+      <FilterOptions/>
+      <Listings :category="category"/>
   </div>
-</div>
-<div class="parent" id="parentContainer2">
+  </div>
+</div> -->
+<!-- <div class="parent" id="parentContainer2">
   <FilterOptions/>
-</div>
+</div> -->
 </template>
 
 <script>
@@ -39,7 +56,9 @@ export default {
 
   },
   data(){
-    
+    return {
+      category: 0
+     }
   },
   methods:{
    
@@ -55,19 +74,19 @@ export default {
 }
 #parentContainer{
   display: flex;
-    flex-direction: row;
+  flex-direction: row;
 }
 #parentContainer2{
-  padding-left: 2em;
+  padding-left: 5%;
 }
 #bio{
-  flex-grow: 1;
-    padding: 2em;
+  flex-grow: 2;
+    padding-left: 5%;
     flex-basis: 0;
 }
 #content{
-  flex-grow: 4;
-    padding: 2em;
+  flex-grow: 10;
+    padding-left: 0%;
     flex-basis: 0;
 }
     
