@@ -5,7 +5,7 @@
 <div class="fullWidth" id="navBar">
 <h6> <ProfileNavBar/></h6>
 </div>
-<div class="col-md-4 offset-md-8">
+<div>
   <!-- <SortByButton /> -->
   <ProfileBiography/>
 </div>
@@ -57,7 +57,8 @@ export default {
   },
   data(){
     return {
-      category: 0
+      category: 0,
+      rating: 0
      }
   },
   methods:{

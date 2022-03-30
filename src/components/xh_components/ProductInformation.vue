@@ -148,7 +148,7 @@ export default {
               description: arrayUnion("test5"),
               num_stars: stars,
               reviews: properData.reviews + 1,
-              user_id_buyer: arrayUnion("test5")
+              user_id_buyer: arrayUnion("test5") // should change to buyer, functionality wise?
           }) .then(() => console.log(refFeed))
       }*/
   },

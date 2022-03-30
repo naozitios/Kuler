@@ -5,10 +5,12 @@
 <div class="fullWidth" id="navBar">
 <h6> <ProfileNavBar/></h6>
 </div>
+<div>
+  <!-- <SortByButton /> -->
+  <ProfileBiography/>
+</div>
 <div class="parent" id="parentContainer">
-  <div id="bio">
-    <ProfileBiography/>
-    </div>
+
     <div id="content">
         <UserReview/>
     </div>
