@@ -111,8 +111,8 @@ const routes = [
     /* Category pages */
     {
         path: '/categoryAll',
-        name: 'Category All',
-        component: CategoryAll
+        name: 'CategoryAll',
+        component: CategoryAll,
     },
     {
         path: '/categoryAudio',

@@ -9,23 +9,6 @@
   </div>
 
   <form action="/CartPayment">
-    <!-- 
-    <label for="address">Shipping Address (Physical items only): </label><br>
-    <input type="text" id="address" name="address"><br>
-
-    <label for="deliveryOptions">Delivery Options: </label><br>
-        <select name="slct" id="slct">
-            <option value="1">Normal delivery</option>
-            <option value="2">Express delivery</option>
-            <option value="3">On-site collection</option>
-        </select><br>
-    
-    <label for="email">Email (Digital items only): </label><br>
-    <input id="email" type="text" name="email"><br>
-
-    <input type="submit" value="Continue to Payment">
-        -->
-
     <div class="col-3">
       <label for="address">Shipping Address (Physical items only): </label
       ><br />

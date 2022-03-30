@@ -1,12 +1,21 @@
 <template>
-  <div class="search">
-        <input type="text" class="searchTerm" placeholder="Search for art">
-        <router-link to="/searchResult">
-        <button type="submit" class="searchButton">
+  
+  <!-- <div class="search">
+        <input type="text" v-model="message" class="searchTerm" placeholder="Search for art">
+        <router-link :to="{ name: 'Category All', params: {message}}">
+
+        <button type="submit" class="searchButton" @click="refreshPage()">
             <img src="@/assets/search_icon.png" alt="Search" style="width:20px;height:20px;">
         </button>
         </router-link>
-    </div>
+    </div> -->
+<div class="search">
+  <form action="/CategoryAll">
+    <label for="address">Search for art: </label>
+    <input type="text" id="name" name="name" />
+    <button type="submit" value="Continue to Payment" class="btn btn-primary"><img src="@/assets/search_icon.png" alt="Search" style="width:20px;height:20px;"></button>
+   </form>
+</div>
 </template>
 
 <script>

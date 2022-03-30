@@ -31,7 +31,8 @@ export default {
     ProductCard3,
   },
   props: {
-    category: Number
+    category: Number,
+    msg: String
   },
   data() {
     return {
@@ -46,7 +47,13 @@ export default {
     async getProducts() {
       let productsCollection
       if (this.category == 0) {
-        productsCollection = collection(db, "products");
+        if (this.isEmptyOrSpaces(this.msg)) {
+          console.log("empty or undefined")
+          productsCollection = collection(db, "products");
+        } else {
+          console.log(this.msg)
+          productsCollection = query(collection(db, "products"), where('caption', '>=', this.msg), where('caption', '<=', this.msg+ '\uf8ff'))
+        }
       } else {
         productsCollection = query(collection(db, "products"), where('category_id', '==', this.category))
       }
@@ -61,6 +68,9 @@ export default {
     },
     async getUser(user_id) {
       return await getDoc(doc(db, "users", user_id));
+    },
+    isEmptyOrSpaces(str) {
+        return str === undefined || str.match(/^ *$/) !== null;
     }
   },
 };
