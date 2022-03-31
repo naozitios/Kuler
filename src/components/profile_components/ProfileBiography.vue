@@ -18,16 +18,21 @@
     </div>
      
 </div>
-<div id="authorizedStatus">
+<div id="authorizedStatus" v-if="this.authorised">
     <div id="authorizedIcon">
     <img class="smallIcon" src="@/assets/authorized_icon.png" alt="Authorized Seller">
     </div>
     <div id="authorizedText">
     <h6 id="authorized" class="left-flush"><b>Authorized Seller</b></h6>
     </div>
-    
-    
-    
+</div>
+<div id="notAuthorizedStatus" v-else>
+    <div id="notAuthorizedIcon">
+    <img class="smallIcon" src="@/assets/not_authorized_icon.png" alt="Authorized Seller">
+    </div>
+    <div id="notAuthorizedText">
+    <h6 id="notAuthorized" class="left-flush"><b>Not authorized</b></h6>
+    </div>
 </div>
 <div id="button">
     <router-link to="/profileEdit"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
@@ -63,7 +68,8 @@ export default {
             totalRating: 0,
             numberOfReviews: 0,
             rating: 0,
-            photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg"
+            photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg",
+            authorised: false
         }
     },
     methods:{
@@ -72,6 +78,7 @@ export default {
             const docData = docRef.data()
             this.bio = docData.bio
             this.displayName = docData.display_name
+            this.authorised = docData.authorised
             if (docData.photo!=null) {
                 this.photo = docData.photo
             }
@@ -130,6 +137,9 @@ export default {
 #authorized{
     color: #F37381;
 }
+#notAuthorized{
+    color: grey;
+}
 .smallIcon{
     float:left;
     height: 20px;
@@ -163,7 +173,7 @@ export default {
     padding: 0em 0em 0em 0.5em;
     flex-basis: 3;
 }
-#authorizedIcon{
+#authorizedIcon, #notAuthorizedIcon{
     flex-grow: 0;
     /* padding: 2em; */
     flex-basis: 2;
@@ -172,14 +182,14 @@ export default {
     /* justify-content: center;
   align-content: center; */
 }
-#authorizedText{
+#authorizedText, #notAuthorizedText{
     flex-grow: 0;
     /* align-content: flex-start; */
     justify-content: center;
     padding: 0em 0em 0em 0.5em;
     flex-basis: 4;
 }
-#authorized{
+#authorized, #notAuthorized{
     text-align: left;
 }
 #main{
