@@ -60,6 +60,9 @@ export default {
             // country:"",
             bio:"",
             displayName:"",
+            totalRating: 0,
+            numberOfReviews: 0,
+            rating: 0,
             photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg"
         }
     },
@@ -83,7 +86,7 @@ export default {
           const sellerRatings = await getDocs(collection(db, "productratings"))
           sellerRatings.forEach((doc) => {
               const dataRef = doc.data()
-              if (dataRef.user_id_seller === this.sellerID) { // only pull out product ratings belonging to
+              if (dataRef.user_id_seller === this.user.uid) { // only pull out product ratings belonging to
                 const starArray = dataRef.num_stars
                 this.numberOfReviews += dataRef.reviews
                 for (var i = 0; i < starArray.length; i++) {
@@ -100,9 +103,10 @@ export default {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 this.user = user
-                this.prefill();
+                this.prefill()
+                .then(() => {console.log(this.rating)})
             }
-         })   
+         })
       
     
     }
