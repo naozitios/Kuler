@@ -3,7 +3,7 @@
       <!-- first section -->
       <div id= "user-information">
       <div id="user-pic">
-      <img :src="sellerPicture" alt="User">
+      <img :src="sellerPicture" alt="User" referrerpolicy="no-referrer">
       </div>
       <div id="user-info-text"> 
           <div id= "user-name">
@@ -42,10 +42,10 @@
               
             
         <div class="cartbtn">
-        <AddToCartButton :quantity = "quantity"/>
+        <AddToCartButton :quantity = "quantity" :productNumber= "productID"/>
         </div>
         <div class="favourite-button"> 
-          <FavouriteClick/>
+          <FavouriteClick :productNumber= "productID"/>
       </div>
       </div>
 
@@ -83,16 +83,18 @@ export default {
         sellerID : null,
         sellerName: null,
         sellerPicture: null,
-        productID: 1, // change!!
         quantity: 1,
         rating: 0,
         totalRating: 0,
         numberOfReviews: 0
     }
   },
+  props: {
+      productID: String
+  },
   methods:{
         async updateData() {
-          const docRef = doc(db, "products", (this.productID).toString()) // change ID
+          const docRef = doc(db, "products", this.productID) // change ID
           const docData = await getDoc(docRef)
           const actualData = docData.data()
           this.description = actualData.description
