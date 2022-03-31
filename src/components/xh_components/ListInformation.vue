@@ -86,7 +86,7 @@
 <script>
 import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
-import {collection, setDoc, getDocs, doc, updateDoc, arrayUnion} from "firebase/firestore";
+import {collection, setDoc, getDocs, doc, updateDoc, arrayUnion, getDoc} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
@@ -164,11 +164,17 @@ export default {
         },
         async afterFunction() {
           // add entry under the user's listngs
+          const dateDoc = doc(db, "userlistings", this.user.uid)
+          const dateDocRef = await getDoc(dateDoc) 
+          const dateData = dateDocRef.data()
           var today = new Date();
           var dateToday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
+          var dates = dateData.date
+          dates.push(dateToday)
             const ref = await updateDoc(doc(db, "userlistings", this.user.uid), {
-              date: arrayUnion(dateToday),
-              products: arrayUnion((this.numberOfProducts + 1).toString())
+              // add date, not arrayunion
+              date: dates,
+              products: arrayUnion((this.numberOfProducts + 1).toString()) // arrayunion is possible since its alw unique
             })
             .then(() => function () {
               console.log(ref)
