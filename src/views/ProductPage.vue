@@ -36,9 +36,11 @@ export default {
   data(){
     return {
       user: false,
-      productNumber: "1" // change
+      productNumber: this.$route.params.id
     }
   },
+
+
   methods:{
     async checkIfUserInDatabase() { // issue is, only will be instantiated if user is accessed.
     // instantiate user
