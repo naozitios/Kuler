@@ -11,7 +11,7 @@
         <FilterOptions />
       </div>
       <div class="col-lg-10">
-<Listings :category="category" />
+        <Listings :category="category" />
       </div>
     </div>
   </div>

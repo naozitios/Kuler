@@ -1,9 +1,10 @@
 <template>
-        <div class="row">
+        <div class="row justify-content-start">
           <div
-            class="col"
             v-for="product in products"
             :key="product.id"
+            style="width: 19vw"
+            align="left"
             >
             <ProductCard3
               :sellerName="product.display_name"
@@ -11,9 +12,11 @@
               :price="product.price"
               :coverImage="product.image3"
               :productNumber="product.id"
+              align="left"
             />
             </div>
-    </div>
+  </div>
+    
 </template>
 
 <script>
@@ -62,7 +65,7 @@ export default {
       selectedProducts.forEach(product => {
         let user_id = product.data().user_id
         this.getUser(user_id).then(user => {
-          this.products.push({...product.data(), ...user.data()})
+          this.products.push({...product.data(), ...user.data(), id: product.id})
           }
         )
       })
@@ -76,3 +79,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>
