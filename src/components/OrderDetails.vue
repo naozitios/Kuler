@@ -40,7 +40,6 @@ export default {
   components: {
     ContinueToShippingButton
   },
-  data() {},
   methods: {},
 };
 </script>

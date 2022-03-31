@@ -11,7 +11,7 @@
         <FilterOptions />
       </div>
       <div class="col-lg-10">
-<Listings :category="category" />
+        <Listings :category="category" :msg="passMsg"/>
       </div>
     </div>
   </div>
@@ -44,6 +44,11 @@ export default {
     return {
       category: 0,
     };
+  },
+  computed: {
+    passMsg() {
+      return this.$route.query.name
+    }
   },
 };
 </script>

@@ -1,10 +1,10 @@
 <template>
   <div class="float-container">
   <div class= "first-child">  
-  <ProductScroll/>
+  <ProductScroll :productID = "productNumber"/>
   </div>
   <div class = "second-child">
-    <ProductInformation/>
+    <ProductInformation :productID = "productNumber"/>
     </div>
   </div>
 <Reviews/>
@@ -36,6 +36,7 @@ export default {
   data(){
     return {
       user: false,
+      productNumber: "1" // change
     }
   },
   methods:{

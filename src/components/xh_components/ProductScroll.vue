@@ -60,7 +60,8 @@ export default {
 
   name: 'ProductScroll',
   props: {
-    msg: String
+    msg: String,
+    productID: Number
   },
 
   mounted() {
@@ -73,7 +74,6 @@ export default {
                   firstSupportingPicture: null,
                   secondSupportingPicture: null,
                   thirdSupportingPicture: null,
-                  productID: "1" // change!!
             }
   },
   methods: {

@@ -13,12 +13,12 @@ export default {
   data() {
         return {
             user: false,
-            productNumber: "2" // update based on which product number
         }
     },
 
     props: {
-        quantity: Number
+        quantity: Number,
+        productNumber: String
     },
 
     mounted() {
@@ -58,10 +58,15 @@ export default {
                         quantity: originalQuantity
                     })
                 } else { // instantiate in products + quantity + date
+                    // cannot arrayUnion if the date is not unique; same with quantity. need to pull out and insert
+                    var dateArray = documentData.date
+                    dateArray.push(todaysDate)
+                    var quantityArray = documentData.quantity
+                    quantityArray.push(this.quantity)
                     await updateDoc((ref), {
-                        date: arrayUnion(todaysDate),
+                        date: dateArray,
                         products: arrayUnion(this.productNumber),
-                        quantity: arrayUnion(this.quantity)
+                        quantity: quantityArray
                     })
                 }
                 alert("Added item to cart.") // after that, force a refresh as well
