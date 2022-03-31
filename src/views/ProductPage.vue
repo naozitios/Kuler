@@ -36,7 +36,7 @@ export default {
   data(){
     return {
       user: false,
-      productNumber: this.$route.params.id
+      productNumber: (this.$route.params.id).toString()
     }
   },
 
