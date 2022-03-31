@@ -39,7 +39,7 @@ const routes = [
         component: LoginPage
     },
     {
-        path: '/Relogin',
+        path: '/reLogin',
         name: 'ReLogin',
         component: ReLogin
     },
