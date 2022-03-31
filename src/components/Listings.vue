@@ -62,7 +62,7 @@ export default {
       selectedProducts.forEach(product => {
         let user_id = product.data().user_id
         this.getUser(user_id).then(user => {
-          this.products.push({...product.data(), ...user.data(), id: product.id})
+          this.products.push({...product.data(), ...user.data()})
           }
         )
       })
