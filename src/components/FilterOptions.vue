@@ -21,31 +21,31 @@
             <form>
                 <p class = "filterTitle">Category</p>
                 <label class="container">All
-                <input type="radio" checked="checked" name="filterCategory" value = "all">
+                <input type="radio" checked="checked" name="filterCategory" value = "all" @click="goToAll">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Icons
-                <input type="radio" name="filterCategory" value = "digitalOnly">
+                <input type="radio" name="filterCategory" value = "digitalOnly" @click="goToIcons">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Photography
-                <input type="radio" name="filterCategory" value = "physical Only">
+                <input type="radio" name="filterCategory" value = "physical Only" @click="goToPhotography">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Collectibles
-                <input type="radio" name="filterCategory" value = "physical Only">
+                <input type="radio" name="filterCategory" value = "physical Only" @click="goToCollectibles">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Audio
-                <input type="radio" name="filterCategory" value = "physical Only">
+                <input type="radio" name="filterCategory" value = "physical Only" @click="goToAudio">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Videos
-                <input type="radio" name="filterCategory" value = "physical Only">
+                <input type="radio" name="filterCategory" value = "physical Only" @click="goToVideos">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Vintage
-                <input type="radio" name="filterCategory" value = "physical Only">
+                <input type="radio" name="filterCategory" value = "physical Only" @click="goToVintage">
                 <span class="checkmark"></span>
                 </label>
             </form>
@@ -54,7 +54,29 @@
 </template>
 <script>
 export default {
-
+  methods: {
+    goToVintage() {
+      this.$router.push({name: "Category Vintage"})
+    },
+    goToVideos() {
+      this.$router.push({name: "Category Videos"})
+    },
+    goToAudio() {
+      this.$router.push({name: "Category Audio"})
+    },
+    goToCollectibles() {
+      this.$router.push({name: "Category Collectibles"})
+    },
+    goToPhotography() {
+      this.$router.push({name: "Category Photography"})
+    },
+    goToIcons() {
+      this.$router.push({name: "Category Icons"})
+    },
+    goToAll() {
+      this.$router.push({name: "CategoryAll"})
+    }
+  }
 }
 </script>
 
