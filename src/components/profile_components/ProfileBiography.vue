@@ -94,7 +94,12 @@ export default {
                 }
               }
           })
-          this.rating = (this.totalRating / this.numberOfReviews)
+          if (this.numberOfReviews == 0) {
+              this.rating = 0
+          } else {
+              this.rating = (this.totalRating / this.numberOfReviews)
+          }
+          
 
         }
     },
@@ -138,8 +143,9 @@ export default {
 }
 #rating{
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: center;
+    text-align: center;
 }
 #ratingTextNumber{
     flex-grow: 0;
@@ -153,6 +159,7 @@ export default {
     flex-grow: 0;
     /* align-content: flex-start; */
     justify-content: center;
+    text-align: center;
     padding: 0em 0em 0em 0.5em;
     flex-basis: 3;
 }
