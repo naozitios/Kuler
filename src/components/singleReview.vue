@@ -34,7 +34,7 @@ export default ({
 })
 </script>
 
-<style stopped>
+<style scoped>
 a {
     text-decoration: none;
 }
