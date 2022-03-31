@@ -30,7 +30,7 @@
     
 </div>
 <div id="button">
-    <router-link to="/reLogin"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
+    <router-link to="/profileEdit"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
 </div>
 <div id="bioText" class="left-flush">
     <h6>{{this.bio}} </h6>
