@@ -145,9 +145,10 @@ const routes = [
         component: CategoryVintage
     },
     {
-        path: '/productPage',
+        path: '/productPage/:id',
         name: 'Product Page',
         component: ProductPage,
+        props: true,
     },
     {
 

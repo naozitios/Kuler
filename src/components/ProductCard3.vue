@@ -1,5 +1,5 @@
 <template>
-<div class="card" style="width: 16vw">
+<div class="card" style="width: 16vw" @click="directToProduct">
   <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
   <div class="card-body">
     <a href="#" class="productLink"><h4 class="card-title">{{this.productTitle}}</h4></a>
@@ -24,10 +24,14 @@ export default {
       productTitle: String,
       sellerName: String,
       price: Number,
-      coverImage: String
+      coverImage: String,
+      productNumber: String
   },
   methods:{
-   
+      directToProduct() {
+          const productNum = this.productNumber
+          this.$router.push({name: "Product Page", params: {id: productNum}})
+      }
   },
 }
 </script>
@@ -49,6 +53,7 @@ a {
 }
 .card {
 margin-top: 0.5em;
+cursor: pointer
 }
 #rating {
     text-align: left;

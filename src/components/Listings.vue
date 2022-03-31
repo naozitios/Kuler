@@ -10,6 +10,7 @@
               :productTitle="product.caption"
               :price="product.price"
               :coverImage="product.image3"
+              :productNumber="product.id"
             />
             </div>
     </div>
@@ -61,7 +62,7 @@ export default {
       selectedProducts.forEach(product => {
         let user_id = product.data().user_id
         this.getUser(user_id).then(user => {
-          this.products.push({...product.data(), ...user.data()})
+          this.products.push({...product.data(), ...user.data(), id: product.id})
           }
         )
       })
