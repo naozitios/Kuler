@@ -18,7 +18,6 @@ import SigninButton from '@/components/header_components/SigninButton.vue'
 import FavouriteButton from '@/components/header_components/FavouriteButton.vue'
 import CartButton from '@/components/header_components/CartButton.vue'
 import NavBar from '@/components/header_components/NavBar.vue'
-
 export default {
   name: 'App',
   components:{
@@ -38,7 +37,6 @@ export default {
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
 #app {
   font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -46,5 +44,4 @@ export default {
   text-align: center;
   margin-top: 0em;
 }
-
 </style>

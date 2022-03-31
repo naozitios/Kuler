@@ -109,7 +109,7 @@ export default {
     onAuthStateChanged(auth, (user) => {
        if (user) {
           this.user = user
-          this.checkIfUserInDatabase()
+          //this.checkIfUserInDatabase()
        }
     })         
   }

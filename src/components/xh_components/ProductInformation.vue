@@ -122,9 +122,11 @@ export default {
                 }
               }
           })
-          this.rating = (this.totalRating / this.numberOfReviews)
-          
-
+          if (this.numberOfReviews == 0) {
+              this.rating = 0
+          } else {
+              this.rating = (this.totalRating / this.numberOfReviews)
+          }
       },
       add() {
           this.quantity +=1
