@@ -83,15 +83,6 @@ export default {
             
         },
         // promptForCredentials(){
-        //     let currPass = document.getElementById("inputNewPassword").value;
-        //     firebaseui.auth.AuthCredential credential1 = EmailAuthProvider.getCredential(this.user.email, currPass);
-        //     var newCred = {
-        //         credential: credential1,
-        //         user: this.user,
-        //         operationType: 'reauthenticate'
-        //     }
-            
-        //     return newCred
 
         // },
 
