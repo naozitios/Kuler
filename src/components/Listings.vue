@@ -1,9 +1,10 @@
 <template>
-        <div class="row">
+        <div class="row justify-content-start">
           <div
-            class="col"
             v-for="product in products"
             :key="product.id"
+            style="width: 19vw"
+            align="left"
             >
             <ProductCard3
               :sellerName="product.display_name"
@@ -11,9 +12,11 @@
               :price="product.price"
               :coverImage="product.image3"
               :productNumber="product.id"
+              align="left"
             />
             </div>
-    </div>
+  </div>
+    
 </template>
 
 <script>
@@ -76,3 +79,6 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+</style>

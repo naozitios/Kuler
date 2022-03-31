@@ -52,7 +52,7 @@ a {
     color:#3A3D3B
 }
 .card {
-margin-top: 0.5em;
+margin-top: 1em;
 cursor: pointer
 }
 #rating {
