@@ -24,8 +24,26 @@
       <!-- <h6 id="usernameTitle" class="left-flush"><b>Username</b></h6>
       <h6 id="handle" class="left-flush"><b>{{this.uid}}</b></h6>
       <small id="learnMore1" class="form-text text-muted">Your username is unique and cannot be changed. <a href="/faq"> Learn more. </a></small> -->
-      <button type="submit" class="btn btn-primary">Get Authorized</button>
+      <div id="authorizedStatus" v-if="this.authorised">
+    <div id="authorizedIcon">
+    <img class="smallIcon" src="@/assets/authorized_icon.png" alt="Authorized Seller">
+    </div>
+    <div id="authorizedText">
+    <h6 id="authorized" class="left-flush"><b>Authorized Seller</b></h6>
+    </div>
+</div>
+<div id="notAuthorizedStatus" v-else>
+    <div id="notAuthorizedIcon">
+    <img class="smallIcon" src="@/assets/not_authorized_icon.png" alt="Authorized Seller">
+    </div>
+    <div id="notAuthorizedText">
+    <h6 id="notAuthorized" class="left-flush"><b>Not authorized</b></h6>
+    </div>
+    <button type="button" class="btn btn-primary" @click="authorize">Get Authorized</button>
       <small id="learnMore2" class="form-text text-muted"><a href="/faq"> Learn more.</a></small>
+</div>
+
+      
 
     <div class="form-group">
       <label for="inputName" >Profile Name</label>
@@ -70,11 +88,28 @@ export default {
             bio:"",
             displayName:"",
             photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg",
+            authorised: false
             
         }
     },
      emits: ["photo"],
     methods:{
+        async authorize(){
+            try{
+                const ref = await doc(db, "users", this.user.uid)
+                // const docSnap = await getDoc(ref)
+                const newRef = await updateDoc((ref), {
+                authorised:true
+                
+                })
+                console.log(newRef)
+                alert("You are now authorized")
+                window.location.reload();
+            }
+            catch(error) {
+                console.error("Error saving details, try again later ", error);
+            }
+        },
         changeCoverPicture() {
             let input = this.$refs.firstFile
             let file = input.files
@@ -94,6 +129,7 @@ export default {
             const docData = docRef.data()
             this.bio = docData.bio
             this.displayName = docData.display_name
+            this.authorised = docData.authorised
             if (docData.photo!=null) {
                 this.photo = docData.photo
             }
@@ -151,6 +187,39 @@ export default {
 <style scoped>
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+#authorized{
+    color: #F37381;
+}
+#notAuthorized{
+    color: grey;
+}
+.smallIcon{
+    float:left;
+    height: 20px;
+    width: auto;
+    margin-right: 0%;
+    padding-right: 0%;
+
+}
+#authorizedIcon, #notAuthorizedIcon{
+    flex-grow: 0;
+    /* padding: 2em; */
+    flex-basis: 2;
+    /* padding-left:45%; */
+    justify-content: center;
+    /* justify-content: center;
+  align-content: center; */
+}
+#authorizedText, #notAuthorizedText{
+    flex-grow: 0;
+    /* align-content: flex-start; */
+    justify-content: center;
+    padding: 0em 0em 0em 0.5em;
+    flex-basis: 4;
+}
+#authorized, #notAuthorized{
+    text-align: left;
+}
 #uploadPhoto{
     text-decoration: none;
 }
