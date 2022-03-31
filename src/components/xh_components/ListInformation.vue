@@ -100,7 +100,7 @@ export default {
     methods: {
         async addProduct() {
           var title = document.getElementById("titleOfProduct").value
-          var price = (document.getElementById("productPrice").value).toString()
+          var price = parseInt(document.getElementById("productPrice").value)
           var licenseDropdown = document.getElementById("custom-select")
           var license = licenseDropdown.options[licenseDropdown.selectedIndex].text
           var categoryDropdown = document.getElementById("custom-select2")
