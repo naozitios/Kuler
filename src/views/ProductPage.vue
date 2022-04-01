@@ -7,7 +7,7 @@
     <ProductInformation :productID = "productNumber"/>
     </div>
   </div>
-<Reviews/>
+<Reviews :productID = "productNumber"/>
 <SimilarItems/>
 <FooterMain/>
 </template>

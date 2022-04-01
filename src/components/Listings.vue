@@ -50,6 +50,7 @@ export default {
   methods: {
     async getProducts() {
       let productsCollection
+      console.log(this.products)
       if (this.category == 0) {
         if (this.isEmptyOrSpaces(this.msg)) {
           console.log("empty or undefined")
