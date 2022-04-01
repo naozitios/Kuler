@@ -29,17 +29,24 @@
                     </div>
                     </div>
                     <div id = "description">
-                        {{reviews[i-1]}}
+                        {{reviews[i-1]}}<br><br>
                     </div>
-            
         </div>
     </div>
+    <!-- <VuePaginationTw
+        :totalItems="this.reviews"
+        :currentPage="1"
+        :perPage="2"
+        @pageChanged="functionName"
+        :goButton="false"
+        styled="centered"
+    /> -->
         <!-- <div class = "overflow-auto" id = "review-container"></div> -->
         <!-- <div class = "page" id = "p1" ></div>
         <div class = "page" id = "p2" ></div>
-        <div class = "page" id = "p3" ></div>
+        <div class = "page" id = "p3" ></div> -->
 
-        <br>
+        <!-- <br>
       <div class= "pagination">
         <nav aria-label="Page navigation example">
   <ul class="pagination">
@@ -48,7 +55,7 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link" href="#" aria-current="page" v-on:click="setP1True()">1</a></li>
+    <li class="page-item"><a class="page-link" href="#" aria-current="page" v-on:click="setP1True()">{{this.reviews.length%3}}</a></li>
     <li class="page-item"><a class="page-link" href="#" aria-selected="false" v-on:click="setP2True()">2</a></li>
     <li class="page-item"><a class="page-link" href="#" aria-selected="false" v-on:click="setP3True()">3</a></li>
 
@@ -58,15 +65,16 @@
       </a>
     </li>
   </ul>
-</nav>   -->
-        <!-- </div> -->
+</nav>  
+        </div> -->
 
     
     
 </template>
 
 <script>
-// import singleReview from '@/components/singleReview.vue'
+// import VuePaginationTw from "vue-pagination-tw";
+
 import StarRatingContinuous from '@/components/xh_components/StarRatingContinuous.vue'
 import firebaseApp from '../firebase.js';
 import {
@@ -74,13 +82,14 @@ import {
    getDoc, doc
 } from "firebase/firestore";
 
+
 const db = getFirestore(firebaseApp);
 
 export default {
     name: 'Reviews',
     components:{
     StarRatingContinuous,
-    // singleReview
+    // VuePaginationTw
   },
   data(){
     return {
@@ -102,23 +111,19 @@ export default {
   mounted() {
       this.mountReviews()
       .then(() => console.log(this.reviewers));
+    //   this.functionName()
 
   },
   props: {
-      productID: String
+      productID: String,
+
   },
   methods:{
       async mountReviews() {
             const reviewsCollection = doc(db, "productratings",this.productID)
             const selectedReviews = await getDoc(reviewsCollection);
             const dataRef = selectedReviews.data()
-            // console.log(selectedReviews.data())
-            // const productRef = doc(db, "products",this.productID)
-            // const product = await getDoc(productRef)
-            // const productData = product.data()
-            // console.log(productData)
-            // const dataRef = doc.data()
-            // console.log(dataRef)
+
             const tempReviews = dataRef.description
             this.reviews = this.reviews.concat(tempReviews)
             this.ratings = this.ratings.concat(dataRef.num_stars)
@@ -143,63 +148,6 @@ export default {
           console.log(this.reviewNames)
 
         },
-      async createReviews() {
-            var toAdd = document.createDocumentFragment();
-            for (var i = 0; i < this.reviewCount; i++) {
-                
-                var newDiv = document.createElement('div');
-                newDiv.style.display = "flex";
-                newDiv.id = 'review'; // i.e. review-1
-                const currentReview = this.reviews[i]
-                const currentRating = this.ratings[i]
-                const currentReviewer = this.reviewers[i]
-                const currentDate = this.dates[i]
-                // next i will wrap everyth around in divs because u cant set margin in text....
-                var div1 = document.createElement('div');
-                var paragraph1 = document.createElement("P");
-
-                //set name of reviewer
-                const reviewRef = doc(db, "users", currentReviewer)
-                const reviewDataRef = await getDoc(reviewRef)
-                const reviewData = reviewDataRef.data()
-                const reviewerName = reviewData.display_name
-                var text1 = document.createTextNode(reviewerName);
-                paragraph1.appendChild(text1)
-                div1.appendChild(paragraph1);
-
-
-                var div2 = document.createElement('div');
-                div2.style.marginLeft = "2%";
-                var paragraph2 = document.createElement("P");
-                var text2 = document.createTextNode(currentDate);
-                paragraph2.appendChild(text2);
-                div2.appendChild(paragraph2);
-
-                var div3 = document.createElement('div');
-                div3.style.marginLeft = "2%";
-                var instance = document.getElementById(StarRatingContinuous,{currentRating});
-                instance.mount()
-
-                var div4 = document.createElement('div');
-                var paragraph4 = document.createElement("P");
-                var text4 = document.createTextNode(currentReview);
-                paragraph4.appendChild(text4);
-                div4.appendChild(paragraph4);
-
-                newDiv.appendChild(div1);
-                newDiv.appendChild(div2);
-                newDiv.appendChild(div3);
-                
-                toAdd.append(newDiv);
-                toAdd.append(div4);
-
-            }
-            document.getElementById("review-container").appendChild(toAdd)
-                
-            },
-
-
- 
     
       
       setP1True() {
@@ -259,12 +207,13 @@ export default {
     display: flex;
 }
 .big-container{
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
     background-color: #F7F0DD;
 
 }
 #review {
     display: flex;
+    
 }
 #name {
     margin-left:2%
@@ -283,6 +232,9 @@ export default {
     margin-left: 2%;
     background-color: #F7F0DD;
 }
-
+.pagination{
+    margin-left:2%;
+    background-color: #F7F0DD;
+}
 
 </style>
