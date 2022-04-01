@@ -36,7 +36,9 @@ export default {
   },
   props: {
     category: Number,
-    msg: String
+    msg: String,
+    profileID: String,
+    userFavID: String
   },
   data() {
     return {
@@ -45,7 +47,13 @@ export default {
      
   },
   mounted() {
-    this.getProducts()
+    if (this.profileID) {
+      this.getProfileProducts()
+    } else if (this.userFavID) {
+      this.getFavouriteProducts()
+    } else {
+      this.getProducts()
+    }
   },
   methods: {
     async getProducts() {
@@ -75,6 +83,30 @@ export default {
     },
     isEmptyOrSpaces(str) {
         return str === undefined || str.match(/^ *$/) !== null;
+    },
+    async getProfileProducts() {
+      let productsCollection
+      productsCollection = query(collection(db, "products"), where('user_id', '==', this.profileID))
+      let selectedProducts = await getDocs(productsCollection);
+      selectedProducts.forEach(product => {
+        let user_id = product.data().user_id
+        this.getUser(user_id).then(user => {
+          this.products.push({...product.data(), ...user.data(), id: product.id})
+        })
+      })
+    },
+
+    async getFavouriteProducts() {
+      const favouriteRef = doc(db, "userfavourites", this.userFavID)
+      const favouriteRefData = await getDoc(favouriteRef)
+      const favouriteData = favouriteRefData.data()
+      const arrayOfProducts = favouriteData.products
+      arrayOfProducts.forEach(async productIndex => {
+        let product = await getDoc(doc(db, "products", productIndex))
+        this.getUser(this.userFavID).then(user => {
+          this.products.push({...product.data(), ...user.data(), id: product.id})
+        })
+      })
     }
   },
 };

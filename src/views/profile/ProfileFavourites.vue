@@ -17,7 +17,7 @@
 </div>
 <div>
   <!-- <SortByButton /> -->
-  <ProfileBiography/>
+  <ProfileBiography :profileID="profileUserID"/>
 </div>
   <div class="col-md-4 offset-md-8">
   <SortByButton />
@@ -25,7 +25,7 @@
   </div>
   <div class = "listings">
       <!-- <FilterOptions/> -->
-      <Listings :category="category"/>
+      <Listings :category="category" :userFavID="profileUserID"/>
   </div>
 </template>
 
@@ -72,6 +72,7 @@ export default {
                   this.isVisible = false
                 }
             }
+            console.log(this.profileUserID)
         })
       
   }

@@ -17,7 +17,7 @@
 </div>
 <div>
   <!-- <SortByButton /> -->
-  <ProfileBiography/>
+  <ProfileBiography :profileID="profileUserID"/>
 </div>
   <div class="col-md-4 offset-md-8">
   <SortByButton />

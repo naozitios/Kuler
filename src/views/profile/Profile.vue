@@ -7,7 +7,7 @@
 </div>
 <div>
   <!-- <SortByButton /> -->
-  <ProfileBiography/>
+  <ProfileBiography :profileID="profileUserID"/>
 </div>
   <div class="col-md-4 offset-md-8">
   <SortByButton />
@@ -15,7 +15,7 @@
   </div>
   <div class = "listings">
       <FilterOptions/>
-      <Listings :category="category"/>
+      <Listings :category="category" :profileID ="profileUserID"/>
   </div>
 
 <!-- <SortByButton/> -->
@@ -79,6 +79,7 @@ export default {
                 } else {
                   this.isVisible = false
                 }
+                // console.log(this.profileUserID) the magic pill to unlock
             }
         })
       

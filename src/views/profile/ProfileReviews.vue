@@ -7,12 +7,12 @@
 </div>
 <div>
   <!-- <SortByButton /> -->
-  <ProfileBiography/>
+  <ProfileBiography :profileID="profileUserID"/>
 </div>
 <div class="parent" id="parentContainer">
 
     <div id="content">
-        <UserReview/>
+        <UserReview :profileID ="profileUserID"/>
     </div>
 </div>
 </template>
@@ -51,6 +51,7 @@ components:{
                   this.isVisible = false
                 }
             }
+            //console.log(this.profileUserID) unlock
         })
       
   }
