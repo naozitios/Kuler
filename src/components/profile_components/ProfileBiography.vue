@@ -35,7 +35,7 @@
     </div>
 </div>
 <div id="button">
-    <router-link to="/profileEdit"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
+   <button type="submit" class="btn btn-primary" v-if="this.isOwner" @click="editProfile">Edit Profile</button>
 </div>
 <div id="bioText" class="left-flush">
     <h6>{{this.bio}} </h6>
@@ -57,6 +57,9 @@ export default {
   components:{
     StarRatingContinuous
   },
+  props: {
+      profileID: String
+  },
   data(){
         return {
             user: false,
@@ -69,12 +72,13 @@ export default {
             numberOfReviews: 0,
             rating: 0,
             photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg",
-            authorised: false
+            authorised: false,
+            isOwner: null
         }
     },
     methods:{
         async prefill(){
-            const docRef = await getDoc(doc(db, "users", this.user.uid));
+            const docRef = await getDoc(doc(db, "users", this.profileID));
             const docData = docRef.data()
             this.bio = docData.bio
             this.displayName = docData.display_name
@@ -93,7 +97,7 @@ export default {
           const sellerRatings = await getDocs(collection(db, "productratings"))
           sellerRatings.forEach((doc) => {
               const dataRef = doc.data()
-              if (dataRef.user_id_seller === this.user.uid) { // only pull out product ratings belonging to
+              if (dataRef.user_id_seller === this.profileID) { // only pull out product ratings belonging to the person
                 const starArray = dataRef.num_stars
                 this.numberOfReviews += dataRef.reviews
                 for (var i = 0; i < starArray.length; i++) {
@@ -108,6 +112,19 @@ export default {
           }
           
 
+        },
+
+        checkOwner() {
+            if (this.profileID === this.user.uid) {
+                this.isOwner = true;
+            } else {
+                this.isOwner = false;
+            }
+        },
+
+        editProfile() {
+            const profileID = this.profileID
+            this.$router.push({name: "Edit Profile", params: {id: profileID}})
         }
     },
     mounted(){
@@ -117,6 +134,7 @@ export default {
                 this.user = user
                 this.prefill()
                 .then(() => {console.log(this.rating)})
+                this.checkOwner()
             }
          })
       

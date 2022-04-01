@@ -1,7 +1,7 @@
 <template>
 <div id="topContainer">
   <div id="button">
-      <router-link to="/profile"><button type="submit" class="btn btn-primary"> &larr; Back</button></router-link>
+      <button type="submit" class="btn btn-primary" @click="goToProfile"> &larr; Back</button>
   </div>
   <div id="title"><h2> Edit Profile </h2></div>
 
@@ -25,10 +25,14 @@ export default {
     ChangePassword
   },
   data(){
-    
+    return {
+      userId: this.$route.params.id
+    }
   },
   methods:{
-   
+   goToProfile() {
+      this.$router.go(-1)
+   }
   }
 }
 </script>

@@ -3,16 +3,16 @@
 <ProfileBanner/>
 </div>
 <div class="fullWidth" id="navBar">
-<h6> <ProfileNavBar/></h6>
+<h6> <ProfileNavBar :isVisible="isVisible" :profileID="profileUserID"/></h6>
 </div>
 <div>
   <!-- <SortByButton /> -->
-  <ProfileBiography/>
+  <ProfileBiography :profileID="profileUserID"/>
 </div>
 <div class="parent" id="parentContainer">
 
     <div id="content">
-        <UserReview/>
+        <UserReview :profileID ="profileUserID"/>
     </div>
 </div>
 </template>
@@ -22,6 +22,8 @@ import ProfileBanner from '@/components/profile_components/ProfileBanner.vue';
 import ProfileBiography from '@/components/profile_components/ProfileBiography.vue';
 import ProfileNavBar from '@/components/profile_components/ProfileNavBar.vue';
 import UserReview from '@/components/profile_components/UserReview.vue';
+import {getAuth, onAuthStateChanged} from "firebase/auth";
+
 
 export default {
 components:{
@@ -30,6 +32,30 @@ components:{
     ProfileNavBar,
     UserReview,
   },
+
+  data() {
+    return {
+      currentUser: null,
+      profileUserID: this.$route.params.id,
+      isVisible: null
+    }
+  },
+  mounted() {
+      const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.currentUser = user
+                if (this.profileUserID === this.currentUser.uid) { // if current user = profile being seen, can see!
+                  this.isVisible = true
+                } else {
+                  this.isVisible = false
+                }
+            }
+            //console.log(this.profileUserID) unlock
+        })
+      
+  }
+
 }
 </script>
 

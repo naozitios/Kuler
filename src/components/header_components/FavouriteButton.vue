@@ -23,7 +23,7 @@ export default {
     methods: {
         checkEntry() {
             if (this.user) {
-                this.$router.push({name: "Profile"})
+                this.$router.push({name: "Your Favourites", params: {id: this.user.uid}})
             } else {
                 alert("You need to log in to see your favourites.")
                 this.$router.push({name: "Login"}) // edit!!

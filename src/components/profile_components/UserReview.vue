@@ -13,7 +13,7 @@
           </div>
       </div>
           <!--  hide with display: none. this is meant for the next elements to copy its innerHTML in JS-->
-          <div class = "overflow-auto">
+          <div class = "overflow-auto" v-if="this.areThereReviews">
             <div class = "big-container" v-for="i in reviewCount" :key= "ratings[i]">
               <div id = "everything">
                   <div id = "names">
@@ -60,8 +60,13 @@ export default {
             dates: [],
             averageRating: 0,
             totalRating: 0,
-            reviewNames: []
+            reviewNames: [],
+            areThereReviews: null
         }
+    },
+
+    props: {
+        profileID: String
     },
 
     mounted() {
@@ -85,7 +90,7 @@ export default {
           const sellerRatings = await getDocs(collection(db, "productratings"))
           sellerRatings.forEach((doc) => {
               const dataRef = doc.data()
-              if (dataRef.user_id_seller === this.user.uid) { // only pull out product ratings belonging to
+              if (dataRef.user_id_seller === this.profileID) { // only pull out product ratings belonging to
                 console.log(this.reviews)
                 const tempReviews = dataRef.description
                 this.reviews = this.reviews.concat(tempReviews)
@@ -99,7 +104,13 @@ export default {
               for (var i = 0; i < this.ratings.length; i++) {
                   this.totalRating += this.ratings[i]
               }
-              this.averageRating = this.totalRating / this.reviewCount
+              if (this.reviewCount == 0) {
+                  this.averageRating = 0
+                  this.areThereReviews = false
+              } else {
+                this.averageRating = this.totalRating / this.reviewCount
+                this.areThereReviews = true
+              }
           
           for (var j = 0; j < this.reviewers.length; j++) {
               const currentReviewer = this.reviewers[j]
