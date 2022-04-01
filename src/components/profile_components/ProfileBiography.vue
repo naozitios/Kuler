@@ -35,7 +35,7 @@
     </div>
 </div>
 <div id="button">
-    <router-link to="/profileEdit"><button type="submit" class="btn btn-primary" v-if="this.isOwner">Edit Profile</button></router-link>
+   <button type="submit" class="btn btn-primary" v-if="this.isOwner" @click="editProfile">Edit Profile</button>
 </div>
 <div id="bioText" class="left-flush">
     <h6>{{this.bio}} </h6>
@@ -120,6 +120,11 @@ export default {
             } else {
                 this.isOwner = false;
             }
+        },
+
+        editProfile() {
+            const profileID = this.profileID
+            this.$router.push({name: "Edit Profile", params: {id: profileID}})
         }
     },
     mounted(){
