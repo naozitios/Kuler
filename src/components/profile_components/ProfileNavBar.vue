@@ -110,7 +110,7 @@ a:hover {
             -ms-transition: margin 0.2s ease;
             transition: margin 0.2s ease;
             display: inline-block;
-            margin: 0 0 0 0.35em;
+            margin: 0 0 0 1em;
             padding: 0;
             vertical-align: middle;
         }
