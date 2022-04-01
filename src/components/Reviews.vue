@@ -1,36 +1,52 @@
 <template>
     <div id = "section-main">
         <h5 id = "section-title">{{reviewCount}} Reviews&nbsp;
-            <div id = "rating" style = "position:relative; left:2px; bottom:4px;">
-            <StarRatingContinuous :rating= "rating"/>
+            <div class = "averageRate">
+                <h5 id = "averageRate">{{averageRating}}</h5>
+            </div>
+            <div class = "rating" style = "position:relative; left:2px; bottom:3px;">
+            <StarRatingContinuous :rating= "averageRating"/>
             </div>
             </h5>
         <!--Page 1-->
         
     </div>
     <div class = "reviewInfo">
-            <div
-            class="col"
-            v-for="review in reviews"
-            :key="review.id"
-            >
-            <SingleReview
-                  :buyerName="review.display_name"
-                  :review="review.description"
-                  :date="review.date"
-                  />
-              <div id = "star-rating">
-                  <StarRatingContinuous/>
+            <div class="big-container" v-for="i in reviewCount" :key="ratings[i]">
+                <div id = "review">
+                    <div id = "name">
+                        {{reviewNames[i-1]}}
+                    </div>
+                    <div id = "date">
+                        {{dates[i-1]}}
+                    </div>
+                    <div id = "rating">
+                        {{ratings[i-1]}}
+                    </div>
+                    <div id = "star-rating" style = "position:relative; left:2px; bottom:3px;">
+                        <StarRatingContinuous :rating = "ratings[i-1]"/>
                   
-              </div>
-            </div>
+                    </div>
+                    </div>
+                    <div id = "description">
+                        {{reviews[i-1]}}<br><br>
+                    </div>
         </div>
+    </div>
+    <!-- <VuePaginationTw
+        :totalItems="this.reviews"
+        :currentPage="1"
+        :perPage="2"
+        @pageChanged="functionName"
+        :goButton="false"
+        styled="centered"
+    /> -->
         <!-- <div class = "overflow-auto" id = "review-container"></div> -->
         <!-- <div class = "page" id = "p1" ></div>
         <div class = "page" id = "p2" ></div>
-        <div class = "page" id = "p3" ></div>
+        <div class = "page" id = "p3" ></div> -->
 
-        <br>
+        <!-- <br>
       <div class= "pagination">
         <nav aria-label="Page navigation example">
   <ul class="pagination">
@@ -39,7 +55,7 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link" href="#" aria-current="page" v-on:click="setP1True()">1</a></li>
+    <li class="page-item"><a class="page-link" href="#" aria-current="page" v-on:click="setP1True()">{{this.reviews.length%3}}</a></li>
     <li class="page-item"><a class="page-link" href="#" aria-selected="false" v-on:click="setP2True()">2</a></li>
     <li class="page-item"><a class="page-link" href="#" aria-selected="false" v-on:click="setP3True()">3</a></li>
 
@@ -49,22 +65,23 @@
       </a>
     </li>
   </ul>
-</nav>   -->
-        <!-- </div> -->
+</nav>  
+        </div> -->
 
     
     
 </template>
 
 <script>
-import singleReview from '@/components/singleReview.vue'
+// import VuePaginationTw from "vue-pagination-tw";
+
 import StarRatingContinuous from '@/components/xh_components/StarRatingContinuous.vue'
 import firebaseApp from '../firebase.js';
 import {
   getFirestore,
-  getDocs,
-  collection, getDoc, doc
+   getDoc, doc
 } from "firebase/firestore";
+
 
 const db = getFirestore(firebaseApp);
 
@@ -72,7 +89,7 @@ export default {
     name: 'Reviews',
     components:{
     StarRatingContinuous,
-    singleReview
+    // VuePaginationTw
   },
   data(){
     return {
@@ -80,15 +97,58 @@ export default {
         p2:false,
         p3:false,
         message: '',
-        reviewCount:18,
-        rating: 2.5,
-        reviews: []
+        reviewCount:0,
+        rating: 0,
+        reviews: [],
+        ratings: [],
+        reviewers: [],
+        dates: [],
+        averageRating: 0,
+        totalRating: 0,
+        reviewNames: []
     };
   },
   mounted() {
-      this.createReviews();
+      this.mountReviews()
+      .then(() => console.log(this.reviewers));
+    //   this.functionName()
+
+  },
+  props: {
+      productID: String,
+
   },
   methods:{
+      async mountReviews() {
+            const reviewsCollection = doc(db, "productratings",this.productID)
+            const selectedReviews = await getDoc(reviewsCollection);
+            const dataRef = selectedReviews.data()
+
+            const tempReviews = dataRef.description
+            this.reviews = this.reviews.concat(tempReviews)
+            this.ratings = this.ratings.concat(dataRef.num_stars)
+            this.reviewers = this.reviewers.concat(dataRef.user_id_buyer)
+            this.dates = this.dates.concat(dataRef.date)
+            this.reviewCount += dataRef.reviews
+            console.log(this.reviews)
+                    
+            for (var i = 0; i < this.ratings.length; i++) {
+                  this.totalRating += this.ratings[i]
+              }
+              this.averageRating = this.totalRating / this.reviewCount
+
+            for (var j = 0; j < this.reviewers.length; j++) {
+              const currentReviewer = this.reviewers[j]
+              const nameRef = doc(db, "users", currentReviewer)
+              const nameRefDoc = await getDoc(nameRef)
+              const nameData = nameRefDoc.data()
+              this.reviewNames[j] = nameData.display_name
+              
+          }
+          console.log(this.reviewNames)
+
+        },
+    
       
       setP1True() {
           this.p1 = true,
@@ -128,78 +188,7 @@ export default {
               return;
             }
       },
-    //   async createReviews() {
-    //         let reviewPool = await getDoc(doc(db, "productratings", "productratings"));
-    //         let reviewPoolData = reviewPool.data();
-    //         for (var j = 0; j < reviewPoolData.reviews; j++) {
-    //             this.date = (reviewPoolData.date)[j];
-    //             this.stars = (reviewPoolData.num_stars)[j];
-    //             this.description = (reviewPoolData.description)[j];
-    //             this.buyerID = (reviewPoolData.user_id)[j];
-    //             const userRef = doc(db, "users", this.buyerID);
-    //             const userDataRef = await getDoc(userRef);
-    //             const userData = userDataRef.data();
-    //             this.buyerName = userData.display_name;
-    //             var toAdd = document.createDocumentFragment();
-                
-    //                 for (var k = 0; k < 3; k++) {
-    //                     var newDiv = document.createElement('div');
-    //                     newDiv.style.display = "flex";
-    //                     newDiv.id = 'review'; // i.e. review-1
-    //                     // next i will wrap everyth around in divs because u cant set margin in text....
-    //                     var div1 = document.createElement('div');
-    //                     var paragraph1 = document.createElement("P");
-    //                     var text1 = document.createTextNode(this.buyerName);
-    //                     paragraph1.appendChild(text1)
-    //                     div1.appendChild(paragraph1);
-
-
-    //                     var div2 = document.createElement('div');
-    //                     div2.style.marginLeft = "2%";
-    //                     var paragraph2 = document.createElement("P");
-    //                     var text2 = document.createTextNode(this.date);
-    //                     paragraph2.appendChild(text2);
-    //                     div2.appendChild(paragraph2);
-
-    //                     var div3 = document.createElement('div');
-    //                     div3.style.marginLeft = "2%";
-    //                     var stars = document.getElementById("star-rating");
-    //                     div3.innerHTML = stars.innerHTML
-
-    //                     var div4 = document.createElement('div');
-    //                     var paragraph4 = document.createElement("P");
-    //                     var text4 = document.createTextNode(this.description);
-    //                     paragraph4.appendChild(text4);
-    //                     div4.appendChild(paragraph4);
-
-    //                     newDiv.appendChild(div1);
-    //                     newDiv.appendChild(div2);
-    //                     newDiv.appendChild(div3);
-                
-    //                     toAdd.append(newDiv);
-    //                     toAdd.append(div4);
-
-    //                 }
-    //                 document.getElementById("review-container").appendChild(toAdd)
-                
-    //         } 
-
-    //     },
-        async createReviews() {
-            let reviewsCollection
-            reviewsCollection = collection(db, "productratings")
-            let selectedReviews = await getDocs(reviewsCollection);
-            selectedReviews.forEach(product => {
-                let user_id = product.data().user_id
-                this.getUser(user_id).then(user => {
-                    this.reviews.push({...product.data(), ...user.data()})
-                })
-            })
-
-        },
-        async getUser(user_id) {
-            return await getDoc(doc(db, "users", user_id));
-    }
+        
 
   }
 }
@@ -209,26 +198,43 @@ export default {
     padding: 5em 2em 1em 2em;
     background-color: #F7F0DD;
 }
+.reviewInfo{
+    background-color: #F7F0DD;
+}
 #section-main #section-title{
     font-weight: 900;
     text-align: left;
     display: flex;
 }
-#reviewer{
-    padding-top:2em;
-    display:flex;
-}
-#product-text{
-    display:flex;
-}
+.big-container{
+    /* margin-bottom: 5%; */
+    background-color: #F7F0DD;
 
-
-.date, #star-rating {
+}
+#review {
+    display: flex;
+    
+}
+#name {
+    margin-left:2%
+}
+#date {
+    margin-left:2%;
+}
+#rating {
+    margin-left:2%
+}
+#star-rating {
+    margin-left:1%
+}
+#description {
+    text-align: left;
     margin-left: 2%;
+    background-color: #F7F0DD;
 }
-
-
-
-
+.pagination{
+    margin-left:2%;
+    background-color: #F7F0DD;
+}
 
 </style>

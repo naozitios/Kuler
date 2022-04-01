@@ -97,6 +97,7 @@ export default {
           const docRef = doc(db, "products", this.productID) // change ID
           const docData = await getDoc(docRef)
           const actualData = docData.data()
+        //   console.log(actualData)
           this.description = actualData.description
           this.price = actualData.price
           this.title = actualData.caption
@@ -112,6 +113,7 @@ export default {
           //rating details
           // need to pull out from product ratings for all of SELLER's products, then aggregate it
           const sellerRatings = await getDocs(collection(db, "productratings"))
+          console.log(sellerRatings)
           sellerRatings.forEach((doc) => {
               const dataRef = doc.data()
               if (dataRef.user_id_seller === this.sellerID) { // only pull out product ratings belonging to
