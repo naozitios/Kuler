@@ -69,7 +69,7 @@ const routes = [
         component: CartPaymentSuccess
     },
     {
-        path: '/profile',
+        path: '/profile/:id',
         name: 'Profile',
         component: Profile
     },
@@ -79,17 +79,17 @@ const routes = [
         component: ProfileEdit
     },
     {
-        path: '/profileFavourites',
+        path: '/profileFavourites/:id',
         name: 'Your Favourites',
         component: ProfileFavourites
     },
     {
-        path: '/profileHistory',
+        path: '/profileHistory/:id',
         name: 'Purchase History',
         component: ProfileHistory
     },
     {
-        path: '/profileReviews',
+        path: '/profileReviews/:id',
         name: 'Profile Reviews',
         component: ProfileReviews
     },

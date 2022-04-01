@@ -2,10 +2,12 @@
 <template>
     <div id="nav">
     <ul>
-            <li><router-link to="profile">Listings</router-link></li>
-            <li><router-link to="profileReviews">Reviews</router-link> </li>
-            <li><router-link to="profileFavourites">Favourites</router-link></li> <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
-            <li><router-link to="profileHistory">Purchase History</router-link></li> <img class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
+            <li @click = "directToListings" style= "cursor:pointer;">Listings</li>
+            <li @click = "directToReviews" style = "cursor: pointer;">Reviews</li>
+            <li @click = "directToFavs" style = "cursor:pointer;">Favourites</li> 
+            <img v-if="!isVisible" class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
+            <li @click = "directToHistory" style="cursor: pointer;">Purchase History</li> 
+            <img v-if="!isVisible" class="smallIcon" src="@/assets/hidden_from_view.png" alt="Hidden from view">
         </ul>
   </div>
 
@@ -13,7 +15,47 @@
 
 <script>
 export default {
+    props: {
+        isVisible: Boolean,
+        profileID: String
+    },
 
+    mounted() {
+
+    },
+
+    methods: {
+        directToHistory() {
+            if (this.isVisible == true) {
+                const profileID = this.profileID
+                this.$router.push({name: "Purchase History", params: {id: profileID}})
+            } else {
+                alert("You cannot access another user's purchase history!")
+            }
+        },
+        directToFavs() {
+            if (this.isVisible == true) {
+                const profileID = this.profileID
+                this.$router.push({name: "Your Favourites", params: {id: profileID}})
+            } else {
+                alert("You cannot access another user's favourites!")
+            }
+        },
+
+        directToReviews() {
+            const profileID = this.profileID
+            console.log(profileID)
+            this.$router.push({name: "Profile Reviews", params: {id: profileID}})
+            
+        },
+
+        directToListings() {
+            const profileID = this.profileID
+            console.log(profileID)
+            this.$router.push({name: "Profile", params: {id: profileID}})
+            
+        },
+    }
 }
 </script>
 

@@ -3,11 +3,11 @@
       <!-- first section -->
       <div id= "user-information">
       <div id="user-pic">
-      <img :src="sellerPicture" alt="User" referrerpolicy="no-referrer">
+      <img :src="sellerPicture" alt="User" referrerpolicy="no-referrer" @click = "directToProfile" style ="cursor: pointer;">
       </div>
       <div id="user-info-text"> 
           <div id= "user-name">
-          <h5> {{this.sellerName}} </h5> <!-- change, link name to DB -->
+          <h5 @click ="directToProfile" style="cursor:pointer;"> {{this.sellerName}} </h5> <!-- change, link name to DB -->
           </div>
           <div id= "rating">
           <b><u>{{this.rating.toFixed(1)}}</u></b>
@@ -136,6 +136,11 @@ export default {
           if (this.quantity == 0) {
               this.quantity = 1
           }
+      },
+
+      directToProfile() {
+          const sellerID = this.sellerID
+          this.$router.push({name: "Profile", params: {id: sellerID}})
       },
        
       /*async feedReviews() {

@@ -3,7 +3,7 @@
 <ProfileBanner/>
 </div>
 <div class="fullWidth" id="navBar">
-<h6> <ProfileNavBar/></h6>
+<h6> <ProfileNavBar :isVisible="isVisible" :profileID="profileUserID"/></h6>
 </div>
 <div>
   <!-- <SortByButton /> -->
@@ -43,6 +43,7 @@ import ProfileNavBar from '@/components/profile_components/ProfileNavBar.vue';
 import Listings from '@/components/Listings.vue'
 import FilterOptions from '@/components/FilterOptions.vue'
 import SortByButton from '@/components/SortByButton.vue'
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 export default {
   name: 'App',
@@ -58,11 +59,29 @@ export default {
   data(){
     return {
       category: 0,
-      rating: 0
+      rating: 0,
+      currentUser: null,
+      profileUserID: this.$route.params.id,
+      isVisible: null
      }
   },
   methods:{
    
+  },
+
+  mounted() {
+      const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.currentUser = user
+                if (this.profileUserID === this.currentUser.uid) { // if current user = profile being seen, can see!
+                  this.isVisible = true
+                } else {
+                  this.isVisible = false
+                }
+            }
+        })
+      
   }
 }
 </script>
