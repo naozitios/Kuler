@@ -26,46 +26,44 @@ export default {
     }
   },
   methods: {
-      async makePayment() {
-          const auth = getAuth()
+    async makePayment() {
+        const auth = getAuth()
 
-          onAuthStateChanged(auth, async user => {
-              if (user) {
-                  await this.getProducts(user.uid)
-                  await this.resetCart(user.uid)
-                  // return user.uid
-                  }
-              } 
-          )
-          this.process = true
-          this.$router.push('/cartPaymentSuccess'); 
-      },
-      async getProducts(userID) {
-        let cart = await getDoc(doc(db, "usershoppingcarts", userID));
-        let archive_data = {}
-        let products = cart.data().products
-        for (var product_id in products) {
-            let qty = products[product_id]
-            archive_data[product_id] = qty
-        }
-        this.archivePurchase(userID, archive_data)
-      },
-      async archivePurchase(userID, archive_data) {
-        let size = 0
-        await getDocs(collection(db, 'users', userID, "purchaseHistory")).then(docs => size = docs.size)
-        let purchase_historyID = String(size + 1)
-        await setDoc(doc(db, "users", userID, "purchaseHistory", purchase_historyID), {
-          timestamp: Timestamp.fromDate(new Date()),
-          purchases: archive_data
-          }
-        );
-      },
-      async resetCart(userID) {
-        alert("Resetting cart!")
-            console.log("reset cart")
-            let empty_data = {}
-            await setDoc(doc(db, "usershoppingcarts", userID), empty_data);
+        onAuthStateChanged(auth, async user => {
+            if (user) {
+                await this.getProducts(user.uid)
+                await this.resetCart(user.uid)
+                // return user.uid
+                }
+            } 
+        )
+        this.process = true
+        this.$router.push('/cartPaymentSuccess'); 
+    },
+    async getProducts(userID) {
+      let cart = await getDoc(doc(db, "usershoppingcarts", userID));
+      let archive_data = {}
+      let products = cart.data().products
+      for (var product_id in products) {
+          let qty = products[product_id]
+          archive_data[product_id] = qty
       }
+      this.archivePurchase(userID, archive_data)
+    },
+    async archivePurchase(userID, archive_data) {
+      let size = 0
+      await getDocs(collection(db, 'users', userID, "purchaseHistory")).then(docs => size = docs.size)
+      let purchase_historyID = String(size + 1)
+      await setDoc(doc(db, "users", userID, "purchaseHistory", purchase_historyID), {
+        timestamp: Timestamp.fromDate(new Date()),
+        purchases: archive_data
+        }
+      );
+    },
+    async resetCart(userID) {
+      let empty_data = {}
+      await setDoc(doc(db, "usershoppingcarts", userID), empty_data);
+    }
   }
 }
 </script>
