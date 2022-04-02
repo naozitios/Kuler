@@ -62,7 +62,6 @@ export default {
       )
     },
     async getProducts(userID) {
-      console.log(userID)
       let cart = await getDoc(doc(db, "usershoppingcarts", userID));
       let products = cart.data().products
       for (var product_id in products) {

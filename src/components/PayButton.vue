@@ -15,56 +15,55 @@ export default {
   data(){
       return {
           product_list: [],
-          paid: false
+          process: false
       }
   },
   watch: {
-    paid(completed) {
-      if (completed) {
+    process(finished) {
+      if (finished) {
         this.$router.push('/cartPaymentSuccess');
       }
     }
   },
   methods: {
-      async makePayment() {
-          const auth = getAuth()
-          onAuthStateChanged(auth, (user) => {
-              if (user) {
-                  console.log("before get products")
-                  this.getProducts(user.uid)
-                  return user.uid
-                  }
-              } 
-          )
-          this.paid = true
-          // this.$router.push('/cartPaymentSuccess'); 
-      },
-      async getProducts(userID) {
-        console.log(userID)
-        let cart = await getDoc(doc(db, "usershoppingcarts", "firstPurchase"));
-        let archive_data = {}
-        let products = cart.data().products
-        for (var product_id in products) {
-            let qty = products[product_id]
-            archive_data[product_id] = qty
+    async makePayment() {
+        const auth = getAuth()
+
+        onAuthStateChanged(auth, async user => {
+            if (user) {
+                await this.getProducts(user.uid)
+                await this.resetCart(user.uid)
+                // return user.uid
+                }
+            } 
+        )
+        this.process = true
+        this.$router.push('/cartPaymentSuccess'); 
+    },
+    async getProducts(userID) {
+      let cart = await getDoc(doc(db, "usershoppingcarts", userID));
+      let archive_data = {}
+      let products = cart.data().products
+      for (var product_id in products) {
+          let qty = products[product_id]
+          archive_data[product_id] = qty
+      }
+      this.archivePurchase(userID, archive_data)
+    },
+    async archivePurchase(userID, archive_data) {
+      let size = 0
+      await getDocs(collection(db, 'users', userID, "purchaseHistory")).then(docs => size = docs.size)
+      let purchase_historyID = String(size + 1)
+      await setDoc(doc(db, "users", userID, "purchaseHistory", purchase_historyID), {
+        timestamp: Timestamp.fromDate(new Date()),
+        purchases: archive_data
         }
-        console.log(Timestamp.fromDate(new Date()))
-        console.log(userID)
-        this.archivePurchase(userID, archive_data)
-      },
-      async archivePurchase(userID, archive_data) {
-        console.log(userID)
-        let size = 0
-        await getDocs(collection(db, 'users', userID, "purchaseHistory")).then(docs => size = docs.size)
-        console.log(size)
-        let purchase_historyID = String(size + 1)
-        console.log(purchase_historyID)
-        await setDoc(doc(db, "users", userID, "purchaseHistory", purchase_historyID), {
-          timestamp: Timestamp.fromDate(new Date()),
-          purchases: archive_data
-          }
-        );
-      },
+      );
+    },
+    async resetCart(userID) {
+      let empty_data = {}
+      await setDoc(doc(db, "usershoppingcarts", userID), empty_data);
+    }
   }
 }
 </script>
