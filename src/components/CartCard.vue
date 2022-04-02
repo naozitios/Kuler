@@ -7,12 +7,12 @@
               </div>
           </div>
           <div class="col-sm-7">
-            <h4 class="card-title">Product Title</h4>
-            <h4 class="card-title">SGD 0.00</h4>  
+            <h4 class="card-title">{{this.product_title}}</h4>
+            <h4 class="card-title">SGD {{this.price}}</h4>  
             <div class = "counter">
               <span class="minus" @click="subtract" v-if="editable">-</span>
               <span class="viewOnly" v-else>-</span>
-              <div class="num">{{num}}</div>
+              <div class="num">{{this.qty}}</div>
               <span class="plus" @click="add" v-if="editable">+</span>
               <span class="viewOnly" v-else>+</span>
             </div>
@@ -29,19 +29,30 @@ export default {
   components: {},
   data() {
     return {
-      num: 1,
+      qty: 1,
+      price: 0,
+      product_title: "",
     }
   },
   props: {
-    editable: Boolean
+    editable: Boolean,
+    product: Object,
+  },
+  mounted() {
+    this.getData()
   },
   methods: {
+    getData() {
+      this.product_title = this.product.caption
+      this.price = this.product.price
+      this.qty = this.product.qty
+    },
     add() {
-      this.num += 1;
+      this.qty += 1;
     },
     subtract() {
-      if (this.num > 0) {
-        this.num -= 1;
+      if (this.qty > 0) {
+        this.qty -= 1;
       }
     }
   },

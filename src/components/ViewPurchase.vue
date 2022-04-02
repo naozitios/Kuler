@@ -5,8 +5,7 @@
       v-for="product in product_list"
       :key="product.id"
     >
-    <CartCard :editable = 'editable'/>
-    {{product.price}}
+    <CartCard :editable = 'editable' :product='product'/>
     </div>
 </div>
 <div class="details">
@@ -14,14 +13,14 @@
       <hr />
       <div class="row">
         <div class="col-sm-8"><h5>Subtotal</h5></div>
-        <div class="col-sm-4"><h5>SGD XXX</h5></div>
+        <div class="col-sm-4"><h5>SGD {{this.total_price}}</h5></div>
       </div>
     </v-row>
     <hr />
     <v-row align="left">
       <div class="row">
       <div class="col-sm-8"><h4>Total</h4></div>
-      <div class="col-sm-4"><h5>SGD XXX</h5></div>
+      <div class="col-sm-4"><h5>SGD {{this.total_price}}</h5></div>
       </div>
     </v-row>
     </div>
@@ -44,31 +43,35 @@ export default {
   },
   data(){
     return {
-      user: false,
-      product_list: []
+      product_list: [],
+      total_price: 0
     }
   },
   async mounted() {
-    const auth = getAuth()
-    await onAuthStateChanged(auth, (user) => {
-      if (user) {
-        this.user = user
-        }
-      }
-    )   
-    await this.getProducts()
-    
+    await this.getUser()
   },
   methods:{
-    async getProducts() {
-      console.log('test')
-      let cart = await getDoc(doc(db, "usershoppingcarts", this.user.uid));
-      let product_ids = cart.data().products
-      console.log('test2')
-      product_ids.forEach(async product_id => {
-        const product = await getDoc(doc(db, "products", product_id))
-        this.product_list.push(product.data())
-      })
+    async getUser() {
+      const auth = getAuth()
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.getProducts(user.uid)
+          return user.uid
+          }
+        } 
+      )
+    },
+    async getProducts(userID) {
+      console.log(userID)
+      let cart = await getDoc(doc(db, "usershoppingcarts", userID));
+      let products = cart.data().products
+      for (var product_id in products) {
+        let product = await getDoc(doc(db, "products", product_id))
+        let product_data = product.data()
+        let qty = products[product_id]
+        this.total_price += qty * product_data.price
+        this.product_list.push({...product_data, qty})
+      }
     }
   }
 }
