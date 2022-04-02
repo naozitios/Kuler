@@ -6,7 +6,7 @@
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
-import { getDoc, doc, updateDoc, arrayUnion} from "firebase/firestore";
+import { getDoc, doc, updateDoc} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -42,36 +42,49 @@ export default {
                 const document = await getDoc(ref)
                 const documentData = document.data()
                 var products = documentData.products
-                // case 2
-                // date
+                if (products[this.productNumber]){
+                    // case 2
+                    products[this.productNumber] += this.quantity
+                } else {
+                    // case 1
+                    products[this.productNumber] = this.quantity
+                }
                 var today = new Date();
                 var todaysDate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+                await updateDoc((ref), {
+                    products: products,
+                    date: todaysDate,
+                })
+                alert("Added item to cart.")
 
-                if (products.includes(this.productNumber)) {
-                    var index = products.indexOf(this.productNumber) // index of quantity
-                    var originalQuantity = documentData.quantity
-                    originalQuantity[index] = originalQuantity[index] + this.quantity // prop passed down
-                    var originalDate = documentData.date
-                    originalDate[index] = todaysDate // replace date
-                    await updateDoc((ref), {
-                        date: originalDate,
-                        quantity: originalQuantity
-                    })
-                } else { // instantiate in products + quantity + date
-                    // cannot arrayUnion if the date is not unique; same with quantity. need to pull out and insert
-                    var dateArray = documentData.date
-                    dateArray.push(todaysDate)
-                    var quantityArray = documentData.quantity
-                    quantityArray.push(this.quantity)
-                    await updateDoc((ref), {
-                        date: dateArray,
-                        products: arrayUnion(this.productNumber),
-                        quantity: quantityArray
-                    })
-                }
+                // products[this.productNumber] += this.quantity
+                // if (products.includes(this.productNumber)) {
+                //     var index = products.indexOf(this.productNumber) // index of quantity
+                //     var originalQuantity = documentData.quantity
+                //     originalQuantity[index] = originalQuantity[index] + this.quantity // prop passed down
+                //     var originalDate = documentData.date
+                //     originalDate[index] = todaysDate // replace date
+                //     await updateDoc((ref), {
+                //         date: originalDate,
+                //         products: products,
+                //         date: todaysDate,
+                //         quantity: originalQuantity
+                //     })
+                // } else { // instantiate in products + quantity + date
+                //     cannot arrayUnion if the date is not unique; same with quantity. need to pull out and insert
+                //     var dateArray = documentData.date
+                //     dateArray.push(todaysDate)
+                //     var quantityArray = documentData.quantity
+                //     quantityArray.push(this.quantity)
+                //     products[this.productNumber] = this.quantity
+                //     await updateDoc((ref), {
+                //         date: todaysDate,
+                //         products: arrayUnion(this.productNumber),
+                //         quantity: quantityArray
+                //     })
+                // }
                 alert("Added item to cart.") // after that, force a refresh as well
-                window.location.reload(true)
-
+                // window.location.reload(true)
             } else {
                 alert("Please log in. You can only add products to your cart after you have logged in.")
                 this.$router.push({name: "Login"}) 

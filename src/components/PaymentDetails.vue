@@ -7,7 +7,6 @@
       <span id="payment">Payment</span>
     </p>
   </div>
-  <form action="/CartPaymentSuccess">
     <div class="col-3">
       <label for="cardDetails">Card Details: </label><br />
     </div>
@@ -38,7 +37,6 @@
       </div>
     </div>
     <PayButton />
-  </form>
   <button onclick="history.back()" class="btn-primary">Back</button>
 </template>
 
@@ -50,8 +48,6 @@ export default {
   components: {
     PayButton,
   },
-  data() {},
-  methods: {},
 };
 </script>
 
