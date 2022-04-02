@@ -8,6 +8,12 @@
     <StarRating/>
     </div>
     <h4 class="card-title">SGD {{this.price}}</h4>
+    <div id = "history" v-if="this.quantity">
+     Quantity Purchased: <b><u> {{this.quantity}} </u></b>
+     <br>
+     Date of Purchase: 
+     <br><b><u>{{this.timestamp}}</u></b>
+    </div>
   </div>
 </div>
 </template>
@@ -25,7 +31,9 @@ export default {
       sellerName: String,
       price: Number,
       coverImage: String,
-      productNumber: String
+      productNumber: String,
+      quantity: Number,
+      timestamp: String
   },
   methods:{
       directToProduct() {
@@ -72,5 +80,7 @@ cursor: pointer
         font-size: 60%;
         font-weight: bold;
     }
-
+#history {
+    font-size: 80%
+}
 </style>

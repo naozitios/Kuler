@@ -25,7 +25,7 @@
   </div>
   <div class = "listings">
       <!-- <FilterOptions/> -->
-      <Listings :category="category"/>
+      <Listings :category="category" :historyID = "profileUserID"/>
   </div>
 </template>
 
