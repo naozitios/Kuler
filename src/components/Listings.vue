@@ -12,6 +12,8 @@
               :price="product.price"
               :coverImage="product.image3"
               :productNumber="product.id"
+              :quantity="product.quantity"
+              :timestamp="product.timestamp"
               align="left"
             />
             </div>
@@ -38,7 +40,8 @@ export default {
     category: Number,
     msg: String,
     profileID: String,
-    userFavID: String
+    userFavID: String,
+    historyID: String
   },
   data() {
     return {
@@ -51,6 +54,8 @@ export default {
       this.getProfileProducts()
     } else if (this.userFavID) {
       this.getFavouriteProducts()
+    } else if (this.historyID) {
+      this.getHistoricalProducts()
     } else {
       this.getProducts()
     }
@@ -106,6 +111,24 @@ export default {
         let product = await getDoc(doc(db, "products", productIndex))
         this.getUser(this.userFavID).then(user => {
           this.products.push({...product.data(), ...user.data(), id: product.id})
+        })
+      })
+    },
+
+    async getHistoricalProducts() {
+      const docRef = doc(db, "users", this.historyID)
+      const historyDocs = await getDocs(collection(docRef, "purchaseHistory"))
+      historyDocs.forEach(async docs => {
+        let productData = docs.data()
+        let productPurchases = productData.purchases
+        const date = new Date(productData.timestamp.toDate())
+        Object.keys(productPurchases).forEach(async key => {
+            console.log(productPurchases[key])
+            let actualProduct = await getDoc(doc(db, "products", key))
+            this.getUser(this.historyID).then(user => {
+              this.products.push({...actualProduct.data(), ...user.data(), id: actualProduct.id,
+              quantity: productPurchases[key], timestamp: date.toString()})
+            })
         })
       })
     }
