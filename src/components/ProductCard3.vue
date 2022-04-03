@@ -1,7 +1,7 @@
 <template>
 <div class="card" style="width:16vw" @click="directToProduct">
   <a href="#" class="productImg" height="18vw">
-      <img class="card-img-top" :src="coverPicture" alt="shouldnt be the case">
+      <img class="card-img-top" :src="coverPicture" alt="We apologize for the bug. Life is nothing without a few challenges">
     </a>
   <div class="card-body">
     <a href="#" class="productLink"><h4 class="card-title">{{this.productTitle}}</h4></a>
