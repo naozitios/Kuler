@@ -121,13 +121,14 @@ export default {
       historyDocs.forEach(async docs => {
         let productData = docs.data()
         let productPurchases = productData.purchases
-        const date = new Date(productData.timestamp.toDate())
-        Object.keys(productPurchases).forEach(async key => {
-            console.log(productPurchases[key])
+        var date = new Date(productData.timestamp.toDate())
+        var date2 = (date.toString()).split(" ")
+        date2 = date2.slice(0, 5)
+        Object.keys(productPurchases).forEach(async key => {            
             let actualProduct = await getDoc(doc(db, "products", key))
             this.getUser(this.historyID).then(user => {
               this.products.push({...actualProduct.data(), ...user.data(), id: actualProduct.id,
-              quantity: productPurchases[key], timestamp: date.toString()})
+              quantity: productPurchases[key], timestamp: date2.join(' ')})
             })
         })
       })
