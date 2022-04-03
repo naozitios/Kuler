@@ -84,7 +84,6 @@ export default {
   },
   watch: {
     status(val) {
-      console.log(1)
       this.$router.push({name: val})
     }
   },

@@ -1,6 +1,6 @@
 <template>
 <div class="card" style="width: 16vw" @click="directToProduct">
-  <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
+  <a href="#" class="productImg"><img class="card-img-top" :src="coverPicture"></a>
   <div class="card-body">
     <a href="#" class="productLink"><h4 class="card-title">{{this.productTitle}}</h4></a>
     <a href="#" class="sellerLink"><h5 class="seller-name">{{this.sellerName}}</h5></a>
@@ -26,6 +26,11 @@ export default {
   components:{
     StarRating
   },
+  data() {
+      return {
+        coverPicture: "@/assets/sample7.jpg"
+      }
+  },
   props: {
       productTitle: String,
       sellerName: String,
@@ -39,8 +44,15 @@ export default {
       directToProduct() {
           const productNum = this.productNumber
           this.$router.push({name: "Product Page", params: {id: productNum}})
-      }
+      },
+      async updatePictures() { // i assume that productID is given, i put a hypothethical value of 3
+      this.coverPicture = this.coverImage
+    }
   },
+  mounted() {
+      this.updatePictures();
+      console.log(this.coverPicture)
+  }
 }
 </script>
 
@@ -61,7 +73,7 @@ a {
 }
 .card {
 margin-top: 1em;
-cursor: pointer
+cursor: pointer;
 }
 #rating {
     text-align: left;

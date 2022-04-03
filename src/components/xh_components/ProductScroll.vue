@@ -69,12 +69,12 @@ export default {
   },
 
   data() {
-            return {
-                  coverPicture: null,
-                  firstSupportingPicture: null,
-                  secondSupportingPicture: null,
-                  thirdSupportingPicture: null,
-            }
+      return {
+            coverPicture: null,
+            firstSupportingPicture: null,
+            secondSupportingPicture: null,
+            thirdSupportingPicture: null,
+      }
   },
   methods: {
     async updatePictures() { // i assume that productID is given, i put a hypothethical value of 3

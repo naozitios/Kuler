@@ -10,7 +10,7 @@
               :sellerName="product.display_name"
               :productTitle="product.caption"
               :price="product.price"
-              :coverImage="product.image3"
+              :coverImage="product.coverimage"
               :productNumber="product.id"
               :quantity="product.quantity"
               :timestamp="product.timestamp"
