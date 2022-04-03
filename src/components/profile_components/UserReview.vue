@@ -79,6 +79,9 @@ export default {
         .then(() => console.log(this.reviewers));
        
        }
+       if (!this.user) {
+           this.mountReviews()
+       }
     }) 
     },
     components: {

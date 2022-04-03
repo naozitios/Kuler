@@ -133,10 +133,14 @@ export default {
             if (user) {
                 this.user = user
                 this.prefill()
-                .then(() => {console.log(this.rating)})
-                this.checkOwner()
+                .then(() => {this.checkOwner()})
+                
             }
          })
+        if (!this.user) {
+            this.prefill()
+            this.isOwner = false;
+        }
       
     
     }

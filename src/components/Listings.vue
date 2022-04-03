@@ -41,7 +41,8 @@ export default {
     msg: String,
     profileID: String,
     userFavID: String,
-    historyID: String
+    historyID: String,
+    format: String
   },
   data() {
     return {
@@ -92,7 +93,16 @@ export default {
     },
     async getProfileProducts() {
       let productsCollection
+      if (this.category == 0 && this.format === "All") { // no filters applied 
       productsCollection = query(collection(db, "products"), where('user_id', '==', this.profileID))
+      } else if (this.category != 0 && this.format === "All"){ // ONLY category clicked
+        productsCollection = query(collection(db, "products"), where('user_id', '==', this.profileID), where('category_id', '==', this.category))
+      } else if (this.category == 0 && this.format !== "All") { // ONLY format clicked
+        productsCollection = query(collection(db, "products"), where('user_id', '==', this.profileID), where('product_type', '==', this.format))
+      } else { // both filters triggered
+        productsCollection = query(collection(db, "products"), where('user_id', '==', this.profileID),
+        where('category_id', '==', this.category), where('product_type', '==', this.format))
+      }
       let selectedProducts = await getDocs(productsCollection);
       selectedProducts.forEach(product => {
         let user_id = product.data().user_id
@@ -109,9 +119,29 @@ export default {
       const arrayOfProducts = favouriteData.products
       arrayOfProducts.forEach(async productIndex => {
         let product = await getDoc(doc(db, "products", productIndex))
-        this.getUser(this.userFavID).then(user => {
-          this.products.push({...product.data(), ...user.data(), id: product.id})
+        let productFormat = product.data().product_type
+        let productCategory = product.data().category_id
+        let toAdd = false
+        if (this.category == 0 && this.format === "All") {
+          toAdd = true
+        } else if (this.category == 0 && this.format !== "All") { // if format is chosen
+          if (productFormat === this.format) {
+            toAdd = true
+          }
+        } else if (this.category != 0 && this.format === "All") {
+          if (productCategory == this.category) {
+            toAdd = true
+          }
+        } else {
+          if (productCategory == this.category && productFormat === this.format) {
+            toAdd = true
+          }
+        }
+        if (toAdd == true){
+            this.getUser(this.userFavID).then(user => {
+              this.products.push({...product.data(), ...user.data(), id: product.id})
         })
+        }
       })
     },
 
