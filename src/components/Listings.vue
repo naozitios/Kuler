@@ -122,21 +122,7 @@ export default {
         let productFormat = product.data().product_type
         let productCategory = product.data().category_id
         let toAdd = false
-        if (this.category == 0 && this.format === "All") {
-          toAdd = true
-        } else if (this.category == 0 && this.format !== "All") { // if format is chosen
-          if (productFormat === this.format) {
-            toAdd = true
-          }
-        } else if (this.category != 0 && this.format === "All") {
-          if (productCategory == this.category) {
-            toAdd = true
-          }
-        } else {
-          if (productCategory == this.category && productFormat === this.format) {
-            toAdd = true
-          }
-        }
+        toAdd = this.toAssign(productFormat, productCategory)
         if (toAdd == true){
             this.getUser(this.userFavID).then(user => {
               this.products.push({...product.data(), ...user.data(), id: product.id})
@@ -156,12 +142,36 @@ export default {
         date2 = date2.slice(0, 5)
         Object.keys(productPurchases).forEach(async key => {            
             let actualProduct = await getDoc(doc(db, "products", key))
+            let productFormat = actualProduct.data().product_type
+            let productCategory = actualProduct.data().category_id
+            let toAdd = false
+            toAdd = this.toAssign(productFormat, productCategory)
+            if (toAdd == true) {
             this.getUser(this.historyID).then(user => {
               this.products.push({...actualProduct.data(), ...user.data(), id: actualProduct.id,
               quantity: productPurchases[key], timestamp: date2.join(' ')})
             })
+            }
         })
       })
+    },
+
+    toAssign(productFormat, productCategory) {
+      if (this.category == 0 && this.format === "All") {
+          return true
+        } else if (this.category == 0 && this.format !== "All") { // if format is chosen
+          if (productFormat === this.format) {
+            return true
+          }
+        } else if (this.category != 0 && this.format === "All") {
+          if (productCategory == this.category) {
+            return true
+          }
+        } else {
+          if (productCategory == this.category && productFormat === this.format) {
+            return true
+          }
+        }
     }
   },
 };
