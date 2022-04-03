@@ -61,7 +61,7 @@ export default {
   name: 'ProductScroll',
   props: {
     msg: String,
-    productID: Number
+    productID: String
   },
 
   mounted() {
@@ -81,7 +81,6 @@ export default {
       const docRef = doc(db, "products", (this.productID).toString()) // change ID
       const docData = await getDoc(docRef)
       const actualData = docData.data()
-      console.log(actualData)
       this.coverPicture = actualData.coverimage
       this.firstSupportingPicture = actualData.image1
       this.secondSupportingPicture = actualData.image2

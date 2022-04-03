@@ -113,7 +113,6 @@ export default {
           //rating details
           // need to pull out from product ratings for all of SELLER's products, then aggregate it
           const sellerRatings = await getDocs(collection(db, "productratings"))
-          console.log(sellerRatings)
           sellerRatings.forEach((doc) => {
               const dataRef = doc.data()
               if (dataRef.user_id_seller === this.sellerID) { // only pull out product ratings belonging to
