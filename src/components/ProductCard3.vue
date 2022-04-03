@@ -1,6 +1,8 @@
 <template>
-<div class="card" style="width: 16vw" @click="directToProduct">
-  <a href="#" class="productImg"><img class="card-img-top" :src="coverPicture"></a>
+<div class="card" style="width:16vw" @click="directToProduct">
+  <a href="#" class="productImg" height="18vw">
+      <img class="card-img-top" :src="coverPicture" alt="shouldnt be the case">
+    </a>
   <div class="card-body">
     <a href="#" class="productLink"><h4 class="card-title">{{this.productTitle}}</h4></a>
     <a href="#" class="sellerLink"><h5 class="seller-name">{{this.sellerName}}</h5></a>
@@ -63,7 +65,6 @@ a {
 .productImg:hover, .productLink:hover, .sellerLink:hover{
     opacity: 0.8;
     transition: 0.5s ease;
-
 }
 .productLink{
     color:rgb(0, 0, 0)
@@ -94,5 +95,10 @@ cursor: pointer;
     }
 #history {
     font-size: 80%
+}
+img{
+    max-width: 100%;
+    height: 16vw;
+    object-fit: cover;
 }
 </style>
