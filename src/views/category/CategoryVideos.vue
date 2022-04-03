@@ -8,10 +8,10 @@
   <div class="container pt-3" div="details">
     <div class="row">
       <div class="col-lg-2">
-        <FilterOptions />
+        <FilterOptions :category="category"/>
       </div>
       <div class="col-lg-10">
-<Listings :category="category" />
+        <Listings :category="category" />
       </div>
     </div>
   </div>

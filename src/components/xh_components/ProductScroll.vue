@@ -60,7 +60,8 @@ export default {
 
   name: 'ProductScroll',
   props: {
-    msg: String
+    msg: String,
+    productID: String
   },
 
   mounted() {
@@ -68,20 +69,18 @@ export default {
   },
 
   data() {
-            return {
-                  coverPicture: null,
-                  firstSupportingPicture: null,
-                  secondSupportingPicture: null,
-                  thirdSupportingPicture: null,
-                  productID: "1" // change!!
-            }
+      return {
+            coverPicture: null,
+            firstSupportingPicture: null,
+            secondSupportingPicture: null,
+            thirdSupportingPicture: null,
+      }
   },
   methods: {
     async updatePictures() { // i assume that productID is given, i put a hypothethical value of 3
       const docRef = doc(db, "products", (this.productID).toString()) // change ID
       const docData = await getDoc(docRef)
       const actualData = docData.data()
-      console.log(actualData)
       this.coverPicture = actualData.coverimage
       this.firstSupportingPicture = actualData.image1
       this.secondSupportingPicture = actualData.image2

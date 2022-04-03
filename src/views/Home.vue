@@ -42,7 +42,8 @@ export default {
           photo: this.user.photoURL,
           phone: "",
           country: "",
-          bio: ""
+          bio: "",
+          authorised: false
         })
         console.log(newRef)
       }

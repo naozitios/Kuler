@@ -34,7 +34,7 @@
 // import {getFirestore} from "firebase/firestore";
 // import {doc, getDoc, updateDoc} from "firebase/firestore";
 // const db = getFirestore(firebaseApp);
-// import {getAuth, onAuthStateChanged, updatePassword, reauthenticateWithCredential} from "firebase/auth";
+// import {getAuth, onAuthStateChanged, updatePassword, reauthenticateWithCredential, AuthCredential} from "firebase/auth";
 import {getAuth, onAuthStateChanged, updatePassword} from "firebase/auth";
 export default {
     name: 'ChangePassword',
@@ -83,8 +83,7 @@ export default {
             
         },
         // promptForCredentials(){
-        //     let currPass = document.getElementById("inputNewPassword").value;
-        //     return EmailAuthProvider.credential(user.email, currPass);
+
         // },
 
         changePass(newPassword1) {

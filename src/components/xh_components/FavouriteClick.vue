@@ -16,7 +16,6 @@ export default {
        return {
            index: null, // pass information from DB in order to fix the index. 1 for heart, 0 for normal
            image: null,
-           productNumber: "2", // update based on which product number is being processed.
            user: false,
            images: [{
                id: 1,
@@ -42,6 +41,10 @@ export default {
             }
         })
         
+    },
+
+    props: {
+        productNumber: String
     },
     methods: {
         async switchImage() {
@@ -70,9 +73,11 @@ export default {
                     })
                     .then(console.log("PRODUCT REMOVED FROM FAVS"))
                 } else { // index = 1, means we add 
+                    var arrayOfDates = documentData.date
+                    arrayOfDates.push(todaysDate)
                     await updateDoc((ref),  {
                         products: arrayUnion(this.productNumber),
-                        date: arrayUnion(todaysDate)
+                        date: arrayOfDates
                     })
                     .then(console.log("PRODUCT ADDED INTO FAVS"))
                 }

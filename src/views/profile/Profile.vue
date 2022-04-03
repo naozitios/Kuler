@@ -3,19 +3,19 @@
 <ProfileBanner/>
 </div>
 <div class="fullWidth" id="navBar">
-<h6> <ProfileNavBar/></h6>
+<h6> <ProfileNavBar :isVisible="isVisible" :profileID="profileUserID"/></h6>
 </div>
 <div>
   <!-- <SortByButton /> -->
-  <ProfileBiography/>
+  <ProfileBiography :profileID="profileUserID"/>
 </div>
   <div class="col-md-4 offset-md-8">
   <SortByButton />
   <!-- <ProfileBiography/> -->
   </div>
   <div class = "listings">
-      <FilterOptions/>
-      <Listings :category="category"/>
+      <FilterProfile @changeCategory="changeCategory($event)" @changeFormat="changeFormat($event)"/>
+      <Listings :category="category" :profileID ="profileUserID" :key="componentKey" :format="format"/>
   </div>
 
 <!-- <SortByButton/> -->
@@ -41,8 +41,9 @@ import ProfileBanner from '@/components/profile_components/ProfileBanner.vue';
 import ProfileBiography from '@/components/profile_components/ProfileBiography.vue';
 import ProfileNavBar from '@/components/profile_components/ProfileNavBar.vue';
 import Listings from '@/components/Listings.vue'
-import FilterOptions from '@/components/FilterOptions.vue'
+import FilterProfile from '@/components/profile_components/FilterProfile.vue'
 import SortByButton from '@/components/SortByButton.vue'
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 export default {
   name: 'App',
@@ -51,18 +52,48 @@ export default {
     ProfileBiography,
     ProfileNavBar,
     Listings,
-    FilterOptions,
+    FilterProfile,
     SortByButton
 
   },
   data(){
     return {
       category: 0,
-      rating: 0
+      format: "All",
+      rating: 0,
+      currentUser: null,
+      profileUserID: this.$route.params.id,
+      isVisible: null,
+      componentKey: 0, // force it to re-render
      }
   },
   methods:{
-   
+   changeCategory(category) {
+      this.category = category
+      this.componentKey += 1
+   },
+   changeFormat(format) {
+     this.format = format
+     this.componentKey += 1
+   }
+  },
+
+  
+
+  mounted() {
+      const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.currentUser = user
+                if (this.profileUserID === this.currentUser.uid) { // if current user = profile being seen, can see!
+                  this.isVisible = true
+                } else {
+                  this.isVisible = false
+                }
+                // console.log(this.profileUserID) the magic pill to unlock
+            }
+        })
+      
   }
 }
 </script>

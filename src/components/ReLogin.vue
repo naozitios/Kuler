@@ -33,7 +33,7 @@ import 'firebaseui/dist/firebaseui.css'
 // import KulerLogo from '@/components/header_components/KulerLogo.vue'
 
 export default {
-    name:"Login",
+    name:"ReLogin",
     components:{
     // KulerLogo
   },
@@ -45,7 +45,7 @@ export default {
         }
 
         var uiConfig = {
-            signInSuccessUrl: '/',
+            signInSuccessUrl: '/profileEdit',
             signInOptions: [
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 firebase.auth.EmailAuthProvider.PROVIDER_ID,

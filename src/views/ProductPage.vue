@@ -1,13 +1,17 @@
 <template>
   <div class="float-container">
   <div class= "first-child">  
-  <ProductScroll/>
+  <ProductScroll :productID = "productNumber"/>
   </div>
   <div class = "second-child">
-    <ProductInformation/>
+    <ProductInformation :productID = "productNumber"/>
     </div>
   </div>
-<Reviews/>
+
+<div class = "pagination-child">
+<ReviewPagination :perPage = "3" :currentPage = "currentPage" @pagechanged="onPageChange" 
+:productNumber="productNumber"/>
+</div>
 <SimilarItems/>
 <FooterMain/>
 </template>
@@ -16,7 +20,7 @@
 import ProductScroll from '@/components/xh_components/ProductScroll.vue';
 import SimilarItems from '@/components/SimilarItems.vue';
 import ProductInformation from '@/components/xh_components/ProductInformation.vue';
-import Reviews from '@/components/Reviews.vue';
+import ReviewPagination from '@/components/ReviewPagination.vue'
 import FooterMain from '@/components/footer_components/FooterMain.vue'
 import firebaseApp from '../firebase.js';
 import {getFirestore} from "firebase/firestore";
@@ -25,19 +29,23 @@ import {getDoc, doc, setDoc} from "firebase/firestore";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 export default {
-  name: 'App',
+  name: 'ProductPage',
   components:{
     ProductScroll,
     ProductInformation,
     SimilarItems,
-    Reviews,
+    ReviewPagination,
     FooterMain
   },
   data(){
     return {
       user: false,
+      productNumber: (this.$route.params.id).toString(),
+      currentPage: 1
     }
   },
+
+
   methods:{
     async checkIfUserInDatabase() { // issue is, only will be instantiated if user is accessed.
     // instantiate user
@@ -98,7 +106,14 @@ export default {
         })
         console.log(newRef)
       }
+    },
+
+    onPageChange(page) {
+      console.log(page)
+      this.currentPage = page;
     }
+
+    
   },
 
   mounted() {
@@ -106,7 +121,7 @@ export default {
     onAuthStateChanged(auth, (user) => {
        if (user) {
           this.user = user
-          this.checkIfUserInDatabase()
+          //this.checkIfUserInDatabase()
        }
     })         
   }
@@ -144,4 +159,8 @@ export default {
         margin-right: auto;
         width: 60%;
     } */
+    .pagination-child {
+      padding-left: 3%;
+      margin-top: 5%;
+    }
 </style>

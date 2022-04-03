@@ -39,7 +39,7 @@ const routes = [
         component: LoginPage
     },
     {
-        path: '/Relogin',
+        path: '/reLogin',
         name: 'ReLogin',
         component: ReLogin
     },
@@ -69,27 +69,27 @@ const routes = [
         component: CartPaymentSuccess
     },
     {
-        path: '/profile',
+        path: '/profile/:id',
         name: 'Profile',
         component: Profile
     },
     {
-        path: '/profileEdit',
+        path: '/profileEdit/:id',
         name: 'Edit Profile',
         component: ProfileEdit
     },
     {
-        path: '/profileFavourites',
+        path: '/profileFavourites/:id',
         name: 'Your Favourites',
         component: ProfileFavourites
     },
     {
-        path: '/profileHistory',
+        path: '/profileHistory/:id',
         name: 'Purchase History',
         component: ProfileHistory
     },
     {
-        path: '/profileReviews',
+        path: '/profileReviews/:id',
         name: 'Profile Reviews',
         component: ProfileReviews
     },
@@ -145,9 +145,10 @@ const routes = [
         component: CategoryVintage
     },
     {
-        path: '/productPage',
+        path: '/productPage/:id',
         name: 'Product Page',
         component: ProductPage,
+        props: true,
     },
     {
 

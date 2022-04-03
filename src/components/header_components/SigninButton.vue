@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/profile"><button type="button" id = "loggedIn" class="btn btn-primary" v-if="user">Welcome, {{username}}</button></router-link>
+    <button type="button" id = "loggedIn" class="btn btn-primary" v-if="user" @click="directToProfile">Welcome, {{username}} </button>
     <router-link to="/login"><button type="button" class="btn btn-primary" v-if="!user">Sign-in/Sign-up</button></router-link>
 
 </template>
@@ -20,8 +20,16 @@ export default {
             if (user) {
                 this.user = user;
                 this.username = user.displayName
+                this.userID = user.uid
             }
         })
+    },
+
+    methods: {
+        directToProfile() {
+            const profileID = this.user.uid
+            this.$router.push({name: "Profile", params: {id: profileID}})
+        }
     }
 }
 </script>

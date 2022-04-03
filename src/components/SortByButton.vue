@@ -2,10 +2,8 @@
 <div class="select">
             <select name="slct" id="slct">
                 <option value="1">Sort by: Relevancy</option>
-                <option value="2">Sort by: ??</option>
-                <option value="3">Sort by: ??</option>
-                <option value="4">Sort by: ??</option>
-                <option value="5">Sort by: ??</option>
+                <option value="2">Sort by: Price</option>
+                <option value="3">Sort by: Ratings</option>
             </select>
         </div>
 </template>

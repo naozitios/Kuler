@@ -4,15 +4,15 @@
             <form>
                 <p class = "filterTitle">Format</p>
                 <label class="container">All
-                <input type="radio" checked="checked" name="filterFormat" value = "all">
+                <input type="radio" checked="checked" name="filterFormat" @click="filterFormat('All')" value = "all">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Digital Only
-                <input type="radio" name="filterFormat" value = "digitalOnly">
+                <input type="radio" name="filterFormat" value = "digitalOnly" @click="filterFormat('Digital')" >
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Physical Only
-                <input type="radio" name="filterFormat" value = "physical Only">
+                <input type="radio" name="filterFormat" value = "physical Only" @click="filterFormat('Physical')">
                 <span class="checkmark"></span>
                 </label>
             </form>
@@ -21,31 +21,31 @@
             <form>
                 <p class = "filterTitle">Category</p>
                 <label class="container">All
-                <input type="radio" name="filterCategory" value = "CategoryAll" @click="goToAll" id = "categoryAll"> 
+                <input type="radio" name="filterCategory" value = "CategoryAll" @click="filterBy(0)" id = "categoryAll"> 
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Icons
-                <input type="radio" name="filterCategory" value = "Category Icons" @click="goToIcons" id = "categoryIcons">
+                <input type="radio" name="filterCategory" value = "Category Icons" @click="filterBy(1)" id = "categoryIcons">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Photography
-                <input type="radio" name="filterCategory" value = "Category Photography" @click="goToPhotography" id = "categoryPhotography">
+                <input type="radio" name="filterCategory" value = "Category Photography" @click="filterBy(2)" id = "categoryPhotography">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Collectibles
-                <input type="radio" name="filterCategory" value = "Category Collectibles" @click="goToCollectibles" id = "categoryCollectibles">
+                <input type="radio" name="filterCategory" value = "Category Collectibles" @click="filterBy(3)" id = "categoryCollectibles">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Audio
-                <input type="radio" name="filterCategory" value = "Category Audio" @click="goToAudio" id = "categoryAudio">
+                <input type="radio" name="filterCategory" value = "Category Audio" @click="filterBy(4)" id = "categoryAudio">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Videos
-                <input type="radio" name="filterCategory" value = "Category Videos" @click="goToVideos" id = "categoryVideos">
+                <input type="radio" name="filterCategory" value = "Category Videos" @click="filterBy(5)" id = "categoryVideos">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Vintage
-                <input type="radio" name="filterCategory" value = "Category Vintage" @click="goToVintage" id = "categoryVintage">
+                <input type="radio" name="filterCategory" value = "Category Vintage" @click="filterBy(6)" id = "categoryVintage">
                 <span class="checkmark"></span>
                 </label>
             </form>
@@ -55,59 +55,25 @@
 <script>
 export default {
   methods: {
-    goToVintage() {
-      this.status = "Category Vintage"
-      document.getElementById("categoryAll").checked = true;
+    filterBy(category) {
+        this.category = category
+        this.$emit('changeCategory', this.category)
     },
-    goToVideos() {
-      this.status = "Category Videos"
-    },
-    goToAudio() {
-      this.status = "Category Audio"
-    },
-    goToCollectibles() {
-      this.status = "Category Collectibles"
-    },
-    goToPhotography() {
-      this.status = "Category Photography"
-    },
-    goToIcons() {
-      this.status = "Category Icons"
-    },
-    goToAll() {
-      this.status = "CategoryAll"
+    filterFormat(format) {
+        this.format = format
+        this.$emit('changeFormat', this.format)
     }
     
   },
-  props: {
-    category: Number
-  },
-  watch: {
-    status(val) {
-      this.$router.push({name: val})
-    }
-  },
+
   data() {
     return {
-      status: ""
+      category: 0,
+      format: "All"
     }
   },
   mounted() {
-    if(this.category == 0) {
-      document.getElementById("categoryAll").checked = true;
-    } else if(this.category == 1) {
-      document.getElementById("categoryIcons").checked = true;
-    } else if(this.category == 2) {
-      document.getElementById("categoryPhotography").checked = true;
-    } else if(this.category == 3) {
-      document.getElementById("categoryCollectibles").checked = true;
-    } else if(this.category == 4) {
-      document.getElementById("categoryAudio").checked = true;
-    } else if(this.category == 5) {
-      document.getElementById("categoryVideos").checked = true;
-    } else if(this.category == 6) {
-      document.getElementById("categoryVintage").checked = true;
-    }
+    document.getElementById("categoryAll").checked = true;
   }
 }
 </script>

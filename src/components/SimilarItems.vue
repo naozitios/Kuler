@@ -16,9 +16,7 @@ export default {
     components:{
     CarouselScrollTopPicks
   },
-  data(){
-    
-  },
+
   methods:{
    
   }

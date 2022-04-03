@@ -18,19 +18,24 @@
     </div>
      
 </div>
-<div id="authorizedStatus">
+<div id="authorizedStatus" v-if="this.authorised">
     <div id="authorizedIcon">
     <img class="smallIcon" src="@/assets/authorized_icon.png" alt="Authorized Seller">
     </div>
     <div id="authorizedText">
     <h6 id="authorized" class="left-flush"><b>Authorized Seller</b></h6>
     </div>
-    
-    
-    
+</div>
+<div id="notAuthorizedStatus" v-else>
+    <div id="notAuthorizedIcon">
+    <img class="smallIcon" src="@/assets/not_authorized_icon.png" alt="Authorized Seller">
+    </div>
+    <div id="notAuthorizedText">
+    <h6 id="notAuthorized" class="left-flush"><b>Not authorized</b></h6>
+    </div>
 </div>
 <div id="button">
-    <router-link to="/reLogin"><button type="submit" class="btn btn-primary">Edit Profile</button></router-link>
+   <button type="submit" class="btn btn-primary" v-if="this.isOwner" @click="editProfile">Edit Profile</button>
 </div>
 <div id="bioText" class="left-flush">
     <h6>{{this.bio}} </h6>
@@ -52,6 +57,9 @@ export default {
   components:{
     StarRatingContinuous
   },
+  props: {
+      profileID: String
+  },
   data(){
         return {
             user: false,
@@ -60,15 +68,21 @@ export default {
             // country:"",
             bio:"",
             displayName:"",
-            photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg"
+            totalRating: 0,
+            numberOfReviews: 0,
+            rating: 0,
+            photo:"https://i.ibb.co/RTwGc3g/user-pic2.jpg",
+            authorised: false,
+            isOwner: null
         }
     },
     methods:{
         async prefill(){
-            const docRef = await getDoc(doc(db, "users", this.user.uid));
+            const docRef = await getDoc(doc(db, "users", this.profileID));
             const docData = docRef.data()
             this.bio = docData.bio
             this.displayName = docData.display_name
+            this.authorised = docData.authorised
             if (docData.photo!=null) {
                 this.photo = docData.photo
             }
@@ -83,7 +97,7 @@ export default {
           const sellerRatings = await getDocs(collection(db, "productratings"))
           sellerRatings.forEach((doc) => {
               const dataRef = doc.data()
-              if (dataRef.user_id_seller === this.sellerID) { // only pull out product ratings belonging to
+              if (dataRef.user_id_seller === this.profileID) { // only pull out product ratings belonging to the person
                 const starArray = dataRef.num_stars
                 this.numberOfReviews += dataRef.reviews
                 for (var i = 0; i < starArray.length; i++) {
@@ -91,8 +105,26 @@ export default {
                 }
               }
           })
-          this.rating = (this.totalRating / this.numberOfReviews)
+          if (this.numberOfReviews == 0) {
+              this.rating = 0
+          } else {
+              this.rating = (this.totalRating / this.numberOfReviews)
+          }
+          
 
+        },
+
+        checkOwner() {
+            if (this.profileID === this.user.uid) {
+                this.isOwner = true;
+            } else {
+                this.isOwner = false;
+            }
+        },
+
+        editProfile() {
+            const profileID = this.profileID
+            this.$router.push({name: "Edit Profile", params: {id: profileID}})
         }
     },
     mounted(){
@@ -100,9 +132,15 @@ export default {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 this.user = user
-                this.prefill();
+                this.prefill()
+                .then(() => {this.checkOwner()})
+                
             }
-         })   
+         })
+        if (!this.user) {
+            this.prefill()
+            this.isOwner = false;
+        }
       
     
     }
@@ -121,6 +159,9 @@ export default {
 #authorized{
     color: #F37381;
 }
+#notAuthorized{
+    color: grey;
+}
 .smallIcon{
     float:left;
     height: 20px;
@@ -134,8 +175,9 @@ export default {
 }
 #rating{
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: center;
+    text-align: center;
 }
 #ratingTextNumber{
     flex-grow: 0;
@@ -149,10 +191,11 @@ export default {
     flex-grow: 0;
     /* align-content: flex-start; */
     justify-content: center;
+    text-align: center;
     padding: 0em 0em 0em 0.5em;
     flex-basis: 3;
 }
-#authorizedIcon{
+#authorizedIcon, #notAuthorizedIcon{
     flex-grow: 0;
     /* padding: 2em; */
     flex-basis: 2;
@@ -161,14 +204,14 @@ export default {
     /* justify-content: center;
   align-content: center; */
 }
-#authorizedText{
+#authorizedText, #notAuthorizedText{
     flex-grow: 0;
     /* align-content: flex-start; */
     justify-content: center;
     padding: 0em 0em 0em 0.5em;
     flex-basis: 4;
 }
-#authorized{
+#authorized, #notAuthorized{
     text-align: left;
 }
 #main{
