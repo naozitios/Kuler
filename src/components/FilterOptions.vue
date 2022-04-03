@@ -21,31 +21,31 @@
             <form>
                 <p class = "filterTitle">Category</p>
                 <label class="container">All
-                <input type="radio" checked="checked" name="filterCategory" value = "all" @click="goToAll">
+                <input type="radio" name="filterCategory" value = "CategoryAll" @click="goToAll" id = "categoryAll"> 
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Icons
-                <input type="radio" name="filterCategory" value = "digitalOnly" @click="goToIcons">
+                <input type="radio" name="filterCategory" value = "Category Icons" @click="goToIcons" id = "categoryIcons">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Photography
-                <input type="radio" name="filterCategory" value = "physical Only" @click="goToPhotography">
+                <input type="radio" name="filterCategory" value = "Category Photography" @click="goToPhotography" id = "categoryPhotography">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Collectibles
-                <input type="radio" name="filterCategory" value = "physical Only" @click="goToCollectibles">
+                <input type="radio" name="filterCategory" value = "Category Collectibles" @click="goToCollectibles" id = "categoryCollectibles">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Audio
-                <input type="radio" name="filterCategory" value = "physical Only" @click="goToAudio">
+                <input type="radio" name="filterCategory" value = "Category Audio" @click="goToAudio" id = "categoryAudio">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Videos
-                <input type="radio" name="filterCategory" value = "physical Only" @click="goToVideos">
+                <input type="radio" name="filterCategory" value = "Category Videos" @click="goToVideos" id = "categoryVideos">
                 <span class="checkmark"></span>
                 </label>
                 <label class="container">Vintage
-                <input type="radio" name="filterCategory" value = "physical Only" @click="goToVintage">
+                <input type="radio" name="filterCategory" value = "Category Vintage" @click="goToVintage" id = "categoryVintage">
                 <span class="checkmark"></span>
                 </label>
             </form>
@@ -56,25 +56,58 @@
 export default {
   methods: {
     goToVintage() {
-      this.$router.push({name: "Category Vintage"})
+      this.status = "Category Vintage"
+      document.getElementById("categoryAll").checked = true;
     },
     goToVideos() {
-      this.$router.push({name: "Category Videos"})
+      this.status = "Category Videos"
     },
     goToAudio() {
-      this.$router.push({name: "Category Audio"})
+      this.status = "Category Audio"
     },
     goToCollectibles() {
-      this.$router.push({name: "Category Collectibles"})
+      this.status = "Category Collectibles"
     },
     goToPhotography() {
-      this.$router.push({name: "Category Photography"})
+      this.status = "Category Photography"
     },
     goToIcons() {
-      this.$router.push({name: "Category Icons"})
+      this.status = "Category Icons"
     },
     goToAll() {
-      this.$router.push({name: "CategoryAll"})
+      this.status = "CategoryAll"
+    }
+    
+  },
+  props: {
+    category: Number
+  },
+  watch: {
+    status(val) {
+      console.log(1)
+      this.$router.push({name: val})
+    }
+  },
+  data() {
+    return {
+      status: ""
+    }
+  },
+  mounted() {
+    if(this.category == 0) {
+      document.getElementById("categoryAll").checked = true;
+    } else if(this.category == 1) {
+      document.getElementById("categoryIcons").checked = true;
+    } else if(this.category == 2) {
+      document.getElementById("categoryPhotography").checked = true;
+    } else if(this.category == 3) {
+      document.getElementById("categoryCollectibles").checked = true;
+    } else if(this.category == 4) {
+      document.getElementById("categoryAudio").checked = true;
+    } else if(this.category == 5) {
+      document.getElementById("categoryVideos").checked = true;
+    } else if(this.category == 6) {
+      document.getElementById("categoryVintage").checked = true;
     }
   }
 }
