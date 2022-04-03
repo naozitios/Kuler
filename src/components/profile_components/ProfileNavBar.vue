@@ -44,14 +44,12 @@ export default {
 
         directToReviews() {
             const profileID = this.profileID
-            console.log(profileID)
             this.$router.push({name: "Profile Reviews", params: {id: profileID}})
             
         },
 
         directToListings() {
             const profileID = this.profileID
-            console.log(profileID)
             this.$router.push({name: "Profile", params: {id: profileID}})
             
         },

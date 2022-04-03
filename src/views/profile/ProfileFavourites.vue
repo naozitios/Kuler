@@ -24,8 +24,8 @@
   <!-- <ProfileBiography/> -->
   </div>
   <div class = "listings">
-      <!-- <FilterOptions/> -->
-      <Listings :category="category" :userFavID="profileUserID"/>
+      <FilterProfile @changeCategory="changeCategory($event)" @changeFormat="changeFormat($event)"/>
+      <Listings :category="category" :format="format" :userFavID="profileUserID" :key="componentKey"/>
   </div>
 </template>
 
@@ -35,6 +35,7 @@ import ProfileBiography from '@/components/profile_components/ProfileBiography.v
 import ProfileNavBar from '@/components/profile_components/ProfileNavBar.vue';
 import Listings from '@/components/Listings.vue'
 import SortByButton from '@/components/SortByButton.vue'
+import FilterProfile from '@/components/profile_components/FilterProfile.vue'
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 
@@ -45,20 +46,30 @@ export default {
     ProfileBiography,
     ProfileNavBar,
     Listings,
-    SortByButton
+    SortByButton,
+    FilterProfile
 
   },
   data(){
     return {
       category: 0,
+      format: "All",
       currentUser: null,
       profileUserID: this.$route.params.id,
-      isVisible: null
+      isVisible: null,
+      componentKey: 0
      }
     
   },
   methods:{
-   
+   changeCategory(category) {
+      this.category = category
+      this.componentKey += 1
+   },
+   changeFormat(format) {
+     this.format = format
+     this.componentKey += 1
+   }
   },
 
   mounted() {
@@ -72,7 +83,6 @@ export default {
                   this.isVisible = false
                 }
             }
-            console.log(this.profileUserID)
         })
       
   }

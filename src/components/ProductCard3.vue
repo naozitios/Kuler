@@ -53,7 +53,7 @@ export default {
   },
   mounted() {
       this.updatePictures();
-      console.log(this.coverPicture)
+      //console.log(this.coverPicture)
   }
 }
 </script>
