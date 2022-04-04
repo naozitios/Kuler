@@ -37,9 +37,7 @@ import { setDoc, doc, updateDoc, getDoc} from "firebase/firestore";
 
 export default {
     name: 'App',
-    props: {
-        productID: String
-    },
+    
     data() {
         return {
             user: false,
@@ -57,18 +55,7 @@ export default {
         })
     },
 
-    emits:["reviewForm"],
-
-    watch: {
-        productNumber: async function() {
-            let z = document.getElementById('reviewForm').value
-            console.log(document.getElementById('reviewForm').value)
-            const docRef = doc(db, "productratings", this.productID)
-            await updateDoc(docRef, {
-                description: z
-            });
-        }
-    },
+    
     methods: {
         async addReview() {
             var stars = null
@@ -77,18 +64,13 @@ export default {
             console.log(stars)
             console.log(description)
             console.log(this.productID)
-            const reviewDoc = doc(db, "productratings", this.productID)
-            const reviewDocRef = await getDoc(reviewDoc)
-            const reviewData = reviewDocRef.data()
-            var reviewCount = reviewData.reviews
-            var today = new Date();
             var dateToday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
             const reviewsRef = await setDoc(doc(db, "productratings", this.productID), {
                 date: dateToday,
                 description: description,
                 num_stars: stars,
-                reviews: reviewCount + 1,
-                user_id_buyer: this.user.uid
+                reviews: increment(1),
+                user_id_buyer: arrayUnion(this.user.uid)
             }) .then(() => console.log(reviewsRef))
 
 
