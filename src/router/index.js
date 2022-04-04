@@ -16,6 +16,7 @@ import ProductPage from '@/views/ProductPage.vue'
 import FrequentlyAskedQuestions from '@/views/FrequentlyAskedQuestions.vue'
 import ReLogin from '@/views/ReLoginPage.vue'
 import SignOut from '@/views/SignOut.vue'
+import ReviewFormPage from '@/views/ReviewFormPage.vue'
 
 
 /*List of Category pages in nav bar*/
@@ -108,6 +109,7 @@ const routes = [
         name: 'Frequently Asked Questions',
         component: FrequentlyAskedQuestions
     },
+    
     /* Category pages */
     {
         path: '/categoryAll',
@@ -149,6 +151,12 @@ const routes = [
         name: 'Product Page',
         component: ProductPage,
         props: true,
+    },
+    {
+        path: '/productPage/:id/reviewForm',
+        name: 'Review Form',
+        component: ReviewFormPage,
+        props:true,
     },
     {
 

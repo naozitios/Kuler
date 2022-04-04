@@ -10,6 +10,9 @@
               
               <StarRatingContinuous :rating ="averageRating"/>
           </div>
+          <div id = "leaveReview">
+                <router-link to="/ReviewForm">Leave a Review</router-link>
+          </div>
       </div>
    <div class = "allReviews" v-if="this.areThereReviews">
             <div class = "big-container" v-for="i in reviewCount" :key="ratings[i]">
@@ -282,6 +285,24 @@ export default {
 
 #description  {
     text-align: left;
+}
+
+a {
+    -moz-transition: color 0.2s ease, border-bottom 0.2s ease;
+    -webkit-transition: color 0.2s ease, border-bottom 0.2s ease;
+    -ms-transition: color 0.2s ease, border-bottom 0.2s ease;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+    text-decoration: none;
+    /* border-bottom: dotted 1px; */
+    color: inherit;
+}
+
+a:hover {
+    border-bottom-color: transparent;
+}
+#leaveReview {
+    margin-left: 2%;
+    margin-top: 0.5%
 }
 
 </style>

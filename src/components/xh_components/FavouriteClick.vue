@@ -58,7 +58,7 @@ export default {
                 // date
                 var today = new Date();
                 var todaysDate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-
+                
 
                 if (this.index == 0) { // index is 0, means we need to remove from favourites
                     // remove productID from user's userfavourites
