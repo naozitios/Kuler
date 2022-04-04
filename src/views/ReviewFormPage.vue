@@ -1,6 +1,6 @@
 <template>
     <div class = "big-container">
-        <ReviewForm :productID = "productID"/>
+        <ReviewForm :productID ="productID"/>
     </div>
 </template>
 
@@ -14,7 +14,7 @@ export default {
    },
    data() {
        return {
-           productID: this.$router.params.id
+           productID: this.$route.params.id
        }
    }
 }
