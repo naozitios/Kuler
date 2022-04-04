@@ -8,7 +8,7 @@
   <div class="container pt-3" div="details">
     <div class="row">
       <div class="col-lg-2">
-        <FilterOptions :category="category"/>
+        <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
       </div>
       <div class="col-lg-10">
         <Listings :category="category" />
@@ -27,6 +27,17 @@ export default {
     FilterOptions,
     SortByButton,
     Listings,
+  },
+    methods: {
+    changeAll() {
+      console.log("ALLL")
+    },
+        changeDigital() {
+      console.log("DIGITALLL")
+    },
+        changePhysical() {
+      console.log("PHYSICALLL")
+    }
   },
   data() {
     return {
