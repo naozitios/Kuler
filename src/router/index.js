@@ -154,7 +154,7 @@ const routes = [
     },
     {
         path: '/productPage/:id/reviewForm',
-        name: 'Review Form',
+        name: 'ReviewFormPage',
         component: ReviewFormPage,
         props:true,
     },

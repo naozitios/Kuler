@@ -11,7 +11,7 @@
               <StarRatingContinuous :rating ="averageRating"/>
           </div>
           <div id = "leaveReview">
-                <router-link to="/ReviewForm">Leave a Review</router-link>
+                <h5 @click="checkReviewer" style="cursor:pointer;">Leave a Review</h5>
           </div>
       </div>
    <div class = "allReviews" v-if="this.areThereReviews">
@@ -224,6 +224,18 @@ export default {
             this.totalPages = 4
         } else {
             this.totalPages = Math.ceil(this.reviewCount / 3)
+        }
+    },
+    async checkReviewer() {
+        const reviewDoc = doc(db, "productratings", this.productNumber)
+        const reviewDocRef = await getDoc(reviewDoc)
+        const reviewData = reviewDocRef.data()
+        const productID = this.productNumber
+        if (reviewData.reviewer_id.includes(this.user.uid)) {
+            alert("You have already left a review.")
+            this.$router.push({name: "ProductPage"})
+        } else{
+            this.$router.push({name: "ReviewFormPage", params: {id: productID}})
         }
     }
   }

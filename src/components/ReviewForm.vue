@@ -4,7 +4,7 @@
         <label for= "leaveAReview">Leave a Review</label>
         <br>
         <span class="star-rating" id="star-rating">
-        <input type="radio" name="rating1" value="0.5"><i></i>
+        <input type="radio" name="rating1" value="0.5" checked><i></i>
         <input type="radio" name="rating1" value="1"><i></i>
         <input type="radio" name="rating1" value="1.5"><i></i>
         <input type="radio" name="rating1" value="2"><i></i>
@@ -31,65 +31,53 @@ import firebaseApp from '../firebase.js';
 import {getFirestore} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-import { setDoc, doc, updateDoc, getDoc} from "firebase/firestore";
+import {arrayUnion, doc, updateDoc, increment} from "firebase/firestore";
 
 
 
 export default {
     name: 'App',
-    props: {
-        productID: String
-    },
+    
     data() {
         return {
             user: false,
             
             
+            
         }
+    },
+    props: {
+      productID:String
     },
     mounted() {
         this.addReview();
         const auth = getAuth()
-        onAuthStateChanged(auth, (user) => { //how to get this user id?
+        onAuthStateChanged(auth, (user) => { 
             if (user) {
                 this.user = user
             }
         })
     },
 
-    emits:["reviewForm"],
-
-    watch: {
-        productNumber: async function() {
-            let z = document.getElementById('reviewForm').value
-            console.log(document.getElementById('reviewForm').value)
-            const docRef = doc(db, "productratings", this.productID)
-            await updateDoc(docRef, {
-                description: z
-            });
-        }
-    },
+    
     methods: {
         async addReview() {
-            var stars = null
-            stars = document.querySelector('input[name="rating1"]:checked').value
+            var stars = document.querySelector('input[name="rating1"]:checked').value
             var description = document.getElementById("reviewForm").value
             console.log(stars)
             console.log(description)
             console.log(this.productID)
-            const reviewDoc = doc(db, "productratings", this.productID)
-            const reviewDocRef = await getDoc(reviewDoc)
-            const reviewData = reviewDocRef.data()
-            var reviewCount = reviewData.reviews
+            const productID = this.productID
             var today = new Date();
             var dateToday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
-            const reviewsRef = await setDoc(doc(db, "productratings", this.productID), {
+            const reviewsRef = await updateDoc(doc(db, "productratings", this.productID), {
                 date: dateToday,
                 description: description,
                 num_stars: stars,
-                reviews: reviewCount + 1,
-                user_id_buyer: this.user.uid
-            }) .then(() => console.log(reviewsRef))
+                reviews: increment(1),
+                reviewer_id: arrayUnion(this.user.uid)
+            }) .then(() => console.log(reviewsRef)).then(()=> this.$router.push({name: "Product Page", params: {id: productID}}))
+            
 
 
         }
