@@ -15,13 +15,13 @@ export default {
 
     .logo {
         
-        position: relative;
+        /* position: relative;
         display: inline;
-        padding: 2em  2em 0em 2em;
+        padding: 2em  2em 0em 2em; */
 
     }
     .logo img {
-        width:10%;
+        width:100%;
         height: auto;
     }
 

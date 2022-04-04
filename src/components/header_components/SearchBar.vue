@@ -10,7 +10,7 @@
         </router-link>
     </div> -->
 <div class="search">
-  <form action="/CategoryAll">
+  <form id = "form1" action="/CategoryAll">
     <!-- <label for="address">Search for art: </label> -->
     <div id = "searchContainer">
       <div id = "inputBox">
@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style scoped>
+#form1 {
+  width:100%
+}
     #searchContainer {
       display: flex;
     flex-direction: row;
