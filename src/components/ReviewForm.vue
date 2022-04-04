@@ -67,6 +67,7 @@ export default {
             console.log(stars)
             console.log(description)
             console.log(this.productID)
+            const productID = this.productID
             var today = new Date();
             var dateToday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
             const reviewsRef = await updateDoc(doc(db, "productratings", this.productID), {
@@ -75,7 +76,8 @@ export default {
                 num_stars: stars,
                 reviews: increment(1),
                 reviewer_id: arrayUnion(this.user.uid)
-            }) .then(() => console.log(reviewsRef))
+            }) .then(() => console.log(reviewsRef)).then(()=> this.$router.push({name: "Product Page", params: {id: productID}}))
+            
 
 
         }
