@@ -42,9 +42,9 @@ export default {
     background-color: #EFEFEF;
     color: #636363;
     border: None;
-    margin: 0.5em;
+    /* margin: 0.5em; */
     border-radius: 3vh;
-    padding: 0.5em 2em 0.5em 2em;
+    /* padding: 0.5em 2em 0.5em 2em; */
     width: 14vw;
     height: 6vh;
     /* white-space:normal !important;

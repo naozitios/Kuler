@@ -37,7 +37,7 @@ export default {
     img{
         width:30px;
         height:auto;
-        margin: 0.5em;
+        /* margin: 0.5em; */
         cursor: pointer
     }
 </style>

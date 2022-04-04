@@ -39,9 +39,9 @@ export default {
     .btn-primary {
     background-color: #F37381;
     border: None;
-    margin: 1em;
+    /* margin: 1em; */
     border-radius: 3vh;
-    padding: 0.5em 0.5em 0.5em 0.5em;
+    padding: 0.5em 1em 0.5em 1em;
     width: 6vw;
     height: 6vh;
 }
