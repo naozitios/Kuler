@@ -31,6 +31,7 @@ import {
   doc,
   query,
   where,
+  orderBy,
 } from "firebase/firestore";
 
 const db = getFirestore(firebaseApp);
@@ -46,10 +47,14 @@ export default {
     userFavID: String,
     historyID: String,
     format: String,
+    sort: Number,
   },
   watch: {
     format: function () {
-      this.getProducts()
+      this.getProducts();
+    },
+    sort: function () {
+      this.getProducts();
     },
   },
   data() {
@@ -70,21 +75,20 @@ export default {
   },
   methods: {
     async getProducts() {
-      this.products = []
+      this.products = [];
       let productsCollection;
-      console.log(this.products);
       if (this.format == "") {
         //if there is no format to render
         if (this.category == 0) {
           if (this.isEmptyOrSpaces(this.msg)) {
             console.log("empty or undefined");
-            productsCollection = collection(db, "products");
+            productsCollection = query(collection(db, "products"));
           } else {
             console.log(this.msg);
             productsCollection = query(
               collection(db, "products"),
               where("caption", ">=", this.msg),
-              where("caption", "<=", this.msg + "\uf8ff"),
+              where("caption", "<=", this.msg + "\uf8ff")
             );
           }
         } else {
@@ -93,10 +97,13 @@ export default {
           productsCollection = query(
             collection(db, "products"),
             where("category_id", "==", this.category),
+            orderBy("price")
           );
         }
-      } else { //else add the format filter
-        console.log(this.format)
+      } else {
+        //else add the format filter
+        console.log(this.format);
+        console.log(productsCollection.data());
         if (this.category == 0) {
           //if you want to show all
           if (this.isEmptyOrSpaces("text")) {
@@ -129,9 +136,23 @@ export default {
             ...user.data(),
             id: product.id,
           });
+          if (this.sort == 1) {
+            this.products.sort(function (a, b) {
+              return a.price - b.price;
+            });
+          } else if (this.sort == 2) {
+            this.products.sort(function (a, b) {
+              return a.timestamp - b.timestamp;
+            });
+          } else {
+            this.products.sort(function (a, b) {
+              return a.id - b.id;
+            });
+          }
         });
       });
     },
+
     async getUser(user_id) {
       return await getDoc(doc(db, "users", user_id));
     },

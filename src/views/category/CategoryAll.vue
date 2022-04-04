@@ -3,7 +3,7 @@
     <img src="@/assets/banner-Results.jpg" alt="Banner" class="img-fluid" />
   </div>
   <div class="row">
-    <div class="col-md-4 offset-md-8"><SortByButton /></div>
+    <div class="col-md-4 offset-md-8"><SortByButton @sortByRating = "ratingSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" /></div>
   </div>
   <div class="container pt-3" div="details">
     <div class="row">
@@ -11,7 +11,7 @@
         <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
       </div>
       <div class="col-lg-10">
-        <Listings :category="category" :msg="passMsg" :format="format"/>
+        <Listings :category="category" :msg="passMsg" :format="format" :sort="sort" />
       </div>
     </div>
   </div>
@@ -49,12 +49,22 @@ export default {
     },
         changePhysical() {
       this.format = "Physical"
+    }, 
+    ratingSort() {
+      this.sort = 2
+    }, 
+    priceSort() {
+      this.sort = 1
+    },
+    relevanceSort() {
+      this.sort = 0
     }
   },
   data() {
     return {
       category: 0,
       format: "",
+      sort: 0
     };
   },
   computed: {
