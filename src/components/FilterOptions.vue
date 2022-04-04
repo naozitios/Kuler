@@ -148,15 +148,12 @@ export default {
       this.status = "CategoryAll";
     },
     showall() {
-      console.log("showall");
        this.$emit("showall", "show all products")
     },
     showdigital() {
-      console.log("showdigital");
        this.$emit("showdigital", "show the digital products")
     },
     showphysical() {
-      console.log("showphysical");
       this.$emit("showphysical", "show the physical products")
     },
   },

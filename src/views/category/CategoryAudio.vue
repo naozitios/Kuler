@@ -30,13 +30,13 @@ export default {
   },
     methods: {
     changeAll() {
-      console.log("ALLL")
+      console.log("")
     },
         changeDigital() {
-      console.log("DIGITALLL")
+      console.log("")
     },
         changePhysical() {
-      console.log("PHYSICALLL")
+      console.log("")
     }
   },
   data() {
