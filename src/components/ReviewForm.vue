@@ -71,16 +71,18 @@ export default {
             var today = new Date();
             var dateToday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
             const reviewsRef = await updateDoc(doc(db, "productratings", this.productID), {
-                date: dateToday,
-                description: description,
-                num_stars: stars,
+                date: arrayUnion(dateToday),
+                description: arrayUnion(description),
+                num_stars: arrayUnion(stars),
                 reviews: increment(1),
-                reviewer_id: arrayUnion(this.user.uid)
+                user_id_buyer: arrayUnion(this.user.uid)
             }) .then(() => console.log(reviewsRef)).then(()=> this.$router.push({name: "Product Page", params: {id: productID}}))
-            
+            location.reload();
+            return false
 
 
         }
+        
     }
     
 }
