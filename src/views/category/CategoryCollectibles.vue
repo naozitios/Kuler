@@ -8,46 +8,49 @@
   <div class="container pt-3" div="details">
     <div class="row">
       <div class="col-lg-2">
-        <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
+        <FilterOptions
+          :category="category"
+          @showall="changeAll"
+          @showdigital="changeDigital"
+          @showphysical="changePhysical"
+        />
       </div>
       <div class="col-lg-10">
-<Listings :category="category" :msg="passMsg" :format="format"/>
+        <Listings :category="category" :format="format" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import FilterOptions from '@/components/FilterOptions.vue'
-import SortByButton from '@/components/SortByButton.vue'
-import Listings from '@/components/Listings.vue'
-
+import FilterOptions from "@/components/FilterOptions.vue";
+import SortByButton from "@/components/SortByButton.vue";
+import Listings from "@/components/Listings.vue";
 
 export default {
-    components: {
-        FilterOptions,
-        SortByButton,
-        Listings
-    },
-      methods: {
-    changeAll() {
-      this.format = ""
-    },
-        changeDigital() {
-      this.format = "Digital"
-    },
-        changePhysical() {
-      this.format = "Physical"
-    }
+  components: {
+    FilterOptions,
+    SortByButton,
+    Listings,
   },
-    data() {
-        return {
-            category: 3,
-            format: "",
-            passMsg: ""
-        }
-    }
-}
+  methods: {
+    changeAll() {
+      this.format = "";
+    },
+    changeDigital() {
+      this.format = "Digital";
+    },
+    changePhysical() {
+      this.format = "Physical";
+    },
+  },
+  data() {
+    return {
+      category: 3,
+      format: "",
+    };
+  },
+};
 </script>
 
 <style scoped>

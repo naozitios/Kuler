@@ -8,10 +8,15 @@
   <div class="container pt-3" div="details">
     <div class="row">
       <div class="col-lg-2">
-        <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
+        <FilterOptions
+          :category="category"
+          @showall="changeAll"
+          @showdigital="changeDigital"
+          @showphysical="changePhysical"
+        />
       </div>
       <div class="col-lg-10">
-        <Listings :category="category" />
+        <Listings :category="category" :format="format" />
       </div>
     </div>
   </div>
@@ -28,20 +33,21 @@ export default {
     SortByButton,
     Listings,
   },
-    methods: {
+  methods: {
     changeAll() {
-      console.log("")
+      this.format = "";
     },
-        changeDigital() {
-      console.log("")
+    changeDigital() {
+      this.format = "Digital";
     },
-        changePhysical() {
-      console.log("")
-    }
+    changePhysical() {
+      this.format = "Physical";
+    },
   },
   data() {
     return {
       category: 4,
+      format: "",
     };
   },
 };
