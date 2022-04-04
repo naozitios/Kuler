@@ -231,9 +231,9 @@ export default {
         const reviewDocRef = await getDoc(reviewDoc)
         const reviewData = reviewDocRef.data()
         const productID = this.productNumber
-        if (reviewData.reviewer_id.includes(this.user.uid)) {
+        if (reviewData.user_id_buyer.includes(this.user.uid)) {
             alert("You have already left a review.")
-            this.$router.push({name: "ProductPage"})
+            this.$router.push({name: "ProductPage", params: {id: productID}})
         } else{
             this.$router.push({name: "ReviewFormPage", params: {id: productID}})
         }
