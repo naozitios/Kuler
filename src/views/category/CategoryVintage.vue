@@ -11,7 +11,7 @@
         <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
       </div>
       <div class="col-lg-10">
-<Listings :category="category" />
+<Listings :category="category" :format="format" />
       </div>
     </div>
   </div>
@@ -31,18 +31,19 @@ export default {
     },
       methods: {
     changeAll() {
-      console.log("ALLL")
+      this.format = "";
     },
-        changeDigital() {
-      console.log("DIGITALLL")
+    changeDigital() {
+      this.format = "Digital";
     },
-        changePhysical() {
-      console.log("PHYSICALLL")
-    }
+    changePhysical() {
+      this.format = "Physical";
+    },
   },
     data() {
         return {
-            category: 6
+            category: 6,
+            format: "",
         }
     }
 }
