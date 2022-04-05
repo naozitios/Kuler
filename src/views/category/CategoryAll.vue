@@ -3,7 +3,7 @@
     <img src="@/assets/banner-Results.jpg" alt="Banner" class="img-fluid" />
   </div>
   <div class="row">
-    <div class="col-md-4 offset-md-8"><SortByButton @sortByRating = "ratingSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" /></div>
+    <div class="col-md-4 offset-md-8"><SortByButton @sortByRating = "ratingSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" @sortByNewest = "newestSort"/></div>
   </div>
   <div class="container pt-3" div="details">
     <div class="row">
@@ -58,6 +58,9 @@ export default {
     },
     relevanceSort() {
       this.sort = 0
+    },
+    newestSort() {
+      this.sort = 3
     }
   },
   data() {
