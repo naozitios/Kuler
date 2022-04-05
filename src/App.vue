@@ -89,15 +89,15 @@ export default {
     flex-grow: 1;
   /* padding-left: 5%; */
   flex-basis: 0;
-  /* padding-left:5%; */
-    padding-top:2%;
+  padding-left:1%;
+    padding-top:2.5%;
   }
   #cart{
     flex-grow: 1;
   /* padding-left: 5%; */
   flex-basis: 0;
   /* padding-left:5%; */
-    padding-top:2%;
+    padding-top:2.5%;
   }
 #app {
   font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
