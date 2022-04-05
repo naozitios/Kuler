@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
           <div class="col-sm-4">
-              <div style="width: 7rem;">
-                  <a href="#" class="productImg"><img class="card-img-top" src="@/assets/sample7.jpg"></a>
+              <div style="width: 7rem;" class="productImg">
+                  <img class="card-img-top" :src="product_cover" @click="goToProduct()" style="height: 7rem;">
               </div>
           </div>
           <div class="col-sm-7">
@@ -23,7 +23,13 @@
     <br>
 </template>
 
+
 <script>
+import firebaseApp from "@/firebase.js";
+import { getFirestore, doc, getDoc, updateDoc} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 export default {
   name: "ProductCard2",
   components: {},
@@ -32,28 +38,69 @@ export default {
       qty: 1,
       price: 0,
       product_title: "",
+      product_cover: null,
+      user: null
     }
   },
   props: {
     editable: Boolean,
     product: Object,
+    product_id: String
   },
   mounted() {
+    const auth = getAuth()
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.user = user
+          }
+        })
     this.getData()
+    
   },
+  emits:['addSubtract'],
+
   methods: {
     getData() {
       this.product_title = this.product.caption
       this.price = this.product.price
       this.qty = this.product.qty
+      this.product_cover = this.product.coverimage
     },
-    add() {
+    
+    async add() {
       this.qty += 1;
+      const userRef = await getDoc(doc(db, "usershoppingcarts", this.user.uid))
+      var mappings = (userRef.data()).products
+      mappings[this.product_id] += 1
+      await updateDoc(doc(db, "usershoppingcarts", this.user.uid), {
+        products: mappings
+      })
+      this.$emit('addSubtract')
     },
-    subtract() {
-      if (this.qty > 0) {
+    async subtract() {
+      if (this.qty > 1) {
         this.qty -= 1;
+        const userRef = await getDoc(doc(db, "usershoppingcarts", this.user.uid))
+        var mappings = (userRef.data()).products
+        mappings[this.product_id] -= 1
+        await updateDoc(doc(db, "usershoppingcarts", this.user.uid), {
+          products: mappings
+        })
+      } else {
+        var check = confirm("Are you sure you want to remove this product?")
+        if (check == true) {
+          const userRef = await getDoc(doc(db, "usershoppingcarts", this.user.uid))
+          var mappings2 = (userRef.data()).products
+          delete mappings2[this.product_id]
+          await updateDoc(doc(db, "usershoppingcarts", this.user.uid), {
+          products: mappings2
+        })
+        }
       }
+      this.$emit('addSubtract')
+    },
+    goToProduct() {
+      this.$router.push({name: "Product Page", params: {id: this.product_id}})
     }
   },
 };
@@ -68,6 +115,7 @@ a {
 .sellerLink:hover {
   opacity: 0.8;
   transition: 0.5s ease;
+  cursor: pointer;
 }
 .productLink {
   color: rgb(0, 0, 0);

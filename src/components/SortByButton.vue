@@ -4,13 +4,14 @@
       <option value="1" @click ="train">Sort by: Relevancy</option>
       <option value="2">Sort by: Lowest Price</option>
       <option value="3">Sort by: Oldest</option>
+      <option value="4">Sort by: Newest</option>
     </select>
   </div>
 </template>
 
 <script>
 export default {
-  emits: ["sortByRating", "sortByPrice", "sortByRelavancy"],
+  emits: ["sortByRating", "sortByPrice", "sortByRelavancy","sortByNewest"],
 
   methods: {
     Sortbyrelevancy() {
@@ -22,18 +23,23 @@ export default {
     Sortbyratings() {
       this.$emit("sortByRating");
     },
+    Sortbynewest() {
+      this.$emit("sortByNewest");
+    },
     onChange: function(e){
     var id = e.target.value;
     //var name = e.target.options[e.target.options.selectedIndex].text;
     // console.log('id ',id );
     // console.log('name ',name );
-    if(id == 1) {
-        this.Sortbyrelevancy()
-    } else if (id == 2) {
-        this.Sortbyprice()
-    } else {
-        this.Sortbyratings()
-    }
+      if(id == 1) {
+          this.Sortbyrelevancy()
+      } else if (id == 2) {
+          this.Sortbyprice()
+      } else if (id == 3) {
+          this.Sortbyratings()
+      } else {
+          this.Sortbynewest()
+      }
     }
   }
 };
