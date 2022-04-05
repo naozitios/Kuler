@@ -50,7 +50,7 @@ export default {
     
     /*Search Bar*/
     .search {
-    width: 100%;
+    width: 120%;
     /* position: relative; */
     display: inline-flex;
     height: 40px;
