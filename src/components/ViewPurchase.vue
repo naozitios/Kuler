@@ -5,7 +5,7 @@
       v-for="product in product_list"
       :key="product.id"
     >
-    <CartCard :editable = 'editable' :product='product'/>
+    <CartCard :editable = 'editable' :product='product' :product_id="product.id" @addSubtract="reRender($event)" :key="componentKey"/>
     </div>
 </div>
 <div class="details">
@@ -44,7 +44,9 @@ export default {
   data(){
     return {
       product_list: [],
-      total_price: 0
+      user: null,
+      total_price: 0,
+      componentKey: 0
     }
   },
   async mounted() {
@@ -55,6 +57,7 @@ export default {
       const auth = getAuth()
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          this.user = user
           this.getProducts(user.uid)
           return user.uid
           }
@@ -69,8 +72,14 @@ export default {
         let product_data = product.data()
         let qty = products[product_id]
         this.total_price += qty * product_data.price
-        this.product_list.push({...product_data, qty})
+        this.product_list.push({...product_data, qty, id: product_id})
       }
+    },
+    reRender() {
+      this.product_list = []
+      this.total_price = 0 // reset!!
+      this.getProducts(this.user.uid)
+      .then(() => this.componentKey += 1)
     }
   }
 }

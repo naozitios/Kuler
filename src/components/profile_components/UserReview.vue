@@ -76,7 +76,7 @@ export default {
           this.user = user
           
         this.mountReviews()
-        .then(() => console.log(this.reviewers));
+        .then(() => console.log(this.totalRating));
        
        }
        if (!this.user) {
