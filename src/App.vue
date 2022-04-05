@@ -20,7 +20,9 @@
     </div>
     
   </div>
+  <div id="nav">
   <NavBar/>
+  </div>
   <router-view/>
 </template>
 
@@ -56,46 +58,46 @@ export default {
     flex-direction: row;
   }
   #logo{
-    flex-grow: 1;
+    flex-grow: 2;
     /* padding-left: 5%; */
     flex-basis: 0;
     padding-left:5%;
-    padding-top:1%;
+    padding-top:2%;
   }
   #search{
-    flex-grow: 6;
+    flex-grow: 12;
   /* padding-left: 5%; */
   flex-basis: 0;
   padding-left:5%;
-    padding-top:1%;
+    padding-top:2%;
   }
   #sell{
-    flex-grow: 2;
+    flex-grow: 1;
   /* padding-left: 5%; */
   flex-basis: 0;
   /* padding-left:5%; */
-    padding-top:1%;
+    padding-top:2%;
   }
   #signup{
     flex-grow: 2;
   /* padding-left: 5%; */
   flex-basis: 0;
-  /* padding-left:5%; */
-    padding-top:1%;
+  padding-left:2%;
+    padding-top:2%;
   }
   #heart{
     flex-grow: 1;
   /* padding-left: 5%; */
   flex-basis: 0;
   /* padding-left:5%; */
-    padding-top:1%;
+    padding-top:2%;
   }
   #cart{
     flex-grow: 1;
   /* padding-left: 5%; */
   flex-basis: 0;
   /* padding-left:5%; */
-    padding-top:1%;
+    padding-top:2%;
   }
 #app {
   font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
@@ -103,5 +105,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 0em;
+}
+#nav{
+  padding-top:1%;;
 }
 </style>
