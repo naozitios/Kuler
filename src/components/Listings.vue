@@ -140,13 +140,17 @@ export default {
             this.products.sort(function (a, b) {
               return a.price - b.price;
             });
-          } else if (this.sort == 2) {
+          } else if (this.sort == 2) { //
             this.products.sort(function (a, b) {
-              return a.timestamp - b.timestamp;
+              return a.id - b.id;
+            });
+          } else if (this.sort == 0) { //relevance
+            this.products.sort(function (a, b) {
+              return a.caption - b.caption;
             });
           } else {
             this.products.sort(function (a, b) {
-              return a.id - b.id;
+              return b.id - a.id;
             });
           }
         });
