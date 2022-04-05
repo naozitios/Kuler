@@ -3,12 +3,12 @@
     <img src="@/assets/banner-Results.jpg" alt="Banner" class="img-fluid" />
   </div>
   <div class="row">
-    <div class="col-md-4 offset-md-8"><SortByButton /></div>
+    <div class="col-md-4 offset-md-8"><SortByButton @sortByRating = "ratingSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" @sortByNewest = "newestSort"/></div>
   </div>
   <div class="container pt-3" div="details">
     <div class="row">
       <div class="col-lg-2">
-<FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
+      <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
       </div>
       <div class="col-lg-10">
         <Listings :category="category" :msg="passMsg" :format="format" :sort="sort" />
