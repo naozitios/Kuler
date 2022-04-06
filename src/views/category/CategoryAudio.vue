@@ -3,7 +3,7 @@
     <img src="@/assets/banner-Results.jpg" alt="Banner" class="img-fluid" />
   </div>
   <div class="row">
-    <div class="col-md-4 offset-md-8"><SortByButton @sortByRating = "ratingSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" @sortByNewest = "newestSort"/></div>
+    <div class="col-md-4 offset-md-8"><SortByButton @sortByOldest = "oldestSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" @sortByNewest = "newestSort" @sortByRating="ratingSort"/></div>
   </div>
   <div class="container pt-3" div="details">
     <div class="row">
@@ -38,7 +38,7 @@ export default {
         changePhysical() {
       this.format = "Physical"
     }, 
-    ratingSort() {
+    oldestSort() {
       this.sort = 2
     }, 
     priceSort() {
@@ -49,6 +49,9 @@ export default {
     },
     newestSort() {
       this.sort = 3
+    },
+    ratingSort() {
+      this.sort = 4
     }
   },
   data() {
