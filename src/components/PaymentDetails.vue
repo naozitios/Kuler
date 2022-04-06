@@ -7,10 +7,12 @@
       <span id="payment">Payment</span>
     </p>
   </div>
-    <div class="col-3">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
       <label for="cardDetails">Card Details: </label><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       <div class="form-group col-md-9">
         <input
           type="text"
@@ -21,22 +23,27 @@
       </div>
     </div>
     <br />
-    <div class="col-3">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
       <label for="nameOnCard">Name on Card: </label><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       <div class="form-group col-md-9">
         <input id="name" type="text" name="nameOnCard" /><br />
       </div>
     </div>
     <br />
-    <div class="col-3"><label for="cvv">CVV: </label><br /></div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
+      <label for="cvv">CVV: </label><br /></div>
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       <div class="form-group col-md-9">
         <input id="name" type="text" name="cvv" /><br />
       </div>
     </div>
-    <PayButton />
+    <PayButton /> <br/>
   <button onclick="history.back()" class="btn-primary">Back</button>
 </template>
 
@@ -52,6 +59,10 @@ export default {
 </script>
 
 <style scoped>
+.formFill{
+  text-align: left;
+  padding-left:10%;
+}
 p {
   font-weight: bold;
 }
