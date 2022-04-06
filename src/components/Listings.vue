@@ -31,7 +31,6 @@ import {
   doc,
   query,
   where,
-  orderBy,
 } from "firebase/firestore";
 
 const db = getFirestore(firebaseApp);
@@ -94,16 +93,15 @@ export default {
         } else {
           //if you want to show certain categories
           //add here
+          
           productsCollection = query(
             collection(db, "products"),
-            where("category_id", "==", this.category),
-            orderBy("price")
+            where("category_id", "==", this.category)
           );
         }
       } else {
         //else add the format filter
         console.log(this.format);
-        console.log(productsCollection.data());
         if (this.category == 0) {
           //if you want to show all
           if (this.isEmptyOrSpaces("text")) {
@@ -140,13 +138,17 @@ export default {
             this.products.sort(function (a, b) {
               return a.price - b.price;
             });
-          } else if (this.sort == 2) {
+          } else if (this.sort == 2) { //
             this.products.sort(function (a, b) {
-              return a.timestamp - b.timestamp;
+              return a.id - b.id;
+            });
+          } else if (this.sort == 0) { //relevance
+            this.products.sort(function (a, b) {
+              return a.caption - b.caption;
             });
           } else {
             this.products.sort(function (a, b) {
-              return a.id - b.id;
+              return b.id - a.id;
             });
           }
         });

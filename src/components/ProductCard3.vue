@@ -7,7 +7,7 @@
     <a href="#" class="productLink"><h4 class="card-title">{{this.productTitle}}</h4></a>
     <a href="#" class="sellerLink"><h5 class="seller-name">{{this.sellerName}}</h5></a>
     <div id="rating">
-    <StarRating/>
+    <StarRatingContinuous :rating="averageRating"/>
     </div>
     <h4 class="card-title">SGD {{this.price}}</h4>
     <div id = "history" v-if="this.quantity">
@@ -21,16 +21,26 @@
 </template>
 
 <script>
-import StarRating from '@/components/StarRating.vue'
+import StarRatingContinuous from '@/components/xh_components/StarRatingContinuous.vue'
+import firebaseApp from "@/firebase.js";
+import {
+  getFirestore,
+  getDoc,
+  doc,
+} from "firebase/firestore";
+
+const db = getFirestore(firebaseApp);
 
 export default {
     name: 'ProductCard3',
   components:{
-    StarRating
+    StarRatingContinuous
   },
   data() {
       return {
-        coverPicture: "@/assets/sample7.jpg"
+        coverPicture: "@/assets/sample7.jpg",
+        averageRating: 0,
+        totalRating: 0
       }
   },
   props: {
@@ -40,7 +50,7 @@ export default {
       coverImage: String,
       productNumber: String,
       quantity: Number,
-      timestamp: String
+      timestamp: String,
   },
   methods:{
       directToProduct() {
@@ -49,10 +59,21 @@ export default {
       },
       async updatePictures() { // i assume that productID is given, i put a hypothethical value of 3
       this.coverPicture = this.coverImage
+    },
+    async updateRating() {
+        const productRatingRef = await getDoc(doc(db, "productratings", this.productNumber))
+        const productRatingData = productRatingRef.data()
+        const productRatingArray = productRatingData.num_stars
+        productRatingArray.forEach(rating => this.totalRating += rating)
+        if (productRatingData.reviews != 0) {
+            this.averageRating = (this.totalRating / productRatingData.reviews).toFixed(2)
+        }
     }
   },
   mounted() {
       this.updatePictures();
+      this.updateRating();
+
       //console.log(this.coverPicture)
   }
 }

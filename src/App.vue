@@ -1,12 +1,28 @@
 <template>
-
-    <KulerLogo/>  
-    <SearchBar/>
-    <SellButton/>
+  <div id="mainContainer">
+    <div id="logo">
+      <KulerLogo/> 
+    </div>
+    <div id="search">
+      <SearchBar/>
+    </div>
+    <div id="sell">
+      <SellButton/>
+    </div>
+    <div id="signup">
     <SigninButton/>
+    </div>
+    <div id="heart">
     <FavouriteButton/>
+    </div>
+    <div id="cart">
     <CartButton/>
-    <NavBar/>
+    </div>
+    
+  </div>
+  <div id="nav">
+  <NavBar/>
+  </div>
   <router-view/>
 </template>
 
@@ -37,11 +53,60 @@ export default {
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+  #mainContainer {
+      display: flex;
+    flex-direction: row;
+  }
+  #logo{
+    flex-grow: 2;
+    /* padding-left: 5%; */
+    flex-basis: 0;
+    padding-left:5%;
+    padding-top:2%;
+  }
+  #search{
+    flex-grow: 12;
+  /* padding-left: 5%; */
+  flex-basis: 0;
+  padding-left:5%;
+    padding-top:2%;
+  }
+  #sell{
+    flex-grow: 1;
+  /* padding-left: 5%; */
+  flex-basis: 0;
+  /* padding-left:5%; */
+    padding-top:2%;
+  }
+  #signup{
+    flex-grow: 2;
+  /* padding-left: 5%; */
+  flex-basis: 0;
+  padding-left:2%;
+    padding-top:2%;
+  }
+  #heart{
+    flex-grow: 1;
+  /* padding-left: 5%; */
+  flex-basis: 0;
+  padding-left:1%;
+    padding-top:2.5%;
+  }
+  #cart{
+    flex-grow: 1;
+  /* padding-left: 5%; */
+  flex-basis: 0;
+  /* padding-left:5%; */
+    padding-top:2.5%;
+  }
 #app {
   font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 0em;
+}
+#nav{
+  padding-top:1%;;
 }
 </style>

@@ -10,10 +10,16 @@
         </router-link>
     </div> -->
 <div class="search">
-  <form action="/CategoryAll">
-    <label for="address">Search for art: </label>
-    <input type="text" id="name" name="name" />
-    <button type="submit" value="Continue to Payment" class="btn btn-primary"><img src="@/assets/search_icon.png" alt="Search" style="width:20px;height:20px;"></button>
+  <form id = "form1" action="/CategoryAll">
+    <!-- <label for="address">Search for art: </label> -->
+    <div id = "searchContainer">
+      <div id = "inputBox">
+        <input type="text" id="name" name="name" class="searchTerm"  placeholder="Search for art"/>
+      </div>
+      <div id = "searchButton">
+        <button type="submit" value="Continue to Payment" class="btn btn-primary"><img src="@/assets/search_icon.png" alt="Search" style="width:20px;height:20px;"></button>
+      </div>
+    </div>
    </form>
 </div>
 </template>
@@ -24,16 +30,34 @@ export default {
 </script>
 
 <style scoped>
+#form1 {
+  width:100%
+}
+    #searchContainer {
+      display: flex;
+    flex-direction: row;
+    }
+    #inputBox{
+      flex-grow: 2;
+      /* padding-left: 5%; */
+      flex-basis: 0;
+    }
+    #searchButton{
+      flex-grow: 2;
+    /* padding-left: 5%; */
+    flex-basis: 0;
+    }
+    
     /*Search Bar*/
     .search {
-    width: 50%;
-    position: relative;
+    width: 120%;
+    /* position: relative; */
     display: inline-flex;
     height: 40px;
     }
 
     .searchTerm {
-    width: 100%;
+    width: 150%;
     background-color: #EFEFEF;
     border: 3px solid #EFEFEF;
     /* border: none; */
@@ -50,7 +74,7 @@ export default {
     color: #EFEFEF;
     } */
 
-    .searchButton {
+    .btn.btn-primary {
     width: 40px;
     height: 40px;
     border: 1px solid #EFEFEF;

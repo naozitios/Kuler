@@ -113,7 +113,7 @@ a:hover {
             vertical-align: middle;
         }
 
-            #nav ul li a {
+            #nav ul li {
                 -moz-transition: font-size 0.2s ease;
                 -webkit-transition: font-size 0.2s ease;
                 -ms-transition: font-size 0.2s ease;
@@ -127,7 +127,7 @@ a:hover {
                 box-shadow: inset 0 0 0 1px transparent;
             }
 
-                #nav ul li a:hover {
+                #nav ul li :hover {
                     background-color: rgba(222, 222, 222, 0.2);
                     color: #F37381;
                 }
