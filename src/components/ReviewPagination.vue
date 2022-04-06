@@ -10,7 +10,7 @@
               
               <StarRatingContinuous :rating ="averageRating"/>
           </div>
-          <div id = "leaveReview" v-if="isVisible()">
+          <div id = "leaveReview" v-show="isVisible()">
                 <h5 @click="checkReviewer" style="cursor:pointer;">Leave a Review</h5>
           </div>
       </div>
@@ -82,7 +82,8 @@ export default {
             reviewNames: [],
             areThereReviews: null,
             profileID: null,
-            totalPages: 0
+            totalPages: 0,
+            
         }
     },
 
@@ -94,6 +95,7 @@ export default {
 
     mounted() {
         const auth = getAuth()
+
         onAuthStateChanged(auth, (user) => {
         if (user) {
           this.user = user
@@ -101,6 +103,8 @@ export default {
           
         this.mountReviews()
         .then(() => this.calculateTotalPages());
+        
+  
        
        }
     }) 
@@ -240,19 +244,28 @@ export default {
         
         }
     },
+    
     async isVisible() {
-        const purchaseDoc = doc(db, "userpurchases", this.user.uid)
-        const purchaseDocRef = await getDoc(purchaseDoc)
-        const purchaseData = purchaseDocRef.data()
-        console.log((this.productNumber).toString())
+        const purchaseDoc = doc(db, "users", this.user.uid)
+        const purchaseDocRef = await getDocs(collection(purchaseDoc, "purchaseHistory"))
+        console.log(purchaseDoc)
+        console.log(purchaseDocRef)
         console.log(this.user.uid)
-        console.log(purchaseData)
-        console.log(purchaseData.products)
-        if (purchaseData.products.includes((this.productNumber).toString())) {
-            return true
-        } else {
-            return false
-        }
+        purchaseDocRef.forEach(async (docs) => {
+            let productData = docs.data();
+            let productPurchases = productData.purchases;
+            // console.log(productPurchases)
+            // console.log(productData)
+            console.log(Object.keys(productPurchases))
+            console.log(this.productNumber)
+            console.log(Object.keys(productPurchases).includes(this.productNumber))
+            if (Object.keys(productPurchases).includes(this.productNumber)) {
+                return true
+            } else {
+                return false
+            }
+        })
+        
     }
     
   }
@@ -331,7 +344,15 @@ a:hover {
 }
 #leaveReview {
     margin-left: 2%;
-    margin-top: 0.5%
+    margin-bottom: 1%;
+    border-radius: 30px;
+    text-align:center;
+    /* border: 0; */
+    position:relative;
+    display: inline-block;
+    padding: 0.2em 0.5em 0em;
+    white-space: nowrap;
+    background-color: #F7F0DD
 }
 
 </style>
