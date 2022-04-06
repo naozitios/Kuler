@@ -34,19 +34,15 @@
     <br/>
     <br/>
     <button type="submit" value="Continue to Shipping"  class="btn btn-primary">Continue to shipping</button>
-    <!-- <ContinueToShippingButton/> -->
   </form>
 </template>
 
 <script>
-// import ContinueToShippingButton from "@/components/ContinueToShippingButton.vue"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
 
 export default {
   name: "OrderDetails",
   components: {
-    // ContinueToShippingButton
   },
   data() {
     return {
@@ -71,13 +67,8 @@ export default {
         } 
       )
     },
-
-      async pushData() {
-        let data = {
-          name: this.name,
-          email: this.email
-        }
-        this.$router.push({name: 'CartShipping', params: data})
+    async pushData() {
+      this.$router.push({name: 'CartShipping', query: {name: this.name, email: this.email}})
     }
   }
 };
