@@ -16,6 +16,9 @@
      Date of Purchase: 
      <br><b><u>{{this.timestamp}}</u></b>
     </div>
+    <div id = "numberOfPurchases" v-if="this.numberOfPurchases">
+        Number of Purchases: {{this.numberOfPurchases}}
+    </div>
   </div>
 </div>
 </template>
@@ -51,6 +54,7 @@ export default {
       productNumber: String,
       quantity: Number,
       timestamp: String,
+      numberOfPurchases: Number
   },
   methods:{
       directToProduct() {
