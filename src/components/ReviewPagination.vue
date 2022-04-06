@@ -10,7 +10,7 @@
               
               <StarRatingContinuous :rating ="averageRating"/>
           </div>
-          <div id = "leaveReview">
+          <div id = "leaveReview" v-if="isVisible()">
                 <h5 @click="checkReviewer" style="cursor:pointer;">Leave a Review</h5>
           </div>
       </div>
@@ -234,10 +234,27 @@ export default {
         if (reviewData.user_id_buyer.includes(this.user.uid)) {
             alert("You have already left a review.")
             this.$router.push({name: "ProductPage", params: {id: productID}})
-        } else{
+        }
+        else {
             this.$router.push({name: "ReviewFormPage", params: {id: productID}})
+        
+        }
+    },
+    async isVisible() {
+        const purchaseDoc = doc(db, "userpurchases", this.user.uid)
+        const purchaseDocRef = await getDoc(purchaseDoc)
+        const purchaseData = purchaseDocRef.data()
+        console.log((this.productNumber).toString())
+        console.log(this.user.uid)
+        console.log(purchaseData)
+        console.log(purchaseData.products)
+        if (purchaseData.products.includes((this.productNumber).toString())) {
+            return true
+        } else {
+            return false
         }
     }
+    
   }
 
 }
