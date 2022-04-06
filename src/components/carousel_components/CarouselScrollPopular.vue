@@ -1,7 +1,7 @@
 <template>
     <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
   
-  <div class="carousel-inner" >
+  <div class="carousel-inner">
     <div class="carousel-item active">
        <div class="row justify-content-start">
       <div
@@ -18,7 +18,7 @@
         :productNumber="product.id"
         :quantity="product.quantity"
         :timestamp="product.timestamp"
-        :numberOfPurchases="product.purchases"
+        :numberOfPurchases="product.purchaseCount"
         align="left"
       />
       </div>
@@ -40,7 +40,7 @@
         :productNumber="product.id"
         :quantity="product.quantity"
         :timestamp="product.timestamp"
-        :numberOfPurchases="product.purchases"
+        :numberOfPurchases="product.purchaseCount"
         align="left"
       />
       </div>
@@ -62,7 +62,7 @@
         :productNumber="product.id"
         :quantity="product.quantity"
         :timestamp="product.timestamp"
-        :numberOfPurchases="product.purchases"
+        :numberOfPurchases="product.purchaseCount"
         align="left"
       />
       </div>
@@ -111,7 +111,6 @@ export default {
 
   mounted() {
     this.getProducts()
-    .then(() => console.log(this.products))
   },
   methods:{
    async getProducts() {
@@ -128,34 +127,29 @@ export default {
         if (docAData.reviews != 0) {
           totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
         }
-        var numberOfPurchases = 0
-        let allUsers = await getDocs(collection(db, "users"))
-        allUsers.forEach(async user => {
-          const docRef = doc(db, "users", user.id)
-          const purchaseDocs = await getDocs(collection(docRef, "purchaseHistory"))
-          purchaseDocs.forEach(async docs => {
-            const purchases = docs.data().purchases
-            if (product.id in purchases) {
-              numberOfPurchases += purchases[product.id]
-            }
-          })
-          
-        })
         this.getUser(user_id).then((user) => {
-          console.log(numberOfPurchases)
+          console.log(product.purchaseCount)
           this.products.push({
             ...product.data(),
             ...user.data(),
             id: product.id,
             rating: totalRatingA,
-            purchases: numberOfPurchases
           })
+        
           this.products.sort(function(a, b) {
-            return b.purchases - a.purchases
-          })
-        })  
+          return b.purchaseCount - a.purchaseCount
+          
      })
+     })
+        
+     })
+     return 1;
      
+   },
+
+   processProducts() {
+     
+     this.isMounted = true
    },
 
    async getUser(user_id) {

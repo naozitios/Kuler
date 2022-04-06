@@ -6,7 +6,7 @@
 
 <script>
 import firebaseApp from "@/firebase.js";
-import { getFirestore, doc, getDoc, setDoc, Timestamp, getDocs, collection } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, Timestamp, getDocs, collection, updateDoc, increment } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const db = getFirestore(firebaseApp);
@@ -51,6 +51,7 @@ export default {
           archive_data[product_id] = qty
       }
       this.archivePurchase(userID, archive_data)
+      this.archiveInProduct(archive_data)
     },
     async archivePurchase(userID, archive_data) {
       let size = 0
@@ -63,6 +64,14 @@ export default {
         purchases: archive_data
         }
       );
+    },
+    async archiveInProduct(archive_data) {
+      for (const [key, value] of Object.entries(archive_data)) {
+        const refs = doc(db, "products", key)
+        await updateDoc(refs, {
+          purchaseCount: increment(value)
+        });
+      }
     },
     async resetCart(userID) {
       let empty_data = {}

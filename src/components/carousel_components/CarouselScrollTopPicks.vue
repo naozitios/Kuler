@@ -178,7 +178,6 @@ export default {
     margin-left: -100%;
   }
 
-
   .carousel-control-next-icon {
     margin-right: -50%;
 
