@@ -8,7 +8,7 @@
     </p>
   </div>
 
-  <form action="/CartPayment">
+  <form id="form" @submit.prevent="pushData" method="GET">
     <!-- <div class="col-3"> -->
       <div class="formFill">
       <label for="address">Shipping Address (Physical items only): </label
@@ -18,8 +18,7 @@
       <!-- <div class="formFill"> -->
         <div class="formFill">
       <div class="form-group col-md-9">
-        
-        <input type="text" id="name" name="name" /><br />
+        <input type="text" id="name" v-model="address" name="name" /><br />
       </div>
     </div>
     <br />
@@ -30,7 +29,7 @@
     <!-- <div class="d-flex justify-content-center"> -->
       <div class="formFill">
       <div class="form-group col-md-9">
-        <input id="name" type="text" name="email" /><br />
+        <input id="name" type="text" v-model="RecepientEmail" name="RecepientEmail" /><br />
       </div>
     </div>
     <br>
@@ -41,25 +40,45 @@
     <!-- <div class="d-flex justify-content-center"> -->
       <div class="formFill">
       <div class="form-group col-md-9">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" v-model="deliveryType" aria-label="Default select example">
+          <option disabled value="">Please select</option>
           <option value="1">Normal delivery</option>
           <option value="2">Express delivery</option>
           <option value="3">On-site collection</option></select>
       </div>
     </div>
-    <ContinueToPaymentButton />
+    <button type="submit" value="Continue to Payment"  class="btn btn-primary">Continue to payment</button>
   </form>
   <button onclick="history.back()" class="btn-primary">Back</button>
 </template>
 
 <script>
-import ContinueToPaymentButton from "@/components/ContinueToPaymentButton.vue";
 
 export default {
   name: "ShippingDetails",
   components: {
-    ContinueToPaymentButton,
   },
+  props: {
+    data: Object
+  },
+  data() {
+    return {
+      RecepientEmail: this.data.email,
+      address: "",
+      deliveryType: 0
+    }
+  },
+  methods: {
+    async pushData() {
+      let updated_data = {
+        ...this.data,
+        address: this.address,
+        deliveryType: parseInt(this.deliveryType),
+        RecepientEmail: this.data.email
+      }
+      this.$router.push({name: 'CartPayment', params: updated_data})
+    }
+  }
 };
 </script>
 <style scoped>
@@ -109,4 +128,5 @@ p {
 .btn-primary:visited {
   background-color: #f37381;
 }
+
 </style>

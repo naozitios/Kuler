@@ -7,6 +7,7 @@
       <span id="payment">Payment</span>
     </p>
   </div>
+  <form id="form" @submit.prevent="pushData" method="GET">
     <!-- <div class="col-3"> -->
       <div class="formFill">
       <label for="cardDetails">Card Details: </label><br />
@@ -43,8 +44,10 @@
         <input id="name" type="text" name="cvv" /><br />
       </div>
     </div>
-    <PayButton /> <br/>
+    <PayButton :data = data /> <br/>
+    </form>
   <button onclick="history.back()" class="btn-primary">Back</button>
+  
 </template>
 
 <script>
@@ -55,6 +58,9 @@ export default {
   components: {
     PayButton,
   },
+  props: {
+    data: Object
+  }
 };
 </script>
 

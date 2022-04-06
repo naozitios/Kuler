@@ -18,6 +18,9 @@ export default {
           process: false
       }
   },
+  props: {
+    data: Object
+  },
   watch: {
     process(finished) {
       if (finished) {
@@ -28,7 +31,6 @@ export default {
   methods: {
     async makePayment() {
         const auth = getAuth()
-
         onAuthStateChanged(auth, async user => {
             if (user) {
                 await this.getProducts(user.uid)
@@ -54,7 +56,11 @@ export default {
       let size = 0
       await getDocs(collection(db, 'users', userID, "purchaseHistory")).then(docs => size = docs.size)
       let purchase_historyID = String(size + 1)
+      console.log(this.data)
+      alert("here")
       await setDoc(doc(db, "users", userID, "purchaseHistory", purchase_historyID), {
+        ...this.data,
+        deliveryType: parseInt(this.data.deliveryType),
         timestamp: Timestamp.fromDate(new Date()),
         purchases: archive_data
         }

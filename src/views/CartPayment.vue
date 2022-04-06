@@ -1,11 +1,11 @@
 <template>   
   <div class="infoSection">
     <div class="userSection">
-      <PaymentDetails/>
+      <PaymentDetails :data='data' />
     </div>
     <div class="productsSection">
       <div id="toCentre">
-        <ViewPurchase :editable='editable'/>
+        <ViewPurchase :editable='editable' />
       </div>
     </div>
   </div>
@@ -19,16 +19,18 @@ import FooterMain from "@/components/footer_components/FooterMain.vue"
 import ViewPurchase from "@/components/ViewPurchase.vue"
 
 export default {
-    components: {
-        PaymentDetails,
-        FooterMain,
-        ViewPurchase
-    },
+  components: {
+      PaymentDetails,
+      FooterMain,
+      ViewPurchase
+  },
   data()  {
     return {
+      data: this.$route.params,
       editable: false
     }
   },
+  
 }
 </script>
 
