@@ -8,20 +8,24 @@
     </p>
   </div>
   <form action="/CartShipping" method="GET">
-  <div class="col-3">
+  <!-- <div class="col-3"> -->
+    <div class="formFill">
     <label for="name">Name: </label><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       
       <div class="form-group col-md-9">
         <input type="text" id="name" name="name" /><br />
       </div>
     </div>
     <br />
-    <div class="col-3">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
     <label for="email>">Email Address: </label><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       
       <div class="form-group col-md-9">
         <input type="text" id="email" name="email" /><br />
@@ -46,6 +50,11 @@ export default {
 </script>
 
 <style scoped>
+.formFill{
+  text-align: left;
+  padding-left:10%;
+}
+
 p {
   font-weight: bold;
 }
