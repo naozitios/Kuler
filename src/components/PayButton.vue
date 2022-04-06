@@ -56,8 +56,6 @@ export default {
       let size = 0
       await getDocs(collection(db, 'users', userID, "purchaseHistory")).then(docs => size = docs.size)
       let purchase_historyID = String(size + 1)
-      console.log(this.data)
-      alert("here")
       await setDoc(doc(db, "users", userID, "purchaseHistory", purchase_historyID), {
         ...this.data,
         deliveryType: parseInt(this.data.deliveryType),
