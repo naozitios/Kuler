@@ -12,6 +12,7 @@
     <label for="name">Name: </label><br />
     </div>
     <div class="d-flex justify-content-center">
+      
       <div class="form-group col-md-9">
         <input type="text" id="name" name="name" /><br />
       </div>
