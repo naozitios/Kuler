@@ -67,4 +67,8 @@ export default {
   color: rgb(206, 204, 204);
   font-weight: normal;
 }
+.formFill{
+  text-align: left;
+  padding-left:10%;
+}
 </style>
