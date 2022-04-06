@@ -5,6 +5,7 @@
       <option value="2">Sort by: Lowest Price</option>
       <option value="3">Sort by: Oldest</option>
       <option value="4">Sort by: Newest</option>
+      <option value="5"> Sort by: Rating </option>
     </select>
   </div>
 </template>
@@ -20,12 +21,16 @@ export default {
     Sortbyprice() {
       this.$emit("sortByPrice");
     },
-    Sortbyratings() {
-      this.$emit("sortByRating");
+    sortByOldest() {
+      this.$emit("sortByOldest");
     },
     Sortbynewest() {
       this.$emit("sortByNewest");
     },
+    sortByRating() {
+      this.$emit("sortByRating")
+    },
+    
     onChange: function(e){
     var id = e.target.value;
     //var name = e.target.options[e.target.options.selectedIndex].text;
@@ -36,9 +41,11 @@ export default {
       } else if (id == 2) {
           this.Sortbyprice()
       } else if (id == 3) {
-          this.Sortbyratings()
-      } else {
+          this.sortByOldest()
+      } else if (id == 4){
           this.Sortbynewest()
+      } else {
+        this.sortByRating()
       }
     }
   }

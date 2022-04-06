@@ -66,7 +66,7 @@ export default {
         const productRatingArray = productRatingData.num_stars
         productRatingArray.forEach(rating => this.totalRating += rating)
         if (productRatingData.reviews != 0) {
-            this.averageRating = (this.totalRating / productRatingData.reviews).toFixed(2)
+            this.averageRating = Number((this.totalRating / productRatingData.reviews).toFixed(2))
         }
     }
   },
