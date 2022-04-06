@@ -32,6 +32,18 @@ export default {
   },
   methods:{
    
+  },
+  props: {
+      productList: Array
+  },
+
+  mounted() {
+      
+  },
+  watch: {
+      productList() {
+          console.log("weehee")
+      }
   }
 }
 </script>

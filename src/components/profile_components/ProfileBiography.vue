@@ -108,7 +108,7 @@ export default {
           if (this.numberOfReviews == 0) {
               this.rating = 0
           } else {
-              this.rating = (this.totalRating / this.numberOfReviews)
+              this.rating = Number((this.totalRating / this.numberOfReviews).toFixed(2))
           }
           
 
