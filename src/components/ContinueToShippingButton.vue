@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style scoped>
-    .btn-primary {
+.btn-primary {
     background-color: #F37381;
     border: None;
     margin: 1em;

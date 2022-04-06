@@ -1,7 +1,7 @@
 <template>
   <div class="infoSection">
     <div class="userSection">
-      <ShippingDetails/>
+      <ShippingDetails :data=data />
     </div>
     <div class="productsSection">
       <div id="contain">
@@ -29,6 +29,7 @@ export default {
   },
   data()  {
     return {
+      data: this.$route.params,
       editable: false
     }
   }

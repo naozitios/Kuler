@@ -7,7 +7,7 @@
       <span id="payment">Payment</span>
     </p>
   </div>
-  <form action="/CartShipping" method="GET">
+  <form id="form" @submit.prevent="pushData" method="GET">
   <!-- <div class="col-3"> -->
     <div class="formFill">
     <label for="name">Name: </label><br />
@@ -16,7 +16,7 @@
       <div class="formFill">
       
       <div class="form-group col-md-9">
-        <input type="text" id="name" name="name" /><br />
+        <input type="text" id="name" v-model="name" name="name" /><br />
       </div>
     </div>
     <br />
@@ -28,24 +28,58 @@
       <div class="formFill">
       
       <div class="form-group col-md-9">
-        <input type="text" id="email" name="email" /><br />
+        <input type="text" id="email" v-model="email" name="email" /><br />
       </div>
     </div>
     <br/>
     <br/>
-    <ContinueToShippingButton/>
+    <button type="submit" value="Continue to Shipping"  class="btn btn-primary">Continue to shipping</button>
+    <!-- <ContinueToShippingButton/> -->
   </form>
 </template>
 
 <script>
-import ContinueToShippingButton from "@/components/ContinueToShippingButton.vue"
+// import ContinueToShippingButton from "@/components/ContinueToShippingButton.vue"
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 export default {
   name: "OrderDetails",
   components: {
-    ContinueToShippingButton
+    // ContinueToShippingButton
   },
-  methods: {},
+  data() {
+    return {
+    user: null,
+    name: "",
+    email: ""
+    }
+  },
+  async mounted() {
+    await this.getUser()
+  },
+  methods: {
+      async getUser() {
+      const auth = getAuth()
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.user = user
+          this.name = user.displayName
+          this.email = user.email
+          return user.uid
+          }
+        } 
+      )
+    },
+
+      async pushData() {
+        let data = {
+          name: this.name,
+          email: this.email
+        }
+        this.$router.push({name: 'CartShipping', params: data})
+    }
+  }
 };
 </script>
 
@@ -82,5 +116,20 @@ p {
 }
 .input {
     border-radius: 20px 20px 20px 20px;
+}
+.btn-primary {
+    background-color: #F37381;
+    border: None;
+    margin: 1em;
+    border-radius: 20px;
+    padding: 0.5em 2em 0.5em 2em;
+}
+
+.btn-primary:hover {
+    background-color: #dd6b79;
+}
+
+.btn-primary:active, .btn-primary:focus, .btn-primary:visited {
+    background-color: #F37381;
 }
 </style>

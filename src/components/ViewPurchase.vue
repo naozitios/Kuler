@@ -68,11 +68,13 @@ export default {
       let cart = await getDoc(doc(db, "usershoppingcarts", userID));
       let products = cart.data().products
       for (var product_id in products) {
-        let product = await getDoc(doc(db, "products", product_id))
-        let product_data = product.data()
-        let qty = products[product_id]
-        this.total_price += qty * product_data.price
-        this.product_list.push({...product_data, qty, id: product_id})
+        await getDoc(doc(db, "products", product_id)).then(doc => {
+          let qty = products[product_id]
+          let product_data = doc.data()
+          console.log(product_data.price)
+          this.total_price += qty * product_data.price
+          this.product_list.push({...product_data, qty, id: product_id})
+          })
       }
     },
     reRender() {
