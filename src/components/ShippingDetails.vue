@@ -9,29 +9,37 @@
   </div>
 
   <form action="/CartPayment">
-    <div class="col-3">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
       <label for="address">Shipping Address (Physical items only): </label
       ><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <!-- <div class="formFill"> -->
+        <div class="formFill">
       <div class="form-group col-md-9">
+        
         <input type="text" id="name" name="name" /><br />
       </div>
     </div>
     <br />
-    <div class="col-3">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
       <label for="email">Email (Digital items only): </label><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       <div class="form-group col-md-9">
         <input id="name" type="text" name="email" /><br />
       </div>
     </div>
     <br>
-    <div class="col-3">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
       <label for="deliveryOptions">Delivery Options: </label><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       <div class="form-group col-md-9">
         <select class="form-select" aria-label="Default select example">
           <option value="1">Normal delivery</option>
@@ -55,6 +63,10 @@ export default {
 };
 </script>
 <style scoped>
+.formFill{
+  text-align: left;
+  padding-left:10%;
+}
 p {
   font-weight: bold;
 }

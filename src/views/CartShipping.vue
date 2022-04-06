@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-.userSection {
+/* .userSection {
   float: left;
   width: 75%;
   margin-bottom: 10%;
@@ -45,12 +45,27 @@ export default {
 .productsSection {
   width: 25%;
   display: flex;
+} */
+.infoSection{
+  display: flex;
+    flex-direction: row;
 }
-.footer {
+.userSection {
+ flex-grow: 3;
+    /* padding-left: 5%; */
+    flex-basis: 0;
+}
+.productsSection {
+  flex-grow: 1;
+    /* padding-left: 5%; */
+    flex-basis: 0;
+}
+/* .footer {
   float: left;
-}
+} */
 #nextStep {
   color: rgb(206, 204, 204);
   font-weight: normal;
 }
+
 </style>
