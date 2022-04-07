@@ -1,7 +1,7 @@
 <template>
     <div id="section-main">
         <h5 id="section-title">Similar Items</h5>
-        <CarouselScrollTopPicks/>
+        <CarouselScrollSimilarItems :productNumber="productNumber"/>
         <br>
     </div>
 </template>
@@ -9,16 +9,20 @@
 
 
 <script>
-import CarouselScrollTopPicks from '@/components/carousel_components/CarouselScrollTopPicks.vue'
+import CarouselScrollSimilarItems from '@/components/carousel_components/CarouselScrollSimilarItems.vue'
 
 export default {
     name: 'SimilarItems',
     components:{
-    CarouselScrollTopPicks
+    CarouselScrollSimilarItems
   },
 
   methods:{
    
+  },
+
+  props: {
+      productNumber: String
   }
 }
 </script>
