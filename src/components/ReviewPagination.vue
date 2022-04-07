@@ -10,7 +10,7 @@
               
               <StarRatingContinuous :rating ="averageRating"/>
           </div>
-          <div id = "leaveReview">
+          <div id = "leaveReview" v-if="isVisible()">
                 <h5 @click="checkReviewer" style="cursor:pointer;">Leave a Review</h5>
           </div>
       </div>
@@ -82,7 +82,10 @@ export default {
             reviewNames: [],
             areThereReviews: null,
             profileID: null,
-            totalPages: 0
+            totalPages: 0,
+            visible: false
+            
+            
         }
     },
 
@@ -94,6 +97,7 @@ export default {
 
     mounted() {
         const auth = getAuth()
+
         onAuthStateChanged(auth, (user) => {
         if (user) {
           this.user = user
@@ -101,9 +105,13 @@ export default {
           
         this.mountReviews()
         .then(() => this.calculateTotalPages());
+        
+    
        
        }
-    }) 
+       }) 
+        this.isVisible()
+    
     },
 
     props: {
@@ -125,6 +133,7 @@ export default {
 
         productNumber: String
     },
+    
 
     computed: {
         startPage() { // used to check range of visible pages
@@ -231,16 +240,67 @@ export default {
         const reviewDocRef = await getDoc(reviewDoc)
         const reviewData = reviewDocRef.data()
         const productID = this.productNumber
+        
+        // })
+        // const productPurchases = purchaseDocRef.map(async (docs) => {
+        //     let productData = docs.data();
+        //     let productPurchases = productData.purchases;
+        //     return productPurchases
+        // })
+        
         if (reviewData.user_id_buyer.includes(this.user.uid)) {
             alert("You have already left a review.")
             this.$router.push({name: "ProductPage", params: {id: productID}})
-        } else{
-            this.$router.push({name: "ReviewFormPage", params: {id: productID}})
         }
-    }
+        // else if (!productPurchasesArray.includes(productID)) {
+        //     alert("You have not made a purchase! Please make a purchase to leave a review.")
+        //     this.$router.push({name: "ProductPage", params: {id: productID}})
+        // }
+        else {
+            this.$router.push({name: "ReviewFormPage", params: {id: productID}})
+        
+            }
+        
+        
+        
+    },
+    
+    async isVisible() {
+        const purchaseDoc = doc(db, "users", this.user.uid)
+        const purchaseDocRef = await getDocs(collection(purchaseDoc, "purchaseHistory"))
+        const productID = this.productNumber
+        console.log(purchaseDoc)
+        console.log(purchaseDocRef)
+        console.log(this.user.uid)
+        let productPurchasesArray = []
+        purchaseDocRef.forEach(async (docs) => {
+            let productData = docs.data();
+            let productPurchases = productData.purchases;
+            // console.log(productPurchases)
+            // console.log(productData)
+            // console.log(Object.keys(productPurchases))
+            // console.log(productID)
+            // console.log(Object.keys(productPurchases))
+            productPurchasesArray.push(Object.keys(productPurchases))
+            console.log(productPurchasesArray)
+        })
+        console.log(productID)
+        
+        if (productPurchasesArray.includes(productID)) {
+            return true
+        }
+        else {
+            return false
+        }
+        
+        
+    },
+    
+    
   }
 
 }
+
 </script>
 
 <style scoped>
@@ -314,7 +374,15 @@ a:hover {
 }
 #leaveReview {
     margin-left: 2%;
-    margin-top: 0.5%
+    margin-bottom: 1%;
+    border-radius: 30px;
+    text-align:center;
+    /* border: 0; */
+    position:relative;
+    display: inline-block;
+    padding: 0.2em 0.5em 0em;
+    white-space: nowrap;
+    background-color: #F7F0DD
 }
 
 </style>

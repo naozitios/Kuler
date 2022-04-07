@@ -62,7 +62,7 @@ export default {
     
     methods: {
         async addReview() {
-            var stars = document.querySelector('input[name="rating1"]:checked').value
+            var stars = parseInt(document.querySelector('input[name="rating1"]:checked').value)
             var description = document.getElementById("reviewForm").value
             console.log(stars)
             console.log(description)
