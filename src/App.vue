@@ -18,6 +18,9 @@
     <div id="cart">
     <CartButton/>
     </div>
+    <div id="signout">
+    <SignOutButton/>
+    </div>
     
   </div>
   <div id="nav">
@@ -33,6 +36,7 @@ import SellButton from '@/components/header_components/SellButton.vue'
 import SigninButton from '@/components/header_components/SigninButton.vue'
 import FavouriteButton from '@/components/header_components/FavouriteButton.vue'
 import CartButton from '@/components/header_components/CartButton.vue'
+import SignOutButton from '@/components/header_components/SignOutButton.vue'
 import NavBar from '@/components/header_components/NavBar.vue'
 export default {
   name: 'App',
@@ -44,6 +48,7 @@ export default {
     FavouriteButton,
     CartButton,
     NavBar,
+    SignOutButton
   },
   methods:{
    
@@ -93,6 +98,13 @@ export default {
     padding-top:2.5%;
   }
   #cart{
+    flex-grow: 1;
+  /* padding-left: 5%; */
+  flex-basis: 0;
+  /* padding-left:5%; */
+    padding-top:2.5%;
+  }
+  #signout{
     flex-grow: 1;
   /* padding-left: 5%; */
   flex-basis: 0;
