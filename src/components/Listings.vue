@@ -90,7 +90,7 @@ export default {
             console.log(this.msg);
             productsCollection = query(
               collection(db, "products"),
-              where("caption", ">=", this.msg),
+              where("caption", ">=", this.msg.toUpperCase()),
               where("caption", "<=", this.msg + "\uf8ff")
             );
           }
