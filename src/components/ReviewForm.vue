@@ -31,7 +31,7 @@ import firebaseApp from '../firebase.js';
 import {getFirestore} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-import {arrayUnion, doc, updateDoc, increment} from "firebase/firestore";
+import {arrayUnion, doc, updateDoc, increment, getDoc} from "firebase/firestore";
 
 
 
@@ -70,10 +70,16 @@ export default {
             const productID = this.productID
             var today = new Date();
             var dateToday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
+            const ref = await getDoc(doc(db, "productratings", this.productID))
+            const refData = ref.data()
+            var dateArray = refData.date
+            dateArray.push(dateToday)
+            var starArray = refData.num_stars
+            starArray.push(stars)
             const reviewsRef = await updateDoc(doc(db, "productratings", this.productID), {
-                date: arrayUnion(dateToday),
+                date: dateArray,
                 description: arrayUnion(description),
-                num_stars: arrayUnion(stars),
+                num_stars: starArray,
                 reviews: increment(1),
                 user_id_buyer: arrayUnion(this.user.uid)
             }) .then(() => console.log(reviewsRef)).then(()=> this.$router.push({name: "Product Page", params: {id: productID}}))

@@ -123,7 +123,7 @@ export default {
   methods:{
    async getProducts() {
      let productsCollection;
-     console.log(this.category_id)
+     //console.log(this.category_id)
      productsCollection = query(collection(db, "products"), where("category_id", "==", this.category_id))
      let allProducts = await getDocs(productsCollection)
      allProducts.forEach(async product => {
@@ -160,7 +160,7 @@ export default {
       const docRef = await getDoc(doc(db, "products", this.productNumber))
       const docData = docRef.data()
       this.category_id = docData.category_id
-      console.log(this.category_id)
+      //console.log(this.category_id)
     }
   }
 

@@ -10,7 +10,7 @@
               
               <StarRatingContinuous :rating ="averageRating"/>
           </div>
-          <div id = "leaveReview" v-if="isVisible()">
+          <div id = "leaveReview" v-if="visible">
                 <h5 @click="checkReviewer" style="cursor:pointer;">Leave a Review</h5>
           </div>
       </div>
@@ -101,8 +101,8 @@ export default {
         onAuthStateChanged(auth, (user) => {
         if (user) {
           this.user = user
-          this.profileID = this.user.uid
-          
+          this.profileID = this.user.uid          
+          this.isVisible()
         this.mountReviews()
         .then(() => this.calculateTotalPages());
         
@@ -110,7 +110,7 @@ export default {
        
        }
        }) 
-        this.isVisible()
+        
     
     },
 
@@ -268,34 +268,19 @@ export default {
     async isVisible() {
         const purchaseDoc = doc(db, "users", this.user.uid)
         const purchaseDocRef = await getDocs(collection(purchaseDoc, "purchaseHistory"))
-        const productID = this.productNumber
-        console.log(purchaseDoc)
-        console.log(purchaseDocRef)
-        console.log(this.user.uid)
         let productPurchasesArray = []
         purchaseDocRef.forEach(async (docs) => {
             let productData = docs.data();
             let productPurchases = productData.purchases;
-            // console.log(productPurchases)
-            // console.log(productData)
-            // console.log(Object.keys(productPurchases))
-            // console.log(productID)
-            // console.log(Object.keys(productPurchases))
-            productPurchasesArray.push(Object.keys(productPurchases))
-            console.log(productPurchasesArray)
+            (Object.keys(productPurchases)).forEach((productID) => productPurchasesArray.push(productID))
         })
-        console.log(productID)
-        
-        if (productPurchasesArray.includes(productID)) {
-            return true
-        }
-        else {
-            return false
-        }
-        
-        
-    },
-    
+        if (productPurchasesArray.includes(this.productNumber)) {
+                this.visible = false
+            }
+            else {
+                this.visible = true
+            }  
+    },    
     
   }
 
