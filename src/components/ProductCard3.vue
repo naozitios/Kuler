@@ -7,7 +7,9 @@
     <a href="#" class="productLink"><h4 class="card-title">{{this.productTitle}}</h4></a>
     <a href="#" class="sellerLink"><h5 class="seller-name">{{this.sellerName}}</h5></a>
     <div id="rating">
+      <b><u> {{this.averageRating}} </u></b>
     <StarRatingContinuous :rating="averageRating"/>
+    
     </div>
     <h4 class="card-title">SGD {{this.price}}</h4>
     <div id = "history" v-if="this.quantity">
@@ -106,6 +108,8 @@ cursor: pointer;
     margin-left: 0px;
     margin-right: auto;
     margin-bottom: 0.5em;
+    display: flex;
+    font-size: 80%
 }
     .card-title{
         text-align: left;

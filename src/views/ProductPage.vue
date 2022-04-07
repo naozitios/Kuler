@@ -12,7 +12,7 @@
 <ReviewPagination :perPage = "3" :currentPage = "currentPage" @pagechanged="onPageChange" 
 :productNumber="productNumber"/>
 </div>
-<SimilarItems/>
+<SimilarItems :productNumber="productNumber"/>
 <FooterMain/>
 </template>
 
