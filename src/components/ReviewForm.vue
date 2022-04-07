@@ -50,7 +50,6 @@ export default {
       productID:String
     },
     mounted() {
-        this.addReview();
         const auth = getAuth()
         onAuthStateChanged(auth, (user) => { 
             if (user) {
@@ -67,7 +66,6 @@ export default {
             console.log(stars)
             console.log(description)
             console.log(this.productID)
-            const productID = this.productID
             var today = new Date();
             var dateToday = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
             const ref = await getDoc(doc(db, "productratings", this.productID))
@@ -76,14 +74,17 @@ export default {
             dateArray.push(dateToday)
             var starArray = refData.num_stars
             starArray.push(stars)
+            var descriptionArray = refData.description
+            descriptionArray.push(description)
             const reviewsRef = await updateDoc(doc(db, "productratings", this.productID), {
                 date: dateArray,
-                description: arrayUnion(description),
+                description: descriptionArray,
                 num_stars: starArray,
                 reviews: increment(1),
                 user_id_buyer: arrayUnion(this.user.uid)
-            }) .then(() => console.log(reviewsRef)).then(()=> this.$router.push({name: "Product Page", params: {id: productID}}))
-            location.reload();
+            }) .then(() => console.log(reviewsRef)).then(()=> this.$router.push({name: "Purchase History", params: {id: this.user.uid}}))
+            alert("You have successfully left a review!")
+            
             return false
 
 
