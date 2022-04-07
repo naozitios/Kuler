@@ -84,10 +84,7 @@ export default {
                 user_id_buyer: arrayUnion(this.user.uid)
             }) .then(() => console.log(reviewsRef)).then(()=> this.$router.push({name: "Purchase History", params: {id: this.user.uid}}))
             alert("You have successfully left a review!")
-            
             return false
-
-
         }
         
     }
