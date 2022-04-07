@@ -1,9 +1,9 @@
 <template>
-    <router-link to="/signOut"><img src="@/assets/signout_icon.png" alt="Sign Out"></router-link>
+    <router-link to="/signOut"><img src="@/assets/signout_icon.png" alt="Sign Out" v-if="user"></router-link>
 </template>
 
 <script>
-
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
     data() {
         return {
@@ -11,7 +11,12 @@ export default {
     },
 
     mounted() {
-        
+        const auth = getAuth()
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                this.user = user
+            }
+        })
     },
 
     methods: {
