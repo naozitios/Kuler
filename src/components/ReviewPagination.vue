@@ -275,10 +275,10 @@ export default {
             (Object.keys(productPurchases)).forEach((productID) => productPurchasesArray.push(productID))
         })
         if (productPurchasesArray.includes(this.productNumber)) {
-                this.visible = false
+                this.visible = true
             }
             else {
-                this.visible = true
+                this.visible = false
             }  
     },    
     
@@ -367,7 +367,8 @@ a:hover {
     display: inline-block;
     padding: 0.2em 0.5em 0em;
     white-space: nowrap;
-    background-color: #F7F0DD
+    color: white;
+    background-color: #F37381;
 }
 
 </style>
