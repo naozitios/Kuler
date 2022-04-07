@@ -62,7 +62,9 @@ export default {
 <style scoped>
 #logo{
     padding-top:10%;
-    width:10%;
+    padding-right:5%;
+    width:20%;
+    align-content: center;
 }
 form{
     text-align: left;
