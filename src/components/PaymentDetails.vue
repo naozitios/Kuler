@@ -82,7 +82,6 @@ p {
   width: 100%;
   background-color: #efefef;
   border: 3px solid #efefef;
-  /* border: none; */
   border-right: none;
   padding: 5px;
   height: 40px;

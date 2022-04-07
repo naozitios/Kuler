@@ -41,7 +41,7 @@ export default {
   },
   props: {
     category: Number,
-    msg: String,
+    text: String,
     profileID: String,
     userFavID: String,
     historyID: String,
@@ -83,15 +83,15 @@ export default {
       if (this.format == "") {
         //if there is no format to render
         if (this.category == 0) {
-          if (this.isEmptyOrSpaces(this.msg)) {
+          if (this.isEmptyOrSpaces(this.text)) {
             console.log("empty or undefined");
             productsCollection = query(collection(db, "products"));
           } else {
-            console.log(this.msg);
+            console.log(this.text);
             productsCollection = query(
               collection(db, "products"),
-              where("caption", ">=", this.msg.toUpperCase()),
-              where("caption", "<=", this.msg + "\uf8ff")
+              where("caption", ">=", this.text.toUpperCase()),
+              where("caption", "<=", this.text + "\uf8ff")
             );
           }
         } else {
@@ -114,7 +114,7 @@ export default {
             productsCollection = collection(db, "products");
           } else {
             //filter
-            console.log(this.msg);
+            console.log(this.text);
             productsCollection = query(
               collection(db, "products"),
               where("product_type", "==", this.format)

@@ -59,11 +59,12 @@ export default {
   components: {
   },
   props: {
-    data: Object
+    name: String,
+    email: String
   },
   data() {
     return {
-      RecepientEmail: this.data.email,
+      RecepientEmail: this.email,
       address: "",
       deliveryType: 0
     }
@@ -71,12 +72,13 @@ export default {
   methods: {
     async pushData() {
       let updated_data = {
-        ...this.data,
+        name: this.name,
+        email: this.email,
         address: this.address,
-        deliveryType: parseInt(this.deliveryType),
-        RecepientEmail: this.data.email
+        deliveryType: this.deliveryType,
+        RecepientEmail: this.RecepientEmail
       }
-      this.$router.push({name: 'CartPayment', params: updated_data})
+      this.$router.push({name: 'CartPayment', query: updated_data})
     }
   }
 };

@@ -26,7 +26,13 @@ export default {
   },
   data()  {
     return {
-      data: this.$route.params,
+      data: {
+        name: this.$route.query.name,
+        email: this.$route.query.email,
+        address: this.$route.query.address,
+        deliveryType: this.$route.query.deliveryType,
+        RecepientEmail: this.$route.query.RecepientEmail,
+      },
       editable: false
     }
   },

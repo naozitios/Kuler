@@ -11,7 +11,7 @@
         <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
       </div>
       <div class="col-lg-10">
-        <Listings :category="category" :msg="passMsg" :format="format" :sort="sort" />
+        <Listings :category="category" :text="searchText" :format="format" :sort="sort" />
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@ export default {
     };
   },
   computed: {
-    passMsg() {
+    searchText() {
       return this.$route.query.name
     }
   },

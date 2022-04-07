@@ -11,7 +11,7 @@
       <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
       </div>
       <div class="col-lg-10">
-        <Listings :category="category" :msg="passMsg" :format="format" :sort="sort" />
+        <Listings :category="category" :format="format" :sort="sort" />
       </div>
     </div>
   </div>
@@ -32,10 +32,10 @@ export default {
     changeAll() {
       this.format = ""
     },
-        changeDigital() {
+    changeDigital() {
       this.format = "Digital"
     },
-        changePhysical() {
+    changePhysical() {
       this.format = "Physical"
     }, 
     oldestSort() {
