@@ -41,7 +41,7 @@ export default {
   },
   props: {
     category: Number,
-    msg: String,
+    text: String,
     profileID: String,
     userFavID: String,
     historyID: String,
@@ -50,10 +50,14 @@ export default {
   },
   watch: {
     format: function () {
-      this.getProducts();
+      if (!this.profileID && !this.userFavID && !this.historyID) {
+        this.getProducts();
+      }
     },
     sort: function () {
-      this.getProducts();
+      if (!this.profileID && !this.userFavID && !this.historyID) {
+        this.getProducts();
+      }
     },
   },
   data() {
@@ -79,15 +83,15 @@ export default {
       if (this.format == "") {
         //if there is no format to render
         if (this.category == 0) {
-          if (this.isEmptyOrSpaces(this.msg)) {
+          if (this.isEmptyOrSpaces(this.text)) {
             console.log("empty or undefined");
             productsCollection = query(collection(db, "products"));
           } else {
-            console.log(this.msg);
+            console.log(this.text);
             productsCollection = query(
               collection(db, "products"),
-              where("caption", ">=", this.msg),
-              where("caption", "<=", this.msg + "\uf8ff")
+              where("caption", ">=", this.text),
+              where("caption", "<=", this.text + "\uf8ff")
             );
           }
         } else {
@@ -110,7 +114,7 @@ export default {
             productsCollection = collection(db, "products");
           } else {
             //filter
-            console.log(this.msg);
+            console.log(this.text);
             productsCollection = query(
               collection(db, "products"),
               where("product_type", "==", this.format)
@@ -126,13 +130,22 @@ export default {
       }
 
       let selectedProducts = await getDocs(productsCollection);
-      selectedProducts.forEach((product) => {
+      selectedProducts.forEach(async (product) => {
         let user_id = product.data().user_id;
+        const docARef = await getDoc(doc(db, "productratings", product.id))
+        const docAData = docARef.data()
+
+        var totalRatingA = 0
+        docAData.num_stars.forEach(rating => totalRatingA += rating)
+        if (docAData.reviews != 0) {
+          totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
+        }
         this.getUser(user_id).then((user) => {
           this.products.push({
             ...product.data(),
             ...user.data(),
             id: product.id,
+            rating: totalRatingA
           });
           if (this.sort == 1) {
             this.products.sort(function (a, b) {
@@ -146,9 +159,13 @@ export default {
             this.products.sort(function (a, b) {
               return a.caption - b.caption;
             });
-          } else {
+          } else if (this.sort == 3) {
             this.products.sort(function (a, b) {
               return b.id - a.id;
+            });
+          } else {
+            this.products.sort(function (a, b) {
+              return b.rating - a.rating
             });
           }
         });
@@ -193,16 +210,49 @@ export default {
         );
       }
       let selectedProducts = await getDocs(productsCollection);
-      selectedProducts.forEach((product) => {
+      selectedProducts.forEach(async (product) => {
         let user_id = product.data().user_id;
+        const docARef =  await getDoc(doc(db, "productratings", product.id))
+        const docAData = docARef.data()
+
+        var totalRatingA = 0
+        docAData.num_stars.forEach(rating => totalRatingA += rating)
+        if (docAData.reviews != 0) {
+          totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
+        }
+              
         this.getUser(user_id).then((user) => {
           this.products.push({
             ...product.data(),
             ...user.data(),
             id: product.id,
+            rating: totalRatingA
           });
+          if (this.sort == 1) {
+            this.products.sort(function (a, b) {
+              console.log(a.price - b.price)
+              return a.price - b.price;
+            });
+          } else if (this.sort == 2) { //
+            this.products.sort(function (a, b) {
+              return a.id - b.id;
+            });
+          } else if (this.sort == 0) { //relevance
+            this.products.sort(function (a, b) {
+              return a.caption - b.caption;
+            });
+          } else if (this.sort == 3) {
+            this.products.sort(function (a, b) {
+              return b.id - a.id;
+            });
+          } else { // rating sort
+            this.products.sort(function (a, b) {
+              return b.rating - a.rating
+            });
+          }
         });
       });
+      
     },
 
     async getFavouriteProducts() {
@@ -217,15 +267,46 @@ export default {
         let toAdd = false;
         toAdd = this.toAssign(productFormat, productCategory);
         if (toAdd == true) {
+          const docARef =  await getDoc(doc(db, "productratings", product.id))
+          const docAData = docARef.data()
+
+          var totalRatingA = 0
+          docAData.num_stars.forEach(rating => totalRatingA += rating)
+          if (docAData.reviews != 0) {
+            totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
+          }
           this.getUser(this.userFavID).then((user) => {
             this.products.push({
               ...product.data(),
               ...user.data(),
               id: product.id,
+              rating: totalRatingA
             });
+            if (this.sort == 1) {
+            this.products.sort(function (a, b) {
+              return a.price - b.price;
+            });
+          } else if (this.sort == 2) { //
+            this.products.sort(function (a, b) {
+              return a.id - b.id;
+            });
+          } else if (this.sort == 0) { //relevance
+            this.products.sort(function (a, b) {
+              return a.caption - b.caption;
+            });
+          } else if (this.sort == 3) {
+            this.products.sort(function (a, b) {
+              return b.id - a.id;
+            });
+          } else {
+            this.products.sort(function (a, b) {
+              return b.rating - a.rating
+            });
+          }
           });
         }
       });
+      
     },
 
     async getHistoricalProducts() {
@@ -244,6 +325,14 @@ export default {
           let toAdd = false;
           toAdd = this.toAssign(productFormat, productCategory);
           if (toAdd == true) {
+            const docARef =  await getDoc(doc(db, "productratings", actualProduct.id))
+            const docAData = docARef.data()
+
+            var totalRatingA = 0
+            docAData.num_stars.forEach(rating => totalRatingA += rating)
+            if (docAData.reviews != 0) {
+              totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
+            }
             this.getUser(this.historyID).then((user) => {
               this.products.push({
                 ...actualProduct.data(),
@@ -251,11 +340,34 @@ export default {
                 id: actualProduct.id,
                 quantity: productPurchases[key],
                 timestamp: date2.join(" "),
+                rating: totalRatingA
               });
+              if (this.sort == 1) {
+            this.products.sort(function (a, b) {
+              return a.price - b.price;
+            });
+          } else if (this.sort == 2) { //
+            this.products.sort(function (a, b) {
+              return a.id - b.id;
+            });
+          } else if (this.sort == 0) { //relevance
+            this.products.sort(function (a, b) {
+              return a.caption - b.caption;
+            });
+          } else if (this.sort == 3){
+            this.products.sort(function (a, b) {
+              return b.id - a.id;
+            });
+          } else {
+            this.products.sort(function (a, b) {
+              return b.rating - a.rating
+            });
+          }
             });
           }
         });
       });
+      
     },
 
     toAssign(productFormat, productCategory) {

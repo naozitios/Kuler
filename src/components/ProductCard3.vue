@@ -16,6 +16,9 @@
      Date of Purchase: 
      <br><b><u>{{this.timestamp}}</u></b>
     </div>
+    <div id = "numberOfPurchases" v-if="this.numberOfPurchases">
+        Number of Purchases: {{this.numberOfPurchases}}
+    </div>
   </div>
 </div>
 </template>
@@ -51,6 +54,7 @@ export default {
       productNumber: String,
       quantity: Number,
       timestamp: String,
+      numberOfPurchases: Number
   },
   methods:{
       directToProduct() {
@@ -66,7 +70,7 @@ export default {
         const productRatingArray = productRatingData.num_stars
         productRatingArray.forEach(rating => this.totalRating += rating)
         if (productRatingData.reviews != 0) {
-            this.averageRating = (this.totalRating / productRatingData.reviews).toFixed(2)
+            this.averageRating = Number((this.totalRating / productRatingData.reviews).toFixed(2))
         }
     }
   },

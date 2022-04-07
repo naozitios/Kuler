@@ -6,7 +6,7 @@
 
 <script>
 import firebaseApp from "@/firebase.js";
-import { getFirestore, doc, getDoc, setDoc, Timestamp, getDocs, collection } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, Timestamp, getDocs, collection, updateDoc, increment } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const db = getFirestore(firebaseApp);
@@ -18,6 +18,9 @@ export default {
           process: false
       }
   },
+  props: {
+    data: Object
+  },
   watch: {
     process(finished) {
       if (finished) {
@@ -28,7 +31,6 @@ export default {
   methods: {
     async makePayment() {
         const auth = getAuth()
-
         onAuthStateChanged(auth, async user => {
             if (user) {
                 await this.getProducts(user.uid)
@@ -49,16 +51,27 @@ export default {
           archive_data[product_id] = qty
       }
       this.archivePurchase(userID, archive_data)
+      this.archiveInProduct(archive_data)
     },
     async archivePurchase(userID, archive_data) {
       let size = 0
       await getDocs(collection(db, 'users', userID, "purchaseHistory")).then(docs => size = docs.size)
       let purchase_historyID = String(size + 1)
       await setDoc(doc(db, "users", userID, "purchaseHistory", purchase_historyID), {
+        ...this.data,
+        deliveryType: parseInt(this.data.deliveryType),
         timestamp: Timestamp.fromDate(new Date()),
         purchases: archive_data
         }
       );
+    },
+    async archiveInProduct(archive_data) {
+      for (const [key, value] of Object.entries(archive_data)) {
+        const refs = doc(db, "products", key)
+        await updateDoc(refs, {
+          purchaseCount: increment(value)
+        });
+      }
     },
     async resetCart(userID) {
       let empty_data = {}

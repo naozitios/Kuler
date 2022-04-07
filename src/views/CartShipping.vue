@@ -1,7 +1,7 @@
 <template>
   <div class="infoSection">
     <div class="userSection">
-      <ShippingDetails/>
+      <ShippingDetails :name=name :email=email />
     </div>
     <div class="productsSection">
       <div id="contain">
@@ -29,6 +29,8 @@ export default {
   },
   data()  {
     return {
+      name: this.$route.query.name,
+      email: this.$route.query.email,
       editable: false
     }
   }
@@ -36,21 +38,22 @@ export default {
 </script>
 
 <style scoped>
+.infoSection{
+  display: flex;
+    flex-direction: row;
+}
 .userSection {
-  float: left;
-  width: 75%;
-  margin-bottom: 10%;
-  height: 35vmax;
+ flex-grow: 3;
+    /* padding-left: 5%; */
+    flex-basis: 0;
 }
 .productsSection {
-  width: 25%;
-  display: flex;
-}
-.footer {
-  float: left;
+  flex-grow: 1;
+  flex-basis: 0;
 }
 #nextStep {
   color: rgb(206, 204, 204);
   font-weight: normal;
 }
+
 </style>

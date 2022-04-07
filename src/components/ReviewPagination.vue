@@ -201,7 +201,7 @@ export default {
                   this.averageRating = 0
                   this.areThereReviews = false
               } else {
-                this.averageRating = this.totalRating / this.reviewCount
+                this.averageRating = Number((this.totalRating / this.reviewCount).toFixed(2))
                 this.areThereReviews = true
               }
           

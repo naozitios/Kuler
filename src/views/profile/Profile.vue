@@ -10,12 +10,12 @@
   <ProfileBiography :profileID="profileUserID"/>
 </div>
   <div class="col-md-4 offset-md-8">
-  <SortByButton />
+  <SortByButton @sortByOldest = "oldestSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" @sortByNewest = "newestSort" @sortByRating="ratingSort" />
   <!-- <ProfileBiography/> -->
   </div>
   <div class = "listings">
       <FilterProfile @changeCategory="changeCategory($event)" @changeFormat="changeFormat($event)"/>
-      <Listings :category="category" :profileID ="profileUserID" :key="componentKey" :format="format"/>
+      <Listings :category="category" :profileID ="profileUserID" :key="componentKey" :format="format" :sort="sort"/>
   </div>
 
 <!-- <SortByButton/> -->
@@ -64,6 +64,7 @@ export default {
       currentUser: null,
       profileUserID: this.$route.params.id,
       isVisible: null,
+      sort: 0,
       componentKey: 0, // force it to re-render
      }
   },
@@ -75,8 +76,29 @@ export default {
    changeFormat(format) {
      this.format = format
      this.componentKey += 1
-   }
+   },
+   oldestSort() {
+      this.sort = 2
+      this.componentKey += 1
+    }, 
+    priceSort() {
+      this.sort = 1
+      this.componentKey += 1
+    },
+    relevanceSort() {
+      this.sort = 0
+      this.componentKey += 1
+    },
+    newestSort() {
+      this.sort = 3
+      this.componentKey += 1
+    },
+    ratingSort() {
+      this.sort = 4
+      this.componentKey += 1
+    }
   },
+  
 
   
 

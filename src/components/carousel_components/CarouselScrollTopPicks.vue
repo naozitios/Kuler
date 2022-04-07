@@ -3,13 +3,67 @@
   
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <CarouselScrollContentFour/>
+      <div class="row justify-content-start">
+      <div
+      v-for="product in products.slice(0,4)" 
+      :key="product.id"
+      style="width: 24vw"
+
+    >
+      <ProductCard3
+        :sellerName="product.display_name"
+        :productTitle="product.caption"
+        :price="product.price"
+        :coverImage="product.coverimage"
+        :productNumber="product.id"
+        :quantity="product.quantity"
+        :timestamp="product.timestamp"
+        align="left"
+      />
+      </div>
+      </div>
     </div>
     <div class="carousel-item">
-      <CarouselScrollContentFour2/>
+      <div class="row justify-content-start">
+      <div
+      v-for="product in products.slice(4,8)" 
+      :key="product.id"
+      style="width: 24vw"
+
+    >
+      <ProductCard3
+        :sellerName="product.display_name"
+        :productTitle="product.caption"
+        :price="product.price"
+        :coverImage="product.coverimage"
+        :productNumber="product.id"
+        :quantity="product.quantity"
+        :timestamp="product.timestamp"
+        align="left"
+      />
+      </div>
+      </div>
     </div>
     <div class="carousel-item">
-      <CarouselScrollContentFour/>
+      <div class="row justify-content-start">
+      <div
+      v-for="product in products.slice(8,12)" 
+      :key="product.id"
+      style="width: 24vw"
+
+    >
+      <ProductCard3
+        :sellerName="product.display_name"
+        :productTitle="product.caption"
+        :price="product.price"
+        :coverImage="product.coverimage"
+        :productNumber="product.id"
+        :quantity="product.quantity"
+        :timestamp="product.timestamp"
+        align="left"
+      />
+      </div>
+      </div>
     </div>
   </div>
 
@@ -30,17 +84,66 @@
 </template>
 
 <script>
-import CarouselScrollContentFour from '@/components/carousel_components/CarouselScrollContentFour.vue'
-import CarouselScrollContentFour2 from '@/components/carousel_components/CarouselScrollContentFour2.vue'
+
+import ProductCard3 from "@/components/ProductCard3.vue";
+import firebaseApp from "@/firebase.js";
+import {
+  getFirestore,
+  getDocs,
+  collection,
+  getDoc,
+  doc,
+} from "firebase/firestore";
+
+const db = getFirestore(firebaseApp);
 
 export default {
   name: 'CarouselScrollTopPicks',
   components:{
-    CarouselScrollContentFour,
-    CarouselScrollContentFour2
+    ProductCard3
+  },
+  data() {
+    return {
+      products: [],
+    }
+  },
+
+  mounted() {
+    this.getProducts()
+    .then(() => console.log(this.products))
   },
   methods:{
-   
+   async getProducts() {
+     let productsCollection;
+     productsCollection = collection(db, "products")
+     let allProducts = await getDocs(productsCollection)
+     allProducts.forEach(async product => {
+       let user_id = product.data().user_id;
+       const docARef = await getDoc(doc(db, "productratings", product.id))
+        const docAData = docARef.data()
+        var totalRatingA = 0
+        docAData.num_stars.forEach(rating => totalRatingA += rating)
+        if (docAData.reviews != 0) {
+          totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
+        }
+        this.getUser(user_id).then((user) => {
+          this.products.push({
+            ...product.data(),
+            ...user.data(),
+            id: product.id,
+            rating: totalRatingA
+          })
+          this.products.sort(function(a, b) {
+            return b.rating - a.rating
+          })
+        })  
+     })
+     
+   },
+
+   async getUser(user_id) {
+      return await getDoc(doc(db, "users", user_id));
+    },
   }
 
 }
@@ -67,8 +170,16 @@ export default {
   }
 
   .carousel-inner{
-    flex-grow: 4;
-    flex-basis: auto;
+    margin-left: 1%;
+
+  }
+
+  .carousel-control-prev-icon {
+    margin-left: -100%;
+  }
+
+  .carousel-control-next-icon {
+    margin-right: -50%;
 
   }
 

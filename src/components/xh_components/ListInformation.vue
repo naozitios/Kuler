@@ -157,7 +157,8 @@ export default {
               license: license,
               price: price,
               delivery: delivery,
-              user_id: this.user.uid
+              user_id: this.user.uid,
+              purchaseCount: 0
             })
             .then(() => this.afterFunction())
             console.log(docRef)

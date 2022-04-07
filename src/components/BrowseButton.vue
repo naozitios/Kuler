@@ -1,5 +1,5 @@
 <template>
-  <button type="submit" class="btn btn-primary" onclick="window.location.href='/categoryIcons'">
+  <button type="submit" class="btn btn-primary" onclick="window.location.href='/categoryAll'">
     Back to Browsing
   </button>
 </template>

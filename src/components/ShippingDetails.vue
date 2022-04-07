@@ -8,53 +8,86 @@
     </p>
   </div>
 
-  <form action="/CartPayment">
-    <div class="col-3">
+  <form id="form" @submit.prevent="pushData" method="GET">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
       <label for="address">Shipping Address (Physical items only): </label
       ><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <!-- <div class="formFill"> -->
+        <div class="formFill">
       <div class="form-group col-md-9">
-        <input type="text" id="name" name="name" /><br />
+        <input type="text" id="name" v-model="address" name="name" /><br />
       </div>
     </div>
     <br />
-    <div class="col-3">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
       <label for="email">Email (Digital items only): </label><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       <div class="form-group col-md-9">
-        <input id="name" type="text" name="email" /><br />
+        <input id="name" type="text" v-model="RecepientEmail" name="RecepientEmail" /><br />
       </div>
     </div>
     <br>
-    <div class="col-3">
+    <!-- <div class="col-3"> -->
+      <div class="formFill">
       <label for="deliveryOptions">Delivery Options: </label><br />
     </div>
-    <div class="d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
+      <div class="formFill">
       <div class="form-group col-md-9">
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" v-model="deliveryType" aria-label="Default select example">
+          <option disabled value="">Please select</option>
           <option value="1">Normal delivery</option>
           <option value="2">Express delivery</option>
           <option value="3">On-site collection</option></select>
       </div>
     </div>
-    <ContinueToPaymentButton />
+    <button type="submit" value="Continue to Payment"  class="btn btn-primary">Continue to payment</button>
   </form>
   <button onclick="history.back()" class="btn-primary">Back</button>
 </template>
 
 <script>
-import ContinueToPaymentButton from "@/components/ContinueToPaymentButton.vue";
 
 export default {
   name: "ShippingDetails",
   components: {
-    ContinueToPaymentButton,
   },
+  props: {
+    name: String,
+    email: String
+  },
+  data() {
+    return {
+      RecepientEmail: this.email,
+      address: "",
+      deliveryType: 0
+    }
+  },
+  methods: {
+    async pushData() {
+      let updated_data = {
+        name: this.name,
+        email: this.email,
+        address: this.address,
+        deliveryType: this.deliveryType,
+        RecepientEmail: this.RecepientEmail
+      }
+      this.$router.push({name: 'CartPayment', query: updated_data})
+    }
+  }
 };
 </script>
 <style scoped>
+.formFill{
+  text-align: left;
+  padding-left:10%;
+}
 p {
   font-weight: bold;
 }
@@ -97,4 +130,5 @@ p {
 .btn-primary:visited {
   background-color: #f37381;
 }
+
 </style>

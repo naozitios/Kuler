@@ -3,10 +3,11 @@
     <div class="userSection">
       <OrderDetails />
     </div>
-    <v-row align="left">
+    
+    <div class="productsSection">
+      <v-row align="left">
       <h4>Cart</h4>
     </v-row>
-    <div class="productsSection">
       <div id="toCentre">
         <ViewPurchase :editable='editable'/>
       </div>
@@ -38,19 +39,23 @@ export default {
 };
 </script>
 <style scoped>
+.infoSection{
+  display: flex;
+    flex-direction: row;
+}
 .userSection {
-  float: left;
-  width: 75%;
-  margin-bottom: 10%;
-  height: 35vmax;
+ flex-grow: 3;
+    /* padding-left: 5%; */
+    flex-basis: 0;
 }
 .productsSection {
-  width: 25%;
-  display: flex;
+  flex-grow: 1;
+    /* padding-left: 5%; */
+    flex-basis: 0;
 }
-.footer {
+/* .footer {
   float: left;
-}
+} */
 #nextStep {
   color: rgb(206, 204, 204);
   font-weight: normal;
