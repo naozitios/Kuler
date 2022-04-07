@@ -10,7 +10,7 @@
               
               <StarRatingContinuous :rating ="averageRating"/>
           </div>
-          <div id = "leaveReview" >
+          <div id = "leaveReview" v-if="isVisible()">
                 <h5 @click="checkReviewer" style="cursor:pointer;">Leave a Review</h5>
           </div>
       </div>
@@ -83,6 +83,8 @@ export default {
             areThereReviews: null,
             profileID: null,
             totalPages: 0,
+            visible: false
+            
             
         }
     },
@@ -104,10 +106,12 @@ export default {
         this.mountReviews()
         .then(() => this.calculateTotalPages());
         
-  
+    
        
        }
-    }) 
+       }) 
+        this.isVisible()
+    
     },
 
     props: {
@@ -236,38 +240,22 @@ export default {
         const reviewDocRef = await getDoc(reviewDoc)
         const reviewData = reviewDocRef.data()
         const productID = this.productNumber
-        const purchaseDoc = doc(db, "users", this.user.uid)
-        const purchaseDocRef = await getDocs(collection(purchaseDoc, "purchaseHistory"))
-            // console.log(purchaseDoc)
-            // console.log(purchaseDocRef)
-            // console.log(this.user.uid)
-        let productPurchasesArray = []
-        purchaseDocRef.forEach(async (docs) => {
-            let productData = docs.data();
-            let productPurchases = productData.purchases;
-            // console.log(productPurchases)
-            // console.log(productData)
-            // console.log(Object.keys(productPurchases))
-            // console.log(productID)
-            console.log(Object.keys(productPurchases))
-            productPurchasesArray.push(Object.keys(productPurchases))
-            console.log(productPurchasesArray)
-        })
+        
         // })
         // const productPurchases = purchaseDocRef.map(async (docs) => {
         //     let productData = docs.data();
         //     let productPurchases = productData.purchases;
         //     return productPurchases
         // })
-        console.log(productPurchasesArray)
+        
         if (reviewData.user_id_buyer.includes(this.user.uid)) {
             alert("You have already left a review.")
             this.$router.push({name: "ProductPage", params: {id: productID}})
         }
-        else if (!productPurchasesArray.includes(productID)) {
-            alert("You have not made a purchase! Please make a purchase to leave a review.")
-            this.$router.push({name: "ProductPage", params: {id: productID}})
-        }
+        // else if (!productPurchasesArray.includes(productID)) {
+        //     alert("You have not made a purchase! Please make a purchase to leave a review.")
+        //     this.$router.push({name: "ProductPage", params: {id: productID}})
+        // }
         else {
             this.$router.push({name: "ReviewFormPage", params: {id: productID}})
         
@@ -276,32 +264,43 @@ export default {
         
         
     },
-    // async isVisible() {
-    //     const purchaseDoc = doc(db, "users", this.user.uid)
-    //     const purchaseDocRef = await getDocs(collection(purchaseDoc, "purchaseHistory"))
-    //     const productID = this.productNumber
-    //     console.log(purchaseDoc)
-    //     console.log(purchaseDocRef)
-    //     console.log(this.user.uid)
-    //     purchaseDocRef.forEach(async (docs) => {
-    //         let productData = docs.data();
-    //         let productPurchases = productData.purchases;
-    //         // console.log(productPurchases)
-    //         // console.log(productData)
-    //         console.log(Object.keys(productPurchases))
-    //         console.log(productID)
-    //         var visible = Object.keys(productPurchases).includes(productID)
-    //         console.log(visible)
-    //         return visible
-            
-    //     })
+    
+    async isVisible() {
+        const purchaseDoc = doc(db, "users", this.user.uid)
+        const purchaseDocRef = await getDocs(collection(purchaseDoc, "purchaseHistory"))
+        const productID = this.productNumber
+        console.log(purchaseDoc)
+        console.log(purchaseDocRef)
+        console.log(this.user.uid)
+        let productPurchasesArray = []
+        purchaseDocRef.forEach(async (docs) => {
+            let productData = docs.data();
+            let productPurchases = productData.purchases;
+            // console.log(productPurchases)
+            // console.log(productData)
+            // console.log(Object.keys(productPurchases))
+            // console.log(productID)
+            // console.log(Object.keys(productPurchases))
+            productPurchasesArray.push(Object.keys(productPurchases))
+            console.log(productPurchasesArray)
+        })
+        console.log(productID)
         
-    // }
+        if (productPurchasesArray.includes(productID)) {
+            return true
+        }
+        else {
+            return false
+        }
+        
+        
+    },
     
     
   }
 
 }
+
 </script>
 
 <style scoped>
