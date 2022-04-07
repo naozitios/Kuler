@@ -86,7 +86,7 @@
 <script>
 import firebaseApp from '../../firebase.js';
 import {getFirestore} from "firebase/firestore";
-import {collection, setDoc, getDocs, doc, updateDoc, arrayUnion, getDoc} from "firebase/firestore";
+import {collection, getDocs, doc, setDoc, updateDoc, arrayUnion, getDoc} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 export default {
@@ -106,7 +106,9 @@ export default {
           var categoryDropdown = document.getElementById("custom-select2")
           var category = categoryDropdown.options[categoryDropdown.selectedIndex].text
           var format = document.querySelector('input[name="format"]:checked').value
+          let canProceed = true
           var delivery = null
+          var errorMessage = "You are missing: "
           if (format === "Digital") {
               delivery = "null"
           } else {
@@ -128,10 +130,24 @@ export default {
             category = 4
           } else if (category === "Videos") {
             category = 5
+          } else if (category == "Choose Category"){
+            canProceed = false
+            errorMessage = errorMessage.concat(' ', "Category,")
           } else {
             category = 6
           }
-          console.log(category)
+          if (license === "Attribution CC BY") {
+            canProceed = false
+            errorMessage = errorMessage.concat(' ', "License,")
+          }
+          if (title === "") {
+            canProceed = false
+            errorMessage = errorMessage.concat(' ', "Title,")
+          }
+          if (isNaN(price)) {
+            canProceed = false
+            errorMessage = errorMessage.concat(' ', "Price,")
+          }
           // add to product rating
           // problem
           console.log(this.numberOfProducts + 1)
@@ -144,7 +160,9 @@ export default {
             user_id_seller: this.user.uid
             
           }) .then(() => console.log((reviewsRef)))
+
           // add to products
+          if (canProceed == true) {
             const docRef = await setDoc(doc(db, "products", (this.numberOfProducts + 1).toString()), {
               caption: title, 
               category_id: category,
@@ -162,6 +180,9 @@ export default {
             })
             .then(() => this.afterFunction())
             console.log(docRef)
+          } else {
+            alert(errorMessage.slice(0, -1))
+          }
         },
         async afterFunction() {
           // add entry under the user's listngs
