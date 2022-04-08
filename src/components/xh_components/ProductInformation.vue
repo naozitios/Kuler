@@ -143,24 +143,6 @@ export default {
           const sellerID = this.sellerID
           this.$router.push({name: "Profile", params: {id: sellerID}})
       },
-       
-      /*async feedReviews() {
-          const ref = doc(db, "productratings", "2")
-          const refData = await getDoc(ref)
-          const properData = refData.data()
-          var dates = properData.date
-          dates.push("2022-3-28") // change date
-          // i assume description will be the same
-          var stars = properData.num_stars
-          stars.push(5)
-          const refFeed = await updateDoc(ref, {
-              date: dates,
-              description: arrayUnion("test5"),
-              num_stars: stars,
-              reviews: properData.reviews + 1,
-              user_id_buyer: arrayUnion("test5") // should change to buyer, functionality wise?
-          }) .then(() => console.log(refFeed))
-      }*/
   },
 
   mounted() {
@@ -172,9 +154,6 @@ export default {
 </script>
 
 <style scoped>
-h5{
-    /* margin-left: 5%; */
-}
 img {
   border-radius: 50%;
   max-width: 100%;
