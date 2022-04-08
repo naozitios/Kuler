@@ -11,7 +11,7 @@
   </div>
   <div class = "licenseOptions">
         License   
-        <a href = "https://www.artismycareer.com/management/how-to-license-your-art-a-beginners-guide-to-artwork-licensing/"> Learn More </a>
+        <a @click="directToFAQ" style="cursor: pointer; color: blue; text-decoration: underline"> Learn More </a>
         <br>
         <select id="custom-select">
         <option selected>Attribution CC BY</option>
@@ -136,10 +136,6 @@ export default {
           } else {
             category = 6
           }
-          if (license === "Attribution CC BY") {
-            canProceed = false
-            errorMessage = errorMessage.concat(' ', "License,")
-          }
           if (title === "") {
             canProceed = false
             errorMessage = errorMessage.concat(' ', "Title,")
@@ -238,6 +234,9 @@ export default {
       },
       isDigital() {
         this.isPhysicalChecked = false
+      },
+      directToFAQ() {
+        this.$router.push({name: "Frequently Asked Questions"})
       }
     },
     emits: ["productNumber"], // used to pass productnumber to parent.
