@@ -100,9 +100,8 @@ export default {
       const cartsDocSnap = await getDoc(cartsRef)
       if (!cartsDocSnap.exists()) {
         const newRef = await setDoc((cartsRef), {
-          date: [],
-          products: [],
-          quantity: []
+          date: "",
+          products: {},
         })
         console.log(newRef)
       }
