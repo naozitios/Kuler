@@ -218,15 +218,14 @@ export default {
         },
         printNumberOfProducts() { // debug
           this.findNumberOfProducts();
-          console.log(this.numberOfProducts)
         },
         async findNumberOfProducts() { // find the next product ID to add in. stored in numberOfProducts
         let z = await getDocs(collection(db, "products")) 
-        let count = 0
-         z.forEach(() => {
-           count+= 1;
+        let countArray = []
+         z.forEach((product) => {
+           countArray.push(parseInt(product.id));
          })
-         this.numberOfProducts = count;
+         this.numberOfProducts = Math.max(...countArray)
          console.log(this.numberOfProducts) // debug
       }, 
       isPhysical() {
