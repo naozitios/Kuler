@@ -20,14 +20,11 @@
   <ProfileBiography :profileID="profileUserID"/>
   <h4><b>Click on the products you have purchased to leave a review!</b></h4>
 </div>
-<div class ="row">
   <div class="col-md-4 offset-md-8">
   <SortByButton @sortByOldest = "oldestSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" @sortByNewest = "newestSort" @sortByRating="ratingSort"/>
   <!-- <ProfileBiography/> -->
   </div>
-</div>
-  <div class="container pt-3" div="details">
-    <div class = "row">
+  <div class = "listings">
       <FilterProfile @changeCategory="changeCategory($event)" @changeFormat="changeFormat($event)"/>
       <Listings :category="category" :historyID = "profileUserID" :key="componentKey" :format="format" :sort="sort"/>
   </div>
