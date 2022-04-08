@@ -59,9 +59,10 @@ export default {
       numberOfPurchases: Number
   },
   methods:{
-      directToProduct() {
+      async directToProduct() {
           const productNum = this.productNumber
-          this.$router.push({name: "Product Page", params: {id: productNum}})
+          await this.$router.push({name: "Product Page", params: {id: productNum}})
+          this.$router.go(0)
       },
       async updatePictures() { // i assume that productID is given, i put a hypothethical value of 3
       this.coverPicture = this.coverImage

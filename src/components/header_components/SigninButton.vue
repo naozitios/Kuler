@@ -26,9 +26,10 @@ export default {
     },
 
     methods: {
-        directToProfile() {
+        async directToProfile() {
             const profileID = this.user.uid
-            this.$router.push({name: "Profile", params: {id: profileID}})
+            await this.$router.push({name: "Profile", params: {id: profileID}})
+            this.$router.go(0)
         }
     }
 }
