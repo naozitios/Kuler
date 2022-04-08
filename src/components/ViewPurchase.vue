@@ -9,13 +9,6 @@
     </div>
 </div>
 <div class="details">
-<v-row align="left">
-      <hr />
-      <div class="row">
-        <div class="col-sm-8"><h5>Subtotal</h5></div>
-        <div class="col-sm-4"><h5>SGD {{this.total_price}}</h5></div>
-      </div>
-    </v-row>
     <hr />
     <v-row align="left">
       <div class="row">
@@ -23,7 +16,8 @@
       <div class="col-sm-4"><h5>SGD {{this.total_price}}</h5></div>
       </div>
     </v-row>
-    </div>
+    <hr />
+  </div>
 </template>
 <script>
 import CartCard from "@/components/CartCard.vue"
