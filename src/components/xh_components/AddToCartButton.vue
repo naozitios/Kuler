@@ -32,12 +32,13 @@ export default {
 
     methods: {
         async addToCart() {
-            if (this.user) {
+            const productRef = await getDoc(doc(db, "products", this.productNumber))
+            const productData = productRef.data()
+            if (this.user && this.user.uid !== productData.user_id) { // also need to check if the person is the buyer
                 const ref = doc(db, "usershoppingcarts", this.user.uid)
                 // two cases: 
                 // case 1: if not inside, we set the product and its quantity accordingly to back of array
                 // case 2: if inside, find index of array, update the quantity.
-                
                 const document = await getDoc(ref)
                 const documentData = document.data()
                 var products = documentData.products
@@ -85,7 +86,9 @@ export default {
                 // }
                 // alert("Added item to cart.") // after that, force a refresh as well
                 // window.location.reload(true)
-            } else {
+            } else if (this.user.uid === productData.user_id) {
+                alert("You cannot buy your own product!")
+            }  else {
                 alert("Please log in. You can only add products to your cart after you have logged in.")
                 this.$router.push({name: "Login"}) 
             }
