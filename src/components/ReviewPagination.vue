@@ -369,6 +369,8 @@ a:hover {
     white-space: nowrap;
     color: white;
     background-color: #F37381;
+    padding-right:2%;
+    padding-left:2%;
 }
 
 </style>
