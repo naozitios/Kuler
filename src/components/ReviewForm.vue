@@ -185,7 +185,7 @@ export default {
   position: relative;
   display: inline-block;
   margin: 1em;
-  padding: 1em 2em;
+  padding: 1% 2% 1% 2%;
   border: 0;
   border-radius: 30px;
   text-align: center;
