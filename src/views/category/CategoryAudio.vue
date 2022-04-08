@@ -5,7 +5,6 @@
   <div class="row">
     <div class="col-md-4 offset-md-8"><SortByButton @sortByOldest = "oldestSort" @sortByPrice = "priceSort" @sortByRelavancy = "relevanceSort" @sortByNewest = "newestSort" @sortByRating="ratingSort"/></div>
   </div>
-  <div class="container pt-3" div="details">
     <div class="row">
       <div class="col-lg-2">
       <FilterOptions :category="category" @showall = "changeAll"  @showdigital = "changeDigital"  @showphysical = "changePhysical"/>
@@ -14,7 +13,6 @@
         <Listings :category="category" :format="format" :sort="sort" />
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -67,5 +65,8 @@ export default {
 <style scoped>
 .listings {
   margin-top: 5%;
+}
+.row {
+  margin-left: 2%
 }
 </style>
