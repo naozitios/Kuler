@@ -263,6 +263,7 @@ export default {
       const arrayOfProducts = favouriteData.products;
       arrayOfProducts.forEach(async (productIndex) => {
         let product = await getDoc(doc(db, "products", productIndex));
+        let userID = product.data().user_id
         let productFormat = product.data().product_type;
         let productCategory = product.data().category_id;
         let toAdd = false;
@@ -276,7 +277,7 @@ export default {
           if (docAData.reviews != 0) {
             totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
           }
-          this.getUser(this.userFavID).then((user) => {
+          this.getUser(userID).then((user) => {
             this.products.push({
               ...product.data(),
               ...user.data(),
@@ -323,6 +324,7 @@ export default {
           let actualProduct = await getDoc(doc(db, "products", key));
           let productFormat = actualProduct.data().product_type;
           let productCategory = actualProduct.data().category_id;
+          let userID = actualProduct.data().user_id
           let toAdd = false;
           toAdd = this.toAssign(productFormat, productCategory);
           if (toAdd == true) {
@@ -334,7 +336,7 @@ export default {
             if (docAData.reviews != 0) {
               totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
             }
-            this.getUser(this.historyID).then((user) => {
+            this.getUser(userID).then((user) => {
               this.products.push({
                 ...actualProduct.data(),
                 ...user.data(),

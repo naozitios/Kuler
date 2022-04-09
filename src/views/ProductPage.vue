@@ -12,13 +12,13 @@
 <ReviewPagination :perPage = "3" :currentPage = "currentPage" @pagechanged="onPageChange" 
 :productNumber="productNumber"/>
 </div>
-
+<SimilarItems :productNumber="productNumber"/>
 <FooterMain/>
 </template>
 
 <script>
 import ProductScroll from '@/components/xh_components/ProductScroll.vue';
-//import SimilarItems from '@/components/SimilarItems.vue';
+import SimilarItems from '@/components/SimilarItems.vue';
 import ProductInformation from '@/components/xh_components/ProductInformation.vue';
 import ReviewPagination from '@/components/ReviewPagination.vue'
 import FooterMain from '@/components/footer_components/FooterMain.vue'
@@ -33,7 +33,7 @@ export default {
   components:{
     ProductScroll,
     ProductInformation,
-    //SimilarItems,
+    SimilarItems,
     ReviewPagination,
     FooterMain
   },
