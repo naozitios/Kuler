@@ -97,14 +97,15 @@ export default {
 
     mounted() {
         const auth = getAuth()
-
+        this.mountReviews()
+        .then(() => this.calculateTotalPages());
         onAuthStateChanged(auth, (user) => {
         if (user) {
           this.user = user
           this.profileID = this.user.uid          
           this.isVisible()
-        this.mountReviews()
-        .then(() => this.calculateTotalPages());
+          console.log(this.productNumber)
+        
         
     
        

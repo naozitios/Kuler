@@ -88,10 +88,11 @@ export default {
             productsCollection = query(collection(db, "products"));
           } else {
             console.log(this.text);
+            
             productsCollection = query(
               collection(db, "products"),
               where("caption", ">=", this.text.toUpperCase()),
-              where("caption", "<=", this.text + "\uf8ff")
+              where("caption", "<=", this.text + "\uf8ff"),
             );
           }
         } else {

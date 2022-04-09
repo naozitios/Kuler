@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/signOut"><img src="@/assets/signout_icon.png" alt="Sign Out" v-if="user"></router-link>
+    <router-link to="/signOut"><img src="@/assets/signout_icon.png" alt="Sign Out"></router-link>
 </template>
 
 <script>
