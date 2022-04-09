@@ -122,7 +122,6 @@ export default {
        const docARef = await getDoc(doc(db, "productratings", product.id))
         const docAData = docARef.data()
         var totalRatingA = 0
-        console.log(docAData)
         docAData.num_stars.forEach(rating => totalRatingA += rating)
         if (docAData.reviews != 0) {
           totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
