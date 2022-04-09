@@ -3,7 +3,7 @@
       <h3>We're sad to see you go... do visit us again!</h3>
       <br>
   </div>
-  <button id= "btn" @click = "signOut" class="btn btn-primary"> Logout </button>
+  <button id= "btn" @click = "signOut" class="btn btn-primary" v-if="user"> Logout </button>
 </template>
 
 <script>
@@ -31,9 +31,13 @@ export default {
         async signOut() {
             const auth = getAuth();
             const user = auth.currentUser;
+            if (!user) {
+                alert("You cannot sign out if you are not logged in...")
+            } else {
             signOut(auth,user)
             await this.$router.push({name: 'Login'})
             this.$router.go(0)
+            }
         }
     }
 }

@@ -128,7 +128,6 @@ export default {
           totalRatingA = (totalRatingA / docAData.reviews).toFixed(2)
         }
         this.getUser(user_id).then((user) => {
-          console.log(product.purchaseCount)
           this.products.push({
             ...product.data(),
             ...user.data(),
