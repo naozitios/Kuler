@@ -61,7 +61,7 @@ export default {
     
     methods: {
         async addReview() {
-            var stars = parseInt(document.querySelector('input[name="rating1"]:checked').value)
+            var stars = parseFloat(document.querySelector('input[name="rating1"]:checked').value)
             var description = document.getElementById("reviewForm").value
             console.log(stars)
             console.log(description)
@@ -85,7 +85,7 @@ export default {
             }) .then(() => console.log(reviewsRef)).then(()=> this.$router.push({name: "Purchase History", params: {id: this.user.uid}}))
             alert("You have successfully left a review!")
             return false
-        }
+        },
         
     }
     
